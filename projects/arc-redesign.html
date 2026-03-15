@@ -70,8 +70,6 @@
       <span class="nav-label">Contact</span>
       <a href="mailto:dereck.villagrana58@gmail.com" class="nav-link">Email</a>
       <a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="nav-link">LinkedIn</a>
-      <!-- ⚠️ TODO: Replace href="#" with actual Read.cv profile URL -->
-      <a href="#" class="nav-link">Read.cv</a>
     </div>
 
     <!-- Status pill: animated green dot + "Available for work" text.
@@ -152,6 +150,32 @@
       <p class="cs-body">The ARC app lets UC Davis students reserve equipment, book facilities, view class schedules, and manage memberships. The existing app had accessibility shortfalls, navigation patterns that didn't match how students actually used the space, and a visual design that felt dated. The challenge was to address all three in a tight sprint without losing the core utility that students relied on.</p>
     </section>
 
+    <!-- ─── What Was Broken Section ───────────────────────────────────────
+         Three specific pain points surfaced during usability testing of
+         the original app. Structured as an insight grid for scannability. -->
+    <section class="cs-section reveal">
+      <span class="cs-section-label">What Was Broken</span>
+      <h2 class="cs-heading">Three specific failures — each one costing students time before they even walked in the door.</h2>
+      <div class="cs-insight-grid">
+        <div class="cs-insight-card">
+          <span class="cs-section-label">Navigation vs. behavior</span>
+          <p>Most students came to the ARC for one thing — a class or the weight room. Both required 3+ taps from the home screen. The app's structure mapped to the facility's departments, not how students actually moved through the space.</p>
+        </div>
+        <div class="cs-insight-card">
+          <span class="cs-section-label">Booking friction</span>
+          <p>The facility reservation UI used generic date/time pickers that didn't account for ARC-specific rules — 2-hour booking windows, equipment requiring in-person check-out. Errors surfaced at submission, not at input, causing repeated drop-off.</p>
+        </div>
+        <div class="cs-insight-card">
+          <span class="cs-section-label">Visual hierarchy</span>
+          <p>Announcements, class schedules, and reservations were given equal visual weight — with no way to surface what was relevant to a specific student's visit. Everything felt equally important, so nothing did.</p>
+        </div>
+        <div class="cs-insight-card">
+          <span class="cs-section-label">Accessibility</span>
+          <p>White text on light photography throughout the app failed WCAG AA contrast minimums. Core content — class times, booking confirmations — was technically unreadable for users with low vision.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ─── Process Section ───────────────────────────────────────────────
          Describes the front-loaded research approach within the 5-day sprint:
          interviews, survey, usability testing on existing app, then design.
@@ -174,20 +198,42 @@
       <p class="cs-image-caption">Final high-fidelity prototype — redesigned class schedule, equipment booking, and facility reservation</p>
     </section>
 
+    <!-- ─── Design Decisions Section ─────────────────────────────────────
+         Three specific choices made and the reasoning behind each. -->
+    <section class="cs-section reveal">
+      <span class="cs-section-label">Design Decisions</span>
+      <h2 class="cs-heading">Restructure around intent, not departments.</h2>
+
+      <div class="cs-feature-block">
+        <p class="cs-feature-title">Navigation built around visit intent</p>
+        <p class="cs-body">Instead of organizing by facility department, I restructured the home screen around why students came to the ARC in the first place: "I'm here to work out," "I'm here for a class," "I'm here to reserve." Three clear entry points replaced the original tab structure — collapsing 3+ taps into one.</p>
+      </div>
+
+      <div class="cs-feature-block">
+        <p class="cs-feature-title">ARC-aware booking widget</p>
+        <p class="cs-body">Replaced the generic date/time picker with a purpose-built booking widget that surfaced real-time availability and enforced ARC-specific rules at the input level — not at submission. If a slot wasn't available or a rule would be violated, it was made visible before the user tried to book, not after.</p>
+      </div>
+
+      <div class="cs-feature-block">
+        <p class="cs-feature-title">Accessibility as a constraint, not a checkbox</p>
+        <p class="cs-body">Applied WCAG AA contrast minimums to every text-on-image treatment — which meant rethinking how the app used photography as a background. The redesign kept the visual energy of the original while making core content readable for everyone.</p>
+      </div>
+    </section>
+
     <!-- ─── Outcome Section ───────────────────────────────────────────────
-         Closes the case study with the result (cohort acceptance) and the
-         key lesson: triage and prioritization under pressure. -->
+         Closes the case study with the result and the real lesson learned. -->
     <section class="cs-section reveal">
       <span class="cs-section-label">Outcome</span>
-      <h2 class="cs-heading">It got me in.</h2>
-      <p class="cs-body">The prototype was strong enough to earn a spot in the Design Interactive cohort. More importantly, the five-day constraint forced a kind of triage I hadn't practiced before: deciding which problems were worth solving in the time available, which improvements had the most impact, and which had to wait. That kind of prioritization under pressure is something I now look for in every project.</p>
+      <h2 class="cs-heading">It got me in — and taught me that scope is a design decision.</h2>
+      <p class="cs-body">The prototype placed well enough to earn a Design Interactive cohort spot. More than the result, the sprint clarified something I now apply to every project: in five days you can't solve everything, so the design problem becomes a prioritization problem first.</p>
+      <p class="cs-body">Deciding which friction to remove — and being honest about which to leave — turned out to be the real skill being tested. The navigation restructure and booking widget had the most direct impact on the problems students actually hit. The visual refresh mattered, but it was the third priority, not the first. Learning to make that call under pressure is something I've carried into every project since.</p>
     </section>
 
 
   <!-- Footer: &copy; renders the © copyright symbol (HTML entity).
        See index.html for full footer documentation. -->
   <footer class="site-footer">
-    &copy; 2025 Dereck Villagrana. All rights reserved.
+    &copy; 2026 Dereck Villagrana. All rights reserved.
   </footer>
 
   </main>

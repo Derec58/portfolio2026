@@ -70,8 +70,6 @@
       <span class="nav-label">Contact</span>
       <a href="mailto:dereck.villagrana58@gmail.com" class="nav-link">Email</a>
       <a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="nav-link">LinkedIn</a>
-      <!-- ⚠️ TODO: Replace href="#" with actual Read.cv profile URL -->
-      <a href="#" class="nav-link">Read.cv</a>
     </div>
 
     <!-- Status pill: animated green dot + "Available for work" text.
@@ -151,6 +149,32 @@
       <p class="cs-body">Most plant ID apps stop at identification. SnapPlant's intention was to go further — connecting users to information about deforestation rates in their region and whether the plant they just identified is native or invasive. Knowing the plant is one thing. Knowing what it means for the ecosystem around you is another.</p>
     </section>
 
+    <!-- ─── Research Section ──────────────────────────────────────────────
+         What surveys and concept testing revealed about the problem space
+         and what SnapPlant needed to do differently. -->
+    <section class="cs-section reveal">
+      <span class="cs-section-label">What the Research Found</span>
+      <h2 class="cs-heading">People are curious about plants. They're not curious about deforestation — until you make it local.</h2>
+      <div class="cs-insight-grid">
+        <div class="cs-insight-card">
+          <span class="cs-section-label">Surface-level awareness</span>
+          <p>Most survey respondents could name plants by their common name but had no idea whether they were native, invasive, or at risk. Environmental knowledge stopped at recognition.</p>
+        </div>
+        <div class="cs-insight-card">
+          <span class="cs-section-label">The gap existing apps leave</span>
+          <p>Apps like PictureThis and iNaturalist excelled at identification but stopped there. Once users had a name, there was no obvious next step — no context, no consequence, no reason to care.</p>
+        </div>
+        <div class="cs-insight-card">
+          <span class="cs-section-label">Abstraction kills engagement</span>
+          <p>Deforestation felt distant and global in surveys. When reframed locally — "this species is displacing native plants within 10 miles of you" — engagement in concept testing jumped significantly.</p>
+        </div>
+        <div class="cs-insight-card">
+          <span class="cs-section-label">The design opportunity</span>
+          <p>The moment of curiosity — pointing your phone at something and wanting to know what it is — was the right place to introduce context. That window of attention is real and brief. Design for it.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ─── Process Section ───────────────────────────────────────────────
          Describes the solo, three-week design pipeline: surveys → usability
          testing → sketches → wireframes → high-fidelity prototype.
@@ -173,20 +197,42 @@
       <p class="cs-image-caption">Final high-fidelity screens — plant ID, results, and environmental context</p>
     </section>
 
+    <!-- ─── Design Decisions Section ─────────────────────────────────────
+         Three specific choices that defined the app's approach. -->
+    <section class="cs-section reveal">
+      <span class="cs-section-label">Key Design Decisions</span>
+      <h2 class="cs-heading">Make identification feel instant. Make awareness feel optional — but worth it.</h2>
+
+      <div class="cs-feature-block">
+        <p class="cs-feature-title">Speed as a design principle</p>
+        <p class="cs-body">The identification flow was designed to feel instant — camera to match in under 3 seconds — so users didn't lose the moment of curiosity before anything useful appeared. If the result took too long, the window closed.</p>
+      </div>
+
+      <div class="cs-feature-block">
+        <p class="cs-feature-title">Awareness as opt-in, not interruption</p>
+        <p class="cs-body">The environmental context — deforestation data, invasive species information — appeared as a secondary card after the identification result, not in place of it. Identification always worked cleanly first. The awareness layer rewarded users who wanted to go further without alienating users who just wanted a name.</p>
+      </div>
+
+      <div class="cs-feature-block">
+        <p class="cs-feature-title">Visual tone: calm, not alarming</p>
+        <p class="cs-body">The subject matter — invasive species, deforestation rates — could easily read as preachy or anxiety-inducing. The visual design leaned into greens, off-whites, and generous whitespace deliberately. The goal was to inform without overwhelming. A calm interface made the information feel approachable rather than urgent.</p>
+      </div>
+    </section>
+
     <!-- ─── Takeaway Section ──────────────────────────────────────────────
-         Short closing reflection on what solo end-to-end ownership taught
-         about decision-making speed and design conviction. -->
+         Closing reflection — expanded to show genuine process learning. -->
     <section class="cs-section reveal">
       <span class="cs-section-label">Takeaway</span>
-      <h2 class="cs-heading">End-to-end solo work teaches you to make decisions faster.</h2>
-      <p class="cs-body">Running the full process solo — no team to defer to, no one else's research to lean on — compressed my decision-making in a way that's hard to replicate in group projects. Every call was mine. That pressure clarified what I actually believed about the design versus what I was guessing at.</p>
+      <h2 class="cs-heading">Solo end-to-end work teaches you what you actually believe about design.</h2>
+      <p class="cs-body">Running the full process alone — no team to defer to, no one else's research to lean on — compressed my decision-making in a way that's hard to replicate in group projects. Every call was mine. That pressure clarified what I actually believed about the design versus what I was just guessing at.</p>
+      <p class="cs-body">The biggest thing I learned: restraint is a choice, not a default. It would have been easy to layer in more features — social sharing, gamification, streak counters. Each one would have made the app more complex and less itself. The version that shipped was simple because I actively decided to keep it that way, not because I ran out of time.</p>
     </section>
 
 
   <!-- Footer: &copy; renders the © copyright symbol (HTML entity).
        See index.html for full footer documentation. -->
   <footer class="site-footer">
-    &copy; 2025 Dereck Villagrana. All rights reserved.
+    &copy; 2026 Dereck Villagrana. All rights reserved.
   </footer>
 
   </main>
