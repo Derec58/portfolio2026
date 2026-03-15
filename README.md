@@ -2,7 +2,7 @@
 
 Personal portfolio site for Dereck Villagrana, a product designer. Features case studies, a CV, and an about page.
 
-**Live site:** [your-vercel-url.vercel.app](https://your-vercel-url.vercel.app) &nbsp;·&nbsp; **Repo:** [github.com/Derec58/portfolio2026](https://github.com/Derec58/portfolio2026)
+**Live site:** [portfolio2026-puce.vercel.app](https://portfolio2026-puce.vercel.app) &nbsp;·&nbsp; **Repo:** [github.com/Derec58/portfolio2026](https://github.com/Derec58/portfolio2026)
 
 ---
 
@@ -80,6 +80,19 @@ Open to full-time product design roles, freelance projects, and introductions.
 
 - **Email:** [dereck.villagrana58@gmail.com](mailto:dereck.villagrana58@gmail.com)
 - **LinkedIn:** [linkedin.com/in/dereck-villagrana](https://www.linkedin.com/in/dereck-villagrana/)
+
+---
+
+## AI Assistance
+
+[Claude](https://claude.ai) (by Anthropic) appears as a co-author on some commits. Its role was strictly technical and operational:
+
+- Bug finding and debugging
+- Code optimizations and refactoring suggestions
+- Git workflow and GitHub push operations
+- General development tooling assistance
+
+**All designs, visual direction, case study writing, and portfolio content were created entirely by Dereck Villagrana.** No AI-generated designs, copy, or creative output is present in this project.
 
 ---
 
