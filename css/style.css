@@ -87,7 +87,7 @@ a {
   /* ── Layout ── */
   --sidebar-width: 220px;       /* Width of the fixed left sidebar */
   --sidebar-padding: 28px;      /* Left/right padding inside the sidebar */
-  --content-padding-x: 150px;  /* Left/right padding of the main content area (desktop) */
+  --content-padding-x: 200px;  /* Left/right padding of the main content area (desktop) */
   --content-padding-y: 56px;   /* Top/bottom padding of the main content area */
 
   /* ── Colors (light mode defaults) ── */
