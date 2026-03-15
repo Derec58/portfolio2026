@@ -1043,10 +1043,12 @@ img {
   }
 
   /* Vertically center the nav groups in the overlay using auto margins.
-     Using :first-of-type / :last-of-type on .nav-group instead of fragile
-     nth-child numbers — stays correct regardless of how many nav groups exist. */
-  .sidebar.nav-open > .nav-group:first-of-type { margin-top: auto; }
-  .sidebar.nav-open > .nav-group:last-of-type  { margin-bottom: auto; }
+     - .sidebar-header + .nav-group selects the first nav-group (always immediately after header)
+     - .nav-group:nth-last-child(2) selects the last nav-group (sidebar-status is always last child)
+     Note: :first-of-type / :last-of-type don't work here because all flex children are <div>s —
+     they would match .sidebar-header and .sidebar-status instead of the nav-groups. */
+  .sidebar.nav-open > .sidebar-header + .nav-group { margin-top: auto; }
+  .sidebar.nav-open > .nav-group:nth-last-child(2) { margin-bottom: auto; }
 
   /* Reveal nav groups in the overlay (they were display:none before) */
   .sidebar.nav-open .nav-group {
