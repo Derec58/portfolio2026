@@ -1,0 +1,1932 @@
+/* ═══════════════════════════════════════════════════════════════
+   style.css — Portfolio Stylesheet
+   ═══════════════════════════════════════════════════════════════
+   Single stylesheet for the entire portfolio site.
+   Sections in order:
+     1.  Reset & Base
+     2.  CSS Custom Properties (Design Tokens)
+     3.  Sidebar
+     4.  Logo Badge
+     5.  Sidebar Nav & Nav Groups
+     6.  Availability Status Pill
+     7.  Project Hover Preview
+     8.  Skip Navigation
+     9.  Focus Styles
+     10. Global Image Rule
+     11. Main Content Area
+     12. About / Bio Section
+     13. CV / Experience Section
+     14. Section Dividers
+     15. Selected Work: Project Cards
+     16. Lab Section
+     17. After Hours Grid
+     18. Mobile Menu Toggle (hidden on desktop)
+     19. Theme Toggle Button
+     20. Scroll Reveal
+     21. Responsive: Tablet (769px–1024px)
+     22. Responsive: Mobile (≤768px)
+     23. Responsive: Small Mobile (≤480px)
+     24. Prefers Reduced Motion
+     25. Case Study Pages
+     26. About Page
+     27. Copyright Footer
+     28. Back to Top Button
+   ═══════════════════════════════════════════════════════════════ */
+
+
+/* ═══════════════════════════════════════════════════════════════
+   1. RESET & BASE
+   Remove browser default margins/padding, set box-sizing.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Universal reset: applies to every element and its ::before/::after pseudo-elements.
+   box-sizing: border-box means padding and border are INCLUDED in declared width/height,
+   not added on top. Much more predictable than the default "content-box". */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Anchor link clicks (#about, #cv) animate instead of jumping instantly */
+  scroll-behavior: smooth;
+  /* Sets the base font size. 1rem = 16px throughout the site.
+     Users can override this in their browser settings (accessibility). */
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* -apple-system / BlinkMacSystemFont = native system font fallbacks on Apple/Chrome.
+     sans-serif = final generic fallback if nothing else loads. */
+  font-weight: 400;
+  background: var(--color-surface); /* matches .content bg — no visible seam outside the max-width */
+  color: var(--color-text);
+  line-height: 1.6;
+  display: flex; /* sidebar + main content sit side by side */
+  min-height: 100vh; /* page fills the full viewport height minimum */
+}
+
+/* Remove default link styling — links inherit their context's color and have no underline.
+   Individual components add back underlines/colors as needed. */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   2. CSS CUSTOM PROPERTIES (Design Tokens)
+   All design decisions in one place. Change a variable here
+   and it updates everywhere it's used via var().
+   ═══════════════════════════════════════════════════════════════ */
+
+/* :root = the <html> element — the highest scope, so variables are available everywhere */
+:root {
+  /* ── Layout ── */
+  --sidebar-width: 220px;       /* Width of the fixed left sidebar */
+  --sidebar-padding: 28px;      /* Left/right padding inside the sidebar */
+  --content-padding-x: 150px;  /* Left/right padding of the main content area (desktop) */
+  --content-padding-y: 56px;   /* Top/bottom padding of the main content area */
+
+  /* ── Colors (light mode defaults) ── */
+  --color-bg: #ffffff;          /* Sidebar and page background */
+  --color-surface: #f6f6f6;    /* Main content area background — slightly off-white */
+  --color-text: #1a1a1a;        /* Primary text color */
+  --color-muted: #767676;       /* Secondary/caption text — 4.54:1 contrast on white, passes WCAG AA.
+                                   ⚠️ Do not lighten — contrast would fail below 4.5:1 */
+  --color-accent: #7B5EA7;      /* Purple — used for links, active states, focus rings, borders */
+  --color-divider: #e5e5e5;     /* Borders, section lines, horizontal rules */
+  --color-status: #4ade80;      /* Green — the "Available for work" dot */
+
+  /* ── Image placeholder colors ── */
+  /* Used while real images are missing — sets a neutral gray placeholder */
+  --color-placeholder: #f4f4f4;
+  --color-placeholder-text: #bbbbbb;
+  --color-placeholder-hover: #eeeeee;
+
+  /* ── Typography ── */
+  /* Display/serif font for headings and pull quotes. Falls back gracefully if
+     Playfair Display fails to load (Georgia → Times New Roman → generic serif) */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+}
+
+/* Dark mode overrides — applied when JavaScript sets data-theme="dark" on <html>.
+   Every var() call below automatically picks up these overridden values.
+   No duplicate CSS rules needed anywhere else. */
+[data-theme="dark"] {
+  --color-bg: #171717;
+  --color-text: #c9c5be;        /* Warm off-white — easier on the eyes than pure white */
+  --color-muted: #8c8780;       /* ~5.5:1 contrast on dark bg — passes WCAG AA with headroom */
+  --color-divider: #272727;
+  --color-accent: #A07DD6;      /* Lighter purple — same hue, better contrast on dark */
+  --color-surface: #111111;
+  --color-placeholder: #212121;
+  --color-placeholder-text: #3d3d3d;
+  --color-placeholder-hover: #2d2d2d;
+  /* Note: --color-status and --font-display are intentionally not overridden */
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   3. SIDEBAR
+   Fixed left navigation column. On mobile it becomes a top navbar
+   (see Section 22, Responsive: Mobile).
+   ═══════════════════════════════════════════════════════════════ */
+
+/* .sidebar-header is a grouping wrapper for .sidebar-top + .sidebar-nav.
+   display: contents makes it "layout-invisible" on desktop — its box disappears
+   from the layout, but its children (.sidebar-top, .sidebar-nav) still flow
+   directly into .sidebar's flex column as if the wrapper wasn't there.
+   On mobile this is overridden back to display: flex (see Section 22). */
+.sidebar-header {
+  display: contents;
+}
+
+.sidebar {
+  position: fixed;    /* pinned to viewport — never scrolls with the page */
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width); /* 220px */
+  height: 100vh;               /* full viewport height */
+  overflow-y: auto;            /* scroll if nav items exceed viewport height */
+  padding: var(--sidebar-padding); /* 28px on all sides */
+  display: flex;
+  flex-direction: column;      /* stacks all items vertically */
+  gap: 0;
+  border-right: 1px solid var(--color-divider);
+  background: var(--color-bg);
+  z-index: 100; /* above .content (no z-index) but below overlay (200) and preview (999) */
+  scrollbar-width: none; /* hide scrollbar in Firefox */
+}
+/* Hide the scrollbar in Chrome/Safari/Edge — sidebar is still scrollable */
+.sidebar::-webkit-scrollbar { display: none; }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   4. LOGO BADGE
+   The "DV" monogram badge that links back to home.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* .sidebar-top: row containing the DV badge + desktop theme toggle */
+.sidebar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4px;
+  padding-bottom: 20px;
+}
+
+.logo-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--color-accent);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05em; /* slight spacing between D and V for monogram look */
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  color: var(--color-accent);
+}
+/* On hover: fills with accent color (inverts the badge) */
+.logo-badge:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   5. SIDEBAR NAV & NAV GROUPS
+   Top-level links (About, CV) and grouped project navigation links.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Top nav section: About, CV, mobile theme toggle, hamburger.
+   calc(-1 * var(--sidebar-padding)) on horizontal margins pulls the nav to the
+   full sidebar width (breaking out of the parent's padding), then matching
+   padding-left/right restores the visual inset. This creates full-width top/bottom
+   borders while keeping text aligned. */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid var(--color-divider);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: 0 calc(-1 * var(--sidebar-padding));  /* bleed to sidebar edges */
+  padding-left: var(--sidebar-padding);          /* restore text alignment */
+  padding-right: var(--sidebar-padding);
+}
+
+/* Nav groups are repeated sections (Selected Work, Lab, After Hours, Contact).
+   Same bleed trick as .sidebar-nav for full-width borders. */
+.nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid var(--color-divider);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: 0 calc(-1 * var(--sidebar-padding));
+  padding-left: var(--sidebar-padding);
+  padding-right: var(--sidebar-padding);
+}
+
+/* Category label above each group ("SELECTED WORK", "LAB", etc.) */
+.nav-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;  /* All caps via CSS, not in HTML (screen readers read normally) */
+  letter-spacing: 0.1em;      /* Spaced out for small uppercase readability */
+  color: var(--color-muted);
+  margin-bottom: 6px;
+}
+
+/* Individual navigation link */
+.nav-link {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  transition: color 0.15s;
+  line-height: 1.5;
+}
+.nav-link:hover {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent); /* accent-colored underline on hover */
+  text-underline-offset: 3px;                 /* gap between text and underline */
+}
+/* Active state: this link's section is currently visible, or this is the current page */
+.nav-link.active {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   6. AVAILABILITY STATUS PILL
+   The "● Available for work" indicator at the bottom of the sidebar.
+   ═══════════════════════════════════════════════════════════════ */
+
+.sidebar-status {
+  margin-top: auto; /* pushes to the bottom of the sidebar flex column */
+  border-top: 1px solid var(--color-divider);
+  /* Same bleed trick: pull to sidebar edges, then re-pad */
+  margin-left: calc(-1 * var(--sidebar-padding));
+  margin-right: calc(-1 * var(--sidebar-padding));
+  padding: 16px var(--sidebar-padding);
+  display: flex;
+  align-items: center;
+}
+
+/* The pill badge itself */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  padding: 5px 10px;
+  border: 1px solid var(--color-divider);
+  border-radius: 100px; /* large value = fully rounded pill shape */
+  letter-spacing: 0.02em;
+  transition: border-color 0.15s;
+}
+/* Hovering the pill highlights the border in green */
+.status-pill:hover {
+  border-color: var(--color-status);
+}
+
+/* The small green dot — decorative (aria-hidden="true" in HTML) */
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%; /* circle */
+  background: var(--color-status); /* green */
+  flex-shrink: 0;     /* don't let the dot shrink when space is tight */
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+/* Pulsing glow animation on the status dot.
+   Two properties animate together:
+   - opacity: gentle fade (1 → 0.85 → 1)
+   - box-shadow: green glow ring that grows and fades (0px radius → 4px → 0px)
+   rgba(74, 222, 128, 0.45) = green dot color at 45% opacity for the glow start.
+   rgba(74, 222, 128, 0) = fully transparent — the ring disappears at 50%. */
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.45);
+  }
+  50% {
+    opacity: 0.85;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0); /* glow ring fully expanded + transparent */
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   7. PROJECT HOVER PREVIEW
+   The floating thumbnail that follows the cursor over sidebar nav links.
+   Created and managed by JavaScript (see main.js Section 5).
+   ═══════════════════════════════════════════════════════════════ */
+
+.project-preview {
+  position: fixed;        /* positioned relative to viewport, not page */
+  width: 160px;
+  pointer-events: none;   /* CRITICAL: card must not intercept mouse events or hover will flicker */
+  z-index: 999;           /* above almost everything else */
+  opacity: 0;             /* starts invisible */
+  transform: translateY(6px); /* starts slightly below final position */
+  transition: opacity 0.18s ease, transform 0.18s ease; /* smooth fade+slide in */
+  border-radius: 4px;
+  overflow: hidden;       /* clips the .preview-inner to the rounded corners */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+}
+/* JS adds "visible" class to show the card */
+.project-preview.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* The inner div where the thumbnail background image is applied */
+.preview-inner {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* widescreen thumbnail proportions */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--color-muted);
+  background: var(--color-divider); /* fallback color before image loads */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Darker shadow in dark mode (black doesn't show well on dark backgrounds) */
+[data-theme="dark"] .project-preview {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   8. SKIP NAVIGATION
+   An accessibility link that lets keyboard users skip past the sidebar
+   nav directly to the main content area.
+   ═══════════════════════════════════════════════════════════════ */
+
+.skip-nav {
+  position: absolute;
+  top: -48px; /* hidden above the viewport by default */
+  left: 0;
+  padding: 10px 20px;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  z-index: 9999; /* must be on top of absolutely everything */
+  transition: top 0.2s; /* slides down smoothly when focused */
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+/* When a keyboard user tabs to this link, it slides into the viewport */
+.skip-nav:focus {
+  top: 0;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   9. FOCUS STYLES
+   Custom focus indicators for keyboard navigation.
+   The :focus-visible selector shows the ring only for keyboard users,
+   not mouse clicks — best of both worlds.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Shows for keyboard navigation (Tab key) */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px; /* small gap between element edge and the ring */
+  border-radius: 2px;
+}
+/* Removes focus ring for mouse clicks (which look accidental and messy) */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   10. GLOBAL IMAGE RULE
+   Prevents images from overflowing their containers.
+   ═══════════════════════════════════════════════════════════════ */
+
+img {
+  max-width: 100%; /* image never wider than its container */
+  height: auto;    /* maintains aspect ratio when width is constrained */
+  display: block;  /* removes the small gap below inline images (inline baseline gap) */
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   11. MAIN CONTENT AREA
+   The scrollable right panel. Offset by sidebar width.
+   ═══════════════════════════════════════════════════════════════ */
+
+.content {
+  margin-left: var(--sidebar-width); /* 220px — pushes content right to clear the fixed sidebar */
+  flex: 1;       /* takes all remaining horizontal space in the body flex row */
+  min-width: 0;  /* prevents flex children from overflowing — flex children default to min-width: auto
+                    which can cause overflow; 0 allows the content to shrink */
+  padding: var(--content-padding-y) var(--content-padding-x); /* 56px top/bottom, 150px sides */
+  background: var(--color-surface); /* slight gray — different from sidebar's pure white */
+  min-height: 100vh;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   12. ABOUT / BIO SECTION
+   The homepage hero: greeting text + large biography statement.
+   ═══════════════════════════════════════════════════════════════ */
+
+.section-about {
+  padding-bottom: 72px;
+  margin-bottom: 64px;
+}
+
+.greeting {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: baseline; /* aligns .greeting-sub to the text baseline of the main greeting */
+  gap: 10px;
+  letter-spacing: 0.01em;
+}
+
+.greeting-sub {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  opacity: 0.7; /* slightly more transparent than the main greeting */
+  margin-bottom: 6px;
+}
+
+.bio {
+  font-family: var(--font-display); /* Playfair Display serif */
+  /* clamp(min, preferred, max): fluid font size
+     - Never smaller than 1.5rem
+     - Prefers 2.5vw (2.5% of viewport width — scales with screen)
+     - Never larger than 2.5rem */
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  line-height: 1.5;
+  font-weight: 400; /* regular weight in display font = editorial, not bold */
+  letter-spacing: 0;
+  color: var(--color-text);
+  max-width: 860px; /* keeps line length readable even on wide screens */
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   13. CV / EXPERIENCE SECTION
+   List of work experience and education entries.
+   ═══════════════════════════════════════════════════════════════ */
+
+.section-cv {
+  margin-bottom: 64px;
+}
+
+.cv-entries {
+  display: flex;
+  flex-direction: column;
+}
+
+/* One row: year + company (left) | role (right) */
+.cv-entry {
+  display: flex;
+  justify-content: space-between; /* pushes meta left, role right */
+  align-items: baseline;          /* aligns by text baseline across the two columns */
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+/* Add a top border to the very first entry (bottom borders handle the rest) */
+.cv-entry:first-child {
+  border-top: 1px solid var(--color-divider);
+}
+
+/* Left column: year + company name side by side */
+.cv-meta {
+  display: flex;
+  gap: 24px;
+  align-items: baseline;
+}
+
+.cv-year {
+  font-size: 0.76rem;
+  color: var(--color-muted);
+  min-width: 110px; /* fixed width so company names always start at the same X position */
+  letter-spacing: 0.01em;
+}
+
+.cv-company {
+  font-size: 0.88rem;
+  color: var(--color-muted);
+}
+
+/* Right column: job title */
+.cv-role {
+  font-size: 0.88rem;
+  font-weight: 500; /* medium weight so the role stands out from the muted meta */
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   14. SECTION DIVIDERS
+   The "── SECTION NAME ──" separators between content blocks.
+   ═══════════════════════════════════════════════════════════════ */
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 56px;
+  color: var(--color-muted);
+}
+/* The ::before and ::after pseudo-elements are flex items with flex:1,
+   so they grow equally to fill all space not taken by the text span.
+   Result: lines on both sides of the label that always fill the full width. */
+.section-divider::before,
+.section-divider::after {
+  content: ''; /* pseudo-elements require content: '' to render */
+  flex: 1;
+  height: 1px;
+  background: var(--color-divider);
+}
+.section-divider span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em; /* generous spacing for small uppercase readability */
+  white-space: nowrap;    /* prevents the label from wrapping to a second line */
+}
+
+/* Variant: section dividers that appear between project sections need extra top margin */
+.work-divider {
+  margin-top: 64px;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   15. SELECTED WORK: PROJECT CARDS
+   Two-column layout: text (left 55%) + image placeholder (right).
+   ═══════════════════════════════════════════════════════════════ */
+
+.project {
+  margin-bottom: 88px;
+  padding-bottom: 88px;
+  border-bottom: 1px solid var(--color-divider);
+  display: flex;
+  gap: 48px;
+  align-items: flex-start; /* top-aligns text and image (not stretch) */
+}
+
+/* Fixed-width text column (55%) — doesn't grow or shrink */
+.project-text {
+  flex: 0 0 55%; /* flex-grow: 0, flex-shrink: 0, flex-basis: 55% */
+}
+
+/* The last project card: no border-bottom or bottom spacing because
+   the section divider below provides visual separation */
+#project-3 {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/* Small uppercase category label above the project title */
+.project-meta {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+  margin-bottom: 14px;
+}
+
+/* Large display-font project title */
+.project-title {
+  font-family: var(--font-display);
+  /* clamp: minimum 1.875rem, scales with viewport, maximum 3.75rem */
+  font-size: clamp(1.875rem, 4.125vw, 3.75rem);
+  font-weight: 400;
+  letter-spacing: -0.01em; /* slight tightening for large display type */
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+.project-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.project-title a:hover {
+  color: var(--color-accent);
+}
+
+/* After-hours card titles also link to case studies — same hover style */
+.ah-card-title a {
+  color: inherit;
+  text-decoration: none;
+}
+.ah-card-title a:hover {
+  color: var(--color-accent);
+}
+
+/* The after-hours card's image wrapping link needs to be block so it spans full width */
+.ah-card > a {
+  display: block;
+}
+
+/* Project description paragraph */
+.project-desc {
+  font-size: 1rem;
+  color: var(--color-muted);
+  line-height: 1.75;
+  margin-bottom: 36px;
+}
+
+/* Image placeholder — the right column. flex:1 takes remaining space after .project-text's 55% */
+.project-image-placeholder {
+  flex: 1;
+  width: auto;
+  aspect-ratio: 16 / 9; /* maintains widescreen proportions regardless of container width */
+  background: var(--color-placeholder);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-placeholder-text);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  border-radius: 3px;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   16. LAB SECTION
+   Cards for technical/dev projects (GitHub repos, tools).
+   ═══════════════════════════════════════════════════════════════ */
+
+.section-lab {
+  margin-bottom: 88px;
+}
+
+.lab-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.lab-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 28px 32px;
+  background: #ffffff; /* explicit white so it stands out from --color-surface (#f6f6f6) */
+  border: 1px solid var(--color-divider);
+  border-radius: 4px;
+  transition: background 0.2s, border-color 0.2s;
+}
+/* Border darkens on hover to indicate interactivity */
+.lab-card:hover {
+  border-color: var(--color-text);
+}
+/* In dark mode: #ffffff looks jarring, swap to the placeholder color for a subtle card bg */
+[data-theme="dark"] .lab-card {
+  background: var(--color-placeholder);
+}
+[data-theme="dark"] .lab-card:hover {
+  background: var(--color-placeholder-hover);
+}
+
+/* Top row: tech tags (left) + GitHub link (right) */
+.lab-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Tech stack tags (e.g., "Raspberry Pi · Docker · Self-hosted") */
+.lab-card-meta {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+}
+
+/* "↗ GitHub" external link */
+.lab-card-link {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap; /* prevents "↗ GitHub" from splitting onto two lines */
+}
+.lab-card-link:hover {
+  color: var(--color-text);
+}
+
+.lab-card-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0;
+}
+.lab-card-title a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+.lab-card-title a:hover {
+  opacity: 0.7; /* subtle dim instead of color change */
+}
+
+.lab-card-desc {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 640px; /* keeps line length readable on wide lab cards */
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   17. AFTER HOURS: 2×2 GRID
+   Side project cards in a 2-column grid.
+   ═══════════════════════════════════════════════════════════════ */
+
+.section-after-hours {
+  margin-bottom: 88px;
+}
+
+/* 2×2 grid. Collapses to 1 column at 480px (see Section 23). */
+.after-hours-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* two equal columns */
+  gap: 40px 28px; /* 40px vertical gap, 28px horizontal gap */
+}
+
+.ah-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: default; /* not draggable — cards contain links but the card itself isn't interactive */
+}
+
+/* Image placeholder above each after-hours card */
+.ah-image-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--color-placeholder);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-placeholder-text);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+/* Placeholder slightly darkens on card hover */
+.ah-card:hover .ah-image-placeholder {
+  background: var(--color-placeholder-hover);
+}
+
+/* Category label (e.g., "Design Club", "Coursework") */
+.ah-card-meta {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+}
+
+.ah-card-title {
+  font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+.ah-card-desc {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   18. MOBILE MENU TOGGLE (HAMBURGER)
+   Hidden on desktop; shown via the mobile media query.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Hidden on desktop — only shown in the mobile @media block below */
+.mobile-menu-toggle {
+  display: none;
+}
+
+/* The mobile-only theme toggle in .sidebar-nav.
+   On desktop the toggle in .sidebar-top is used; this one is hidden.
+   On mobile .sidebar-top .theme-toggle is hidden and this one shows. */
+.sidebar-nav .theme-toggle {
+  display: none; /* hidden on desktop; shown on mobile via breakpoint */
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   19. THEME TOGGLE BUTTON
+   The half-circle button that switches dark/light mode.
+   ═══════════════════════════════════════════════════════════════ */
+
+.theme-toggle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; /* perfect circle */
+  border: 1.5px solid var(--color-text);
+  /* gradient from left to right: left half filled with text color, right half transparent.
+     Creates a "half moon" / "half sun" visual — half filled circle.
+     In dark mode, --color-text is light, so the gradient still looks correct. */
+  background: linear-gradient(to right, var(--color-text) 50%, transparent 50%);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0; /* prevents the toggle from shrinking in flex containers */
+  transition: opacity 0.15s;
+}
+.theme-toggle:hover {
+  opacity: 0.6;
+}
+
+/* Dark mode: same gradient — works because --color-text flips to a light value */
+[data-theme="dark"] .theme-toggle {
+  background: linear-gradient(to right, var(--color-text) 50%, transparent 50%);
+  border-color: var(--color-text);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   20. SCROLL REVEAL
+   Elements fade and slide up when they enter the viewport.
+   JavaScript (IntersectionObserver) adds the "revealed" class.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Starting state: invisible and shifted 24px below final position */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px); /* translateY moves element down without affecting layout */
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+/* Revealed state: fully visible at normal position */
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   21. RESPONSIVE: TABLET (769px – 1024px)
+   Minor layout adjustments — sidebar narrows, content padding tightens.
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  :root {
+    --sidebar-width: 200px;    /* slightly narrower sidebar to give content more room */
+    --content-padding-x: 48px; /* reduce from 150px — less whitespace on smaller screens */
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   22. RESPONSIVE: MOBILE (≤768px)
+   Major layout change: sidebar becomes a fixed top navigation bar.
+   Full-screen overlay when hamburger is tapped.
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  :root {
+    --sidebar-width: 0px;          /* content fills full width (no sidebar offset) */
+    --content-padding-x: 24px;    /* tight padding on narrow screens */
+    --content-padding-y: 24px;
+  }
+
+  /* Stack body to column so the fixed top nav bar stays above content */
+  body {
+    flex-direction: column;
+  }
+
+  /* Sidebar transforms from a left column to a top navigation bar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;     /* full width */
+    height: auto;    /* shrinks to content height (the nav bar) */
+    border-right: none;
+    border-bottom: 1px solid var(--color-divider); /* horizontal line below the nav bar */
+    flex-direction: row;  /* items are now side by side */
+    flex-wrap: wrap;      /* allows sidebar-header to take a full row */
+    align-items: center;
+    gap: 0;
+    padding: 16px 24px;
+    overflow: visible; /* don't clip the overlay when it expands */
+  }
+
+  /* On mobile, .sidebar-header overrides display:contents (desktop) to become
+     the visible flex row that contains the DV badge + nav items + hamburger.
+     width: 100% makes it take the full navbar row. */
+  .sidebar-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  /* Remove the desktop top padding from .sidebar-top (it's now in a row) */
+  .sidebar-top {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  /* Swap which theme toggle is visible:
+     - Desktop toggle (.sidebar-top) hidden on mobile
+     - Mobile toggle (.sidebar-nav copy) shown on mobile */
+  .sidebar-top .theme-toggle { display: none; }
+  .sidebar-nav .theme-toggle { display: flex; }
+
+  /* .sidebar-nav becomes a horizontal row of: theme toggle, About, CV, hamburger */
+  .sidebar-nav {
+    flex-direction: row;
+    gap: 12px;
+    border-top: none;
+    padding: 0;     /* full reset — desktop set padding-left/right: 28px via the bleed trick */
+    margin: 0;      /* full reset — desktop set negative margins for the bleed */
+    align-items: center;
+  }
+
+  /* Nav groups (project links) are hidden on mobile until the overlay opens */
+  .nav-group {
+    display: none;
+  }
+
+  /* ─── Full-screen overlay animations ──────────────────────── */
+
+  /* Overlay: entire sidebar fades in */
+  @keyframes overlayFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  /* Individual nav groups slide up and fade in with staggered delays */
+  @keyframes navGroupIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* When hamburger is clicked, JS adds .nav-open to .sidebar.
+     This expands the sidebar to cover the entire screen. */
+  .sidebar.nav-open {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0; /* full viewport coverage */
+    height: 100%;
+    z-index: 200;           /* above sidebar (100) and back-to-top (150) */
+    flex-direction: column; /* back to vertical stacking for the overlay */
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    overflow-y: auto;       /* allow scrolling if many nav items */
+    border-bottom: none;    /* remove the mobile navbar border */
+    animation: overlayFadeIn 0.22s ease both;
+  }
+
+  /* The header row inside the overlay:
+     position: sticky keeps it visible when the nav items below scroll.
+     position: fixed was NOT used here because fixed positioning creates a new
+     stacking/containing block which conflicts with the animation. */
+  .sidebar.nav-open .sidebar-header {
+    position: sticky;
+    top: 0;          /* stick to top of the scrollable overlay */
+    z-index: 1;      /* above the nav items below it */
+    align-self: stretch; /* stretch to full overlay width */
+    background: var(--color-bg);
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--color-divider);
+    flex-shrink: 0;  /* header shouldn't shrink even if content is tall */
+  }
+
+  /* Make .sidebar-top visible again inside the overlay (it was only hidden via display none in sidebar-top context) */
+  .sidebar.nav-open .sidebar-top {
+    position: static;
+    display: flex;
+  }
+
+  .sidebar.nav-open .sidebar-nav {
+    position: static;
+    margin: 0;
+    padding: 0;
+    border: none;
+    gap: 12px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  /* Vertically center the nav groups in the overlay using auto margins:
+     The second child (first nav group) gets margin-top: auto — pushes all nav items down.
+     The fifth child (last nav group) gets margin-bottom: auto — pushes all nav items up.
+     Combined: the nav groups sit in the vertical center of the overlay. */
+  .sidebar.nav-open > *:nth-child(2) { margin-top: auto; }
+  .sidebar.nav-open > *:nth-child(5) { margin-bottom: auto; }
+
+  /* Reveal nav groups in the overlay (they were display:none before) */
+  .sidebar.nav-open .nav-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center links horizontally in the overlay */
+    gap: 6px;
+    width: 100%;
+    max-width: 280px; /* constrain width for readability on large phones */
+    padding: 8px 16px 0;
+    border-top: none;
+    margin-bottom: 20px;
+    animation: navGroupIn 0.22s ease both;
+  }
+  .sidebar.nav-open .nav-group:last-of-type { margin-bottom: 0; }
+
+  /* Stagger animation delays so nav groups appear one after another */
+  .sidebar.nav-open .nav-group:nth-child(2) { animation-delay: 0.08s; }
+  .sidebar.nav-open .nav-group:nth-child(3) { animation-delay: 0.13s; }
+  .sidebar.nav-open .nav-group:nth-child(4) { animation-delay: 0.18s; }
+  .sidebar.nav-open .nav-group:nth-child(5) { animation-delay: 0.23s; }
+
+  /* Nav labels in overlay get the "── LABEL ──" divider treatment.
+     Uses the same ::before/::after flex trick as .section-divider. */
+  .sidebar.nav-open .nav-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 280px;
+    white-space: nowrap; /* prevents label text from wrapping */
+    margin-bottom: 8px;
+  }
+  .sidebar.nav-open .nav-label::before,
+  .sidebar.nav-open .nav-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-divider);
+  }
+
+  /* Nav links in overlay: larger, centered */
+  .sidebar.nav-open .nav-group .nav-link {
+    font-size: 0.95rem;
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ─── Hamburger button ──────────────────────────────────── */
+  /* Visual size: 28px. Layout is 28px.
+     But touch target is expanded to 44×44px via ::after pseudo-element.
+     This satisfies WCAG 2.5.5 without affecting the navbar layout. */
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;   /* visual and layout size */
+    height: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+    font-size: 1.1rem; /* size of the ☰ character */
+    padding: 0;
+    flex-shrink: 0;    /* don't shrink in the flex navbar row */
+    border-radius: 4px;
+    transition: opacity 0.15s;
+    position: relative; /* required for ::after to be positioned relative to this button */
+  }
+  .mobile-menu-toggle:hover { opacity: 0.6; }
+  .mobile-menu-toggle:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  /* Invisible pseudo-element expands the touch target to 44×44px.
+     position: absolute + top/left: 50% + transform: translate(-50%, -50%)
+     centers the 44px area over the 28px button.
+     The pseudo-element has no background, so it's invisible but still tappable. */
+  .mobile-menu-toggle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* center the larger tap area over the button */
+    width: 44px;
+    height: 44px;
+  }
+  /* When overlay is open: hide the ☰ character (font-size: 0 makes it invisible) */
+  .sidebar.nav-open .mobile-menu-toggle {
+    font-size: 0;
+  }
+  /* Show ✕ via ::before pseudo-element instead */
+  .sidebar.nav-open .mobile-menu-toggle::before {
+    content: "✕";
+    font-size: 1rem;
+  }
+
+  /* Status pill is hidden on mobile — no room in the top navbar */
+  .sidebar-status {
+    display: none;
+  }
+
+  /* Offset content below the fixed mobile navbar.
+     calc() adds the content padding (24px) plus the navbar height (72px).
+     72px = 16px top padding + 40px badge height + 16px bottom padding */
+  .content {
+    margin-left: 0; /* no sidebar to offset from */
+    padding-top: calc(var(--content-padding-y) + 72px);
+  }
+
+  /* Project cards stack vertically on mobile */
+  .project {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .project-text {
+    flex: none;   /* override flex: 0 0 55% from desktop */
+    width: 100%;
+  }
+  .project-image-placeholder {
+    flex: none;
+    width: 100%;
+  }
+
+  /* After-hours grid: tighter gaps on mobile */
+  .after-hours-grid {
+    grid-template-columns: 1fr 1fr; /* keeps 2 columns until 480px */
+    gap: 24px 16px;
+  }
+
+  /* Expand the mobile theme toggle tap area to 44×44px without changing its visual size.
+     Same technique as the hamburger button above. */
+  .sidebar-nav .theme-toggle {
+    position: relative; /* establishes positioning context for ::after */
+  }
+  .sidebar-nav .theme-toggle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+  }
+
+  /* CV entries stack on mobile: year+company on top, role below */
+  .cv-entry {
+    flex-direction: column; /* override desktop's space-between flex row */
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .cv-meta {
+    gap: 12px; /* reduce gap between year and company on narrow screens */
+  }
+  .cv-year {
+    min-width: auto; /* remove the fixed 110px width — not needed when stacked */
+  }
+
+  /* Hover preview has no purpose on touch devices — hiding saves memory too */
+  .project-preview {
+    display: none;
+  }
+
+  /* Tighten lab card padding on mobile */
+  .lab-card {
+    padding: 20px;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   23. RESPONSIVE: SMALL MOBILE (≤480px)
+   Single change: after hours grid collapses to one column.
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  /* Two-column grid becomes one column on very small screens */
+  .after-hours-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   24. PREFERS REDUCED MOTION
+   For users who've enabled "Reduce Motion" in their OS settings
+   (accessibility feature — can prevent dizziness/discomfort).
+   Disables all animations and transitions.
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Show all reveal elements immediately — no fade-in animation */
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .reveal.revealed {
+    opacity: 1;
+    transform: none;
+  }
+  /* Stop the pulsing status dot animation */
+  .status-dot {
+    animation: none;
+  }
+  /* Disable the hover preview fade */
+  .project-preview {
+    transition: none;
+  }
+  /* Nuclear option: disable all remaining animations and transitions globally.
+     !important overrides any inline styles or other rules.
+     0.01ms is effectively instant but not zero (zero can cause issues in some browsers). */
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   25. CASE STUDY PAGES
+   Styles for the projects/*.html case study layout.
+   All classes start with "cs-" (case study prefix).
+   ═══════════════════════════════════════════════════════════════ */
+
+/* "← Portfolio" back-navigation link at the top of case study pages */
+.cs-back {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: color 0.15s;
+  letter-spacing: 0.01em;
+}
+.cs-back:hover { color: var(--color-accent); }
+.cs-back:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Case study header: project number, title, subtitle, optional award badge.
+   position: relative creates a containing block for the absolute award badge. */
+.cs-header {
+  position: relative;
+  padding-bottom: 32px;
+  padding-right: 220px; /* room for the award badge positioned top-right */
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+/* Project subtitle / tagline */
+.cs-subtitle {
+  font-size: 1rem;
+  color: var(--color-muted);
+  margin-top: 14px;
+  letter-spacing: 0.01em;
+  max-width: 560px; /* shorter than body copy — a tagline, not a paragraph */
+  line-height: 1.5;
+}
+
+/* Award badge — positioned absolutely in the top-right of .cs-header */
+.cs-award {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: absolute; /* relative to .cs-header which has position: relative */
+  top: 0;
+  right: 0;
+  margin-top: 0;
+  padding: 5px 12px;
+  border: 1px solid var(--color-accent);
+  font-size: 0.68rem;
+  color: var(--color-accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+/* Meta grid: Timeline | Team | Role | Tools — spreads across the full width */
+.cs-meta-grid {
+  display: flex;
+  flex-wrap: wrap; /* wraps to new rows when items don't fit on one line */
+  gap: 0;
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--color-divider);
+  padding-bottom: 40px;
+}
+
+.cs-meta-item {
+  flex: 1;           /* equal distribution of space */
+  min-width: 120px;  /* wraps to next row rather than getting too narrow to read */
+  padding-right: 24px;
+  padding-bottom: 8px;
+}
+
+.cs-meta-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.cs-meta-value {
+  font-size: 0.88rem;
+  color: var(--color-text);
+  line-height: 1.65; /* extra leading for multi-line team member lists */
+}
+
+/* Opening paragraph — wider type, full text color for prominence */
+.cs-overview {
+  font-size: 1rem;
+  line-height: 1.85; /* generous line height for long-form reading */
+  color: var(--color-text); /* full text color, not muted */
+  max-width: 720px;
+  margin-bottom: 64px;
+}
+
+/* Full-width horizontal rule between major sections */
+.cs-divider {
+  height: 1px;
+  background: var(--color-divider);
+  margin: 56px 0;
+}
+
+/* A case study section (The Problem, Research, Features, etc.) */
+.cs-section {
+  margin-bottom: 72px;
+}
+
+/* Small uppercase eyebrow label above each section heading */
+.cs-section-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-muted);
+  margin-bottom: 16px;
+}
+
+/* Section heading in display font */
+.cs-heading {
+  font-family: var(--font-display);
+  /* clamp: min 1.3rem, scales with viewport, max 1.8rem */
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  margin-bottom: 20px;
+  color: var(--color-text);
+  max-width: 720px; /* constrained for readability */
+}
+
+/* Body copy — the workhorse paragraph style for case studies */
+.cs-body {
+  font-size: 1rem;
+  line-height: 1.85; /* generous — long paragraphs need breathing room */
+  color: var(--color-muted); /* muted, not primary — headings carry the hierarchy */
+  max-width: 720px;
+  margin-bottom: 20px;
+}
+/* Bold text within body copy uses full text color for emphasis */
+.cs-body strong {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* Image/mockup placeholder. Replace with real <img alt="..."> when images are available.
+   ⚠️ TODO: All .cs-image divs need real <img> tags with descriptive alt text. */
+.cs-image {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* default: widescreen */
+  background: #f4f4f4;  /* hardcoded rather than var() — intentionally static placeholder */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #bbb;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  border-radius: 3px;
+  margin: 36px 0 12px; /* space above image, small gap before caption */
+}
+/* Variant: taller aspect ratio for portrait-ish screens */
+.cs-image.tall {
+  aspect-ratio: 4 / 3;
+}
+/* Variant: square, constrained to 480px wide */
+.cs-image.square {
+  aspect-ratio: 1 / 1;
+  max-width: 480px;
+}
+/* Dark mode: swap to a darker placeholder */
+[data-theme="dark"] .cs-image {
+  background: #212121;
+  color: #3d3d3d;
+}
+
+/* Caption text below images */
+.cs-image-caption {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
+  margin-bottom: 36px;
+  opacity: 0.75; /* slightly more transparent than muted color alone */
+}
+
+/* Pull quote — a highlighted user research quote with left accent border */
+.cs-pull-quote {
+  border-left: 2px solid var(--color-accent); /* accent-colored vertical bar */
+  padding: 4px 0 4px 24px;                    /* indent text from the bar */
+  margin: 40px 0;
+}
+.cs-pull-quote p {
+  font-family: var(--font-display); /* serif for editorial weight */
+  /* clamp: min 1.1rem, scales with viewport, max 1.35rem */
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--color-text);
+  font-style: italic;
+}
+.cs-pull-quote cite {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  margin-top: 10px;
+  font-style: normal; /* override default italic on <cite> element */
+  letter-spacing: 0.04em;
+}
+
+/* 2-column grid of insight/finding cards */
+.cs-insight-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 28px;
+}
+.cs-insight-card {
+  padding: 20px 22px 22px;
+  border: 1px solid var(--color-divider);
+  border-radius: 3px;
+}
+.cs-insight-card .cs-section-label {
+  margin-bottom: 10px;
+}
+.cs-insight-card p {
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+
+/* Row of key statistics from research */
+.cs-stats-row {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap; /* wraps to prevent overflow on narrow screens */
+  margin: 32px 0;
+  padding: 28px 0;
+  border-top: 1px solid var(--color-divider);
+  border-bottom: 1px solid var(--color-divider);
+}
+.cs-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cs-stat {
+  font-family: var(--font-display); /* display font for the large number */
+  /* clamp: min 1.6rem, scales, max 2.2rem */
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--color-accent); /* accent color makes stats visually prominent */
+  font-weight: 700; /* bold for the stat number specifically */
+  line-height: 1.1;
+}
+.cs-stat-label {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  max-width: 160px; /* keeps stat labels from getting too wide */
+  line-height: 1.4;
+}
+
+/* A designed feature block within the Features section */
+.cs-feature-block {
+  margin-bottom: 52px;
+  padding-bottom: 52px;
+  border-bottom: 1px solid var(--color-divider);
+}
+/* Last feature block: remove border and spacing since section ends */
+.cs-feature-block:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+/* Feature name / subheading */
+.cs-feature-title {
+  font-size: 1rem;
+  font-weight: 500; /* slightly heavier than body copy */
+  color: var(--color-text);
+  margin-bottom: 12px;
+  letter-spacing: -0.005em;
+}
+
+/* Case study mobile adjustments */
+@media (max-width: 768px) {
+  /* Award badge moves from absolute (top-right) to static (below subtitle) */
+  .cs-header {
+    padding-right: 0; /* remove the 220px space reserved for the badge */
+  }
+  .cs-award {
+    position: static; /* flows in normal document order */
+    margin-top: 20px;
+  }
+  /* Meta grid gets visible gaps when it wraps on narrow screens */
+  .cs-meta-grid {
+    gap: 16px;
+  }
+  /* Insight grid: 2 columns → 1 column */
+  .cs-insight-grid {
+    grid-template-columns: 1fr;
+  }
+  /* Stats row: tighter horizontal gap */
+  .cs-stats-row {
+    gap: 28px;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   26. ABOUT PAGE
+   Styles specific to about.html.
+   All classes start with "about-".
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Hero: long bio text (left 55%) + portrait photo placeholder (right) */
+.about-hero {
+  display: flex;
+  gap: 64px;
+  align-items: flex-start; /* top-align text and photo */
+  margin-bottom: 88px;
+  padding-bottom: 88px;
+  border-bottom: 1px solid var(--color-divider);
+}
+.about-hero-text {
+  flex: 0 0 55%; /* fixed 55% for the text column — matches .project-text pattern */
+}
+/* Portrait photo placeholder */
+.about-photo {
+  flex: 1; /* takes remaining 45% */
+  aspect-ratio: 3 / 4; /* portrait proportions */
+  background: var(--color-placeholder);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-placeholder-text);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  border-radius: 3px;
+}
+
+/* Small muted name/title label above the bio text */
+.about-name {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  margin-bottom: 28px;
+  letter-spacing: 0.01em;
+}
+
+/* The multi-paragraph extended biography in display font */
+.about-bio {
+  font-family: var(--font-display);
+  /* clamp: min 1.1rem, scales with viewport, max 1.45rem */
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--color-text);
+  margin-bottom: 0;
+}
+/* Paragraph spacing within the bio */
+.about-bio p {
+  margin: 0 0 1.4em; /* 1.4em = 1.4× the current font size — scales naturally */
+}
+.about-bio p:last-child {
+  margin-bottom: 0; /* no extra space after the last paragraph */
+}
+
+/* Large centered philosophy quote */
+.about-pull-quote {
+  font-family: var(--font-display);
+  /* clamp: min 1.2rem, scales, max 1.65rem */
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin-bottom: 32px;
+  max-width: 720px;
+  margin-left: auto;  /* centered horizontally */
+  margin-right: auto;
+}
+
+/* Design principles list — no bullet points, custom em-dash via ::before */
+.about-principles {
+  list-style: none; /* remove default bullets */
+  padding: 0;
+  margin: 0 auto; /* center the list within its parent */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 720px;
+}
+.about-principles li {
+  font-size: 0.9375rem; /* 15px — between 0.875rem and 1rem */
+  color: var(--color-muted);
+  line-height: 1.6;
+  padding-left: 20px; /* indent to make room for the em-dash */
+  position: relative; /* needed to position ::before inside this element */
+}
+/* The custom em-dash bullet */
+.about-principles li::before {
+  content: "—";
+  position: absolute; /* pulled out of flow, won't affect text layout */
+  left: 0;            /* aligned to the left edge of the padding area */
+  color: var(--color-divider); /* very subtle — divider color, not muted */
+}
+
+/* Tools grid: 2 columns, design tools organized by category */
+.about-tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 64px; /* more horizontal gap than vertical */
+  margin-top: 32px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.about-tool-category {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  margin-bottom: 10px;
+}
+.about-tool-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.about-tool-list span {
+  font-size: 0.88rem;
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+/* Contact link row: Email → LinkedIn → Read.cv → */
+.about-contact {
+  display: flex;
+  gap: 32px;
+  margin-top: 32px;
+  flex-wrap: wrap; /* wraps on narrow screens before mobile breakpoint */
+}
+.about-contact-link {
+  font-size: 0.88rem;
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-divider); /* subtle underline border */
+  padding-bottom: 2px;
+  transition: border-color 0.15s, color 0.15s;
+}
+.about-contact-link:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent); /* accent line on hover */
+}
+
+/* About page mobile adjustments */
+@media (max-width: 768px) {
+  /* Hero stacks vertically */
+  .about-hero {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .about-hero-text {
+    flex: none;
+    width: 100%;
+  }
+  /* Photo becomes landscape on mobile (portrait would be very tall) */
+  .about-photo {
+    flex: none;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+  /* Tools grid: keep 2 columns on mobile but with tighter gaps */
+  .about-tools {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 20px;
+    max-width: none; /* fill available width */
+  }
+  /* Contact links stack vertically on mobile */
+  .about-contact {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+
+/* ─── About Page — Now section ───────────────────────────── */
+
+/* 3-column grid of "current status" cards (Seeking / Building / Open to) */
+.about-now-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* three equal columns */
+  gap: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.about-now-card {
+  padding: 20px 22px;
+  border: 1px solid var(--color-divider);
+  border-radius: 3px;
+  transition: border-color 0.15s;
+}
+.about-now-card:hover {
+  border-color: var(--color-text); /* border darkens to full text color on hover */
+}
+.about-now-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  margin-bottom: 10px;
+}
+.about-now-value {
+  font-size: 0.88rem;
+  color: var(--color-text);
+  line-height: 1.65;
+}
+
+/* ─── About Page — The Sidelines section ─────────────────── */
+
+/* 2×2 grid of personal interests.
+   CSS borders create the table-like grid lines. */
+.about-sidelines {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--color-divider); /* top border for the whole grid */
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Each item has a bottom border — creates horizontal grid lines */
+.about-sideline-item {
+  padding: 24px 40px 24px 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+/* Right-column items: add left border (vertical divider) and left padding */
+.about-sideline-item:nth-child(even) {
+  padding-left: 40px;
+  padding-right: 0;
+  border-left: 1px solid var(--color-divider); /* vertical center divider */
+}
+.about-sideline-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+.about-sideline-text {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+
+/* Sidelines mobile: collapse to single column, remove center divider */
+@media (max-width: 768px) {
+  .about-now-grid {
+    grid-template-columns: 1fr; /* one card per row */
+    gap: 12px;
+  }
+  .about-sidelines {
+    grid-template-columns: 1fr;
+  }
+  /* Remove the left border and restore padding for right-column items */
+  .about-sideline-item:nth-child(even) {
+    padding-left: 0;
+    border-left: none;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   27. COPYRIGHT FOOTER
+   Sits inside .content (main), breaks out of content padding
+   to span full width using negative margins.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* calc(-1 * var(--content-padding-x)) creates negative margins equal to the content padding,
+   pulling the footer to the left and right edges of .content's background.
+   The matching padding-x then restores the text alignment. */
+.site-footer {
+  margin: 48px calc(-1 * var(--content-padding-x)) 0;
+  padding: 20px var(--content-padding-x);
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
+  border-top: 1px solid var(--color-divider);
+}
+/* Tablet: match the tablet content-padding-x value (48px) */
+@media (max-width: 1024px) {
+  .site-footer {
+    margin: 48px -48px 0;
+    padding: 20px 48px;
+  }
+}
+/* Mobile: match the mobile content-padding-x value (24px) */
+@media (max-width: 768px) {
+  .site-footer {
+    margin: 32px -24px 0;
+    padding: 16px 24px;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   28. BACK TO TOP BUTTON
+   A circular fixed button that appears after scrolling 400px.
+   Created dynamically by JavaScript (main.js) — not in any HTML file.
+   ═══════════════════════════════════════════════════════════════ */
+
+.back-to-top {
+  position: fixed;   /* stays in viewport corner regardless of scroll */
+  bottom: 32px;
+  right: 32px;
+  z-index: 150;      /* above content (none) and sidebar (100), below overlay (200) and preview (999) */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* circle */
+  border: 1px solid var(--color-divider);
+  background: var(--color-surface);
+  color: var(--color-muted);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden; /* hidden + invisible by default; both needed for correct transition behavior.
+                         display:none can't be transitioned; visibility allows opacity fade */
+  transform: translateY(8px); /* slightly below final position — slides up on show */
+  /* Multiple transition properties: opacity (fade), transform (slide), visibility (enable/disable),
+     border-color + color + background (hover color changes) */
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s,
+              border-color 0.15s, color 0.15s, background 0.15s;
+}
+/* JS adds "visible" after 400px scroll */
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  border-color: var(--color-text);
+  color: var(--color-text);
+}
+.back-to-top:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+/* Mobile: physically larger (44×44px) because we have room to make it bigger here.
+   Also moved closer to edges to avoid overlapping content. */
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 44px;   /* meets WCAG 2.5.5 touch target size without needing the ::after trick */
+    height: 44px;
+    font-size: 0.9rem;
+  }
+}

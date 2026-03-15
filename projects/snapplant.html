@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- UTF-8 charset: supports all Unicode characters (emoji, accented letters, etc.) -->
+  <meta charset="UTF-8">
+  <!-- viewport: prevents mobile browsers from zooming out to a desktop-width view.
+       width=device-width matches the physical screen width; initial-scale=1.0 = no zoom. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SnapPlant — Dereck Villagrana</title>
+  <!-- Preconnect hints: open early connections to Google Fonts servers before
+       the browser discovers the font request — saves ~100–300ms. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <!-- ../css/style.css: one level up from projects/ to reach the root css/ folder -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ─── Skip Navigation ─────────────────────────────────────────────────────
+       Lets keyboard and screen reader users jump directly to main content,
+       bypassing the sidebar nav. Visually hidden until focused.
+       See index.html for full documentation. -->
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SIDEBAR — Fully documented in index.html.
+       See index.html for comments on every sidebar element, class, and
+       aria attribute. Key differences on this page:
+         - Logo href: "../index.html#about" (up one folder to the root index)
+         - No "Lab" nav group (not on project pages)
+         - This page's nav link: class="active" + data-preview="" + aria-current="page"
+           data-preview="" is intentionally empty — JS skips hover preview for
+           the current page so you don't see a blank card
+         - All image paths in data-preview: "../images/previews/..." (one level up)
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-top">
+      <a href="../index.html#about" class="logo-badge" aria-label="Home">DV</a>
+      <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+    </div>
+
+        <nav aria-label="Site navigation" class="sidebar-nav">
+      <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+      <a href="../about.html" class="nav-link">About</a>
+      <a href="../index.html#cv" class="nav-link">CV</a>
+      <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
+    </nav>
+        </div>
+
+    <div class="nav-group" role="navigation" aria-label="Selected Work">
+      <span class="nav-label">Selected Work</span>
+      <a href="bereal-redesign.html" class="nav-link" data-preview="../images/previews/bereal-redesign.jpg">BeReal Redesign</a>
+      <a href="verum-ai.html" class="nav-link" data-preview="../images/previews/verum-ai.jpg">Verum AI</a>
+      <a href="bsa-homepage.html" class="nav-link" data-preview="../images/previews/bsa-homepage.jpg">Body Sculpture Aesthetics</a>
+    </div>
+
+    <div class="nav-group" role="navigation" aria-label="After Hours">
+      <span class="nav-label">After Hours</span>
+      <a href="packpal.html" class="nav-link" data-preview="../images/previews/packpal.jpg">PackPal</a>
+      <!-- active + data-preview="" + aria-current: marks this as the current page.
+           Empty data-preview prevents JS from showing a hover card for this link. -->
+      <a href="snapplant.html" class="nav-link active" data-preview="" aria-current="page">SnapPlant</a>
+      <a href="arc-redesign.html" class="nav-link" data-preview="../images/previews/arc-redesign.jpg">ARC Redesign</a>
+      <a href="sonidos.html" class="nav-link" data-preview="../images/previews/sonidos.jpg">Sonidos del Alma Danzante</a>
+    </div>
+
+    <div class="nav-group" role="navigation" aria-label="Contact">
+      <span class="nav-label">Contact</span>
+      <a href="mailto:dereck.villagrana58@gmail.com" class="nav-link">Email</a>
+      <a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="nav-link">LinkedIn</a>
+      <!-- ⚠️ TODO: Replace href="#" with actual Read.cv profile URL -->
+      <a href="#" class="nav-link">Read.cv</a>
+    </div>
+
+    <!-- Status pill: animated green dot + "Available for work" text.
+         Documented fully in index.html. -->
+    <div class="sidebar-status">
+      <span class="status-pill">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Available for work</span>
+      </span>
+    </div>
+  </aside>
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       END SIDEBAR
+       ═══════════════════════════════════════════════════════════════════════ -->
+
+  <!-- Main content: scrollable right panel. id="main-content" is the target
+       for the skip-nav link above. -->
+  <main class="content" id="main-content">
+
+    <!-- ─── Back Link ──────────────────────────────────────────────────────
+         .cs-back: small text link back to the portfolio homepage. -->
+    <a href="../index.html" class="cs-back">← Portfolio</a>
+
+    <!-- ─── Case Study Header ──────────────────────────────────────────────
+         .cs-header: project category label, main title, and subtitle.
+         No .cs-award on this page — coursework project with no formal award.
+         .reveal: fades in on scroll (IntersectionObserver in main.js). -->
+    <div class="cs-header reveal">
+      <!-- .project-meta: small muted label — category and academic context -->
+      <span class="project-meta">After Hours · Coursework</span>
+      <!-- .project-title: large display-font headline -->
+      <h1 class="project-title">SnapPlant</h1>
+      <!-- .cs-subtitle: one-to-two sentence context statement below the title -->
+      <p class="cs-subtitle">A plant identification app with an awareness angle around deforestation and invasive species — the first time I owned the full UX process end-to-end with a real deadline.</p>
+    </div>
+
+    <!-- ─── Project Metadata Grid ──────────────────────────────────────────
+         .cs-meta-grid: flex-wrap row of .cs-meta-item cells showing
+         timeline, academic context, role, and tools at a glance. -->
+    <div class="cs-meta-grid reveal">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Timeline</span>
+        <span class="cs-meta-value">April 2023</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Context</span>
+        <!-- <br> creates line breaks within the value cell -->
+        <span class="cs-meta-value">DES 112: UI/UX Design<br>UC Davis</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Role</span>
+        <span class="cs-meta-value">Solo Designer</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Tools</span>
+        <span class="cs-meta-value">Adobe XD<br>Adobe Illustrator</span>
+      </div>
+    </div>
+
+    <!-- ─── Overview Paragraph ────────────────────────────────────────────
+         .cs-overview: opening paragraph styled larger than body copy.
+         Sets context: three-week final project, solo, full UX pipeline. -->
+    <p class="cs-overview reveal">
+      A three-week final project for my UI/UX design course. The app helps users identify plants around them, with the broader goal of raising awareness around deforestation and invasive species. I ran surveys, conducted usability testing, and built the full design pipeline solo: research, ideation sketches, wireframes, and high-fidelity screens. This was one of the first times I owned the full UX process end-to-end with a real deadline.
+    </p>
+
+    <!-- ─── Section Divider ────────────────────────────────────────────────
+         .cs-divider: thin horizontal rule. Pure CSS — no content. -->
+    <div class="cs-divider"></div>
+
+    <!-- ─── The Angle Section ────────────────────────────────────────────
+         Short framing section explaining the conceptual angle: plant ID
+         as a vehicle for environmental awareness, not just identification. -->
+    <section class="cs-section reveal">
+      <span class="cs-section-label">The Angle</span>
+      <h2 class="cs-heading">Plant identification as a vehicle for environmental awareness.</h2>
+      <p class="cs-body">Most plant ID apps stop at identification. SnapPlant's intention was to go further — connecting users to information about deforestation rates in their region and whether the plant they just identified is native or invasive. Knowing the plant is one thing. Knowing what it means for the ecosystem around you is another.</p>
+    </section>
+
+    <!-- ─── Process Section ───────────────────────────────────────────────
+         Describes the solo, three-week design pipeline: surveys → usability
+         testing → sketches → wireframes → high-fidelity prototype.
+         Three .cs-image placeholders for each design phase. -->
+    <section class="cs-section reveal">
+      <span class="cs-section-label">Process</span>
+      <h2 class="cs-heading">Research, sketch, wireframe, prototype — solo, three weeks.</h2>
+      <p class="cs-body">I started with user surveys to understand how people currently interact with the plants around them and what barriers exist to environmental awareness. Usability testing informed iterations before the final high-fidelity screens were produced.</p>
+
+      <!-- ⚠️ TODO: Replace all three .cs-image placeholders with real design images
+           once available. Include descriptive alt text for each. -->
+      <div class="cs-image"><span>SnapPlant — research and ideation sketches</span></div>
+      <!-- .cs-image-caption: muted small text below each image -->
+      <p class="cs-image-caption">Research synthesis and early ideation sketches</p>
+
+      <div class="cs-image"><span>SnapPlant — wireframes</span></div>
+      <p class="cs-image-caption">Mid-fidelity wireframes — identification flow and awareness layer</p>
+
+      <div class="cs-image"><span>SnapPlant — high-fidelity screens</span></div>
+      <p class="cs-image-caption">Final high-fidelity screens — plant ID, results, and environmental context</p>
+    </section>
+
+    <!-- ─── Takeaway Section ──────────────────────────────────────────────
+         Short closing reflection on what solo end-to-end ownership taught
+         about decision-making speed and design conviction. -->
+    <section class="cs-section reveal">
+      <span class="cs-section-label">Takeaway</span>
+      <h2 class="cs-heading">End-to-end solo work teaches you to make decisions faster.</h2>
+      <p class="cs-body">Running the full process solo — no team to defer to, no one else's research to lean on — compressed my decision-making in a way that's hard to replicate in group projects. Every call was mine. That pressure clarified what I actually believed about the design versus what I was guessing at.</p>
+    </section>
+
+
+  <!-- Footer: &copy; renders the © copyright symbol (HTML entity).
+       See index.html for full footer documentation. -->
+  <footer class="site-footer">
+    &copy; 2025 Dereck Villagrana. All rights reserved.
+  </footer>
+
+  </main>
+
+  <!-- ../js/main.js?v=2: the shared portfolio JS, one level up from projects/.
+       ?v=2 is a cache buster — forces the browser to re-download the file
+       when it's been updated, rather than serving a stale cached version. -->
+  <script src="../js/main.js?v=2"></script>
+</body>
+</html>

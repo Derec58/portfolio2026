@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Dereck Villagrana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Skip navigation link: lets keyboard/screen reader users jump past the sidebar.
+       See index.html for full documentation on this pattern. -->
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SIDEBAR — Documented fully in index.html.
+       This sidebar is structurally identical to index.html. Key differences:
+         - .logo-badge href points to "index.html" (not "#about")
+         - About link has class="active" + aria-current="page" (current page)
+         - CV link points to "index.html#cv" (cross-page anchor)
+       See index.html for comments on every sidebar element.
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-top">
+      <!-- On non-home pages, logo links back to index.html -->
+      <a href="index.html" class="logo-badge" aria-label="Home">DV</a>
+      <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+    </div>
+
+        <nav aria-label="Site navigation" class="sidebar-nav">
+      <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+      <!-- aria-current="page": marks this link as the current page for screen readers -->
+      <a href="about.html" class="nav-link active" aria-current="page">About</a>
+      <a href="index.html#cv" class="nav-link">CV</a>
+      <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
+    </nav>
+        </div>
+
+    <div class="nav-group" role="navigation" aria-label="Selected Work">
+      <span class="nav-label">Selected Work</span>
+      <a href="projects/bereal-redesign.html" class="nav-link" data-preview="images/previews/bereal-redesign.jpg">BeReal Redesign</a>
+      <a href="projects/verum-ai.html" class="nav-link" data-preview="images/previews/verum-ai.jpg">Verum AI</a>
+      <a href="projects/bsa-homepage.html" class="nav-link" data-preview="images/previews/bsa-homepage.jpg">Body Sculpture Aesthetics</a>
+    </div>
+
+    <div class="nav-group" role="navigation" aria-label="Lab">
+      <span class="nav-label">Lab</span>
+      <a href="https://github.com/Derec58/raspberry-pi-media-stack" target="_blank" rel="noopener noreferrer" class="nav-link">Raspberry Pi Media Stack ↗</a>
+    </div>
+
+    <div class="nav-group" role="navigation" aria-label="After Hours">
+      <span class="nav-label">After Hours</span>
+      <a href="projects/packpal.html" class="nav-link" data-preview="images/previews/packpal.jpg">PackPal</a>
+      <a href="projects/snapplant.html" class="nav-link" data-preview="images/previews/snapplant.jpg">SnapPlant</a>
+      <a href="projects/arc-redesign.html" class="nav-link" data-preview="images/previews/arc-redesign.jpg">ARC Redesign</a>
+      <a href="projects/sonidos.html" class="nav-link" data-preview="images/previews/sonidos.jpg">Sonidos del Alma Danzante</a>
+    </div>
+
+    <div class="nav-group" role="navigation" aria-label="Contact">
+      <span class="nav-label">Contact</span>
+      <a href="mailto:dereck.villagrana58@gmail.com" class="nav-link">Email</a>
+      <a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="nav-link">LinkedIn</a>
+      <!-- ⚠️ TODO: Replace href="#" with actual Read.cv URL -->
+      <a href="#" class="nav-link">Read.cv</a>
+    </div>
+
+    <div class="sidebar-status">
+      <span class="status-pill">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Available for work</span>
+      </span>
+    </div>
+  </aside>
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       END SIDEBAR
+       ═══════════════════════════════════════════════════════════════════════ -->
+
+  <!-- Main content: the scrollable right panel (sidebar offset handled by CSS) -->
+  <main class="content" id="main-content">
+
+    <!-- ─── Hero: Bio + Portrait ─────────────────────────────────────────
+         .about-hero: two-column flex layout — text (left 55%) + photo (right).
+         .reveal: fades in when scrolled into view (IntersectionObserver in main.js).
+         On mobile: stacks vertically, photo switches to 4:3 landscape ratio.
+         ─────────────────────────────────────────────────────────────────── -->
+    <div class="about-hero reveal">
+      <!-- Left column: name label + extended bio paragraphs -->
+      <div class="about-hero-text">
+        <!-- .about-name: small muted "Name — Title" label above the bio -->
+        <p class="about-name">Dereck Villagrana — Product Designer</p>
+        <!-- .about-bio: display font (Playfair), fluid size, multiple paragraphs -->
+        <div class="about-bio">
+          <p>Good design doesn't announce itself. It just works — and then you notice its absence the moment it's gone. That's the kind of work Dereck has been chasing since he first opened Figma: interfaces that feel obvious in hindsight, systems that earn trust without asking for it, experiences that don't need an instruction manual.</p>
+          <p>He's spent the last few years moving through different design contexts — building within a student design club, shipping under hackathon pressure, and taking on freelance work where the brief arrived late and the deadline didn't. Along the way he picked up enough code to build his own tools and, eventually, this portfolio — hand-written HTML, CSS, and JS, no Webflow, no Framer. It turns out the gap between design and development is narrower when you're willing to learn both sides.</p>
+        </div>
+      </div>
+      <!-- Right column: portrait photo placeholder.
+           aria-hidden="true": the photo is decorative context — screen readers
+           don't need to announce a portrait to understand the about page.
+           ⚠️ TODO: Replace with <img src="..." alt="Dereck Villagrana, product designer"> -->
+      <div class="about-photo" aria-hidden="true">
+        <span>Portrait</span>
+      </div>
+    </div><!-- /.about-hero -->
+
+    <!-- ─── Now Section ───────────────────────────────────────────────────
+         What Dereck is currently seeking / building / open to.
+         .about-now-grid: 3-column card grid (collapses to 1 on mobile).
+         ─────────────────────────────────────────────────────────────────── -->
+    <div class="section-divider"><span>Now</span></div>
+
+    <!-- .cs-section is shared with case study pages — it just provides margin-bottom -->
+    <section class="cs-section reveal">
+      <div class="about-now-grid">
+        <!-- Each card: uppercase label on top, description below -->
+        <div class="about-now-card">
+          <p class="about-now-label">Seeking</p>
+          <p class="about-now-value">Full-time product design — small team, hard problems, fast enough to matter.</p>
+        </div>
+        <div class="about-now-card">
+          <p class="about-now-label">Building</p>
+          <p class="about-now-value">This portfolio. Hand-coded HTML, CSS, and JS — no Webflow, no Framer.</p>
+        </div>
+        <div class="about-now-card">
+          <p class="about-now-label">Open to</p>
+          <p class="about-now-value">Introductions, coffee chats, and honest conversations about design work.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Philosophy Section ────────────────────────────────────────────
+         A display-font pull quote followed by a principles list.
+         The list uses CSS-generated em-dashes (—) instead of bullet points.
+         ─────────────────────────────────────────────────────────────────── -->
+    <div class="section-divider"><span>Philosophy</span></div>
+
+    <section class="cs-section reveal">
+      <!-- .about-pull-quote: large serif, centered, max-width constrained -->
+      <p class="about-pull-quote">"Design is a series of decisions most people will never notice — and that's the goal."</p>
+      <!-- .about-principles: unstyled list; CSS adds em-dash via li::before -->
+      <ul class="about-principles">
+        <li>Clarity over cleverness. If you have to explain it, it's not done.</li>
+        <li>Constraints are assets. A tight brief forces a sharper idea.</li>
+        <li>The work isn't finished when it's built — it's finished when someone gets it the first time.</li>
+      </ul>
+    </section>
+
+    <!-- ─── Tools Section ─────────────────────────────────────────────────
+         .about-tools: 2-column grid organized by tool category.
+         ─────────────────────────────────────────────────────────────────── -->
+    <div class="section-divider"><span>Tools</span></div>
+
+    <section class="cs-section reveal">
+      <div class="about-tools">
+        <!-- Each <div> is one tool category column -->
+        <div>
+          <p class="about-tool-category">Design</p>
+          <!-- .about-tool-list: flex column of tool name spans -->
+          <div class="about-tool-list">
+            <span>Figma</span>
+            <span>ProtoPie</span>
+            <span>Adobe Creative Suite</span>
+          </div>
+        </div>
+        <div>
+          <p class="about-tool-category">Development</p>
+          <div class="about-tool-list">
+            <span>HTML / CSS / JS</span>
+            <span>Visual Studio Code</span>
+          </div>
+        </div>
+        <div>
+          <p class="about-tool-category">Research</p>
+          <div class="about-tool-list">
+            <span>Usability Testing</span>
+            <span>User Interviews</span>
+          </div>
+        </div>
+        <div>
+          <p class="about-tool-category">Productivity</p>
+          <div class="about-tool-list">
+            <span>Google Suite</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── The Sidelines Section ─────────────────────────────────────────
+         Personal interests in a 2×2 table-like grid.
+         CSS borders create horizontal and vertical grid lines.
+         On mobile: collapses to a single column, center divider removed.
+         ─────────────────────────────────────────────────────────────────── -->
+    <div class="section-divider"><span>The Sidelines</span></div>
+
+    <section class="cs-section reveal">
+      <!-- .about-sidelines: 2-column grid. border-left on even items = vertical divider. -->
+      <div class="about-sidelines">
+        <div class="about-sideline-item">
+          <p class="about-sideline-label">Football &amp; Soccer</p>
+          <!-- &amp; = HTML entity for the & ampersand character. Must be encoded in HTML. -->
+          <p class="about-sideline-text">He watches one and plays the other. Sport has a way of making everything feel more urgent and more possible at the same time.</p>
+        </div>
+        <div class="about-sideline-item">
+          <p class="about-sideline-label">Photography</p>
+          <p class="about-sideline-text">Framing is the same problem whether you're in Figma or behind a lens. Still figuring out which one he's better at.</p>
+        </div>
+        <div class="about-sideline-item">
+          <p class="about-sideline-label">Coding for Fun</p>
+          <p class="about-sideline-text">This site is hand-written HTML. When something breaks, he finds it more satisfying than frustrating — which probably says something.</p>
+        </div>
+        <div class="about-sideline-item">
+          <p class="about-sideline-label">Family &amp; Gaming</p>
+          <p class="about-sideline-text">A Saturday with family beats almost anything. Casual gamer — knows when to put the controller down.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Contact Section ───────────────────────────────────────────────
+         Short availability statement + contact link row.
+         style="max-width: 720px" inline style matches .cs-body's max-width.
+         ─────────────────────────────────────────────────────────────────── -->
+    <div class="section-divider"><span>Contact</span></div>
+
+    <section class="cs-section reveal">
+      <!-- Using .cs-body (case study body style) for consistent paragraph styling -->
+      <p class="cs-body" style="max-width: 720px;">Open to full-time product design roles. Feel free to reach out.</p>
+      <!-- .about-contact: flex row of contact links with animated underline borders -->
+      <div class="about-contact">
+        <a href="mailto:dereck.villagrana58@gmail.com" class="about-contact-link">Email →</a>
+        <a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer" class="about-contact-link">LinkedIn →</a>
+        <!-- ⚠️ TODO: Replace href="#" with actual Read.cv URL -->
+        <a href="#" class="about-contact-link">Read.cv →</a>
+      </div>
+    </section>
+
+    <!-- Footer: see index.html for documentation -->
+    <footer class="site-footer">
+      &copy; 2025 Dereck Villagrana. All rights reserved.
+    </footer>
+
+  </main><!-- /.content -->
+
+  <!-- Cache buster: ?v=2 forces a fresh download when main.js is updated -->
+  <script src="js/main.js?v=2"></script>
+</body>
+</html>

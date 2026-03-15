@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- UTF-8 charset: supports all Unicode characters (emoji, accented letters, etc.) -->
+  <meta charset="UTF-8">
+  <!-- viewport: prevents mobile browsers from zooming out to a desktop-width view.
+       width=device-width matches the physical screen width; initial-scale=1.0 = no zoom. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PackPal — Dereck Villagrana</title>
+  <!-- Preconnect hints: open early connections to Google Fonts servers before
+       the browser discovers the font request — saves ~100–300ms. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <!-- ../css/style.css: one level up from projects/ to reach the root css/ folder -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ─── Skip Navigation ─────────────────────────────────────────────────────
+       Lets keyboard and screen reader users jump directly to main content,
+       bypassing the sidebar nav. Visually hidden until focused.
+       See index.html for full documentation. -->
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SIDEBAR — Fully documented in index.html.
+       See index.html for comments on every sidebar element, class, and
+       aria attribute. Key differences on this page:
+         - Logo href: "../index.html#about" (up one folder to the root index)
+         - No "Lab" nav group (not on project pages)
+         - This page's nav link: class="active" + data-preview="" + aria-current="page"
+           data-preview="" is intentionally empty — JS skips hover preview for
+           the current page so you don't see a blank card
+         - All image paths in data-preview: "../images/previews/..." (one level up)
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-top">
+      <a href="../index.html#about" class="logo-badge" aria-label="Home">DV</a>
+      <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+    </div>
+
+        <nav aria-label="Site navigation" class="sidebar-nav">
+      <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+      <a href="../about.html" class="nav-link">About</a>
+      <a href="../index.html#cv" class="nav-link">CV</a>
+      <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
+    </nav>
+        </div>
+
+    <div class="nav-group" role="navigation" aria-label="Selected Work">
+      <span class="nav-label">Selected Work</span>
+      <a href="bereal-redesign.html" class="nav-link" data-preview="../images/previews/bereal-redesign.jpg">BeReal Redesign</a>
+      <a href="verum-ai.html" class="nav-link" data-preview="../images/previews/verum-ai.jpg">Verum AI</a>
+      <a href="bsa-homepage.html" class="nav-link" data-preview="../images/previews/bsa-homepage.jpg">Body Sculpture Aesthetics</a>
+    </div>
+
+    <div class="nav-group" role="navigation" aria-label="After Hours">
+      <span class="nav-label">After Hours</span>
+      <!-- active + data-preview="" + aria-current: marks this as the current page.
+           Empty data-preview prevents JS from showing a hover card for this link. -->
+      <a href="packpal.html" class="nav-link active" data-preview="" aria-current="page">PackPal</a>
+      <a href="snapplant.html" class="nav-link" data-preview="../images/previews/snapplant.jpg">SnapPlant</a>
+      <a href="arc-redesign.html" class="nav-link" data-preview="../images/previews/arc-redesign.jpg">ARC Redesign</a>
+      <a href="sonidos.html" class="nav-link" data-preview="../images/previews/sonidos.jpg">Sonidos del Alma Danzante</a>
+    </div>
+
+    <div class="nav-group" role="navigation" aria-label="Contact">
+      <span class="nav-label">Contact</span>
+      <a href="mailto:dereck.villagrana58@gmail.com" class="nav-link">Email</a>
+      <a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="nav-link">LinkedIn</a>
+      <!-- ⚠️ TODO: Replace href="#" with actual Read.cv profile URL -->
+      <a href="#" class="nav-link">Read.cv</a>
+    </div>
+
+    <!-- Status pill: animated green dot + "Available for work" text.
+         Documented fully in index.html. -->
+    <div class="sidebar-status">
+      <span class="status-pill">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Available for work</span>
+      </span>
+    </div>
+  </aside>
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       END SIDEBAR
+       ═══════════════════════════════════════════════════════════════════════ -->
+
+  <!-- Main content: scrollable right panel. id="main-content" is the target
+       for the skip-nav link above. -->
+  <main class="content" id="main-content">
+
+    <!-- ─── Back Link ──────────────────────────────────────────────────────
+         .cs-back: small text link back to the portfolio homepage.
+         Positioned above the case study header. -->
+    <a href="../index.html" class="cs-back">← Portfolio</a>
+
+    <!-- ─── Case Study Header ──────────────────────────────────────────────
+         .cs-header: project category label, main title, subtitle, and award badge.
+         .reveal: fades in on scroll (IntersectionObserver in main.js). -->
+    <div class="cs-header reveal">
+      <!-- .project-meta: small muted label — category and origin context -->
+      <span class="project-meta">After Hours · Design Club</span>
+      <!-- .project-title: large display-font headline for the case study -->
+      <h1 class="project-title">PackPal</h1>
+      <!-- .cs-subtitle: one-to-two sentence context statement below the title -->
+      <p class="cs-subtitle">A packing list app that generates personalized, editable lists based on your specific trip — designed to reduce travel stress before it starts.</p>
+      <!-- .cs-award: accent-colored badge for awards/recognition -->
+      <div class="cs-award">Most Customer-Centric — Design Club</div>
+    </div>
+
+    <!-- ─── Project Metadata Grid ──────────────────────────────────────────
+         .cs-meta-grid: flex-wrap row of .cs-meta-item cells showing
+         timeline, team, tools, and context at a glance. -->
+    <div class="cs-meta-grid reveal">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Timeline</span>
+        <span class="cs-meta-value">Feb. – Mar. 2023</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Team</span>
+        <!-- <br> creates line breaks within the value cell for multi-person teams -->
+        <span class="cs-meta-value">Dereck Villagrana<br>Kellie Lu<br>Subhiksha Sundaram<br>Valerie Nguyen</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Tools</span>
+        <span class="cs-meta-value">Figma<br>Adobe Illustrator</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Context</span>
+        <span class="cs-meta-value">Design Club<br>UC Davis</span>
+      </div>
+    </div>
+
+    <!-- ─── Overview Paragraph ────────────────────────────────────────────
+         .cs-overview: opening paragraph styled larger than body copy.
+         Summarizes the research foundation and design approach. -->
+    <p class="cs-overview reveal">
+      Research showed 71.1% of users overpack and 21.1% don't plan at all. PackPal was our response: a packing list app that generates personalized, editable lists based on a user's specific trip details. We ran a survey, conducted 3 interviews, and did a competitive analysis of Packr before developing personas, sketches, wireframes, and a high-fidelity prototype. The brand leaned calm and organized — using Quicksand and Inter to keep the experience clean and anxiety-reducing rather than overwhelming.
+    </p>
+
+    <!-- ─── Section Divider ────────────────────────────────────────────────
+         .cs-divider: thin horizontal rule separating the overview from
+         the detailed case study sections. -->
+    <div class="cs-divider"></div>
+
+    <!-- ─── The Problem Section ───────────────────────────────────────────
+         Problem framing with .cs-stats-row — a flex row of stat items showing
+         the research-backed numbers that validated the problem space.
+         .cs-stat: large accent-colored number; .cs-stat-label: short description. -->
+    <section class="cs-section reveal">
+      <span class="cs-section-label">The Problem</span>
+      <h2 class="cs-heading">Most people either overpack or don't prepare at all — there's no calm middle ground.</h2>
+      <p class="cs-body">Existing packing apps either overwhelm with generic lists or require too much manual input. PackPal's core insight: if the app knows where you're going, how long you'll be there, and what you'll be doing, it can generate a starting list that actually fits your trip. The user edits from there, not from zero.</p>
+
+      <!-- .cs-stats-row: horizontal flex row of large-number statistics.
+           Collapses to a grid on smaller screens. -->
+      <div class="cs-stats-row">
+        <div class="cs-stat-item">
+          <span class="cs-stat">71%</span>
+          <span class="cs-stat-label">of users report overpacking for trips</span>
+        </div>
+        <div class="cs-stat-item">
+          <span class="cs-stat">21%</span>
+          <span class="cs-stat-label">don't plan what to pack at all</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Process Section ───────────────────────────────────────────────
+         Describes the research-to-design pipeline: survey → interviews →
+         competitive analysis → personas → sketches → wireframes → prototype.
+         Two .cs-image placeholders for early sketches and the hi-fi prototype. -->
+    <section class="cs-section reveal">
+      <span class="cs-section-label">Process</span>
+      <h2 class="cs-heading">Survey, interviews, competitive analysis — then into Figma.</h2>
+      <p class="cs-body">We ran a user survey, held 3 in-depth interviews, and completed a competitive analysis of Packr before touching any screens. From research we built personas, sketched flows, and moved into wireframes before finalizing a high-fidelity prototype in Figma.</p>
+
+      <!-- ⚠️ TODO: Replace both .cs-image placeholders with real design images
+           once available. Include descriptive alt text for each. -->
+      <div class="cs-image"><span>PackPal — wireframes and early sketches</span></div>
+      <!-- .cs-image-caption: muted small text below each image -->
+      <p class="cs-image-caption">Early sketches and wireframe explorations</p>
+
+      <div class="cs-image"><span>PackPal — high-fidelity screens</span></div>
+      <p class="cs-image-caption">High-fidelity prototype — list generation and editing flow</p>
+    </section>
+
+    <!-- ─── Outcome Section ───────────────────────────────────────────────
+         Short closing section describing the award and the key design lesson. -->
+    <section class="cs-section reveal">
+      <span class="cs-section-label">Outcome</span>
+      <h2 class="cs-heading">Most Customer-Centric award, Design Club.</h2>
+      <p class="cs-body">PackPal won the Most Customer-Centric award at Design Club's showcase — recognizing how directly the solution mapped to real user pain points discovered during research. The biggest lesson: restraint in the interface was the right call. More features would have created the same anxiety the app was designed to reduce.</p>
+    </section>
+
+
+  <!-- Footer: &copy; renders the © copyright symbol (HTML entity).
+       See index.html for full footer documentation. -->
+  <footer class="site-footer">
+    &copy; 2025 Dereck Villagrana. All rights reserved.
+  </footer>
+
+  </main>
+
+  <!-- ../js/main.js?v=2: the shared portfolio JS, one level up from projects/.
+       ?v=2 is a cache buster — forces the browser to re-download the file
+       when it's been updated, rather than serving a stale cached version. -->
+  <script src="../js/main.js?v=2"></script>
+</body>
+</html>

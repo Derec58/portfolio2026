@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- UTF-8 charset: supports all Unicode characters (emoji, accented letters, etc.) -->
+  <meta charset="UTF-8">
+  <!-- viewport: tells mobile browsers not to zoom out to fit desktop width.
+       width=device-width uses the physical screen width; initial-scale=1.0 = no zoom. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verum AI — Dereck Villagrana</title>
+  <!-- Preconnect hints: open DNS/TCP connections to Google Fonts servers before the
+       browser needs them — shaves ~100–300ms off font load time. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <!-- ../css/style.css: one level up from projects/ to reach the root css/ folder -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ─── Skip Navigation ─────────────────────────────────────────────────────
+       Lets keyboard and screen reader users jump directly to main content,
+       bypassing the sidebar. Visually hidden until focused.
+       See index.html for full documentation. -->
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SIDEBAR — Fully documented in index.html.
+       See index.html for comments on every sidebar element, class, and
+       aria attribute. Key differences on this page:
+         - Logo href: "../index.html#about" (up one folder to the root index)
+         - No "Lab" nav group (not on project pages)
+         - This page's nav link: class="active" + data-preview="" + aria-current="page"
+           data-preview="" is intentionally empty — JS skips hover preview for
+           the current page so you don't see a card for the page you're already on
+         - All image paths in data-preview: "../images/previews/..." (one level up)
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-top">
+      <a href="../index.html#about" class="logo-badge" aria-label="Home">DV</a>
+      <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+    </div>
+
+        <nav aria-label="Site navigation" class="sidebar-nav">
+      <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+      <a href="../about.html" class="nav-link">About</a>
+      <a href="../index.html#cv" class="nav-link">CV</a>
+      <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
+    </nav>
+        </div>
+
+    <div class="nav-group" role="navigation" aria-label="Selected Work">
+      <span class="nav-label">Selected Work</span>
+      <a href="bereal-redesign.html" class="nav-link" data-preview="../images/previews/bereal-redesign.jpg">BeReal Redesign</a>
+      <!-- active + data-preview="" + aria-current: marks this as the current page.
+           Empty data-preview prevents JS from showing a hover card for this link. -->
+      <a href="verum-ai.html" class="nav-link active" data-preview="" aria-current="page">Verum AI</a>
+      <a href="bsa-homepage.html" class="nav-link" data-preview="../images/previews/bsa-homepage.jpg">Body Sculpture Aesthetics</a>
+    </div>
+
+    <div class="nav-group" role="navigation" aria-label="After Hours">
+      <span class="nav-label">After Hours</span>
+      <a href="packpal.html" class="nav-link" data-preview="../images/previews/packpal.jpg">PackPal</a>
+      <a href="snapplant.html" class="nav-link" data-preview="../images/previews/snapplant.jpg">SnapPlant</a>
+      <a href="arc-redesign.html" class="nav-link" data-preview="../images/previews/arc-redesign.jpg">ARC Redesign</a>
+      <a href="sonidos.html" class="nav-link" data-preview="../images/previews/sonidos.jpg">Sonidos del Alma Danzante</a>
+    </div>
+
+    <div class="nav-group" role="navigation" aria-label="Contact">
+      <span class="nav-label">Contact</span>
+      <a href="mailto:dereck.villagrana58@gmail.com" class="nav-link">Email</a>
+      <a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="nav-link">LinkedIn</a>
+      <!-- ⚠️ TODO: Replace href="#" with actual Read.cv profile URL -->
+      <a href="#" class="nav-link">Read.cv</a>
+    </div>
+
+    <!-- Status pill: animated green dot + "Available for work" text.
+         Documented fully in index.html. -->
+    <div class="sidebar-status">
+      <span class="status-pill">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Available for work</span>
+      </span>
+    </div>
+  </aside>
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       END SIDEBAR
+       ═══════════════════════════════════════════════════════════════════════ -->
+
+  <!-- Main content: scrollable right panel. id="main-content" is the target
+       for the skip-nav link above. -->
+  <main class="content" id="main-content">
+
+    <!-- ─── Back Link ──────────────────────────────────────────────────────
+         .cs-back: small text link back to the portfolio homepage.
+         Positioned above the case study header so users can easily exit. -->
+    <a href="../index.html" class="cs-back">← Portfolio</a>
+
+    <!-- ─── Case Study Header ──────────────────────────────────────────────
+         .cs-header: contains the project number/category label, main title,
+         subtitle paragraph, and an optional award badge.
+         .reveal: fades in on scroll (IntersectionObserver in main.js). -->
+    <div class="cs-header reveal">
+      <!-- .project-meta: small muted label — project number and category -->
+      <span class="project-meta">02 | Product Design</span>
+      <!-- .project-title: large display-font headline for the case study -->
+      <h1 class="project-title">Verum AI</h1>
+      <!-- .cs-subtitle: a one-to-two sentence context statement below the title -->
+      <p class="cs-subtitle">Building an AI-powered platform to identify bias and misinformation in political speeches — and putting it in the hands of everyday voters, not just journalists.</p>
+      <!-- .cs-award: accent-colored badge for awards/recognition. Positioned
+           via CSS relative to .cs-header. -->
+      <div class="cs-award">2nd Place — All Inclusive Hacks (663 participants)</div>
+    </div>
+
+    <!-- ─── Project Metadata Grid ──────────────────────────────────────────
+         .cs-meta-grid: a flex-wrap row of .cs-meta-item cells showing
+         timeline, team, role, tools, and disciplines at a glance.
+         Each item has a muted .cs-meta-label above a .cs-meta-value. -->
+    <div class="cs-meta-grid reveal">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Timeline</span>
+        <span class="cs-meta-value">Aug. – Oct. 2022</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Team</span>
+        <!-- <br> creates line breaks within the value cell for multi-person teams -->
+        <span class="cs-meta-value">Dereck Villagrana<br>Akshat Jain<br>Megan Leong<br>Marco Paredes</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">My Role</span>
+        <span class="cs-meta-value">UX Designer<br>Front-end Design</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Tools</span>
+        <span class="cs-meta-value">Figma, React<br>Python, JavaScript<br>Vercel, GPT-3.5 Turbo</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Disciplines</span>
+        <span class="cs-meta-value">UX Design<br>AI / ML<br>Data Analytics</span>
+      </div>
+    </div>
+
+    <!-- ─── Overview Paragraph ────────────────────────────────────────────
+         .cs-overview: opening paragraph styled larger than body copy.
+         Sets the stage for the full case study below. -->
+    <p class="cs-overview reveal">
+      Verum AI is a platform designed to empower informed democracy by leveraging advanced AI to cut through bias, inconsistency, and misinformation in political messages. Built during All Inclusive Hacks — a virtual student-led hackathon focused on web disability access, bias detection, and inclusion — Verum brought together designers and developers from UC Davis and UC San Diego across a six-week sprint. The result: a chatbot capable of analyzing political speeches and text for bias and misinformation using GPT-3.5 Turbo, earning 2nd place out of 663 participants worldwide.
+    </p>
+
+    <!-- ─── Section Divider ────────────────────────────────────────────────
+         .cs-divider: a thin horizontal rule separating the overview from
+         the detailed sections below. Pure CSS — no content. -->
+    <div class="cs-divider"></div>
+
+    <!-- ─── The Problem Section ───────────────────────────────────────────
+         Standard case study section: .cs-section-label (category tag) +
+         .cs-heading (section title) + .cs-body (paragraph copy).
+         .cs-stats-row: a row of large-number stat items (.cs-stat + .cs-stat-label)
+         to visualize the scale of the problem with data. -->
+    <section class="cs-section reveal">
+      <span class="cs-section-label">The Problem</span>
+      <h2 class="cs-heading">Most Americans can't reliably tell political fact from fiction — and the tools that exist weren't built for them.</h2>
+
+      <!-- .cs-stats-row: flex row of stat items. Each shows a large accent-colored
+           number and a short description. Collapses to a grid on smaller screens. -->
+      <div class="cs-stats-row">
+        <div class="cs-stat-item">
+          <span class="cs-stat">8%</span>
+          <span class="cs-stat-label">of Americans correctly identified all false political claims in a national survey</span>
+        </div>
+        <div class="cs-stat-item">
+          <span class="cs-stat">41%</span>
+          <span class="cs-stat-label">believed at least one false political claim outright</span>
+        </div>
+        <div class="cs-stat-item">
+          <span class="cs-stat">30%</span>
+          <span class="cs-stat-label">of Americans trusted mass media by 2022</span>
+        </div>
+        <div class="cs-stat-item">
+          <span class="cs-stat">50%</span>
+          <span class="cs-stat-label">of U.S. adults get political news from social media</span>
+        </div>
+      </div>
+
+      <p class="cs-body">Existing AI tools weren't closing that gap. Systems like ClaimBuster, Newtral ClaimHunter, and Full Fact AI were powerful — Full Fact's pipeline processed around 500,000 claims per day. But they were built for journalists and professional fact-checkers, not ordinary voters. They surfaced "check-worthy" claims without providing user-friendly explanations, holistic bias breakdowns, or any interactive interface a voter could just open and use.</p>
+
+      <!-- .cs-pull-quote: a bordered blockquote component for highlighting a key
+           insight or problem statement. <cite> gives the source attribution. -->
+      <div class="cs-pull-quote">
+        <p>"Voters need a tool that translates AI's ability to detect bias and misinformation into an accessible, conversational experience — one that doesn't require a journalism background to use."</p>
+        <cite>— Verum AI problem statement</cite>
+      </div>
+
+      <!-- ⚠️ TODO: Replace .cs-image placeholder with:
+           <img src="../images/verum-ai/competitive-landscape.jpg"
+                alt="Competitive analysis chart comparing Full Fact, ClaimBuster, and Newtral ClaimHunter"
+                class="cs-image"> -->
+      <div class="cs-image"><span>Competitive landscape — existing fact-checking tools</span></div>
+      <!-- .cs-image-caption: muted small text below each image -->
+      <p class="cs-image-caption">Competitive analysis — Full Fact, ClaimBuster, Newtral ClaimHunter and where they fall short for everyday voters</p>
+    </section>
+
+    <!-- ─── The Mission Section ───────────────────────────────────────────
+         Short section bridging problem → solution.
+         .cs-body: standard paragraph body copy style. -->
+    <section class="cs-section reveal">
+      <span class="cs-section-label">The Mission</span>
+      <h2 class="cs-heading">Empower voters with a steadfast tool that cuts through bias, inconsistency, and misinformation.</h2>
+      <p class="cs-body">By leveraging advanced AI, guide users toward confident, well-informed voting decisions — promoting a more transparent and engaged democratic process. Where existing tools routed content to human fact-checkers behind the scenes, Verum puts the analysis directly in the voter's hands, in plain language, on demand.</p>
+    </section>
+
+    <!-- ─── The Solution Section ──────────────────────────────────────────
+         Describes what Verum AI does. Uses .cs-insight-grid — a 2-column
+         card grid — to break down the input methods and output format.
+         Each .cs-insight-card has a label and a paragraph. -->
+    <section class="cs-section reveal">
+      <span class="cs-section-label">The Solution</span>
+      <h2 class="cs-heading">A chatbot that lets anyone analyze a political speech in plain language.</h2>
+      <p class="cs-body">Verum offers a chatbot that helps individuals examine political speeches and texts. Users can:</p>
+
+      <!-- .cs-insight-grid: 2-column card grid. Each card highlights one key
+           insight, method, or feature. Used throughout case study pages. -->
+      <div class="cs-insight-grid">
+        <div class="cs-insight-card">
+          <span class="cs-section-label">Input method 01</span>
+          <p>Paste a link to a transcript or article and let Verum extract and analyze the text automatically.</p>
+        </div>
+        <div class="cs-insight-card">
+          <span class="cs-section-label">Input method 02</span>
+          <p>Select from a library of pre-loaded transcripts — speeches, debates, press briefings.</p>
+        </div>
+        <div class="cs-insight-card">
+          <span class="cs-section-label">Input method 03</span>
+          <p>Input their own text directly and get an immediate analysis of bias and potential misinformation.</p>
+        </div>
+        <div class="cs-insight-card">
+          <span class="cs-section-label">Output</span>
+          <p>Bias percentage, count of flagged statements, annotated document highlights, and plain-language explanations of each flag.</p>
+        </div>
+      </div>
+
+      <!-- ⚠️ TODO: Replace .cs-image placeholders with real screenshot images
+           once available. Include descriptive alt text for each. -->
+      <div class="cs-image"><span>Verum AI — main interface</span></div>
+      <p class="cs-image-caption">Verum AI — chatbot interface with bias analysis and annotated output</p>
+
+      <div class="cs-image"><span>Verum AI — bias breakdown screen</span></div>
+      <p class="cs-image-caption">Bias breakdown — percentage and count of flagged statements with plain-language explanations</p>
+    </section>
+
+    <!-- ─── Technical Challenges Section ─────────────────────────────────
+         .cs-feature-block: a titled text block for describing a specific
+         feature or technical decision. Each block has a .cs-feature-title
+         (bold label) followed by one or more .cs-body paragraphs.
+         A second .cs-insight-grid summarizes the tech stack and hackathon context. -->
+    <section class="cs-section reveal">
+      <span class="cs-section-label">Technical Challenges</span>
+      <h2 class="cs-heading">Making variable AI output feel consistent and credible.</h2>
+      <p class="cs-body">Working with GPT-3.5 Turbo meant the output could vary. Designing around that variability — presenting percentages and annotated statements in a way that felt consistent and readable regardless of what the model returned — was one of the more interesting problems I worked on as the UX lead.</p>
+
+      <!-- .cs-feature-block: one block per distinct technical challenge.
+           Title + body paragraph(s). -->
+      <div class="cs-feature-block">
+        <p class="cs-feature-title">Text and web content analysis</p>
+        <p class="cs-body">Enabling analysis of both plain text and live web content required integrating an external API for text extraction from websites, with AWS Lambda orchestrating the pipeline.</p>
+      </div>
+
+      <div class="cs-feature-block">
+        <p class="cs-feature-title">GPT-3.5 Turbo integration</p>
+        <p class="cs-body">Managing prompt input meant dynamically summarizing text to fit within prompt limits while preserving the full context and intent of the original document. Getting the model to return structured, readable bias analytics rather than a wall of text took significant prompt engineering.</p>
+      </div>
+
+      <div class="cs-feature-block">
+        <p class="cs-feature-title">Async optimization</p>
+        <p class="cs-body">We tackled API call optimization and asynchronous process handling throughout, landing on a system robust enough to analyze both text and web content at scale.</p>
+      </div>
+
+      <!-- Second insight grid: tech stack summary + hackathon context -->
+      <div class="cs-insight-grid">
+        <div class="cs-insight-card">
+          <span class="cs-section-label">Tech stack</span>
+          <p>AWS Lambda + API Gateway · GPT-3.5 Turbo / OpenAI API · Extractor API / X-RapidAPI · Next.js / React / JavaScript · Python · Vercel</p>
+        </div>
+        <div class="cs-insight-card">
+          <span class="cs-section-label">Hackathon context</span>
+          <p>All Inclusive Hacks — virtual student-led competition. Focus: bias detection, accessibility, inclusion through computational linguistics. Open to all ages, 663 participants globally, $905,957 in prizes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Reflection Section ────────────────────────────────────────────
+         Closes the case study with personal takeaways and what would be
+         done differently. Multiple .cs-body paragraphs. -->
+    <section class="cs-section reveal">
+      <span class="cs-section-label">Reflection</span>
+      <h2 class="cs-heading">How do you make a politically sensitive AI tool feel trustworthy, not just functional?</h2>
+      <p class="cs-body">Building Verum in six weeks forced me to confront a design challenge I hadn't fully anticipated. The statistics we found during research made the need undeniable — only 8% of Americans could correctly identify all false political claims. But knowing a problem is real and knowing how to design for it are different things.</p>
+      <p class="cs-body">People don't distrust political content because they lack access to information. They distrust it because they can't tell what's reliable. The interface had to feel credible without feeling preachy. The bias breakdown had to be specific enough to be useful without overwhelming someone who just wanted to understand a speech they'd heard.</p>
+      <p class="cs-body">The cross-school collaboration was equally formative. Designing for a back-end I didn't build taught me how much good handoff matters. I learned to ask better questions earlier: What does the API actually return? What breaks the layout? What's the latency we're designing around?</p>
+      <p class="cs-body">If I had more time, I'd focus on the experience around uncertainty. When the model flags a statement as biased, a voter's natural next question is why. Letting users push back, ask follow-ups, or explore a claim from multiple angles would move the product from a bias detector to something closer to a thinking partner. That's the version I'd want to exist before the next election.</p>
+    </section>
+
+
+  <!-- Footer: &copy; renders the © copyright symbol (HTML entity).
+       See index.html for full footer documentation. -->
+  <footer class="site-footer">
+    &copy; 2025 Dereck Villagrana. All rights reserved.
+  </footer>
+
+  </main>
+
+  <!-- ../js/main.js?v=2: the shared portfolio JS, one level up from projects/.
+       ?v=2 is a cache buster — forces the browser to re-download the file
+       when it's been updated, rather than serving a stale cached version. -->
+  <script src="../js/main.js?v=2"></script>
+</body>
+</html>

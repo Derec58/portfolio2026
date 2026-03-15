@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<!-- DOCTYPE: tells the browser this is modern HTML5. Must be the first line.
+     Without it, browsers enter "quirks mode" and render inconsistently. -->
+
+<!-- lang="en": declares the page language. Used by screen readers for correct pronunciation
+     and by search engines for indexing. -->
+<html lang="en">
+<head>
+  <!-- charset: UTF-8 supports virtually all characters (accents, symbols, emoji).
+       Must appear early in <head> so the browser reads it before parsing content. -->
+  <meta charset="UTF-8">
+
+  <!-- viewport meta tag: critical for mobile browsers.
+       width=device-width: use the device's actual screen width (not a virtual desktop width).
+       initial-scale=1.0: don't zoom in or out on load.
+       Without this, mobile browsers would render a tiny zoomed-out desktop version. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Page title: shown in the browser tab, bookmarks, and search engine results. -->
+  <title>Dereck Villagrana — Product Designer</title>
+
+  <!-- preconnect: tells the browser to open a network connection to Google Fonts
+       before it needs the font files. Reduces font load time.
+       Two entries are needed: one for the API, one for the actual font files (gstatic). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- crossorigin: required for the gstatic connection because fonts are loaded
+       from a different domain (cross-origin). -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Google Fonts: loads Inter (body text) + Playfair Display (display/headings).
+       display=swap: use a fallback font while the custom font loads, then swap.
+       Prevents invisible text during font loading. -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Main stylesheet. href is relative to index.html's location. -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ─── Skip Navigation ──────────────────────────────────────────────────
+       An accessibility link for keyboard and screen reader users.
+       Visually hidden above the viewport (top: -48px via CSS) until focused.
+       When a keyboard user presses Tab, this is the FIRST thing they reach.
+       Activating it jumps directly to #main-content, skipping the sidebar nav.
+       This is required for WCAG 2.4.1 (Bypass Blocks).
+       ─────────────────────────────────────────────────────────────────────── -->
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+
+  <!-- ─── Sidebar ──────────────────────────────────────────────────────────
+       <aside>: semantic HTML element meaning "secondary content related to the main."
+       Used for navigation — correct semantically (a sidebar nav is an "aside").
+       position: fixed (via CSS) — stays in place as the page scrolls.
+       On mobile (≤768px): transforms into a fixed top navigation bar.
+       See docs/ARCHITECTURE.md for the full layout breakdown.
+       ─────────────────────────────────────────────────────────────────────── -->
+  <aside class="sidebar">
+
+    <!-- .sidebar-header: wraps .sidebar-top and .sidebar-nav together.
+         Desktop: display:contents makes this wrapper invisible to layout — its children
+         flow directly into .sidebar's flex column as if it wasn't there.
+         Mobile: overridden to display:flex — becomes the visible top navbar row.
+         See docs/GLOSSARY.md entry "display: contents" for explanation. -->
+    <div class="sidebar-header">
+
+      <!-- .sidebar-top: contains the DV logo badge + desktop-only theme toggle.
+           On mobile: this entire row is hidden in favor of .sidebar-nav items. -->
+      <div class="sidebar-top">
+        <!-- Logo badge: links to the #about section (top of page).
+             aria-label="Home": because the link text is just "DV", screen readers
+             need this label to understand what the link does. -->
+        <a href="#about" class="logo-badge" aria-label="Home">DV</a>
+
+        <!-- Theme toggle button: the half-circle dark/light mode button.
+             aria-label: describes the button action to screen readers (since the button
+             has no text — just visual styling).
+             JavaScript updates this label dynamically when the theme changes.
+             This button is HIDDEN on mobile — the copy in .sidebar-nav is shown instead. -->
+        <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+      </div>
+
+      <!-- .sidebar-nav: the top navigation row containing About, CV links + mobile controls.
+           aria-label="Site navigation": names this <nav> for screen readers.
+           Multiple <nav> elements on a page must be uniquely labeled with aria-label. -->
+      <nav aria-label="Site navigation" class="sidebar-nav">
+
+        <!-- Mobile-only theme toggle: hidden on desktop, shown on mobile.
+             JavaScript keeps both .theme-toggle buttons in sync. -->
+        <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+
+        <!-- About link: goes to the full about page -->
+        <a href="about.html" class="nav-link">About</a>
+
+        <!-- CV link: jumps to the #cv section on this page.
+             data-target="cv": JavaScript reads this to know which section this link
+             corresponds to for active state highlighting as the user scrolls. -->
+        <a href="#cv" class="nav-link" data-target="cv">CV</a>
+
+        <!-- Hamburger button: only shown on mobile (display:none on desktop via CSS).
+             aria-expanded="false": screen readers know the menu is currently closed.
+             aria-label: describes the action.
+             &#9776; = the HTML entity for the ☰ hamburger icon character.
+             JavaScript updates aria-expanded and aria-label when clicked. -->
+        <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
+      </nav>
+    </div><!-- /.sidebar-header -->
+
+    <!-- ─── Selected Work nav group ───────────────────────────────────────
+         role="navigation": explicit ARIA role (belt-and-suspenders with <div>).
+         aria-label="Selected Work": names this navigation group distinctly.
+         Hidden on mobile; shown inside the full-screen overlay when hamburger is open.
+         ─────────────────────────────────────────────────────────────────── -->
+    <div class="nav-group" role="navigation" aria-label="Selected Work">
+      <!-- .nav-label: the small uppercase category header above the links -->
+      <span class="nav-label">Selected Work</span>
+
+      <!-- Project nav links with hover preview thumbnails.
+           data-preview="...": JavaScript reads this image path to show a thumbnail
+           card when the user hovers over the link. See main.js Section 5. -->
+      <a href="projects/bereal-redesign.html" class="nav-link" data-preview="images/previews/bereal-redesign.jpg">BeReal Redesign</a>
+      <a href="projects/verum-ai.html" class="nav-link" data-preview="images/previews/verum-ai.jpg">Verum AI</a>
+      <a href="projects/bsa-homepage.html" class="nav-link" data-preview="images/previews/bsa-homepage.jpg">Body Sculpture Aesthetics</a>
+    </div>
+
+    <!-- ─── Lab nav group ─────────────────────────────────────────────────
+         External link to GitHub.
+         target="_blank": opens in a new tab.
+         rel="noopener noreferrer": security — prevents the new tab from accessing
+         this page via window.opener, and hides the referrer URL.
+         ─────────────────────────────────────────────────────────────────── -->
+    <div class="nav-group" role="navigation" aria-label="Lab">
+      <span class="nav-label">Lab</span>
+      <a href="https://github.com/Derec58/raspberry-pi-media-stack" target="_blank" rel="noopener noreferrer" class="nav-link">Raspberry Pi Media Stack ↗</a>
+    </div>
+
+    <!-- ─── After Hours nav group ─────────────────────────────────────── -->
+    <div class="nav-group" role="navigation" aria-label="After Hours">
+      <span class="nav-label">After Hours</span>
+      <a href="projects/packpal.html" class="nav-link" data-preview="images/previews/packpal.jpg">PackPal</a>
+      <a href="projects/snapplant.html" class="nav-link" data-preview="images/previews/snapplant.jpg">SnapPlant</a>
+      <a href="projects/arc-redesign.html" class="nav-link" data-preview="images/previews/arc-redesign.jpg">ARC Redesign</a>
+      <a href="projects/sonidos.html" class="nav-link" data-preview="images/previews/sonidos.jpg">Sonidos del Alma Danzante</a>
+    </div>
+
+    <!-- ─── Contact nav group ─────────────────────────────────────────── -->
+    <div class="nav-group" role="navigation" aria-label="Contact">
+      <span class="nav-label">Contact</span>
+
+      <!-- mailto: link opens the user's email client with this address pre-filled -->
+      <a href="mailto:dereck.villagrana58@gmail.com" class="nav-link">Email</a>
+
+      <!-- LinkedIn: aria-label includes "(opens in new tab)" to warn screen reader users
+           that this link will open a new tab — a best practice for external links. -->
+      <a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="nav-link">LinkedIn</a>
+
+      <!-- ⚠️ TODO: Replace href="#" with the actual Read.cv URL.
+           href="#" is a placeholder — it currently scrolls to the top of the page
+           rather than going anywhere useful. -->
+      <a href="#" class="nav-link">Read.cv</a>
+    </div>
+
+    <!-- ─── Availability Status Pill ─────────────────────────────────────
+         Pushed to the bottom of the sidebar via margin-top: auto (CSS).
+         Hidden on mobile (display:none) — no room in the top navbar.
+         ─────────────────────────────────────────────────────────────────── -->
+    <div class="sidebar-status">
+      <span class="status-pill">
+        <!-- aria-hidden="true": the dot is purely decorative — a screen reader
+             would announce "bullet" or the animation character, which is noise.
+             The text "Available for work" provides the full meaning. -->
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Available for work</span>
+      </span>
+    </div>
+
+  </aside><!-- /.sidebar -->
+
+  <!-- ─── Main Content ─────────────────────────────────────────────────────
+       <main>: semantic element for the primary page content. One per page.
+       id="main-content": target for the skip-nav link above.
+       .content (CSS): offset by sidebar width (margin-left: 220px), scrollable.
+       ─────────────────────────────────────────────────────────────────────── -->
+  <main class="content" id="main-content">
+
+    <!-- ─── About / Bio Section ─────────────────────────────────────────
+         id="about": used by the logo badge (href="#about") to scroll here,
+         and by JavaScript's IntersectionObserver for active nav tracking.
+         .section-about: padding and margin separating it from the CV below.
+         ─────────────────────────────────────────────────────────────────── -->
+    <section id="about" class="section-about">
+      <!-- .greeting: small muted intro text with bilingual sub-greeting -->
+      <p class="greeting">
+        Hello world, welcome!
+        <!-- .greeting-sub: the Spanish greeting, lighter opacity, smaller font -->
+        <span class="greeting-sub">/ hola! /</span>
+      </p>
+
+      <!-- <h1>: the most important heading on the page — one per page, used here
+           for the bio statement which IS the main headline of the homepage.
+           .bio: display font (Playfair Display), fluid size via clamp(). -->
+      <h1 class="bio">
+        Dereck is a designer of products. Obsessed with creating experiences that feel clean and considered — he's worked across design clubs, hackathons, and freelance engagements. Currently open to full-time opportunities.
+      </h1>
+    </section>
+
+    <!-- ─── CV / Experience Section ───────────────────────────────────────
+         id="cv": nav link target (href="#cv" in .sidebar-nav).
+         .section-cv: bottom margin separating it from the project section below.
+         .reveal: JavaScript fades this in when it scrolls into view (IntersectionObserver).
+         ─────────────────────────────────────────────────────────────────── -->
+    <section id="cv" class="section-cv reveal">
+
+      <!-- Section divider: the "── Experience ──" visual separator -->
+      <div class="section-divider"><span>Experience</span></div>
+
+      <!-- .cv-entries: flex column container for all CV rows -->
+      <div class="cv-entries">
+
+        <!-- ─── CV Entry: year+company (left) | role (right) ─────────── -->
+        <div class="cv-entry">
+          <!-- .cv-meta: left column containing year + company name side by side -->
+          <div class="cv-meta">
+            <span class="cv-year">2024</span>
+            <span class="cv-company">MYJ, Inc.</span>
+          </div>
+          <!-- .cv-role: right column — the job title, medium weight -->
+          <div class="cv-role">UI/UX Designer Intern</div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-meta">
+            <span class="cv-year">2024</span>
+            <span class="cv-company">All Inclusive Hacks</span>
+          </div>
+          <div class="cv-role">Product Designer</div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-meta">
+            <span class="cv-year">2024</span>
+            <span class="cv-company">Body Sculpture Aesthetics</span>
+          </div>
+          <div class="cv-role">Freelance Designer</div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-meta">
+            <!-- Year ranges use em dash (—) not regular dash (-) typographically -->
+            <span class="cv-year">2021 — 2023</span>
+            <span class="cv-company">Design Interactive, UC Davis</span>
+          </div>
+          <div class="cv-role">Product Designer</div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-meta">
+            <span class="cv-year">2021 — 2023</span>
+            <span class="cv-company">UC Davis</span>
+          </div>
+          <div class="cv-role">B.S. Design</div>
+        </div>
+
+      </div><!-- /.cv-entries -->
+    </section><!-- /#cv -->
+
+    <!-- Section divider between CV and Selected Work -->
+    <!-- .work-divider: adds margin-top: 64px (larger than standard .section-divider) -->
+    <div class="section-divider work-divider"><span>Selected Work</span></div>
+
+    <!-- ─── Project: BeReal Redesign ──────────────────────────────────────
+         id="project-1": section anchor for IntersectionObserver tracking.
+         .project: two-column flex layout — text (55% left) + image (right).
+         .reveal: fade-in animation on scroll.
+         ─────────────────────────────────────────────────────────────────── -->
+    <section id="project-1" class="project reveal">
+      <!-- Left column: category label, title, description -->
+      <div class="project-text">
+        <!-- .project-meta: small uppercase label (e.g., "01 | Product Design") -->
+        <span class="project-meta">01 | Product Design</span>
+        <!-- <h2>: second-level heading. The project title links to its case study page. -->
+        <h2 class="project-title"><a href="projects/bereal-redesign.html">BeReal Redesign</a></h2>
+        <p class="project-desc">
+          Redesigned BeReal's social experience to rebuild engagement without compromising
+          its authenticity-first ethos. Led prototyping across four features and two rounds
+          of usability testing.
+        </p>
+      </div>
+
+      <!-- Right column: image placeholder (16:9 aspect ratio).
+           ⚠️ TODO: Replace this div with <img src="..." alt="Descriptive alt text">
+           when project mockup images are ready. The alt attribute is required for
+           accessibility — describe what the image shows, not just "project image". -->
+      <div class="project-image-placeholder">
+        <span>Project image / mockup</span>
+      </div>
+    </section>
+
+    <!-- ─── Project: Verum AI ─────────────────────────────────────────── -->
+    <section id="project-2" class="project reveal">
+      <div class="project-text">
+        <span class="project-meta">02 | Product Design</span>
+        <h2 class="project-title"><a href="projects/verum-ai.html">Verum AI</a></h2>
+        <p class="project-desc">
+          AI platform detecting bias and misinformation in political speeches, built for
+          everyday voters. Led all UX and front-end design in a six-week hackathon sprint.
+        </p>
+      </div>
+      <!-- ⚠️ TODO: Replace placeholder with real project image -->
+      <div class="project-image-placeholder">
+        <span>Project image / mockup</span>
+      </div>
+    </section>
+
+    <!-- ─── Project: Body Sculpture Aesthetics ───────────────────────────
+         id="project-3" has special CSS: no border-bottom, padding, or margin
+         because the section divider below provides visual separation instead.
+         ─────────────────────────────────────────────────────────────────── -->
+    <section id="project-3" class="project reveal">
+      <div class="project-text">
+        <span class="project-meta">03 | Freelance</span>
+        <h2 class="project-title"><a href="projects/bsa-homepage.html">Body Sculpture Aesthetics</a></h2>
+        <p class="project-desc">
+          Homepage and Webflow build for a body sculpting clinic — no brief, a four-week
+          deadline, and a full visual identity built from scratch.
+        </p>
+      </div>
+      <!-- ⚠️ TODO: Replace placeholder with real project image -->
+      <div class="project-image-placeholder">
+        <span>Project image / mockup</span>
+      </div>
+    </section>
+
+    <!-- Section divider between Selected Work and Lab -->
+    <div class="section-divider work-divider"><span>Lab</span></div>
+
+    <!-- ─── Lab Section ───────────────────────────────────────────────────
+         id="lab": section anchor.
+         .section-lab: bottom margin.
+         .reveal: fade-in on scroll.
+         ─────────────────────────────────────────────────────────────────── -->
+    <section id="lab" class="section-lab reveal">
+      <!-- .lab-grid: flex column of lab cards -->
+      <div class="lab-grid">
+
+        <!-- <article>: semantic element for self-contained content.
+             A GitHub project is genuinely self-contained — correct semantic choice. -->
+        <article class="lab-card">
+          <!-- .lab-card-top: tags (left) + GitHub link (right) in a flex row -->
+          <div class="lab-card-top">
+            <!-- Tech stack tags separated by middle dots (·) -->
+            <span class="lab-card-meta">Raspberry Pi · Docker · Self-hosted</span>
+            <!-- External GitHub link. aria-label clarifies the link purpose. -->
+            <a href="https://github.com/Derec58/raspberry-pi-media-stack"
+               target="_blank" rel="noopener noreferrer"
+               class="lab-card-link" aria-label="View on GitHub">
+              ↗ GitHub
+            </a>
+          </div>
+          <!-- Card title also links to GitHub -->
+          <h3 class="lab-card-title">
+            <a href="https://github.com/Derec58/raspberry-pi-media-stack"
+               target="_blank" rel="noopener noreferrer">
+              Raspberry Pi Media Stack
+            </a>
+          </h3>
+          <p class="lab-card-desc">
+            A self-hosted media automation system built on a Raspberry Pi 5. Containerised services handle discovery, downloading, and streaming — routed through a VPN with a fail-closed design and public HTTPS access via a Caddy reverse proxy.
+          </p>
+        </article>
+
+      </div><!-- /.lab-grid -->
+    </section><!-- /#lab -->
+
+    <!-- Section divider between Lab and After Hours -->
+    <div class="section-divider work-divider"><span>After Hours</span></div>
+
+    <!-- ─── After Hours Section ───────────────────────────────────────────
+         id="after-hours": section anchor.
+         2×2 grid of side project cards (collapses to 1 column at 480px).
+         ─────────────────────────────────────────────────────────────────── -->
+    <section id="after-hours" class="section-after-hours reveal">
+      <!-- .after-hours-grid: CSS grid, 2 columns -->
+      <div class="after-hours-grid">
+
+        <!-- ─── After Hours Card: PackPal ──────────────────────────────
+             <article>: each card is self-contained project content.
+             id="ah-1": unique id for potential future anchor linking.
+             ─────────────────────────────────────────────────────────── -->
+        <article class="ah-card" id="ah-1">
+          <!-- Image link wraps the placeholder — clicking anywhere on the image
+               navigates to the case study page -->
+          <a href="projects/packpal.html">
+            <!-- ⚠️ TODO: Replace with <img src="..." alt="PackPal app mockup"> -->
+            <div class="ah-image-placeholder"><span>Image</span></div>
+          </a>
+          <!-- Small category label (Design Club, Coursework, etc.) -->
+          <span class="ah-card-meta">Design Club</span>
+          <h3 class="ah-card-title"><a href="projects/packpal.html">PackPal</a></h3>
+          <p class="ah-card-desc">A packing list app that generates personalized trip lists. 71% of users overpack — we designed a calmer way to prep. Most Customer-Centric, Design Club.</p>
+        </article>
+
+        <!-- ─── After Hours Card: SnapPlant ────────────────────────── -->
+        <article class="ah-card" id="ah-2">
+          <a href="projects/snapplant.html">
+            <!-- ⚠️ TODO: Replace with <img src="..." alt="SnapPlant app mockup"> -->
+            <div class="ah-image-placeholder"><span>Image</span></div>
+          </a>
+          <span class="ah-card-meta">Coursework</span>
+          <h3 class="ah-card-title"><a href="projects/snapplant.html">SnapPlant</a></h3>
+          <p class="ah-card-desc">A plant identification app with an awareness angle around deforestation and invasive species. Solo end-to-end UX process, from research through hi-fi prototype.</p>
+        </article>
+
+        <!-- ─── After Hours Card: ARC Redesign ─────────────────────── -->
+        <article class="ah-card" id="ah-3">
+          <a href="projects/arc-redesign.html">
+            <!-- ⚠️ TODO: Replace with <img src="..." alt="ARC app redesign mockup"> -->
+            <div class="ah-image-placeholder"><span>Image</span></div>
+          </a>
+          <span class="ah-card-meta">Design Challenge</span>
+          <h3 class="ah-card-title"><a href="projects/arc-redesign.html">ARC Redesign</a></h3>
+          <p class="ah-card-desc">A 5-day design challenge to redesign the UC Davis Activities and Recreation Center app. The sprint that got me into the Design Interactive cohort.</p>
+        </article>
+
+        <!-- ─── After Hours Card: Sonidos ──────────────────────────── -->
+        <article class="ah-card" id="ah-4">
+          <a href="projects/sonidos.html">
+            <!-- ⚠️ TODO: Replace with <img src="..." alt="Sonidos del Alma Danzante brand identity preview"> -->
+            <div class="ah-image-placeholder"><span>Image</span></div>
+          </a>
+          <span class="ah-card-meta">Branding</span>
+          <h3 class="ah-card-title"><a href="projects/sonidos.html">Sonidos del Alma Danzante</a></h3>
+          <p class="ah-card-desc">Full brand identity for a conceptual Cumbia festival rooted in East LA — name, logo, brand system, marketing materials, and a Jarritos co-brand.</p>
+        </article>
+
+      </div><!-- /.after-hours-grid -->
+    </section><!-- /#after-hours -->
+
+    <!-- ─── Site Footer ───────────────────────────────────────────────────
+         Lives inside <main> (inside .content) so it shares the content background.
+         CSS uses negative margins to break out of .content's padding and span
+         the full width of the content area. See style.css Section 27.
+         ⚠️ TODO: Update year from 2025 to current year if needed.
+         ─────────────────────────────────────────────────────────────────── -->
+    <footer class="site-footer">
+      &copy; 2025 Dereck Villagrana. All rights reserved.
+      <!-- &copy; is the HTML entity for the © copyright symbol -->
+    </footer>
+
+  </main><!-- /.content -->
+
+  <!-- ─── JavaScript ────────────────────────────────────────────────────────
+       Loaded at the end of <body> so it doesn't block page rendering.
+       ?v=2 is a cache buster — tells the browser to treat this as a new file
+       and download a fresh copy instead of serving a cached (stale) version.
+       Update the number (?v=3, ?v=4...) any time you change main.js.
+       ─────────────────────────────────────────────────────────────────────── -->
+  <script src="js/main.js?v=2"></script>
+</body>
+</html>
