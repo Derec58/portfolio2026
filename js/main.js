@@ -186,7 +186,7 @@ if (menuToggle && sidebar) {
     const open = sidebar.classList.toggle('nav-open');
 
     // Sync aria-expanded with the open state (must be a string, not boolean)
-    menuToggle.setAttribute('aria-expanded', open);
+    menuToggle.setAttribute('aria-expanded', String(open));
 
     // Update the button label for screen readers
     menuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
@@ -235,17 +235,20 @@ document.querySelectorAll('.nav-link[data-preview]').forEach((link) => {
   link.addEventListener('mouseenter', (e) => {
     const src = link.dataset.preview; // Read the image path from data-preview
 
-    // Bug fix: if data-preview="" is empty (e.g., current page link),
-    // bail out completely — don't show a blank or text-only preview card.
+    // If data-preview="" is empty (e.g., current page link), bail out.
     if (!src) return;
 
-    // Set the thumbnail as the background image of the inner div
-    previewInner.style.backgroundImage = `url(${src})`;
-    previewInner.textContent = ''; // Clear any previous text content
-
-    // Make the card visible (CSS handles the opacity fade-in transition)
-    previewCard.classList.add('visible');
-    positionPreview(e.clientX, e.clientY);
+    // Preload the image before showing the card — prevents blank preview cards
+    // when the image file doesn't exist yet (e.g., during development).
+    const img = new Image();
+    img.onload = () => {
+      previewInner.style.backgroundImage = `url(${src})`;
+      previewInner.textContent = '';
+      previewCard.classList.add('visible');
+      positionPreview(e.clientX, e.clientY);
+    };
+    // img.onerror: image missing — preview stays hidden, no blank card shown
+    img.src = src;
   });
 
   // Reposition the card as the cursor moves across the link
@@ -317,3 +320,20 @@ window.addEventListener('scroll', () => {
 backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+
+// ─── 7. Custom Dot Cursor ──────────────────────────────────────────────────────
+// A small purple dot that follows the mouse. No tooltip, no label — plain dot only.
+// Only active on pointer:fine devices (mouse/trackpad); hidden on touch via CSS.
+// ──────────────────────────────────────────────────────────────────────────────
+
+const cursorDot = document.querySelector('.cursor-dot');
+if (cursorDot && window.matchMedia('(pointer: fine)').matches) {
+  document.addEventListener('mousemove', e => {
+    cursorDot.style.left = e.clientX + 'px';
+    cursorDot.style.top  = e.clientY + 'px';
+    cursorDot.style.opacity = '1';
+  });
+  document.addEventListener('mouseleave', () => { cursorDot.style.opacity = '0'; });
+  document.addEventListener('mouseenter', () => { cursorDot.style.opacity = '1'; });
+}

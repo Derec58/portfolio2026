@@ -6,7 +6,14 @@
   <!-- viewport: tells mobile browsers not to zoom out to fit desktop width.
        width=device-width uses the physical screen width; initial-scale=1.0 = no zoom. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verum AI — Dereck Villagrana</title>
+  <meta name="description" content="Verum AI: AI-powered misinformation detection tool designed in 24 hours at a hackathon. 2nd place overall. By Dereck Villagrana.">
+  <meta property="og:title" content="Verum AI | Dereck Villagrana">
+  <meta property="og:description" content="An AI-powered misinformation detection tool designed and built in 24 hours. Helps users verify claims in real time. Placed 2nd overall.">
+  <meta property="og:url" content="https://portfolio2026-puce.vercel.app/projects/verum-ai.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://portfolio2026-puce.vercel.app/projects/verum-ai.html">
+  <title>Verum AI | Dereck Villagrana</title>
   <!-- Preconnect hints: open DNS/TCP connections to Google Fonts servers before the
        browser needs them — shaves ~100–300ms off font load time. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,9 +49,9 @@
     </div>
 
         <nav aria-label="Site navigation" class="sidebar-nav">
-      <button class="theme-toggle" aria-label="Switch to dark mode"></button>
       <a href="../about.html" class="nav-link">About</a>
       <a href="../index.html#cv" class="nav-link">CV</a>
+      <a href="../contact.html" class="nav-link">Contact</a>
       <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
     </nav>
         </div>
@@ -70,12 +77,6 @@
       <a href="snapplant.html" class="nav-link" data-preview="../images/previews/snapplant.jpg">SnapPlant</a>
       <a href="arc-redesign.html" class="nav-link" data-preview="../images/previews/arc-redesign.jpg">ARC Redesign</a>
       <a href="sonidos.html" class="nav-link" data-preview="../images/previews/sonidos.jpg">Sonidos del Alma Danzante</a>
-    </div>
-
-    <div class="nav-group" role="navigation" aria-label="Contact">
-      <span class="nav-label">Contact</span>
-      <a href="mailto:dereck.villagrana58@gmail.com" class="nav-link">Email</a>
-      <a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="nav-link">LinkedIn</a>
     </div>
 
     <!-- Status pill: animated green dot + "Available for work" text.
@@ -110,10 +111,10 @@
       <!-- .project-title: large display-font headline for the case study -->
       <h1 class="project-title">Verum AI</h1>
       <!-- .cs-subtitle: a one-to-two sentence context statement below the title -->
-      <p class="cs-subtitle">Building an AI-powered platform to identify bias and misinformation in political speeches — and putting it in the hands of everyday voters, not just journalists.</p>
+      <p class="cs-subtitle">Building an AI-powered platform to identify bias and misinformation in political speeches and putting it in the hands of everyday voters, not just journalists.</p>
       <!-- .cs-award: accent-colored badge for awards/recognition. Positioned
            via CSS relative to .cs-header. -->
-      <div class="cs-award">2nd Place — All Inclusive Hacks (663 participants)</div>
+      <div class="cs-award">2nd Place, All Inclusive Hacks (663 participants)</div>
     </div>
 
     <!-- ─── Project Metadata Grid ──────────────────────────────────────────
@@ -148,7 +149,7 @@
          .cs-overview: opening paragraph styled larger than body copy.
          Sets the stage for the full case study below. -->
     <p class="cs-overview reveal">
-      Verum AI is a platform designed to empower informed democracy by leveraging advanced AI to cut through bias, inconsistency, and misinformation in political messages. Built during All Inclusive Hacks — a virtual student-led hackathon focused on web disability access, bias detection, and inclusion — Verum brought together designers and developers from UC Davis and UC San Diego across a six-week sprint. The result: a chatbot capable of analyzing political speeches and text for bias and misinformation using GPT-3.5 Turbo, earning 2nd place out of 663 participants worldwide.
+      Verum AI is a platform designed to empower informed democracy by leveraging advanced AI to cut through bias, inconsistency, and misinformation in political messages. Built during All Inclusive Hacks, a virtual student-led hackathon focused on web disability access, bias detection, and inclusion, Verum brought together designers and developers from UC Davis and UC San Diego across a six-week sprint. The result: a chatbot capable of analyzing political speeches and text for bias and misinformation using GPT-3.5 Turbo, earning 2nd place out of 663 participants worldwide.
     </p>
 
     <!-- ─── Section Divider ────────────────────────────────────────────────
@@ -163,7 +164,7 @@
          to visualize the scale of the problem with data. -->
     <section class="cs-section reveal">
       <span class="cs-section-label">The Problem</span>
-      <h2 class="cs-heading">Most Americans can't reliably tell political fact from fiction — and the tools that exist weren't built for them.</h2>
+      <h2 class="cs-heading">Most Americans can't reliably tell political fact from fiction, and the tools that exist weren't built for them.</h2>
 
       <!-- .cs-stats-row: flex row of stat items. Each shows a large accent-colored
            number and a short description. Collapses to a grid on smaller screens. -->
@@ -186,31 +187,31 @@
         </div>
       </div>
 
-      <p class="cs-body">Existing AI tools weren't closing that gap. Systems like ClaimBuster, Newtral ClaimHunter, and Full Fact AI were powerful — Full Fact's pipeline processed around 500,000 claims per day. But they were built for journalists and professional fact-checkers, not ordinary voters. They surfaced "check-worthy" claims without providing user-friendly explanations, holistic bias breakdowns, or any interactive interface a voter could just open and use.</p>
+      <p class="cs-body">Existing AI tools weren't closing that gap. Systems like ClaimBuster, Newtral ClaimHunter, and Full Fact AI were powerful. Full Fact's pipeline processed around 500,000 claims per day. But they were built for journalists and professional fact-checkers, not ordinary voters. They surfaced "check-worthy" claims without providing user-friendly explanations, holistic bias breakdowns, or any interactive interface a voter could just open and use.</p>
 
       <!-- .cs-pull-quote: a bordered blockquote component for highlighting a key
            insight or problem statement. <cite> gives the source attribution. -->
       <div class="cs-pull-quote">
-        <p>"Voters need a tool that translates AI's ability to detect bias and misinformation into an accessible, conversational experience — one that doesn't require a journalism background to use."</p>
-        <cite>— Verum AI problem statement</cite>
+        <p>"Voters need a tool that translates AI's ability to detect bias and misinformation into an accessible, conversational experience, one that doesn't require a journalism background to use."</p>
+        <cite>Verum AI problem statement</cite>
       </div>
 
       <!-- ⚠️ TODO: Replace .cs-image placeholder with:
            <img src="../images/verum-ai/competitive-landscape.jpg"
                 alt="Competitive analysis chart comparing Full Fact, ClaimBuster, and Newtral ClaimHunter"
                 class="cs-image"> -->
-      <div class="cs-image"><span>Competitive landscape — existing fact-checking tools</span></div>
+      <div class="cs-image"><span>Competitive landscape: existing fact-checking tools</span></div>
       <!-- .cs-image-caption: muted small text below each image -->
-      <p class="cs-image-caption">Competitive analysis — Full Fact, ClaimBuster, Newtral ClaimHunter and where they fall short for everyday voters</p>
+      <p class="cs-image-caption">Competitive analysis: Full Fact, ClaimBuster, Newtral ClaimHunter and where they fall short for everyday voters</p>
     </section>
 
     <!-- ─── The Mission Section ───────────────────────────────────────────
          Short section bridging problem → solution.
          .cs-body: standard paragraph body copy style. -->
     <section class="cs-section reveal">
-      <span class="cs-section-label">The Mission</span>
+      <span class="cs-section-label">What We Set Out to Build</span>
       <h2 class="cs-heading">Empower voters with a steadfast tool that cuts through bias, inconsistency, and misinformation.</h2>
-      <p class="cs-body">By leveraging advanced AI, guide users toward confident, well-informed voting decisions — promoting a more transparent and engaged democratic process. Where existing tools routed content to human fact-checkers behind the scenes, Verum puts the analysis directly in the voter's hands, in plain language, on demand.</p>
+      <p class="cs-body">By leveraging advanced AI, guide users toward confident, well-informed voting decisions, promoting a more transparent and engaged democratic process. Where existing tools routed content to human fact-checkers behind the scenes, Verum puts the analysis directly in the voter's hands, in plain language, on demand.</p>
     </section>
 
     <!-- ─── The Solution Section ──────────────────────────────────────────
@@ -231,7 +232,7 @@
         </div>
         <div class="cs-insight-card">
           <span class="cs-section-label">Input method 02</span>
-          <p>Select from a library of pre-loaded transcripts — speeches, debates, press briefings.</p>
+          <p>Select from a library of pre-loaded transcripts: speeches, debates, press briefings.</p>
         </div>
         <div class="cs-insight-card">
           <span class="cs-section-label">Input method 03</span>
@@ -245,11 +246,11 @@
 
       <!-- ⚠️ TODO: Replace .cs-image placeholders with real screenshot images
            once available. Include descriptive alt text for each. -->
-      <div class="cs-image"><span>Verum AI — main interface</span></div>
-      <p class="cs-image-caption">Verum AI — chatbot interface with bias analysis and annotated output</p>
+      <div class="cs-image"><span>Verum AI: main interface</span></div>
+      <p class="cs-image-caption">Verum AI: chatbot interface with bias analysis and annotated output</p>
 
-      <div class="cs-image"><span>Verum AI — bias breakdown screen</span></div>
-      <p class="cs-image-caption">Bias breakdown — percentage and count of flagged statements with plain-language explanations</p>
+      <div class="cs-image"><span>Verum AI: bias breakdown screen</span></div>
+      <p class="cs-image-caption">Bias breakdown: percentage and count of flagged statements with plain-language explanations</p>
     </section>
 
     <!-- ─── Technical Challenges Section ─────────────────────────────────
@@ -258,9 +259,9 @@
          (bold label) followed by one or more .cs-body paragraphs.
          A second .cs-insight-grid summarizes the tech stack and hackathon context. -->
     <section class="cs-section reveal">
-      <span class="cs-section-label">Technical Challenges</span>
+      <span class="cs-section-label">Under the Hood</span>
       <h2 class="cs-heading">Making variable AI output feel consistent and credible.</h2>
-      <p class="cs-body">Working with GPT-3.5 Turbo meant the output could vary. Designing around that variability — presenting percentages and annotated statements in a way that felt consistent and readable regardless of what the model returned — was one of the more interesting problems I worked on as the UX lead.</p>
+      <p class="cs-body">Working with GPT-3.5 Turbo meant the output could vary. Designing around that variability, presenting percentages and annotated statements in a way that felt consistent and readable regardless of what the model returned, was one of the more interesting problems I worked on as the UX lead.</p>
 
       <!-- .cs-feature-block: one block per distinct technical challenge.
            Title + body paragraph(s). -->
@@ -287,7 +288,7 @@
         </div>
         <div class="cs-insight-card">
           <span class="cs-section-label">Hackathon context</span>
-          <p>All Inclusive Hacks — virtual student-led competition. Focus: bias detection, accessibility, inclusion through computational linguistics. Open to all ages, 663 participants globally, $905,957 in prizes.</p>
+          <p>All Inclusive Hacks: virtual student-led competition. Focus: bias detection, accessibility, inclusion through computational linguistics. Open to all ages, 663 participants globally, $905,957 in prizes.</p>
         </div>
       </div>
     </section>
@@ -301,7 +302,7 @@
       <div class="cs-stats-row">
         <div class="cs-stat-item">
           <span class="cs-stat">88%</span>
-          <span class="cs-stat-label">primary flow task completion rate — 7 of 8 users analyzed a speech without guidance</span>
+          <span class="cs-stat-label">primary flow task completion rate: 7 of 8 users analyzed a speech without guidance</span>
         </div>
         <div class="cs-stat-item">
           <span class="cs-stat">6 / 6</span>
@@ -313,7 +314,7 @@
         </div>
         <div class="cs-stat-item">
           <span class="cs-stat">12 / 12</span>
-          <span class="cs-stat-label">pre-labeled speeches correctly flagged for bias by the GPT-3.5 pipeline — 0 false negatives</span>
+          <span class="cs-stat-label">pre-labeled speeches correctly flagged for bias by the GPT-3.5 pipeline: 0 false negatives</span>
         </div>
       </div>
     </section>
@@ -326,7 +327,7 @@
     <section class="cs-section reveal">
       <span class="cs-section-label">Reflection</span>
       <h2 class="cs-heading">How do you make a politically sensitive AI tool feel trustworthy, not just functional?</h2>
-      <p class="cs-body">Building Verum in six weeks forced me to confront a design challenge I hadn't fully anticipated. The statistics we found during research made the need undeniable — only 8% of Americans could correctly identify all false political claims. But knowing a problem is real and knowing how to design for it are different things.</p>
+      <p class="cs-body">Building Verum in six weeks forced me to confront a design challenge I hadn't fully anticipated. The statistics we found during research made the need undeniable: only 8% of Americans could correctly identify all false political claims. But knowing a problem is real and knowing how to design for it are different things.</p>
       <p class="cs-body">People don't distrust political content because they lack access to information. They distrust it because they can't tell what's reliable. The interface had to feel credible without feeling preachy. The bias breakdown had to be specific enough to be useful without overwhelming someone who just wanted to understand a speech they'd heard.</p>
       <p class="cs-body">The cross-school collaboration was equally formative. Designing for a back-end I didn't build taught me how much good handoff matters. I learned to ask better questions earlier: What does the API actually return? What breaks the layout? What's the latency we're designing around?</p>
       <p class="cs-body">If I had more time, I'd focus on the experience around uncertainty. When the model flags a statement as biased, a voter's natural next question is why. Letting users push back, ask follow-ups, or explore a claim from multiple angles would move the product from a bias detector to something closer to a thinking partner. That's the version I'd want to exist before the next election.</p>
@@ -336,7 +337,8 @@
   <!-- Footer: &copy; renders the © copyright symbol (HTML entity).
        See index.html for full footer documentation. -->
   <footer class="site-footer">
-    &copy; 2026 Dereck Villagrana. All rights reserved.
+    <span>&copy; 2026 Dereck Villagrana. All rights reserved.</span>
+    <span>Designed + Vibe Coded by Dereck</span>
   </footer>
 
   </main>
@@ -344,6 +346,7 @@
   <!-- ../js/main.js?v=2: the shared portfolio JS, one level up from projects/.
        ?v=2 is a cache buster — forces the browser to re-download the file
        when it's been updated, rather than serving a stale cached version. -->
-  <script src="../js/main.js?v=2"></script>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <script src="../js/main.js?v=3"></script>
 </body>
 </html>

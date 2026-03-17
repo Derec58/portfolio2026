@@ -61,7 +61,7 @@ body {
   /* -apple-system / BlinkMacSystemFont = native system font fallbacks on Apple/Chrome.
      sans-serif = final generic fallback if nothing else loads. */
   font-weight: 400;
-  background: var(--color-surface); /* matches .content bg — no visible seam outside the max-width */
+  background: var(--color-bg); /* matches .content bg — white page, cards use --color-surface */
   color: var(--color-text);
   line-height: 1.6;
   display: flex; /* sidebar + main content sit side by side */
@@ -87,13 +87,13 @@ a {
   /* ── Layout ── */
   --sidebar-width: 220px;       /* Width of the fixed left sidebar */
   --sidebar-padding: 28px;      /* Left/right padding inside the sidebar */
-  --content-padding-x: 200px;  /* Left/right padding of the main content area (desktop) */
+  --content-padding-x: 80px;   /* Left/right padding of the main content area (desktop) */
   --content-padding-y: 56px;   /* Top/bottom padding of the main content area */
 
   /* ── Colors (light mode defaults) ── */
-  --color-bg: #ffffff;          /* Sidebar and page background */
-  --color-surface: #f6f6f6;    /* Main content area background — slightly off-white */
-  --color-text: #1a1a1a;        /* Primary text color */
+  --color-bg: #FAFCFD;          /* Sidebar and page background */
+  --color-surface: #f1f4f6;    /* Cards and component backgrounds */
+  --color-text: #32404F;        /* Primary text color */
   --color-muted: #767676;       /* Secondary/caption text — 4.54:1 contrast on white, passes WCAG AA.
                                    ⚠️ Do not lighten — contrast would fail below 4.5:1 */
   --color-accent: #7B5EA7;      /* Purple — used for links, active states, focus rings, borders */
@@ -129,6 +129,13 @@ a {
 }
 
 
+/* Text selection uses purple accent instead of browser default blue */
+::selection {
+  background-color: rgba(123, 94, 167, 0.25);
+  color: var(--color-text);
+}
+
+
 /* ═══════════════════════════════════════════════════════════════
    3. SIDEBAR
    Fixed left navigation column. On mobile it becomes a top navbar
@@ -156,7 +163,7 @@ a {
   flex-direction: column;      /* stacks all items vertically */
   gap: 0;
   border-right: 1px solid var(--color-divider);
-  background: var(--color-bg);
+  background: var(--color-surface);
   z-index: 100; /* above .content (no z-index) but below overlay (200) and preview (999) */
   scrollbar-width: none; /* hide scrollbar in Firefox */
 }
@@ -443,103 +450,120 @@ img {
   min-width: 0;  /* prevents flex children from overflowing — flex children default to min-width: auto
                     which can cause overflow; 0 allows the content to shrink */
   padding: var(--content-padding-y) var(--content-padding-x); /* 56px top/bottom, 150px sides */
-  background: var(--color-surface); /* slight gray — different from sidebar's pure white */
+  background: var(--color-bg); /* white page — cards use --color-surface for contrast */
   min-height: 100vh;
 }
 
 
 /* ═══════════════════════════════════════════════════════════════
    12. ABOUT / BIO SECTION
-   The homepage hero: greeting text + large biography statement.
+   The homepage hero: two-column layout with large headline (left)
+   and experience table (right). Rachel Chen-inspired editorial style.
    ═══════════════════════════════════════════════════════════════ */
 
 .section-about {
-  padding-bottom: 72px;
-  margin-bottom: 64px;
+  padding-top: 64px;
+  padding-bottom: 80px;
+  margin-bottom: 72px;
 }
 
+/* Greeting label above the headline */
 .greeting {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--color-muted);
-  margin-bottom: 28px;
-  display: flex;
-  align-items: baseline; /* aligns .greeting-sub to the text baseline of the main greeting */
-  gap: 10px;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+}
+.greeting-sub {
+  color: var(--color-accent);
 }
 
-.greeting-sub {
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  opacity: 0.7; /* slightly more transparent than the main greeting */
-  margin-bottom: 6px;
+/* Two-column hero grid: headline left, experience table right */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px;
+  align-items: start;
 }
 
 .bio {
-  font-family: var(--font-display); /* Playfair Display serif */
-  /* clamp(min, preferred, max): fluid font size
-     - Never smaller than 1.5rem
-     - Prefers 2.5vw (2.5% of viewport width — scales with screen)
-     - Never larger than 2.5rem */
-  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
-  line-height: 1.5;
-  font-weight: 400; /* regular weight in display font = editorial, not bold */
-  letter-spacing: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  line-height: 1.25;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   color: var(--color-text);
-  max-width: 860px; /* keeps line length readable even on wide screens */
+  margin-bottom: 24px;
+}
+
+/* Italic + accent color on the emphasis word — no background box */
+.bio em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+/* Year-based experience table — year | dot | company | role */
+.experience-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.experience-row {
+  display: grid;
+  grid-template-columns: 3.5rem 16px 1fr auto;
+  align-items: center;
+  gap: 0 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+.experience-row:first-child {
+  border-top: 1px solid var(--color-divider);
+}
+
+.experience-year {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.experience-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  justify-self: center;
+}
+
+.experience-dot-empty {
+  width: 8px;
+  height: 8px;
+  justify-self: center;
+}
+
+.experience-company {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.experience-role {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  text-align: right;
 }
 
 
 /* ═══════════════════════════════════════════════════════════════
    13. CV / EXPERIENCE SECTION
-   List of work experience and education entries.
+   Hidden — experience is now in the hero grid (section 12).
+   Keeping these classes in case they're needed for the about page
+   or future use.
    ═══════════════════════════════════════════════════════════════ */
 
 .section-cv {
-  margin-bottom: 64px;
-}
-
-.cv-entries {
-  display: flex;
-  flex-direction: column;
-}
-
-/* One row: year + company (left) | role (right) */
-.cv-entry {
-  display: flex;
-  justify-content: space-between; /* pushes meta left, role right */
-  align-items: baseline;          /* aligns by text baseline across the two columns */
-  padding: 14px 0;
-  border-bottom: 1px solid var(--color-divider);
-}
-/* Add a top border to the very first entry (bottom borders handle the rest) */
-.cv-entry:first-child {
-  border-top: 1px solid var(--color-divider);
-}
-
-/* Left column: year + company name side by side */
-.cv-meta {
-  display: flex;
-  gap: 24px;
-  align-items: baseline;
-}
-
-.cv-year {
-  font-size: 0.76rem;
-  color: var(--color-muted);
-  min-width: 110px; /* fixed width so company names always start at the same X position */
-  letter-spacing: 0.01em;
-}
-
-.cv-company {
-  font-size: 0.88rem;
-  color: var(--color-muted);
-}
-
-/* Right column: job title */
-.cv-role {
-  font-size: 0.88rem;
-  font-weight: 500; /* medium weight so the role stands out from the muted meta */
+  display: none; /* replaced by the experience table in the hero-grid */
 }
 
 
@@ -580,88 +604,43 @@ img {
 
 /* ═══════════════════════════════════════════════════════════════
    15. SELECTED WORK: PROJECT CARDS
-   Two-column layout: text (left 55%) + image placeholder (right).
+   Image-first 2-column grid. Rachel Chen-inspired layout.
    ═══════════════════════════════════════════════════════════════ */
 
-.project {
-  margin-bottom: 88px;
-  padding-bottom: 88px;
-  border-bottom: 1px solid var(--color-divider);
+/* 2-column grid for all work sections */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 28px;
+}
+
+/* Individual work card: image on top, title + meta below */
+.work-card {
   display: flex;
-  gap: 48px;
-  align-items: flex-start; /* top-aligns text and image (not stretch) */
+  flex-direction: column;
+  cursor: pointer;
 }
 
-/* Fixed-width text column (55%) — doesn't grow or shrink */
-.project-text {
-  flex: 0 0 55%; /* flex-grow: 0, flex-shrink: 0, flex-basis: 55% */
+/* After Hours cards: surface background lifts each card off the page */
+.work-grid .work-card {
+  background: var(--color-surface);
+  border-radius: 6px;
+  overflow: hidden;       /* image sits flush against top edge */
+  padding-bottom: 16px;
+}
+.work-grid .work-card .work-card-image {
+  border-radius: 6px 6px 0 0;
+  margin-bottom: 12px;
+}
+.work-grid .work-card .work-card-title,
+.work-grid .work-card .work-card-meta {
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
-/* The last project card: no border-bottom or bottom spacing because
-   the section divider below provides visual separation */
-#project-3 {
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
-
-/* Small uppercase category label above the project title */
-.project-meta {
-  display: block;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-muted);
-  margin-bottom: 14px;
-}
-
-/* Large display-font project title */
-.project-title {
-  font-family: var(--font-display);
-  /* clamp: minimum 1.875rem, scales with viewport, maximum 3.75rem */
-  font-size: clamp(1.875rem, 4.125vw, 3.75rem);
-  font-weight: 400;
-  letter-spacing: -0.01em; /* slight tightening for large display type */
-  line-height: 1.1;
-  margin-bottom: 20px;
-  color: var(--color-text);
-}
-.project-title a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.15s;
-}
-.project-title a:hover {
-  color: var(--color-accent);
-}
-
-/* After-hours card titles also link to case studies — same hover style */
-.ah-card-title a {
-  color: inherit;
-  text-decoration: none;
-}
-.ah-card-title a:hover {
-  color: var(--color-accent);
-}
-
-/* The after-hours card's image wrapping link needs to be block so it spans full width */
-.ah-card > a {
-  display: block;
-}
-
-/* Project description paragraph */
-.project-desc {
-  font-size: 1rem;
-  color: var(--color-muted);
-  line-height: 1.75;
-  margin-bottom: 36px;
-}
-
-/* Image placeholder — the right column. flex:1 takes remaining space after .project-text's 55% */
-.project-image-placeholder {
-  flex: 1;
-  width: auto;
-  aspect-ratio: 16 / 9; /* maintains widescreen proportions regardless of container width */
+.work-card-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
   background: var(--color-placeholder);
   display: flex;
   align-items: center;
@@ -669,7 +648,116 @@ img {
   color: var(--color-placeholder-text);
   font-size: 0.75rem;
   letter-spacing: 0.06em;
-  border-radius: 3px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  transition: background 0.2s;
+  overflow: hidden;
+}
+.work-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.work-card:hover .work-card-image {
+  background: var(--color-placeholder-hover);
+}
+
+.work-card-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--color-text);
+  margin-bottom: 6px;
+  transition: color 0.15s;
+}
+.work-card:hover .work-card-title {
+  color: var(--color-accent);
+}
+.work-card-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.work-card-meta {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+}
+
+/* ── Full-width stacked project cards (Selected Work section) ─────────────
+   Each card: image left (~55%) + text body right (~45%), full content width.
+   After Hours section still uses .work-card / .work-grid (2-column grid). */
+.project-card {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  padding: 48px 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+.project-card:first-child {
+  border-top: none;
+}
+.project-card:last-child {
+  border-bottom: none;
+}
+.project-card-image {
+  flex: 0 0 55%;
+  display: block;
+  text-decoration: none;
+}
+.project-card-image .work-card-image {
+  margin-bottom: 0;
+  aspect-ratio: 4 / 3;
+}
+.project-card:hover .project-card-image .work-card-image {
+  background: var(--color-placeholder-hover);
+}
+.project-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.project-card-body .work-card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+.project-card:hover .project-card-body .work-card-title {
+  color: var(--color-accent);
+}
+.project-card-desc {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+.project-card-link {
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+  display: inline-block;
+}
+.project-card-link:hover {
+  text-decoration: underline;
+}
+@media (max-width: 768px) {
+  .project-card {
+    flex-direction: column;
+    gap: 20px;
+    padding: 32px 0;
+  }
+  .project-card-image {
+    flex: none;
+    width: 100%;
+  }
+  .project-card-body .work-card-title {
+    font-size: 1.2rem;
+  }
 }
 
 
@@ -693,7 +781,7 @@ img {
   flex-direction: column;
   gap: 10px;
   padding: 28px 32px;
-  background: #ffffff; /* explicit white so it stands out from --color-surface (#f6f6f6) */
+  background: var(--color-surface); /* surface token handles both light + dark mode */
   border: 1px solid var(--color-divider);
   border-radius: 4px;
   transition: background 0.2s, border-color 0.2s;
@@ -701,13 +789,6 @@ img {
 /* Border darkens on hover to indicate interactivity */
 .lab-card:hover {
   border-color: var(--color-text);
-}
-/* In dark mode: #ffffff looks jarring, swap to the placeholder color for a subtle card bg */
-[data-theme="dark"] .lab-card {
-  background: var(--color-placeholder);
-}
-[data-theme="dark"] .lab-card:hover {
-  background: var(--color-placeholder-hover);
 }
 
 /* Top row: tech tags (left) + GitHub link (right) */
@@ -776,55 +857,7 @@ img {
 .after-hours-grid {
   display: grid;
   grid-template-columns: 1fr 1fr; /* two equal columns */
-  gap: 40px 28px; /* 40px vertical gap, 28px horizontal gap */
-}
-
-.ah-card {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  cursor: default; /* not draggable — cards contain links but the card itself isn't interactive */
-}
-
-/* Image placeholder above each after-hours card */
-.ah-image-placeholder {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: var(--color-placeholder);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-placeholder-text);
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
-  border-radius: 3px;
-  transition: background 0.2s;
-}
-/* Placeholder slightly darkens on card hover */
-.ah-card:hover .ah-image-placeholder {
-  background: var(--color-placeholder-hover);
-}
-
-/* Category label (e.g., "Design Club", "Coursework") */
-.ah-card-meta {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-muted);
-}
-
-.ah-card-title {
-  font-size: 1.05rem;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.3;
-  color: var(--color-text);
-}
-
-.ah-card-desc {
-  font-size: 0.875rem;
-  color: var(--color-muted);
-  line-height: 1.6;
+  gap: 28px 28px; /* 40px vertical gap, 28px horizontal gap */
 }
 
 
@@ -902,8 +935,18 @@ img {
 
 @media (max-width: 1024px) and (min-width: 769px) {
   :root {
-    --sidebar-width: 200px;    /* slightly narrower sidebar to give content more room */
-    --content-padding-x: 48px; /* reduce from 150px — less whitespace on smaller screens */
+    --sidebar-width: 200px;
+    --content-padding-x: 48px;
+  }
+
+  /* hero-grid intentionally removed — two-column stays on tablet (iPad landscape) */
+
+  .work-grid {
+    gap: 40px 32px; /* symmetric horizontal gap */
+  }
+
+  .contact-body {
+    gap: 48px; /* tighter than 64px on tablet */
   }
 }
 
@@ -919,6 +962,12 @@ img {
     --sidebar-width: 0px;          /* content fills full width (no sidebar offset) */
     --content-padding-x: 24px;    /* tight padding on narrow screens */
     --content-padding-y: 24px;
+  }
+
+  /* Hero grid: stack to single column on mobile */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
   }
 
   /* Stack body to column so the fixed top nav bar stays above content */
@@ -1020,7 +1069,7 @@ img {
     top: 0;          /* stick to top of the scrollable overlay */
     z-index: 1;      /* above the nav items below it */
     align-self: stretch; /* stretch to full overlay width */
-    background: var(--color-bg);
+    background: var(--color-surface);
     padding: 16px 24px;
     border-bottom: 1px solid var(--color-divider);
     flex-shrink: 0;  /* header shouldn't shrink even if content is tall */
@@ -1160,18 +1209,16 @@ img {
     padding-top: calc(var(--content-padding-y) + 72px);
   }
 
-  /* Project cards stack vertically on mobile */
-  .project {
-    flex-direction: column;
-    gap: 24px;
+  /* Hero grid stacks on mobile */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
   }
-  .project-text {
-    flex: none;   /* override flex: 0 0 55% from desktop */
-    width: 100%;
-  }
-  .project-image-placeholder {
-    flex: none;
-    width: 100%;
+
+  /* Work grid: 1 column on mobile */
+  .work-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 
   /* After-hours grid: tighter gaps on mobile */
@@ -1193,19 +1240,6 @@ img {
     transform: translate(-50%, -50%);
     width: 44px;
     height: 44px;
-  }
-
-  /* CV entries stack on mobile: year+company on top, role below */
-  .cv-entry {
-    flex-direction: column; /* override desktop's space-between flex row */
-    align-items: flex-start;
-    gap: 4px;
-  }
-  .cv-meta {
-    gap: 12px; /* reduce gap between year and company on narrow screens */
-  }
-  .cv-year {
-    min-width: auto; /* remove the fixed 110px width — not needed when stacked */
   }
 
   /* Hover preview has no purpose on touch devices — hiding saves memory too */
@@ -1368,7 +1402,9 @@ img {
   font-size: 1rem;
   line-height: 1.85; /* generous line height for long-form reading */
   color: var(--color-text); /* full text color, not muted */
-  max-width: 720px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 64px;
 }
 
@@ -1392,6 +1428,9 @@ img {
   letter-spacing: 0.14em;
   color: var(--color-muted);
   margin-bottom: 16px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Section heading in display font */
@@ -1403,8 +1442,10 @@ img {
   letter-spacing: -0.01em;
   line-height: 1.35;
   margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
   color: var(--color-text);
-  max-width: 720px; /* constrained for readability */
+  max-width: 800px; /* constrained for readability */
 }
 
 /* Body copy — the workhorse paragraph style for case studies */
@@ -1412,8 +1453,14 @@ img {
   font-size: 1rem;
   line-height: 1.85; /* generous — long paragraphs need breathing room */
   color: var(--color-muted); /* muted, not primary — headings carry the hierarchy */
-  max-width: 720px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 20px;
+}
+/* Second paragraph in a two-paragraph block needs top spacing (about page) */
+.cs-body--spaced {
+  margin-top: 16px;
 }
 /* Bold text within body copy uses full text color for emphasis */
 .cs-body strong {
@@ -1434,16 +1481,12 @@ img {
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   border-radius: 3px;
-  margin: 36px 0 12px; /* space above image, small gap before caption */
+  max-width: 920px;
+  margin: 36px auto 12px; /* space above image, small gap before caption; auto centers */
 }
 /* Variant: taller aspect ratio for portrait-ish screens */
 .cs-image.tall {
   aspect-ratio: 4 / 3;
-}
-/* Variant: square, constrained to 480px wide */
-.cs-image.square {
-  aspect-ratio: 1 / 1;
-  max-width: 480px;
 }
 /* Dark mode: swap to a darker placeholder */
 [data-theme="dark"] .cs-image {
@@ -1458,13 +1501,19 @@ img {
   letter-spacing: 0.02em;
   margin-bottom: 36px;
   opacity: 0.75; /* slightly more transparent than muted color alone */
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Pull quote — a highlighted user research quote with left accent border */
+/* Pull quote — surface background + accent left border for visual lift */
 .cs-pull-quote {
-  border-left: 2px solid var(--color-accent); /* accent-colored vertical bar */
-  padding: 4px 0 4px 24px;                    /* indent text from the bar */
-  margin: 40px 0;
+  background: var(--color-surface);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 6px 6px 0;
+  padding: 20px 28px;
+  margin: 40px auto;
+  max-width: 800px;
 }
 .cs-pull-quote p {
   font-family: var(--font-display); /* serif for editorial weight */
@@ -1490,9 +1539,13 @@ img {
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin-top: 28px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
 }
 .cs-insight-card {
   padding: 20px 22px 22px;
+  background: var(--color-surface);
   border: 1px solid var(--color-divider);
   border-radius: 3px;
 }
@@ -1510,10 +1563,12 @@ img {
   display: flex;
   gap: 48px;
   flex-wrap: wrap; /* wraps to prevent overflow on narrow screens */
-  margin: 32px 0;
-  padding: 28px 0;
-  border-top: 1px solid var(--color-divider);
-  border-bottom: 1px solid var(--color-divider);
+  margin: 32px auto;
+  max-width: 800px;
+  padding: 24px 28px;
+  background: var(--color-surface);
+  border-radius: 6px;
+  border: none;
 }
 .cs-stat-item {
   display: flex;
@@ -1537,15 +1592,24 @@ img {
 
 /* A designed feature block within the Features section */
 .cs-feature-block {
-  margin-bottom: 52px;
-  padding-bottom: 52px;
-  border-bottom: 1px solid var(--color-divider);
-}
-/* Last feature block: remove border and spacing since section ends */
-.cs-feature-block:last-child {
+  margin-bottom: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  padding: 28px 32px;
+  background: var(--color-surface);
+  border-radius: 6px;
   border-bottom: none;
+}
+/* Last feature block: consistent with siblings */
+.cs-feature-block:last-child {
   margin-bottom: 0;
-  padding-bottom: 0;
+}
+/* Reset .cs-body centering inside feature blocks — body fills the card naturally */
+.cs-feature-block .cs-body {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
 }
 /* Feature name / subheading */
 .cs-feature-title {
@@ -1621,6 +1685,17 @@ img {
   letter-spacing: 0.01em;
 }
 
+/* One-line positioning statement between the name label and the display bio */
+.about-positioning {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  font-weight: 400; /* reset browser h1 bold default */
+  line-height: 1.5;
+  color: var(--color-text);
+  margin-top: 12px;
+  margin-bottom: 24px;
+  max-width: 460px;
+}
+
 /* The multi-paragraph extended biography in display font */
 .about-bio {
   font-family: var(--font-display);
@@ -1639,44 +1714,63 @@ img {
   margin-bottom: 0; /* no extra space after the last paragraph */
 }
 
-/* Large centered philosophy quote */
+/* Large left-aligned philosophy quote with decorative opening quotation mark */
 .about-pull-quote {
   font-family: var(--font-display);
   /* clamp: min 1.2rem, scales, max 1.65rem */
   font-size: clamp(1.2rem, 2vw, 1.65rem);
   font-weight: 400;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
   line-height: 1.45;
   letter-spacing: -0.01em;
   color: var(--color-text);
   margin-bottom: 32px;
-  max-width: 720px;
-  margin-left: auto;  /* centered horizontally */
-  margin-right: auto;
+}
+/* Decorative large opening quotation mark above the quote */
+.about-pull-quote::before {
+  content: '\201C';
+  display: block;
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--color-accent);
+  opacity: 0.35;
+  line-height: 1;
+  margin-bottom: -16px;
 }
 
-/* Design principles list — no bullet points, custom em-dash via ::before */
+/* Design principles list — numbered 01/02/03 in accent color */
 .about-principles {
   list-style: none; /* remove default bullets */
   padding: 0;
-  margin: 0 auto; /* center the list within its parent */
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-width: 720px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  counter-reset: principle; /* start counter at 0 */
 }
 .about-principles li {
   font-size: 0.9375rem; /* 15px — between 0.875rem and 1rem */
   color: var(--color-muted);
   line-height: 1.6;
-  padding-left: 20px; /* indent to make room for the em-dash */
+  padding-left: 36px; /* wider indent for 2-digit counter */
   position: relative; /* needed to position ::before inside this element */
 }
-/* The custom em-dash bullet */
+/* Numbered counter: 01, 02, 03 in accent italic serif */
 .about-principles li::before {
-  content: "—";
-  position: absolute; /* pulled out of flow, won't affect text layout */
-  left: 0;            /* aligned to the left edge of the padding area */
-  color: var(--color-divider); /* very subtle — divider color, not muted */
+  content: '0' counter(principle);
+  counter-increment: principle;
+  position: absolute;
+  left: 0;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--color-accent);
+  top: 2px; /* slight nudge to align with text baseline */
 }
 
 /* Tools grid: 2 columns, design tools organized by category */
@@ -1685,7 +1779,7 @@ img {
   grid-template-columns: 1fr 1fr;
   gap: 32px 64px; /* more horizontal gap than vertical */
   margin-top: 32px;
-  max-width: 720px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1698,13 +1792,22 @@ img {
 }
 .about-tool-list {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  flex-wrap: wrap; /* pills wrap to next line when they don't fit */
+  gap: 8px;
 }
-.about-tool-list span {
-  font-size: 0.88rem;
+/* Individual tool pill tag */
+.about-tool-pill {
+  display: inline-block;
+  padding: 5px 14px;
+  border: 1px solid var(--color-divider);
+  border-radius: 999px; /* fully rounded pill shape */
+  font-size: 0.8rem;
   color: var(--color-text);
-  line-height: 1.5;
+  transition: border-color 0.15s, color 0.15s;
+}
+.about-tool-pill:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 /* Contact link row: Email → LinkedIn → Read.cv → */
@@ -1757,6 +1860,25 @@ img {
   }
 }
 
+@media (max-width: 480px) {
+  /* Tools grid: collapse to single column on very small phones */
+  .about-tools {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ─── About Page — Education section ────────────────────── */
+
+/* 2-column grid: one card per school. Reuses .about-now-card for card styling. */
+.about-education-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* ─── About Page — Now section ───────────────────────────── */
 
@@ -1765,17 +1887,30 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; /* three equal columns */
   gap: 16px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
 .about-now-card {
-  padding: 20px 22px;
+  padding: 28px;
+  background: var(--color-surface); /* lifted surface — same treatment as lab cards */
   border: 1px solid var(--color-divider);
-  border-radius: 3px;
+  border-radius: 4px;
   transition: border-color 0.15s;
 }
 .about-now-card:hover {
-  border-color: var(--color-text); /* border darkens to full text color on hover */
+  border-color: var(--color-text);
+}
+/* Decorative accent number (01, 02, 03) at top of each tile */
+.about-now-index {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--color-accent);
+  opacity: 0.45;
+  line-height: 1;
+  margin-bottom: 16px;
 }
 .about-now-label {
   font-size: 0.75rem;
@@ -1798,12 +1933,13 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-top: 1px solid var(--color-divider); /* top border for the whole grid */
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
 /* Each item has a bottom border — creates horizontal grid lines */
 .about-sideline-item {
-  padding: 24px 40px 24px 0;
+  padding: 28px 40px 28px 0;
   border-bottom: 1px solid var(--color-divider);
 }
 /* Right-column items: add left border (vertical divider) and left padding */
@@ -1813,19 +1949,22 @@ img {
   border-left: 1px solid var(--color-divider); /* vertical center divider */
 }
 .about-sideline-label {
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--color-text);
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 .about-sideline-text {
   font-size: 0.9rem;
   color: var(--color-muted);
-  line-height: 1.65;
+  line-height: 1.75;
 }
 
 /* Sidelines mobile: collapse to single column, remove center divider */
 @media (max-width: 768px) {
+  .about-education-grid {
+    grid-template-columns: 1fr;
+  }
   .about-now-grid {
     grid-template-columns: 1fr; /* one card per row */
     gap: 12px;
@@ -1842,7 +1981,117 @@ img {
 
 
 /* ═══════════════════════════════════════════════════════════════
-   27. COPYRIGHT FOOTER
+   27. CONTACT PAGE
+   Components unique to contact.html.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Two-column grid: intro text left, channel list right */
+.contact-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* Intro wrapper: personal statement + availability line */
+.contact-intro {
+  margin-bottom: 0;
+}
+.contact-intro-text {
+  font-size: 1.0625rem; /* 17px — slightly larger than body, still comfortable */
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-bottom: 16px;
+}
+/* "Based in California · Available now" — muted status line */
+.contact-availability {
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+  letter-spacing: 0.04em;
+}
+
+/* Channel list: stacked card-style CTAs */
+.contact-channels {
+  /* no border — cards create their own separation */
+}
+/* About page: reuses contact-channels but needs centering + top margin */
+.about-contact-channels {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 24px;
+}
+/* Each channel is a card anchor */
+.contact-channel-item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 24px;
+  border: 1px solid var(--color-divider);
+  border-radius: 6px;
+  background: var(--color-surface);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: border-color 0.15s, background 0.15s;
+  margin-bottom: 10px;
+}
+.contact-channel-item:hover {
+  border-color: var(--color-accent);
+}
+.contact-channel-item:hover .contact-channel-platform {
+  color: var(--color-accent);
+}
+/* Platform name — fixed min-width keeps all descriptions left-aligned */
+.contact-channel-platform {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  min-width: 110px;
+  color: inherit;
+  flex-shrink: 0;
+}
+/* Description — takes remaining horizontal space, stays muted */
+.contact-channel-desc {
+  flex: 1;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+/* Arrow — right-aligned, slides slightly on hover */
+.contact-channel-arrow {
+  font-size: 1rem;
+  color: var(--color-muted);
+  flex-shrink: 0;
+  transition: transform 0.15s, color 0.15s;
+}
+.contact-channel-item:hover .contact-channel-arrow {
+  color: var(--color-accent);
+  transform: translateX(3px);
+}
+
+/* Tablet: tighter column gap */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .contact-body {
+    gap: 48px;
+  }
+}
+
+/* Mobile: stack columns, tighter channel padding, hide descriptions */
+@media (max-width: 768px) {
+  .contact-body {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .contact-channel-item {
+    gap: 16px;
+    padding: 16px 20px;
+  }
+  .contact-channel-desc {
+    display: none; /* platform + arrow is enough on small screens */
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   28. COPYRIGHT FOOTER
    Sits inside .content (main), breaks out of content padding
    to span full width using negative margins.
    ═══════════════════════════════════════════════════════════════ */
@@ -1857,6 +2106,11 @@ img {
   color: var(--color-muted);
   letter-spacing: 0.02em;
   border-top: 1px solid var(--color-divider);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 /* Tablet: match the tablet content-padding-x value (48px) */
 @media (max-width: 1024px) {
@@ -1875,7 +2129,7 @@ img {
 
 
 /* ═══════════════════════════════════════════════════════════════
-   28. BACK TO TOP BUTTON
+   29. BACK TO TOP BUTTON
    A circular fixed button that appears after scrolling 400px.
    Created dynamically by JavaScript (main.js) — not in any HTML file.
    ═══════════════════════════════════════════════════════════════ */
@@ -1930,4 +2184,42 @@ img {
     height: 44px;
     font-size: 0.9rem;
   }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   29. CUSTOM DOT CURSOR
+   A small purple dot that follows the mouse pointer sitewide.
+   Created in HTML (<div class="cursor-dot">) and animated via JS.
+   Hidden on touch devices (pointer: coarse).
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Hide default cursor sitewide on pointer devices */
+@media (pointer: fine) {
+  * { cursor: none !important; }
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 14px;
+  height: 14px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%) scale(1);
+  transition: opacity 0.15s, transform 0.15s, width 0.15s, height 0.15s;
+  opacity: 0; /* starts hidden until first mousemove */
+}
+
+/* Grow + fade when hovering any interactive element */
+body:has(a:hover, button:hover) .cursor-dot {
+  width: 20px;
+  height: 20px;
+  opacity: 0.45 !important;
+}
+
+/* Hide dot on touch devices — it wouldn't track anyway */
+@media (pointer: coarse) {
+  .cursor-dot { display: none; }
 }

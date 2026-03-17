@@ -15,9 +15,16 @@
        initial-scale=1.0: don't zoom in or out on load.
        Without this, mobile browsers would render a tiny zoomed-out desktop version. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dereck Villagrana, product designer and builder. UC Davis B.S. Design, UX internship at MYJ Inc. Open to full-time roles.">
+  <meta property="og:title" content="Dereck Villagrana | Product Designer">
+  <meta property="og:description" content="Product designer who builds. UC Davis grad, UX internship at MYJ Inc., hackathon placer. Open to full-time roles.">
+  <meta property="og:url" content="https://portfolio2026-puce.vercel.app/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://portfolio2026-puce.vercel.app/">
 
   <!-- Page title: shown in the browser tab, bookmarks, and search engine results. -->
-  <title>Dereck Villagrana — Product Designer</title>
+  <title>Dereck Villagrana | Product Designer</title>
 
   <!-- preconnect: tells the browser to open a network connection to Google Fonts
        before it needs the font files. Reduces font load time.
@@ -95,6 +102,8 @@
              corresponds to for active state highlighting as the user scrolls. -->
         <a href="#cv" class="nav-link" data-target="cv">CV</a>
 
+        <a href="contact.html" class="nav-link">Contact</a>
+
         <!-- Hamburger button: only shown on mobile (display:none on desktop via CSS).
              aria-expanded="false": screen readers know the menu is currently closed.
              aria-label: describes the action.
@@ -142,18 +151,6 @@
       <a href="projects/sonidos.html" class="nav-link" data-preview="images/previews/sonidos.jpg">Sonidos del Alma Danzante</a>
     </div>
 
-    <!-- ─── Contact nav group ─────────────────────────────────────────── -->
-    <div class="nav-group" role="navigation" aria-label="Contact">
-      <span class="nav-label">Contact</span>
-
-      <!-- mailto: link opens the user's email client with this address pre-filled -->
-      <a href="mailto:dereck.villagrana58@gmail.com" class="nav-link">Email</a>
-
-      <!-- LinkedIn: aria-label includes "(opens in new tab)" to warn screen reader users
-           that this link will open a new tab — a best practice for external links. -->
-      <a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="nav-link">LinkedIn</a>
-
-    </div>
 
     <!-- ─── Availability Status Pill ─────────────────────────────────────
          Pushed to the bottom of the sidebar via margin-top: auto (CSS).
@@ -184,19 +181,52 @@
          .section-about: padding and margin separating it from the CV below.
          ─────────────────────────────────────────────────────────────────── -->
     <section id="about" class="section-about">
-      <!-- .greeting: small muted intro text with bilingual sub-greeting -->
-      <p class="greeting">
-        Hello world, welcome!
-        <!-- .greeting-sub: the Spanish greeting, lighter opacity, smaller font -->
-        <span class="greeting-sub">/ hola! /</span>
-      </p>
+      <div class="hero-grid">
 
-      <!-- <h1>: the most important heading on the page — one per page, used here
-           for the bio statement which IS the main headline of the homepage.
-           .bio: display font (Playfair Display), fluid size via clamp(). -->
-      <h1 class="bio">
-        Dereck is a designer of products. Obsessed with creating experiences that feel clean and considered — he's worked across design clubs, hackathons, and freelance engagements. Currently open to full-time opportunities.
-      </h1>
+        <!-- Left: greeting label + large Playfair Display headline -->
+        <div class="hero-left">
+          <p class="greeting">Hello world! <span class="greeting-sub">/ hola! /</span></p>
+          <h1 class="bio">
+            I'm Dereck, a product designer who <em>builds</em>.
+          </h1>
+        </div>
+
+        <!-- Right: year-based experience table — year | dot | company | role -->
+        <div class="hero-right">
+          <div class="experience-table">
+
+            <div class="experience-row">
+              <span class="experience-year">2026</span>
+              <span class="experience-dot" aria-hidden="true"></span>
+              <span class="experience-company">Open to work</span>
+              <span class="experience-role">Product Designer</span>
+            </div>
+
+            <div class="experience-row">
+              <span class="experience-year">2024</span>
+              <span class="experience-dot-empty" aria-hidden="true"></span>
+              <span class="experience-company">MYJ, Inc.</span>
+              <span class="experience-role">UI/UX Design Intern</span>
+            </div>
+
+            <div class="experience-row">
+              <span class="experience-year">2024</span>
+              <span class="experience-dot-empty" aria-hidden="true"></span>
+              <span class="experience-company">Body Sculpture Aesthetics</span>
+              <span class="experience-role">Freelance Designer</span>
+            </div>
+
+            <div class="experience-row">
+              <span class="experience-year">2021–23</span>
+              <span class="experience-dot-empty" aria-hidden="true"></span>
+              <span class="experience-company">UC Davis + Design Interactive</span>
+              <span class="experience-role">B.S. Design</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
     </section>
 
     <!-- ─── CV / Experience Section ───────────────────────────────────────
@@ -204,63 +234,9 @@
          .section-cv: bottom margin separating it from the project section below.
          .reveal: JavaScript fades this in when it scrolls into view (IntersectionObserver).
          ─────────────────────────────────────────────────────────────────── -->
-    <section id="cv" class="section-cv reveal">
+    <!-- CV section hidden — experience moved to hero grid above -->
+    <section id="cv" class="section-cv"></section>
 
-      <!-- Section divider: the "── Experience ──" visual separator -->
-      <div class="section-divider"><span>Experience</span></div>
-
-      <!-- .cv-entries: flex column container for all CV rows -->
-      <div class="cv-entries">
-
-        <!-- ─── CV Entry: year+company (left) | role (right) ─────────── -->
-        <div class="cv-entry">
-          <!-- .cv-meta: left column containing year + company name side by side -->
-          <div class="cv-meta">
-            <span class="cv-year">2024</span>
-            <span class="cv-company">MYJ, Inc.</span>
-          </div>
-          <!-- .cv-role: right column — the job title, medium weight -->
-          <div class="cv-role">UI/UX Designer Intern</div>
-        </div>
-
-        <div class="cv-entry">
-          <div class="cv-meta">
-            <span class="cv-year">2024</span>
-            <span class="cv-company">All Inclusive Hacks</span>
-          </div>
-          <div class="cv-role">Product Designer</div>
-        </div>
-
-        <div class="cv-entry">
-          <div class="cv-meta">
-            <span class="cv-year">2024</span>
-            <span class="cv-company">Body Sculpture Aesthetics</span>
-          </div>
-          <div class="cv-role">Freelance Designer</div>
-        </div>
-
-        <div class="cv-entry">
-          <div class="cv-meta">
-            <!-- Year ranges use em dash (—) not regular dash (-) typographically -->
-            <span class="cv-year">2021 — 2023</span>
-            <span class="cv-company">Design Interactive, UC Davis</span>
-          </div>
-          <div class="cv-role">Product Designer</div>
-        </div>
-
-        <div class="cv-entry">
-          <div class="cv-meta">
-            <span class="cv-year">2021 — 2023</span>
-            <span class="cv-company">UC Davis</span>
-          </div>
-          <div class="cv-role">B.S. Design</div>
-        </div>
-
-      </div><!-- /.cv-entries -->
-    </section><!-- /#cv -->
-
-    <!-- Section divider between CV and Selected Work -->
-    <!-- .work-divider: adds margin-top: 64px (larger than standard .section-divider) -->
     <div class="section-divider work-divider"><span>Selected Work</span></div>
 
     <!-- ─── Project: BeReal Redesign ──────────────────────────────────────
@@ -268,62 +244,51 @@
          .project: two-column flex layout — text (55% left) + image (right).
          .reveal: fade-in animation on scroll.
          ─────────────────────────────────────────────────────────────────── -->
-    <section id="project-1" class="project reveal">
-      <!-- Left column: category label, title, description -->
-      <div class="project-text">
-        <!-- .project-meta: small uppercase label (e.g., "01 | Product Design") -->
-        <span class="project-meta">01 | Product Design</span>
-        <!-- <h2>: second-level heading. The project title links to its case study page. -->
-        <h2 class="project-title"><a href="projects/bereal-redesign.html">BeReal Redesign</a></h2>
-        <p class="project-desc">
-          Redesigned BeReal's social experience to rebuild engagement without compromising
-          its authenticity-first ethos. Led prototyping across four features and two rounds
-          of usability testing.
-        </p>
-      </div>
+    <!-- ─── Selected Work: full-width stacked cards (image left + text right) ── -->
+    <section id="selected-work" class="reveal">
 
-      <!-- Right column: image placeholder (16:9 aspect ratio).
-           ⚠️ TODO: Replace this div with <img src="..." alt="Descriptive alt text">
-           when project mockup images are ready. The alt attribute is required for
-           accessibility — describe what the image shows, not just "project image". -->
-      <div class="project-image-placeholder">
-        <span>Project image / mockup</span>
-      </div>
-    </section>
+      <article class="project-card">
+        <a href="projects/bereal-redesign.html" class="project-card-image">
+          <div class="work-card-image"><span>Project image</span></div>
+        </a>
+        <div class="project-card-body">
+          <p class="work-card-meta">Product Design &nbsp;·&nbsp; UC Davis Design Interactive</p>
+          <h2 class="work-card-title">
+            <a href="projects/bereal-redesign.html">BeReal Redesign</a>
+          </h2>
+          <p class="project-card-desc">Redesigning BeReal's core experience to reduce social pressure and encourage more genuine, in-the-moment sharing, without losing what makes it unique.</p>
+          <a href="projects/bereal-redesign.html" class="project-card-link">View case study →</a>
+        </div>
+      </article>
 
-    <!-- ─── Project: Verum AI ─────────────────────────────────────────── -->
-    <section id="project-2" class="project reveal">
-      <div class="project-text">
-        <span class="project-meta">02 | Product Design</span>
-        <h2 class="project-title"><a href="projects/verum-ai.html">Verum AI</a></h2>
-        <p class="project-desc">
-          AI platform detecting bias and misinformation in political speeches, built for
-          everyday voters. Led all UX and front-end design in a six-week hackathon sprint.
-        </p>
-      </div>
-      <!-- ⚠️ TODO: Replace placeholder with real project image -->
-      <div class="project-image-placeholder">
-        <span>Project image / mockup</span>
-      </div>
-    </section>
+      <article class="project-card">
+        <a href="projects/verum-ai.html" class="project-card-image">
+          <div class="work-card-image"><span>Project image</span></div>
+        </a>
+        <div class="project-card-body">
+          <p class="work-card-meta">Product Design &nbsp;·&nbsp; Hackathon &nbsp;·&nbsp; 2nd Place</p>
+          <h2 class="work-card-title">
+            <a href="projects/verum-ai.html">Verum AI</a>
+          </h2>
+          <p class="project-card-desc">An AI-powered misinformation detection tool designed and built in 24 hours at a hackathon. Helps users verify claims in real time before sharing them online. Placed 2nd overall.</p>
+          <a href="projects/verum-ai.html" class="project-card-link">View case study →</a>
+        </div>
+      </article>
 
-    <!-- ─── Project: Body Sculpture Aesthetics ───────────────────────────
-         id="project-3" has special CSS: no border-bottom, padding, or margin
-         because the section divider below provides visual separation instead.
-         ─────────────────────────────────────────────────────────────────── -->
-    <section id="project-3" class="project reveal">
-      <div class="project-text">
-        <span class="project-meta">03 | Freelance</span>
-        <h2 class="project-title"><a href="projects/bsa-homepage.html">Body Sculpture Aesthetics</a></h2>
-        <p class="project-desc">
-          Homepage and Webflow build for a body sculpting clinic — no brief, a four-week
-          deadline, and a full visual identity built from scratch.
-        </p>
-      </div>
-      <!-- ⚠️ TODO: Replace placeholder with real project image -->
-      <div class="project-image-placeholder">
-        <span>Project image / mockup</span>
-      </div>
+      <article class="project-card">
+        <a href="projects/bsa-homepage.html" class="project-card-image">
+          <div class="work-card-image"><span>Project image</span></div>
+        </a>
+        <div class="project-card-body">
+          <p class="work-card-meta">Freelance &nbsp;·&nbsp; Web Design &nbsp;·&nbsp; 2024</p>
+          <h2 class="work-card-title">
+            <a href="projects/bsa-homepage.html">Body Sculpture Aesthetics</a>
+          </h2>
+          <p class="project-card-desc">Freelance homepage redesign for a local aesthetics clinic. Building trust and driving bookings through a cleaner visual hierarchy and a more confident brand presence.</p>
+          <a href="projects/bsa-homepage.html" class="project-card-link">View case study →</a>
+        </div>
+      </article>
+
     </section>
 
     <!-- Section divider between Selected Work and Lab -->
@@ -360,7 +325,7 @@
             </a>
           </h3>
           <p class="lab-card-desc">
-            A self-hosted media automation system built on a Raspberry Pi 5. Containerised services handle discovery, downloading, and streaming — routed through a VPN with a fail-closed design and public HTTPS access via a Caddy reverse proxy.
+            A self-hosted media automation system built on a Raspberry Pi 5. Containerised services handle discovery, downloading, and streaming, routed through a VPN with a fail-closed design and public HTTPS access via a Caddy reverse proxy.
           </p>
         </article>
 
@@ -380,7 +345,7 @@
             </a>
           </h3>
           <p class="lab-card-desc">
-            This portfolio — hand-written HTML, CSS, and JavaScript with no frameworks or build tools. Responsive two-panel layout, dark mode via CSS custom properties, vanilla JS scroll reveals and hover previews. Hosted on Vercel.
+            This portfolio is hand-written HTML, CSS, and JavaScript with no frameworks or build tools. Responsive two-panel layout, dark mode via CSS custom properties, vanilla JS scroll reveals and hover previews. Hosted on Vercel.
           </p>
         </article>
 
@@ -395,61 +360,46 @@
          2×2 grid of side project cards (collapses to 1 column at 480px).
          ─────────────────────────────────────────────────────────────────── -->
     <section id="after-hours" class="section-after-hours reveal">
-      <!-- .after-hours-grid: CSS grid, 2 columns -->
-      <div class="after-hours-grid">
+      <div class="work-grid">
 
-        <!-- ─── After Hours Card: PackPal ──────────────────────────────
-             <article>: each card is self-contained project content.
-             id="ah-1": unique id for potential future anchor linking.
-             ─────────────────────────────────────────────────────────── -->
-        <article class="ah-card" id="ah-1">
-          <!-- Image link wraps the placeholder — clicking anywhere on the image
-               navigates to the case study page -->
+        <article class="work-card">
           <a href="projects/packpal.html">
             <!-- ⚠️ TODO: Replace with <img src="..." alt="PackPal app mockup"> -->
-            <div class="ah-image-placeholder"><span>Image</span></div>
+            <div class="work-card-image"><span>Project image</span></div>
           </a>
-          <!-- Small category label (Design Club, Coursework, etc.) -->
-          <span class="ah-card-meta">Design Club</span>
-          <h3 class="ah-card-title"><a href="projects/packpal.html">PackPal</a></h3>
-          <p class="ah-card-desc">A packing list app that generates personalized trip lists. 71% of users overpack — we designed a calmer way to prep. Most Customer-Centric, Design Club.</p>
+          <h3 class="work-card-title"><a href="projects/packpal.html">PackPal</a></h3>
+          <p class="work-card-meta">Design Club &nbsp;·&nbsp; Most Customer-Centric</p>
         </article>
 
-        <!-- ─── After Hours Card: SnapPlant ────────────────────────── -->
-        <article class="ah-card" id="ah-2">
+        <article class="work-card">
           <a href="projects/snapplant.html">
             <!-- ⚠️ TODO: Replace with <img src="..." alt="SnapPlant app mockup"> -->
-            <div class="ah-image-placeholder"><span>Image</span></div>
+            <div class="work-card-image"><span>Project image</span></div>
           </a>
-          <span class="ah-card-meta">Coursework</span>
-          <h3 class="ah-card-title"><a href="projects/snapplant.html">SnapPlant</a></h3>
-          <p class="ah-card-desc">A plant identification app with an awareness angle around deforestation and invasive species. Solo end-to-end UX process, from research through hi-fi prototype.</p>
+          <h3 class="work-card-title"><a href="projects/snapplant.html">SnapPlant</a></h3>
+          <p class="work-card-meta">Coursework &nbsp;·&nbsp; UX Design</p>
         </article>
 
-        <!-- ─── After Hours Card: ARC Redesign ─────────────────────── -->
-        <article class="ah-card" id="ah-3">
+        <article class="work-card">
           <a href="projects/arc-redesign.html">
             <!-- ⚠️ TODO: Replace with <img src="..." alt="ARC app redesign mockup"> -->
-            <div class="ah-image-placeholder"><span>Image</span></div>
+            <div class="work-card-image"><span>Project image</span></div>
           </a>
-          <span class="ah-card-meta">Design Challenge</span>
-          <h3 class="ah-card-title"><a href="projects/arc-redesign.html">ARC Redesign</a></h3>
-          <p class="ah-card-desc">A 5-day design challenge to redesign the UC Davis Activities and Recreation Center app. The sprint that got me into the Design Interactive cohort.</p>
+          <h3 class="work-card-title"><a href="projects/arc-redesign.html">ARC Redesign</a></h3>
+          <p class="work-card-meta">Design Challenge &nbsp;·&nbsp; 5-Day Sprint</p>
         </article>
 
-        <!-- ─── After Hours Card: Sonidos ──────────────────────────── -->
-        <article class="ah-card" id="ah-4">
+        <article class="work-card">
           <a href="projects/sonidos.html">
-            <!-- ⚠️ TODO: Replace with <img src="..." alt="Sonidos del Alma Danzante brand identity preview"> -->
-            <div class="ah-image-placeholder"><span>Image</span></div>
+            <!-- ⚠️ TODO: Replace with <img src="..." alt="Sonidos del Alma Danzante brand identity"> -->
+            <div class="work-card-image"><span>Project image</span></div>
           </a>
-          <span class="ah-card-meta">Branding</span>
-          <h3 class="ah-card-title"><a href="projects/sonidos.html">Sonidos del Alma Danzante</a></h3>
-          <p class="ah-card-desc">Full brand identity for a conceptual Cumbia festival rooted in East LA — name, logo, brand system, marketing materials, and a Jarritos co-brand.</p>
+          <h3 class="work-card-title"><a href="projects/sonidos.html">Sonidos del Alma Danzante</a></h3>
+          <p class="work-card-meta">Branding &nbsp;·&nbsp; Brand Identity</p>
         </article>
 
-      </div><!-- /.after-hours-grid -->
-    </section><!-- /#after-hours -->
+      </div>
+    </section>
 
     <!-- ─── Site Footer ───────────────────────────────────────────────────
          Lives inside <main> (inside .content) so it shares the content background.
@@ -458,8 +408,8 @@
          ⚠️ TODO: Update year from 2025 to current year if needed.
          ─────────────────────────────────────────────────────────────────── -->
     <footer class="site-footer">
-      &copy; 2026 Dereck Villagrana. All rights reserved.
-      <!-- &copy; is the HTML entity for the © copyright symbol -->
+      <span>&copy; 2026 Dereck Villagrana. All rights reserved.</span>
+      <span>Designed + Vibe Coded by Dereck</span>
     </footer>
 
   </main><!-- /.content -->
@@ -470,6 +420,7 @@
        and download a fresh copy instead of serving a cached (stale) version.
        Update the number (?v=3, ?v=4...) any time you change main.js.
        ─────────────────────────────────────────────────────────────────────── -->
-  <script src="js/main.js?v=2"></script>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <script src="js/main.js?v=3"></script>
 </body>
 </html>
