@@ -21,6 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <!-- ../css/style.css: one level up from projects/ to reach the root css/ folder -->
   <link rel="stylesheet" href="../css/style.css">
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -44,13 +45,16 @@
   <aside class="sidebar">
     <div class="sidebar-header">
         <div class="sidebar-top">
-      <a href="../index.html#about" class="logo-badge" aria-label="Home">DV</a>
+      <a href="../index.html#about" class="logo-badge" aria-label="Home">
+        <svg class="logo-img" viewBox="0 0 52 52" aria-hidden="true" focusable="false">
+          <text font-family="'Playfair Display', Georgia, serif" font-weight="700" font-style="italic" font-size="20" text-anchor="middle" dominant-baseline="central" x="26" y="26"><tspan class="logo-d">D</tspan><tspan class="logo-v">V</tspan></text>
+        </svg>
+      </a>
       <button class="theme-toggle" aria-label="Switch to dark mode"></button>
     </div>
 
         <nav aria-label="Site navigation" class="sidebar-nav">
       <a href="../about.html" class="nav-link">About</a>
-      <a href="../index.html#cv" class="nav-link">CV</a>
       <a href="../contact.html" class="nav-link">Contact</a>
       <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
     </nav>
@@ -101,49 +105,34 @@
          Positioned above the case study header so users can easily exit. -->
     <a href="../index.html" class="cs-back">← Portfolio</a>
 
-    <!-- ─── Case Study Header ──────────────────────────────────────────────
-         .cs-header: contains the project number/category label, main title,
-         subtitle paragraph, and an optional award badge.
-         .reveal: fades in on scroll (IntersectionObserver in main.js). -->
-    <div class="cs-header reveal">
-      <!-- .project-meta: small muted label — project number and category -->
-      <span class="project-meta">02 | Product Design</span>
-      <!-- .project-title: large display-font headline for the case study -->
-      <h1 class="project-title">Verum AI</h1>
-      <!-- .cs-subtitle: a one-to-two sentence context statement below the title -->
+    <div class="cs-header cs-header--1 reveal">
+      <span class="cs-eyebrow">02 &nbsp;&middot;&nbsp; Product Design</span>
+      <h1 class="cs-title--1">Verum AI</h1>
       <p class="cs-subtitle">Building an AI-powered platform to identify bias and misinformation in political speeches and putting it in the hands of everyday voters, not just journalists.</p>
-      <!-- .cs-award: accent-colored badge for awards/recognition. Positioned
-           via CSS relative to .cs-header. -->
-      <div class="cs-award">2nd Place, All Inclusive Hacks (663 participants)</div>
+      <div class="cs-award">2nd Place &mdash; All Inclusive Hacks (663 participants)</div>
     </div>
 
-    <!-- ─── Project Metadata Grid ──────────────────────────────────────────
-         .cs-meta-grid: a flex-wrap row of .cs-meta-item cells showing
-         timeline, team, role, tools, and disciplines at a glance.
-         Each item has a muted .cs-meta-label above a .cs-meta-value. -->
-    <div class="cs-meta-grid reveal">
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Timeline</span>
-        <span class="cs-meta-value">Aug. – Oct. 2022</span>
+    <div class="cs-meta-strip reveal">
+      <div class="cs-meta-strip-item">
+        <span class="cs-meta-strip-label">Timeline</span>
+        <span class="cs-meta-strip-value">Aug.&ndash;Oct. 2022</span>
       </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Team</span>
-        <!-- <br> creates line breaks within the value cell for multi-person teams -->
-        <span class="cs-meta-value">Dereck Villagrana<br>Akshat Jain<br>Megan Leong<br>Marco Paredes</span>
+      <div class="cs-meta-strip-item">
+        <span class="cs-meta-strip-label">Team</span>
+        <span class="cs-meta-strip-value">Dereck Villagrana +3</span>
       </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">My Role</span>
-        <span class="cs-meta-value">UX Designer<br>Front-end Design</span>
+      <div class="cs-meta-strip-item">
+        <span class="cs-meta-strip-label">Role</span>
+        <span class="cs-meta-strip-value">UX Designer &middot; Front-end Design</span>
       </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Tools</span>
-        <span class="cs-meta-value">Figma, React<br>Python, JavaScript<br>Vercel, GPT-3.5 Turbo</span>
-      </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Disciplines</span>
-        <span class="cs-meta-value">UX Design<br>AI / ML<br>Data Analytics</span>
+      <div class="cs-meta-strip-item">
+        <span class="cs-meta-strip-label">Tools</span>
+        <span class="cs-meta-strip-value">Figma, React, Python</span>
       </div>
     </div>
+
+    <!-- ⚠️ TODO: Replace with <img src="../images/verum-ai-cover.jpg" alt="Verum AI hero" class="cs-cover"> -->
+    <div class="cs-cover-placeholder" aria-hidden="true"><span>Cover image</span></div>
 
     <!-- ─── Overview Paragraph ────────────────────────────────────────────
          .cs-overview: opening paragraph styled larger than body copy.
@@ -338,7 +327,7 @@
        See index.html for full footer documentation. -->
   <footer class="site-footer">
     <span>&copy; 2026 Dereck Villagrana. All rights reserved.</span>
-    <span>Designed + Vibe Coded by Dereck</span>
+    <span>Designed &amp; built by Dereck</span>
   </footer>
 
   </main>
@@ -346,7 +335,7 @@
   <!-- ../js/main.js?v=2: the shared portfolio JS, one level up from projects/.
        ?v=2 is a cache buster — forces the browser to re-download the file
        when it's been updated, rather than serving a stale cached version. -->
-  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"><span class="cursor-label"></span></div>
   <script src="../js/main.js?v=3"></script>
 </body>
 </html>

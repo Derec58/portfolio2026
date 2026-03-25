@@ -94,11 +94,19 @@ a {
   --color-bg: #FAFCFD;          /* Sidebar and page background */
   --color-surface: #f1f4f6;    /* Cards and component backgrounds */
   --color-text: #32404F;        /* Primary text color */
-  --color-muted: #767676;       /* Secondary/caption text — 4.54:1 contrast on white, passes WCAG AA.
-                                   ⚠️ Do not lighten — contrast would fail below 4.5:1 */
+  --color-muted: #6B6B6B;       /* Secondary/caption text — 4.83:1 on surface (#f1f4f6), 5.18:1 on bg (#FAFCFD).
+                                   Darkened from #767676 which failed AA on surface at 4.11:1. ⚠️ Do not lighten. */
   --color-accent: #7B5EA7;      /* Purple — used for links, active states, focus rings, borders */
   --color-divider: #e5e5e5;     /* Borders, section lines, horizontal rules */
   --color-status: #4ade80;      /* Green — the "Available for work" dot */
+  --color-grid-line: rgba(0, 0, 0, 0.04); /* Graph paper grid lines — light mode */
+
+  /* ── Terminal card colors ── */
+  --color-terminal-red:    #FF5F56;
+  --color-terminal-yellow: #FFBD2E;
+  --color-terminal-green:  #27C93F;
+  --color-terminal-header-bg: #f0f0f0;
+  --color-terminal-border: #e0e0e0;
 
   /* ── Image placeholder colors ── */
   /* Used while real images are missing — sets a neutral gray placeholder */
@@ -110,6 +118,27 @@ a {
   /* Display/serif font for headings and pull quotes. Falls back gracefully if
      Playfair Display fails to load (Georgia → Times New Roman → generic serif) */
   --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+
+  /* ── Easing ── */
+  /* Spring easing: slightly overshoots before settling — gives interactive elements life */
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+
+  /* ── Category Tag Colors ── */
+  --tag-design-bg:     rgba(123, 94, 167, 0.08);
+  --tag-design-border: rgba(123, 94, 167, 0.25);
+  --tag-design-text:   #7B5EA7;
+  --tag-code-bg:       rgba(59, 130, 246, 0.08);
+  --tag-code-border:   rgba(59, 130, 246, 0.25);
+  --tag-code-text:     #3b82f6;
+  --tag-ai-bg:         rgba(16, 185, 129, 0.08);
+  --tag-ai-border:     rgba(16, 185, 129, 0.25);
+  --tag-ai-text:       #10b981;
+  --tag-research-bg:   rgba(245, 158, 11, 0.08);
+  --tag-research-border: rgba(245, 158, 11, 0.25);
+  --tag-research-text: #f59e0b;
+  --tag-other-bg:      rgba(107, 114, 128, 0.08);
+  --tag-other-border:  rgba(107, 114, 128, 0.25);
+  --tag-other-text:    #6b7280;
 }
 
 /* Dark mode overrides — applied when JavaScript sets data-theme="dark" on <html>.
@@ -125,7 +154,17 @@ a {
   --color-placeholder: #212121;
   --color-placeholder-text: #3d3d3d;
   --color-placeholder-hover: #2d2d2d;
+  --color-grid-line: rgba(255, 255, 255, 0.03); /* Graph paper grid lines — dark mode */
+  --color-terminal-header-bg: #1f1f1f;
+  --color-terminal-border: #2a2a2a;
   /* Note: --color-status and --font-display are intentionally not overridden */
+
+  /* Category tag text colors — lightened for readability on dark backgrounds */
+  --tag-design-text:   #A07DD6;
+  --tag-code-text:     #60a5fa;
+  --tag-ai-text:       #34d399;
+  --tag-research-text: #fbbf24;
+  --tag-other-text:    #9ca3af;
 }
 
 
@@ -189,22 +228,26 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 1.5px solid var(--color-accent);
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.05em; /* slight spacing between D and V for monogram look */
+  width: 52px;
+  height: 52px;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  color: var(--color-accent);
+  border: 1.5px solid var(--color-divider);
+  border-radius: 4px;
+  transition: border-color 0.2s;
 }
-/* On hover: fills with accent color (inverts the badge) */
 .logo-badge:hover {
-  background: var(--color-accent);
-  color: #ffffff;
   border-color: var(--color-accent);
 }
+
+.logo-img {
+  width: 52px;
+  height: 52px;
+  display: block;
+}
+
+/* SVG monogram fills — use CSS vars so dark mode is automatic */
+.logo-d { fill: var(--color-text); }
+.logo-v { fill: var(--color-accent); }
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -450,21 +493,38 @@ img {
   min-width: 0;  /* prevents flex children from overflowing — flex children default to min-width: auto
                     which can cause overflow; 0 allows the content to shrink */
   padding: var(--content-padding-y) var(--content-padding-x); /* 56px top/bottom, 150px sides */
+  position: relative;
+  isolation: isolate;
   background: var(--color-bg); /* white page — cards use --color-surface for contrast */
   min-height: 100vh;
+}
+
+.content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--color-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid-line) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, transparent 20%, black 75%);
 }
 
 
 /* ═══════════════════════════════════════════════════════════════
    12. ABOUT / BIO SECTION
    The homepage hero: two-column layout with large headline (left)
-   and experience table (right). Rachel Chen-inspired editorial style.
+   and experience table (right).
    ═══════════════════════════════════════════════════════════════ */
 
 .section-about {
-  padding-top: 64px;
-  padding-bottom: 80px;
-  margin-bottom: 72px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 80px;
+  margin-bottom: 0px;
 }
 
 /* Greeting label above the headline */
@@ -480,6 +540,8 @@ img {
 
 /* Two-column hero grid: headline left, experience table right */
 .hero-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 72px;
@@ -504,42 +566,43 @@ img {
   text-decoration: none;
 }
 
-/* Year-based experience table — year | dot | company | role */
+/* Tagline below the hero headline */
+.hero-tagline {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+  max-width: 48ch;
+  margin-top: 4px;
+}
+
+/* NOW / PREVIOUSLY experience table */
 .experience-table {
   display: flex;
   flex-direction: column;
 }
 
+.experience-group-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  padding: 14px 0 4px;
+}
+.experience-group-label:first-child {
+  padding-top: 0;
+}
+
 .experience-row {
   display: grid;
-  grid-template-columns: 3.5rem 16px 1fr auto;
+  grid-template-columns: 1fr auto;
   align-items: center;
-  gap: 0 10px;
-  padding: 10px 0;
+  gap: 0 16px;
+  padding: 8px 0;
   border-bottom: 1px solid var(--color-divider);
 }
-.experience-row:first-child {
-  border-top: 1px solid var(--color-divider);
-}
-
-.experience-year {
-  font-size: 0.75rem;
-  color: var(--color-muted);
-  font-variant-numeric: tabular-nums;
-}
-
-.experience-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--color-accent);
-  border-radius: 50%;
-  justify-self: center;
-}
-
-.experience-dot-empty {
-  width: 8px;
-  height: 8px;
-  justify-self: center;
+.experience-row:last-child {
+  border-bottom: none;
 }
 
 .experience-company {
@@ -589,11 +652,17 @@ img {
   height: 1px;
   background: var(--color-divider);
 }
-.section-divider span {
+.section-divider span,
+.section-divider h2 {
   font-size: 0.75rem;
+  font-weight: 400;      /* reset h2 browser-default bold */
+  font-family: inherit;  /* reset h2 browser-default font */
   text-transform: uppercase;
   letter-spacing: 0.14em; /* generous spacing for small uppercase readability */
   white-space: nowrap;    /* prevents the label from wrapping to a second line */
+  margin: 0;              /* reset h2 browser-default margin */
+  padding: 0;
+  color: inherit;
 }
 
 /* Variant: section dividers that appear between project sections need extra top margin */
@@ -611,7 +680,7 @@ img {
 .work-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 32px 28px;
+  gap: 20px 20px;
 }
 
 /* Individual work card: image on top, title + meta below */
@@ -626,21 +695,26 @@ img {
   background: var(--color-surface);
   border-radius: 6px;
   overflow: hidden;       /* image sits flush against top edge */
-  padding-bottom: 16px;
+  padding-bottom: 12px;
+  border: 1px solid var(--color-divider);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
 }
 .work-grid .work-card .work-card-image {
   border-radius: 6px 6px 0 0;
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
 .work-grid .work-card .work-card-title,
 .work-grid .work-card .work-card-meta {
   padding-left: 16px;
   padding-right: 16px;
 }
+.work-grid .work-card .work-card-title {
+  padding-top: 14px;
+}
 
 .work-card-image {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   background: var(--color-placeholder);
   display: flex;
   align-items: center;
@@ -653,7 +727,9 @@ img {
   transition: background 0.2s;
   overflow: hidden;
 }
-.work-card-image img {
+.work-card-image img,
+img.work-card-image {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -664,13 +740,13 @@ img {
 
 .work-card-title {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.3;
   color: var(--color-text);
   margin-bottom: 6px;
-  transition: color 0.15s;
+  transition: color 0.3s var(--ease-spring);
 }
 .work-card:hover .work-card-title {
   color: var(--color-accent);
@@ -687,45 +763,77 @@ img {
   color: var(--color-muted);
 }
 
-/* ── Full-width stacked project cards (Selected Work section) ─────────────
-   Each card: image left (~55%) + text body right (~45%), full content width.
+/* ── Selected Work: sticky scroll layout ──────────────────────────────────
+   Left: scrollable project list. Right: sticky image panel that crossfades.
    After Hours section still uses .work-card / .work-grid (2-column grid). */
-.project-card {
+/* Two-column layout: scrollable project list left, sticky image panel right */
+.work-scroll-layout {
   display: flex;
-  gap: 48px;
-  align-items: center;
+  gap: 64px;
+  align-items: flex-start;
+}
+
+/* Left column: scrollable project list */
+.work-list {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Individual project row — stacked list with dividers */
+.work-item {
+  display: flex;
+  gap: 20px;
   padding: 48px 0;
   border-bottom: 1px solid var(--color-divider);
+  opacity: 1;
+  cursor: pointer;
+  transition: opacity 0.2s;
 }
-.project-card:first-child {
-  border-top: none;
+.work-item:first-child {
+  border-top: 1px solid var(--color-divider);
 }
-.project-card:last-child {
-  border-bottom: none;
+.work-item:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
-.project-card-image {
-  flex: 0 0 55%;
-  display: block;
-  text-decoration: none;
+
+/* Numbered label */
+.work-item-num {
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+  padding-top: 4px;
+  min-width: 22px;
+  transition: color 0.3s;
 }
-.project-card-image .work-card-image {
-  margin-bottom: 0;
-  aspect-ratio: 4 / 3;
+.work-item:hover .work-item-num {
+  color: var(--color-accent);
 }
-.project-card:hover .project-card-image .work-card-image {
-  background: var(--color-placeholder-hover);
+/* Featured work item — subtle left border accent */
+.work-item--featured {
+  border-left: 2px solid var(--color-accent);
+  padding-left: 16px;
+  margin-left: -18px;
 }
-.project-card-body {
-  flex: 1;
+/* Award tag inline in meta line */
+.work-item-award {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* Text content inside each item */
+.work-item-body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-width: 0;
 }
-.project-card-body .work-card-title {
+.work-item-body .work-card-title {
   font-size: 1.5rem;
   margin-bottom: 0;
 }
-.project-card:hover .project-card-body .work-card-title {
+.work-item:hover .work-card-title {
   color: var(--color-accent);
 }
 .project-card-desc {
@@ -745,18 +853,127 @@ img {
 .project-card-link:hover {
   text-decoration: underline;
 }
+
+/* Right column: sticky image panel */
+.work-sticky-panel {
+  flex: 0 0 46%;
+  position: sticky;
+  top: 40px;
+  height: fit-content;
+}
+
+/* Image container: all slides stacked, only .is-active visible */
+.work-sticky-image {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-placeholder);
+}
+.work-sticky-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+.work-sticky-slide.is-active {
+  opacity: 1;
+}
+.work-sticky-slide .work-card-image {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: unset;
+  border-radius: 0;
+  margin: 0;
+}
+
 @media (max-width: 768px) {
-  .project-card {
+  .work-scroll-layout {
     flex-direction: column;
-    gap: 20px;
-    padding: 32px 0;
+    gap: 0;
   }
-  .project-card-image {
-    flex: none;
-    width: 100%;
+  .work-sticky-panel {
+    display: none;
   }
-  .project-card-body .work-card-title {
+  .work-item-body .work-card-title {
     font-size: 1.2rem;
+  }
+}
+
+
+/* ── Selected Work: Editorial Layout ────────────────────────────────────────
+   Replaces the old work-scroll-layout (list + sticky panel).
+   Each project row: image left, text right. Image always visible on load.
+   Featured item gets a wider image column.
+   ─────────────────────────────────────────────────────────────────────── */
+
+.work-editorial {
+  display: flex;
+  flex-direction: column;
+}
+
+.work-editorial-item {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 48px;
+  align-items: center;
+  padding: 48px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.work-editorial-item:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.work-editorial-item--featured {
+  grid-template-columns: 5fr 3fr;
+}
+
+.work-editorial-image-wrap {
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.work-editorial-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.work-editorial-item:hover .work-editorial-img {
+  transform: scale(1.02);
+}
+
+/* Placeholder for projects without a home image yet (e.g. Verum AI) */
+.work-editorial-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0;
+}
+
+.work-editorial-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Remove the featured left-border in the editorial context —
+   row border-bottom handles visual separation */
+.work-editorial-item.work-item--featured {
+  border-left: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+@media (max-width: 768px) {
+  .work-editorial-item,
+  .work-editorial-item--featured {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 32px 0;
   }
 }
 
@@ -774,6 +991,8 @@ img {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .lab-card {
@@ -781,10 +1000,11 @@ img {
   flex-direction: column;
   gap: 10px;
   padding: 28px 32px;
-  background: var(--color-surface); /* surface token handles both light + dark mode */
+  background: var(--color-surface);
   border: 1px solid var(--color-divider);
   border-radius: 4px;
-  transition: background 0.2s, border-color 0.2s;
+  box-shadow: 0 0 36px 18px var(--color-surface);
+  transition: background 0.2s, border-color 0.3s var(--ease-spring);
 }
 /* Border darkens on hover to indicate interactivity */
 .lab-card:hover {
@@ -841,6 +1061,151 @@ img {
   line-height: 1.65;
   margin: 0;
   max-width: 640px; /* keeps line length readable on wide lab cards */
+}
+
+/* ── Terminal Card variant — full-width header, split body below ── */
+.lab-card--terminal {
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  gap: 0;
+}
+
+/* Row below the terminal header: info left, terminal output right */
+.lab-card-split {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+/* Left: title + description */
+.lab-card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px 28px;
+  min-width: 0;
+}
+
+/* Right: terminal output — centered vertically */
+.lab-card-terminal-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px 28px;
+  border-left: 1px solid var(--color-divider);
+  min-width: 0;
+}
+
+[data-theme="dark"] .lab-card-terminal-body {
+  border-left-color: var(--color-terminal-border);
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  background: var(--color-divider);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+[data-theme="dark"] .terminal-header {
+  background: var(--color-terminal-header-bg);
+  border-bottom-color: var(--color-terminal-border);
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  /* Muted by default — like macOS inactive window */
+  filter: saturate(0.25);
+  transition: filter 0.3s var(--ease-spring);
+}
+
+.lab-card--terminal:hover .terminal-dot {
+  filter: saturate(1);
+}
+
+.terminal-dot--red    { background: var(--color-terminal-red); }
+.terminal-dot--yellow { background: var(--color-terminal-yellow); }
+.terminal-dot--green  { background: var(--color-terminal-green); }
+
+.terminal-title {
+  font-family: 'Courier New', 'Menlo', 'Monaco', monospace;
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  flex: 1;
+  text-align: center;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.terminal-github-link {
+  white-space: nowrap;
+}
+
+.terminal-body {
+  font-family: 'Courier New', 'Menlo', 'Monaco', monospace;
+  font-size: 0.8rem;
+  line-height: 1.9;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.terminal-line {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+}
+
+.terminal-prompt {
+  color: var(--color-accent);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.terminal-cmd {
+  color: var(--color-text);
+}
+
+.terminal-line--comment {
+  color: var(--color-muted);
+  opacity: 0.6;
+}
+
+.terminal-output,
+.terminal-line--success {
+  display: block;
+  padding-left: 18px;
+  margin: 0;
+}
+
+.terminal-output {
+  color: var(--color-muted);
+}
+
+.terminal-line--success {
+  color: var(--color-terminal-green);
+}
+
+[data-theme="dark"] .terminal-line--success {
+  color: var(--color-status); /* matches the "Available for work" green */
 }
 
 
@@ -1251,6 +1616,15 @@ img {
   .lab-card {
     padding: 20px;
   }
+
+  /* Terminal card split collapses to vertical on mobile */
+  .lab-card-split {
+    flex-direction: column;
+  }
+  .lab-card-terminal-body {
+    border-left: none;
+    border-top: 1px solid var(--color-divider);
+  }
 }
 
 
@@ -1397,6 +1771,105 @@ img {
   line-height: 1.65; /* extra leading for multi-line team member lists */
 }
 
+/* ── Base: project-meta / project-title (used on contact.html and cs pages) ── */
+.project-meta {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+  margin-bottom: 16px;
+}
+.project-title {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+/* ── Shared eyebrow label (all variants) ── */
+.cs-eyebrow {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+  margin-bottom: 18px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VARIANT 1 — Byline
+   Playfair title + single-line inline meta strip.
+   ═══════════════════════════════════════════════════════════════ */
+.cs-header--1 {
+  position: relative;
+  padding-bottom: 32px;
+  padding-right: 220px;
+  border-bottom: 1px solid var(--color-divider);
+  margin-bottom: 32px;
+}
+.cs-title--1 {
+  font-family: var(--font-display);
+  font-size: 3.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text);
+  margin-bottom: 14px;
+}
+.cs-meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0;
+  margin-bottom: 56px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+.cs-meta-strip-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding-right: 20px;
+  margin-right: 20px;
+  border-right: 1px solid var(--color-divider);
+}
+.cs-meta-strip-item:last-child {
+  border-right: none;
+  padding-right: 0;
+  margin-right: 0;
+}
+.cs-meta-strip-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--color-muted);
+}
+.cs-meta-strip-value {
+  font-size: 0.8rem;
+  color: var(--color-text);
+}
+
+/* ── Case Study Cover Image / Placeholder ── */
+.cs-cover-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: 12px;
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cs-cover-placeholder span {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
 /* Opening paragraph — wider type, full text color for prominence */
 .cs-overview {
   font-size: 1rem;
@@ -1461,6 +1934,14 @@ img {
 /* Second paragraph in a two-paragraph block needs top spacing (about page) */
 .cs-body--spaced {
   margin-top: 16px;
+}
+/* Personal/contextual note — accented left border, italic */
+.cs-body--personal-note {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 16px;
+  font-style: italic;
+  color: var(--color-muted);
+  margin-bottom: 24px;
 }
 /* Bold text within body copy uses full text color for emphasis */
 .cs-body strong {
@@ -1642,6 +2123,14 @@ img {
   .cs-stats-row {
     gap: 28px;
   }
+
+  /* Variant 1 mobile */
+  .cs-header--1 { padding-right: 0; }
+  .cs-title--1 { font-size: 2.25rem; }
+  .cs-meta-strip { flex-direction: column; gap: 8px; }
+  .cs-meta-strip-item { border-right: none; padding-right: 0; margin-right: 0; }
+  .cs-cover-placeholder { border-radius: 8px; }
+
 }
 
 
@@ -1803,11 +2292,58 @@ img {
   border-radius: 999px; /* fully rounded pill shape */
   font-size: 0.8rem;
   color: var(--color-text);
-  transition: border-color 0.15s, color 0.15s;
+  transition: border-color 0.3s var(--ease-spring), color 0.3s var(--ease-spring);
 }
 .about-tool-pill:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
+}
+
+/* ── Category color modifier classes ── */
+.about-tool-pill--design {
+  background: var(--tag-design-bg);
+  border-color: var(--tag-design-border);
+  color: var(--tag-design-text);
+}
+.about-tool-pill--design:hover {
+  border-color: var(--tag-design-text);
+  color: var(--tag-design-text);
+}
+.about-tool-pill--code {
+  background: var(--tag-code-bg);
+  border-color: var(--tag-code-border);
+  color: var(--tag-code-text);
+}
+.about-tool-pill--code:hover {
+  border-color: var(--tag-code-text);
+  color: var(--tag-code-text);
+}
+.about-tool-pill--ai {
+  background: var(--tag-ai-bg);
+  border-color: var(--tag-ai-border);
+  color: var(--tag-ai-text);
+}
+.about-tool-pill--ai:hover {
+  border-color: var(--tag-ai-text);
+  color: var(--tag-ai-text);
+}
+.about-tool-pill--research {
+  background: var(--tag-research-bg);
+  border-color: var(--tag-research-border);
+  color: var(--tag-research-text);
+}
+.about-tool-pill--research:hover {
+  border-color: var(--tag-research-text);
+  color: var(--tag-research-text);
+}
+.about-tool-pill--other {
+  background: var(--tag-other-bg);
+  border-color: var(--tag-other-border);
+  color: var(--tag-other-text);
+}
+.about-tool-pill--other:hover {
+  border-color: var(--tag-other-text);
+  color: var(--tag-other-text);
 }
 
 /* Contact link row: Email → LinkedIn → Read.cv → */
@@ -1870,14 +2406,58 @@ img {
 
 /* ─── About Page — Education section ────────────────────── */
 
-/* 2-column grid: one card per school. Reuses .about-now-card for card styling. */
-.about-education-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+/* Numbered rows matching the work-item 01/02 pattern */
+.edu-list {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.edu-item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--color-divider);
+  transition: opacity 0.2s;
+}
+.edu-item:first-child {
+  border-top: 1px solid var(--color-divider);
+}
+.edu-item:hover {
+  opacity: 0.7;
+}
+.edu-num {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  width: 24px;
+}
+.edu-main {
+  flex: 1;
+}
+.edu-name {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0 0 4px;
+  transition: color 0.2s;
+}
+.edu-item:hover .edu-name {
+  color: var(--color-accent);
+}
+.edu-degree {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+.edu-year {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* ─── About Page — Now section ───────────────────────────── */
@@ -1896,7 +2476,7 @@ img {
   background: var(--color-surface); /* lifted surface — same treatment as lab cards */
   border: 1px solid var(--color-divider);
   border-radius: 4px;
-  transition: border-color 0.15s;
+  transition: border-color 0.3s var(--ease-spring);
 }
 .about-now-card:hover {
   border-color: var(--color-text);
@@ -1980,6 +2560,23 @@ img {
 }
 
 
+/* About page — single get-in-touch CTA replacing the contact channel list */
+.about-contact-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+.about-contact-cta:hover {
+  opacity: 0.75;
+}
+
 /* ═══════════════════════════════════════════════════════════════
    27. CONTACT PAGE
    Components unique to contact.html.
@@ -2012,7 +2609,7 @@ img {
 
 /* Channel list: stacked card-style CTAs */
 .contact-channels {
-  /* no border — cards create their own separation */
+  border-top: 1px solid var(--color-divider);
 }
 /* About page: reuses contact-channels but needs centering + top margin */
 .about-contact-channels {
@@ -2021,50 +2618,75 @@ img {
   margin-right: auto;
   margin-top: 24px;
 }
-/* Each channel is a card anchor */
-.contact-channel-item {
+/* Each row — editorial style, no card background */
+.contact-row {
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 20px 24px;
-  border: 1px solid var(--color-divider);
-  border-radius: 6px;
-  background: var(--color-surface);
+  padding: 22px 0;
+  border-bottom: 1px solid var(--color-divider);
   text-decoration: none;
   color: var(--color-text);
-  transition: border-color 0.15s, background 0.15s;
-  margin-bottom: 10px;
+  position: relative;
+  transition: opacity 0.2s;
 }
-.contact-channel-item:hover {
-  border-color: var(--color-accent);
+.contact-row:hover {
+  opacity: 1;
 }
-.contact-channel-item:hover .contact-channel-platform {
-  color: var(--color-accent);
+/* Thin left accent bar slides in on hover */
+.contact-row::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  width: 3px;
+  height: 50%;
+  background: var(--color-accent);
+  border-radius: 2px;
+  transition: transform 0.25s var(--ease-spring);
 }
-/* Platform name — fixed min-width keeps all descriptions left-aligned */
-.contact-channel-platform {
+.contact-row:hover::before {
+  transform: translateY(-50%) scaleY(1);
+}
+/* Platform name */
+.contact-row-platform {
   font-size: 0.9375rem;
   font-weight: 500;
   min-width: 110px;
-  color: inherit;
+  color: var(--color-text);
   flex-shrink: 0;
+  transition: color 0.2s;
 }
-/* Description — takes remaining horizontal space, stays muted */
-.contact-channel-desc {
+.contact-row:hover .contact-row-platform {
+  color: var(--color-accent);
+}
+/* Description */
+.contact-row-desc {
   flex: 1;
   font-size: 0.875rem;
   color: var(--color-muted);
 }
-/* Arrow — right-aligned, slides slightly on hover */
-.contact-channel-arrow {
+/* Arrow */
+.contact-row-arrow {
   font-size: 1rem;
   color: var(--color-muted);
   flex-shrink: 0;
-  transition: transform 0.15s, color 0.15s;
+  transition: color 0.2s, transform 0.15s;
 }
-.contact-channel-item:hover .contact-channel-arrow {
+.contact-row:hover .contact-row-arrow {
   color: var(--color-accent);
   transform: translateX(3px);
+}
+
+/* Disabled row (e.g. resume not yet available) */
+.contact-row--disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+.contact-row--disabled::before {
+  display: none;
 }
 
 /* Tablet: tighter column gap */
@@ -2074,18 +2696,14 @@ img {
   }
 }
 
-/* Mobile: stack columns, tighter channel padding, hide descriptions */
+/* Mobile: stack columns, hide descriptions */
 @media (max-width: 768px) {
   .contact-body {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  .contact-channel-item {
-    gap: 16px;
-    padding: 16px 20px;
-  }
-  .contact-channel-desc {
-    display: none; /* platform + arrow is enough on small screens */
+  .contact-row-desc {
+    display: none;
   }
 }
 
@@ -2207,16 +2825,46 @@ img {
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-50%, -50%) scale(1);
-  transition: opacity 0.15s, transform 0.15s, width 0.15s, height 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s, width 0.2s, height 0.2s, padding 0.2s, border-radius 0.2s;
   opacity: 0; /* starts hidden until first mousemove */
 }
 
-/* Grow + fade when hovering any interactive element */
-body:has(a:hover, button:hover) .cursor-dot {
+/* Grow + fade when hovering any interactive element (skip if morphed) */
+body:has(a:hover, button:hover) .cursor-dot:not(.cursor-expanded) {
   width: 20px;
   height: 20px;
   opacity: 0.45 !important;
+}
+
+/* Label text inside the pill */
+.cursor-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+/* Morphed pill state */
+.cursor-dot.cursor-expanded {
+  width: auto;
+  min-width: 80px;
+  height: 32px;
+  border-radius: 16px;
+  padding: 0 14px;
+  opacity: 0.92 !important;
+}
+
+.cursor-dot.cursor-expanded .cursor-label {
+  opacity: 1;
 }
 
 /* Hide dot on touch devices — it wouldn't track anyway */

@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -35,14 +36,13 @@
         <div class="sidebar-top">
       <!-- On non-home pages, logo links back to index.html -->
       <a href="index.html" class="logo-badge" aria-label="Home">DV</a>
-      <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+      <button class="theme-toggle" aria-label="Switch to dark mode" data-cursor="◑ Toggle Theme"></button>
     </div>
 
         <nav aria-label="Site navigation" class="sidebar-nav">
-      <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+      <button class="theme-toggle" aria-label="Switch to dark mode" data-cursor="◑ Toggle Theme"></button>
       <!-- aria-current="page": marks this link as the current page for screen readers -->
       <a href="about.html" class="nav-link active" aria-current="page">About</a>
-      <a href="index.html#cv" class="nav-link">CV</a>
       <a href="contact.html" class="nav-link">Contact</a>
       <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
     </nav>
@@ -122,7 +122,7 @@
          .about-now-grid: 3-column card grid (collapses to 1 on mobile).
          ─────────────────────────────────────────────────────────────────── -->
 
-    <div class="section-divider"><span>Currently</span></div>
+    <div class="section-divider"><h2>Currently</h2></div>
 
     <!-- .cs-section is shared with case study pages — it just provides margin-bottom -->
     <section class="cs-section reveal">
@@ -145,21 +145,10 @@
       </div>
     </section>
 
-    <!-- ─── How I Work Section ───────────────────────────────────────────
-         Design process and collaboration approach paragraph.
-         ─────────────────────────────────────────────────────────────────── -->
-    <div class="section-divider"><span>How I Work</span></div>
-
-    <section class="cs-section reveal">
-      <p class="cs-body">I start with the question behind the question. Before wireframes, I want to understand what's actually broken, whether that's a user mental model, an untested team assumption, or a product bet that was never validated. I work closely with whoever's in the room: PMs, engineers, stakeholders, other designers, or clients, and I try to be the person who keeps the design honest against real constraints. My decisions are anchored in behavior over preference, and I iterate until the friction I designed out becomes invisible.</p>
-      <p class="cs-body cs-body--spaced">I care about handing off designs that engineers can actually build. That means knowing when to be precise and when to get out of the way. Clear annotations, tight specs, and an open line of communication matter as much as the prototype.</p>
-    </section>
-
     <!-- ─── Background Section ────────────────────────────────────────────
          Path into design and influences.
          ─────────────────────────────────────────────────────────────────── -->
-    <div class="section-divider"><span>Background</span></div>
-
+    <div class="section-divider"><h2>Background</h2></div>
     <section class="cs-section reveal">
       <p class="cs-body">UI/UX wasn't where I started. I came in through computer engineering, taking HTML, CSS, Python, and C++ in high school, at De Anza College, and eventually at UC Davis. Somewhere in those courses I figured out that I enjoyed building things but didn't want to make engineering a career. It was a hobby, and I was honest with myself about that. In between CS coursework I was taking design classes to fill credits, and it clicked in a way the other stuff didn't. I already had Adobe experience from photography classes in high school, which put me ahead in graphic design. Logos, posters, layouts: I loved all of it and wanted to keep going.</p>
       <p class="cs-body cs-body--spaced">So I changed my major, landed in graphic design, transferred to UC Davis, and then discovered UI/UX almost by accident. I needed credits. Davis had a course. I took it. And that was it. UI/UX was the intersection I'd been circling: design, systematic thinking, and just enough code to matter. Somewhere in there I realized that good design and good engineering ask the same first question: what actually needs to be true here?</p>
@@ -167,22 +156,27 @@
     </section>
 
     <!-- ─── Education Section ────────────────────────────────────────────
-         Two-column card grid: one card per school.
-         Uses .about-education-grid + .about-now-card (reused card style).
+         Numbered rows matching the work-item 01/02 pattern.
          ─────────────────────────────────────────────────────────────────── -->
-    <div class="section-divider"><span>Education</span></div>
+    <div class="section-divider"><h2>Education</h2></div>
 
     <section class="cs-section reveal">
-      <div class="about-education-grid">
-        <div class="about-now-card">
-          <span class="about-now-index">UC Davis</span>
-          <p class="about-now-label">B.S. Design</p>
-          <p class="about-now-value">Davis, CA | 2023</p>
+      <div class="edu-list">
+        <div class="edu-item">
+          <span class="edu-num">01</span>
+          <div class="edu-main">
+            <p class="edu-name">UC Davis</p>
+            <p class="edu-degree">B.S. Design &nbsp;·&nbsp; Davis, CA</p>
+          </div>
+          <span class="edu-year">2023</span>
         </div>
-        <div class="about-now-card">
-          <span class="about-now-index">De Anza College</span>
-          <p class="about-now-label">A.A Graphic Design</p>
-          <p class="about-now-value">Cupertino, CA | 2019-2021</p>
+        <div class="edu-item">
+          <span class="edu-num">02</span>
+          <div class="edu-main">
+            <p class="edu-name">De Anza College</p>
+            <p class="edu-degree">A.A. Graphic Design &nbsp;·&nbsp; Cupertino, CA</p>
+          </div>
+          <span class="edu-year">2019–21</span>
         </div>
       </div>
     </section>
@@ -191,8 +185,7 @@
          A display-font pull quote followed by a principles list.
          The list uses CSS-generated em-dashes (—) instead of bullet points.
          ─────────────────────────────────────────────────────────────────── -->
-    <div class="section-divider"><span>Philosophy</span></div>
-
+    <div class="section-divider"><h2>Philosophy</h2></div>
     <section class="cs-section reveal">
       <!-- .about-pull-quote: large serif, centered, max-width constrained -->
       <p class="about-pull-quote">"The best designs go unnoticed. The best feedback I've ever received was someone saying the fix was so obvious they hadn't even noticed it."</p>
@@ -208,7 +201,7 @@
     <!-- ─── Tools Section ─────────────────────────────────────────────────
          .about-tools: 2-column grid organized by tool category.
          ─────────────────────────────────────────────────────────────────── -->
-    <div class="section-divider"><span>Tools</span></div>
+    <div class="section-divider"><h2>Tools</h2></div>
 
     <section class="cs-section reveal">
       <div class="about-tools">
@@ -216,41 +209,41 @@
         <div>
           <p class="about-tool-category">Design</p>
           <div class="about-tool-list">
-            <span class="about-tool-pill">Figma</span>
-            <span class="about-tool-pill">ProtoPie</span>
-            <span class="about-tool-pill">Adobe Creative Suite</span>
-            <span class="about-tool-pill">Framer</span>
-            <span class="about-tool-pill">Webflow</span>
+            <span class="about-tool-pill about-tool-pill--design">Figma</span>
+            <span class="about-tool-pill about-tool-pill--design">ProtoPie</span>
+            <span class="about-tool-pill about-tool-pill--design">Adobe Creative Suite</span>
+            <span class="about-tool-pill about-tool-pill--design">Framer</span>
+            <span class="about-tool-pill about-tool-pill--design">Webflow</span>
           </div>
         </div>
         <div>
           <p class="about-tool-category">Development</p>
           <div class="about-tool-list">
-            <span class="about-tool-pill">HTML / CSS / JS</span>
-            <span class="about-tool-pill">Python</span>
-            <span class="about-tool-pill">Visual Studio Code</span>
+            <span class="about-tool-pill about-tool-pill--code">HTML / CSS / JS</span>
+            <span class="about-tool-pill about-tool-pill--code">Python</span>
+            <span class="about-tool-pill about-tool-pill--code">Visual Studio Code</span>
           </div>
         </div>
         <div>
           <p class="about-tool-category">AI Tools</p>
           <div class="about-tool-list">
-            <span class="about-tool-pill">ChatGPT</span>
-            <span class="about-tool-pill">Claude</span>
-            <span class="about-tool-pill">Perplexity</span>
+            <span class="about-tool-pill about-tool-pill--ai">ChatGPT</span>
+            <span class="about-tool-pill about-tool-pill--ai">Claude</span>
+            <span class="about-tool-pill about-tool-pill--ai">Perplexity</span>
           </div>
         </div>
         <div>
           <p class="about-tool-category">Research</p>
           <div class="about-tool-list">
-            <span class="about-tool-pill">Usability Testing</span>
-            <span class="about-tool-pill">User Interviews</span>
+            <span class="about-tool-pill about-tool-pill--research">Usability Testing</span>
+            <span class="about-tool-pill about-tool-pill--research">User Interviews</span>
           </div>
         </div>
         <div>
           <p class="about-tool-category">Productivity</p>
           <div class="about-tool-list">
-            <span class="about-tool-pill">Notion</span>
-            <span class="about-tool-pill">Google Suite</span>
+            <span class="about-tool-pill about-tool-pill--other">Notion</span>
+            <span class="about-tool-pill about-tool-pill--other">Google Suite</span>
           </div>
         </div>
       </div>
@@ -261,7 +254,7 @@
          CSS borders create horizontal and vertical grid lines.
          On mobile: collapses to a single column, center divider removed.
          ─────────────────────────────────────────────────────────────────── -->
-    <div class="section-divider"><span>The Sidelines</span></div>
+    <div class="section-divider"><h2>The Sidelines</h2></div>
 
     <section class="cs-section reveal">
       <!-- .about-sidelines: 2-column grid. border-left on even items = vertical divider. -->
@@ -286,52 +279,21 @@
       </div>
     </section>
 
-    <!-- ─── Contact Section ───────────────────────────────────────────────
-         Short availability statement + contact link row.
-         style="max-width: 720px" inline style matches .cs-body's max-width.
+    <!-- ─── Contact CTA ──────────────────────────────────────────────────
+         Single CTA pointing to the dedicated contact page.
          ─────────────────────────────────────────────────────────────────── -->
-    <div class="section-divider"><span>Contact</span></div>
-
     <section class="cs-section reveal">
-      <p class="cs-body">Open to full-time product design roles, freelance projects, and honest conversations about design.</p>
-      <!-- Reuses .contact-channel-item card style from contact.html -->
-      <div class="contact-channels about-contact-channels">
-        <a href="mailto:dereck.villagrana58@gmail.com" class="contact-channel-item">
-          <span class="contact-channel-platform">Email</span>
-          <span class="contact-channel-desc">Best way to reach me directly</span>
-          <span class="contact-channel-arrow">→</span>
-        </a>
-        <a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer" class="contact-channel-item">
-          <span class="contact-channel-platform">LinkedIn</span>
-          <span class="contact-channel-desc">Professional profile and work history</span>
-          <span class="contact-channel-arrow">↗</span>
-        </a>
-        <a href="https://github.com/Derec58" target="_blank" rel="noopener noreferrer" class="contact-channel-item">
-          <span class="contact-channel-platform">GitHub</span>
-          <span class="contact-channel-desc">Code, side projects, and this portfolio</span>
-          <span class="contact-channel-arrow">↗</span>
-        </a>
-        <a href="https://devpost.com/dereck-villagrana" target="_blank" rel="noopener noreferrer" class="contact-channel-item">
-          <span class="contact-channel-platform">Devpost</span>
-          <span class="contact-channel-desc">Hackathon projects and builds</span>
-          <span class="contact-channel-arrow">↗</span>
-        </a>
-        <a href="#" class="contact-channel-item">
-          <span class="contact-channel-platform">Resume</span>
-          <span class="contact-channel-desc">Download my resume</span>
-          <span class="contact-channel-arrow">↓</span>
-        </a>
-      </div>
+      <a href="contact.html" class="about-contact-cta">Get in touch →</a>
     </section>
 
     <footer class="site-footer">
       <span>&copy; 2026 Dereck Villagrana. All rights reserved.</span>
-      <span>Designed + Vibe Coded by Dereck</span>
+      <span>Designed &amp; built by Dereck</span>
     </footer>
 
   </main><!-- /.content -->
 
-  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"><span class="cursor-label"></span></div>
   <script src="js/main.js?v=3"></script>
 </body>
 </html>

@@ -1,0 +1,27 @@
+{
+  "name": "portfolioprojectclaude",
+  "version": "1.0.0",
+  "description": "**Live site:** [portfolio2026-puce.vercel.app](https://portfolio2026-puce.vercel.app) &nbsp;·&nbsp; **Repo:** [github.com/Derec58/portfolio2026](https://github.com/Derec58/portfolio2026)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Derec58/portfolio2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Derec58/portfolio2026/issues"
+  },
+  "homepage": "https://github.com/Derec58/portfolio2026#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}

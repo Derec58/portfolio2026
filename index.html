@@ -41,6 +41,7 @@
 
   <!-- Main stylesheet. href is relative to index.html's location. -->
   <link rel="stylesheet" href="css/style.css">
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -75,14 +76,18 @@
         <!-- Logo badge: links to the #about section (top of page).
              aria-label="Home": because the link text is just "DV", screen readers
              need this label to understand what the link does. -->
-        <a href="#about" class="logo-badge" aria-label="Home">DV</a>
+        <a href="#about" class="logo-badge" aria-label="Home">
+          <svg class="logo-img" viewBox="0 0 52 52" aria-hidden="true" focusable="false">
+            <text font-family="'Playfair Display', Georgia, serif" font-weight="700" font-style="italic" font-size="20" text-anchor="middle" dominant-baseline="central" x="26" y="26"><tspan class="logo-d">D</tspan><tspan class="logo-v">V</tspan></text>
+          </svg>
+        </a>
 
         <!-- Theme toggle button: the half-circle dark/light mode button.
              aria-label: describes the button action to screen readers (since the button
              has no text — just visual styling).
              JavaScript updates this label dynamically when the theme changes.
              This button is HIDDEN on mobile — the copy in .sidebar-nav is shown instead. -->
-        <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+        <button class="theme-toggle" aria-label="Switch to dark mode" data-cursor="◑ Toggle Theme"></button>
       </div>
 
       <!-- .sidebar-nav: the top navigation row containing About, CV links + mobile controls.
@@ -92,15 +97,10 @@
 
         <!-- Mobile-only theme toggle: hidden on desktop, shown on mobile.
              JavaScript keeps both .theme-toggle buttons in sync. -->
-        <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+        <button class="theme-toggle" aria-label="Switch to dark mode" data-cursor="◑ Toggle Theme"></button>
 
         <!-- About link: goes to the full about page -->
         <a href="about.html" class="nav-link">About</a>
-
-        <!-- CV link: jumps to the #cv section on this page.
-             data-target="cv": JavaScript reads this to know which section this link
-             corresponds to for active state highlighting as the user scrolls. -->
-        <a href="#cv" class="nav-link" data-target="cv">CV</a>
 
         <a href="contact.html" class="nav-link">Contact</a>
 
@@ -183,42 +183,41 @@
     <section id="about" class="section-about">
       <div class="hero-grid">
 
-        <!-- Left: greeting label + large Playfair Display headline -->
+        <!-- Left: greeting label + large Playfair Display headline + tagline -->
         <div class="hero-left">
           <p class="greeting">Hello world! <span class="greeting-sub">/ hola! /</span></p>
           <h1 class="bio">
-            I'm Dereck, a product designer who <em>builds</em>.
+            I'm <span data-cursor="✦ Hey that's me!">Dereck</span> & I bring ideas to life with<em> design + code</em>.
           </h1>
+          <p class="hero-tagline">Currently open to full-time product design roles. Based in the Central Valley and Bay Area — I design with intention and build what I design.</p>
         </div>
 
-        <!-- Right: year-based experience table — year | dot | company | role -->
+        <!-- Right: NOW / PREVIOUSLY experience table -->
         <div class="hero-right">
           <div class="experience-table">
 
+            <div class="experience-group-label">Now</div>
             <div class="experience-row">
-              <span class="experience-year">2026</span>
-              <span class="experience-dot" aria-hidden="true"></span>
-              <span class="experience-company">Open to work</span>
+              <span class="experience-company">Open to roles</span>
               <span class="experience-role">Product Designer</span>
             </div>
-
             <div class="experience-row">
-              <span class="experience-year">2024</span>
-              <span class="experience-dot-empty" aria-hidden="true"></span>
+              <span class="experience-company">Best Buy</span>
+              <span class="experience-role">Sales Advsior</span>
+            </div>
+
+            <div class="experience-group-label">Previously</div>
+            <div class="experience-row">
               <span class="experience-company">MYJ, Inc.</span>
               <span class="experience-role">UI/UX Design Intern</span>
             </div>
 
             <div class="experience-row">
-              <span class="experience-year">2024</span>
-              <span class="experience-dot-empty" aria-hidden="true"></span>
               <span class="experience-company">Body Sculpture Aesthetics</span>
               <span class="experience-role">Freelance Designer</span>
             </div>
 
             <div class="experience-row">
-              <span class="experience-year">2021–23</span>
-              <span class="experience-dot-empty" aria-hidden="true"></span>
               <span class="experience-company">UC Davis + Design Interactive</span>
               <span class="experience-role">B.S. Design</span>
             </div>
@@ -239,51 +238,47 @@
 
     <div class="section-divider work-divider"><span>Selected Work</span></div>
 
-    <!-- ─── Project: BeReal Redesign ──────────────────────────────────────
-         id="project-1": section anchor for IntersectionObserver tracking.
-         .project: two-column flex layout — text (55% left) + image (right).
-         .reveal: fade-in animation on scroll.
-         ─────────────────────────────────────────────────────────────────── -->
-    <!-- ─── Selected Work: full-width stacked cards (image left + text right) ── -->
-    <section id="selected-work" class="reveal">
+    <!-- ─── Selected Work ────────────────────────────────────────────────────
+         Editorial layout: each project row shows image + text side by side.
+         Images visible on load — no hover required. Featured (BeReal) gets
+         a wider image column. Stacks to single column on mobile.
+         ─────────────────────────────────────────────────────────────────────── -->
+    <section id="selected-work" class="work-editorial reveal">
 
-      <article class="project-card">
-        <a href="projects/bereal-redesign.html" class="project-card-image">
-          <div class="work-card-image"><span>Project image</span></div>
+      <article class="work-editorial-item work-editorial-item--featured work-item" data-project="bereal" data-cursor="→ View Case Study">
+        <a href="projects/bereal-redesign.html" class="work-editorial-image-wrap">
+          <img src="images/home/bereal-redesign.jpg" alt="BeReal Redesign — project preview" class="work-editorial-img" loading="lazy">
         </a>
-        <div class="project-card-body">
-          <p class="work-card-meta">Product Design &nbsp;·&nbsp; UC Davis Design Interactive</p>
-          <h2 class="work-card-title">
-            <a href="projects/bereal-redesign.html">BeReal Redesign</a>
-          </h2>
+        <div class="work-editorial-info">
+          <span class="work-item-num">01</span>
+          <p class="work-card-meta">Product Design &nbsp;·&nbsp; UC Davis Design Interactive &nbsp;·&nbsp; <span class="work-item-award">★ Best Prototype</span></p>
+          <h2 class="work-card-title"><a href="projects/bereal-redesign.html">BeReal Redesign</a></h2>
           <p class="project-card-desc">Redesigning BeReal's core experience to reduce social pressure and encourage more genuine, in-the-moment sharing, without losing what makes it unique.</p>
           <a href="projects/bereal-redesign.html" class="project-card-link">View case study →</a>
         </div>
       </article>
 
-      <article class="project-card">
-        <a href="projects/verum-ai.html" class="project-card-image">
-          <div class="work-card-image"><span>Project image</span></div>
+      <article class="work-editorial-item work-item" data-project="verum" data-cursor="→ View Case Study">
+        <a href="projects/verum-ai.html" class="work-editorial-image-wrap">
+          <div class="work-card-image work-editorial-placeholder"><span>Verum AI</span></div>
         </a>
-        <div class="project-card-body">
+        <div class="work-editorial-info">
+          <span class="work-item-num">02</span>
           <p class="work-card-meta">Product Design &nbsp;·&nbsp; Hackathon &nbsp;·&nbsp; 2nd Place</p>
-          <h2 class="work-card-title">
-            <a href="projects/verum-ai.html">Verum AI</a>
-          </h2>
+          <h2 class="work-card-title"><a href="projects/verum-ai.html">Verum AI</a></h2>
           <p class="project-card-desc">An AI-powered misinformation detection tool designed and built in 24 hours at a hackathon. Helps users verify claims in real time before sharing them online. Placed 2nd overall.</p>
           <a href="projects/verum-ai.html" class="project-card-link">View case study →</a>
         </div>
       </article>
 
-      <article class="project-card">
-        <a href="projects/bsa-homepage.html" class="project-card-image">
-          <div class="work-card-image"><span>Project image</span></div>
+      <article class="work-editorial-item work-item" data-project="bsa" data-cursor="→ View Case Study">
+        <a href="projects/bsa-homepage.html" class="work-editorial-image-wrap">
+          <img src="images/home/bsa-homepage.jpg" alt="Body Sculpture Aesthetics homepage design" class="work-editorial-img" loading="lazy">
         </a>
-        <div class="project-card-body">
+        <div class="work-editorial-info">
+          <span class="work-item-num">03</span>
           <p class="work-card-meta">Freelance &nbsp;·&nbsp; Web Design &nbsp;·&nbsp; 2024</p>
-          <h2 class="work-card-title">
-            <a href="projects/bsa-homepage.html">Body Sculpture Aesthetics</a>
-          </h2>
+          <h2 class="work-card-title"><a href="projects/bsa-homepage.html">Body Sculpture Aesthetics</a></h2>
           <p class="project-card-desc">Freelance homepage redesign for a local aesthetics clinic. Building trust and driving bookings through a cleaner visual hierarchy and a more confident brand presence.</p>
           <a href="projects/bsa-homepage.html" class="project-card-link">View case study →</a>
         </div>
@@ -303,50 +298,86 @@
       <!-- .lab-grid: flex column of lab cards -->
       <div class="lab-grid">
 
-        <!-- <article>: semantic element for self-contained content.
-             A GitHub project is genuinely self-contained — correct semantic choice. -->
-        <article class="lab-card">
-          <!-- .lab-card-top: tags (left) + GitHub link (right) in a flex row -->
-          <div class="lab-card-top">
-            <!-- Tech stack tags separated by middle dots (·) -->
-            <span class="lab-card-meta">Raspberry Pi · Docker · Self-hosted</span>
-            <!-- External GitHub link. aria-label clarifies the link purpose. -->
+        <!-- Terminal-style card for the Raspberry Pi project -->
+        <article class="lab-card lab-card--terminal" data-cursor="↗ Open GitHub">
+          <div class="terminal-header">
+            <div class="terminal-dots" aria-hidden="true">
+              <span class="terminal-dot terminal-dot--red"></span>
+              <span class="terminal-dot terminal-dot--yellow"></span>
+              <span class="terminal-dot terminal-dot--green"></span>
+            </div>
+            <span class="terminal-title">raspberry-pi-media-stack</span>
             <a href="https://github.com/Derec58/raspberry-pi-media-stack"
                target="_blank" rel="noopener noreferrer"
-               class="lab-card-link" aria-label="View on GitHub">
+               class="lab-card-link terminal-github-link" data-cursor="↗ Open GitHub" aria-label="View on GitHub">
               ↗ GitHub
             </a>
           </div>
-          <!-- Card title also links to GitHub -->
-          <h3 class="lab-card-title">
-            <a href="https://github.com/Derec58/raspberry-pi-media-stack"
-               target="_blank" rel="noopener noreferrer">
-              Raspberry Pi Media Stack
-            </a>
-          </h3>
-          <p class="lab-card-desc">
-            A self-hosted media automation system built on a Raspberry Pi 5. Containerised services handle discovery, downloading, and streaming, routed through a VPN with a fail-closed design and public HTTPS access via a Caddy reverse proxy.
-          </p>
+          <div class="lab-card-split">
+            <div class="lab-card-info">
+              <h3 class="lab-card-title">
+                <a href="https://github.com/Derec58/raspberry-pi-media-stack"
+                   target="_blank" rel="noopener noreferrer">
+                  Raspberry Pi Media Stack
+                </a>
+              </h3>
+              <p class="lab-card-desc">
+                A self-hosted media automation system built on a Raspberry Pi 5. Containerised services handle discovery, downloading, and streaming, routed through a VPN with a fail-closed design and public HTTPS access via a Caddy reverse proxy.
+              </p>
+            </div>
+            <div class="lab-card-terminal-body">
+              <span class="lab-card-meta">Raspberry Pi 5 &middot; Docker &middot; Caddy &middot; VPN</span>
+              <div class="terminal-body">
+                <p class="terminal-line">
+                  <span class="terminal-prompt" aria-hidden="true">$</span>
+                  <span class="terminal-cmd">docker compose up -d</span>
+                </p>
+                <p class="terminal-output">Starting services: sonarr, radarr, jellyfin, gluetun...</p>
+                <p class="terminal-line--success">&#x2713; All 6 containers healthy</p>
+              </div>
+            </div>
+          </div>
         </article>
 
-        <article class="lab-card">
-          <div class="lab-card-top">
-            <span class="lab-card-meta">HTML · CSS · JS · Vercel</span>
+        <!-- Terminal-style card for the Portfolio Site project -->
+        <article class="lab-card lab-card--terminal" data-cursor="↗ Open GitHub">
+          <div class="terminal-header">
+            <div class="terminal-dots" aria-hidden="true">
+              <span class="terminal-dot terminal-dot--red"></span>
+              <span class="terminal-dot terminal-dot--yellow"></span>
+              <span class="terminal-dot terminal-dot--green"></span>
+            </div>
+            <span class="terminal-title">portfolio2026</span>
             <a href="https://github.com/Derec58/portfolio2026"
                target="_blank" rel="noopener noreferrer"
-               class="lab-card-link" aria-label="View on GitHub">
+               class="lab-card-link terminal-github-link" data-cursor="↗ Open GitHub" aria-label="View on GitHub">
               ↗ GitHub
             </a>
           </div>
-          <h3 class="lab-card-title">
-            <a href="https://github.com/Derec58/portfolio2026"
-               target="_blank" rel="noopener noreferrer">
-              Portfolio Site
-            </a>
-          </h3>
-          <p class="lab-card-desc">
-            This portfolio is hand-written HTML, CSS, and JavaScript with no frameworks or build tools. Responsive two-panel layout, dark mode via CSS custom properties, vanilla JS scroll reveals and hover previews. Hosted on Vercel.
-          </p>
+          <div class="lab-card-split">
+            <div class="lab-card-info">
+              <h3 class="lab-card-title">
+                <a href="https://github.com/Derec58/portfolio2026"
+                   target="_blank" rel="noopener noreferrer">
+                  Portfolio Site
+                </a>
+              </h3>
+              <p class="lab-card-desc">
+                This portfolio is hand-written HTML, CSS, and JavaScript with no frameworks or build tools. Responsive two-panel layout, dark mode via CSS custom properties, vanilla JS scroll reveals and hover previews. Hosted on Vercel.
+              </p>
+            </div>
+            <div class="lab-card-terminal-body">
+              <span class="lab-card-meta">HTML &middot; CSS &middot; JS &middot; Vercel</span>
+              <div class="terminal-body">
+                <p class="terminal-line">
+                  <span class="terminal-prompt" aria-hidden="true">$</span>
+                  <span class="terminal-cmd">vercel --prod</span>
+                </p>
+                <p class="terminal-output">Deploying portfolio2026 to production...</p>
+                <p class="terminal-line--success">&#x2713; Deployed to portfolio2026-puce.vercel.app</p>
+              </div>
+            </div>
+          </div>
         </article>
 
       </div><!-- /.lab-grid -->
@@ -362,37 +393,33 @@
     <section id="after-hours" class="section-after-hours reveal">
       <div class="work-grid">
 
-        <article class="work-card">
+        <article class="work-card" data-cursor="→ View Case Study">
           <a href="projects/packpal.html">
-            <!-- ⚠️ TODO: Replace with <img src="..." alt="PackPal app mockup"> -->
-            <div class="work-card-image"><span>Project image</span></div>
+            <img src="images/home/packpal.jpg" alt="PackPal app mockup" class="work-card-image" loading="lazy">
           </a>
           <h3 class="work-card-title"><a href="projects/packpal.html">PackPal</a></h3>
           <p class="work-card-meta">Design Club &nbsp;·&nbsp; Most Customer-Centric</p>
         </article>
 
-        <article class="work-card">
+        <article class="work-card" data-cursor="→ View Case Study">
           <a href="projects/snapplant.html">
-            <!-- ⚠️ TODO: Replace with <img src="..." alt="SnapPlant app mockup"> -->
-            <div class="work-card-image"><span>Project image</span></div>
+            <img src="images/home/snapplant.jpg" alt="SnapPlant app mockup" class="work-card-image" loading="lazy">
           </a>
           <h3 class="work-card-title"><a href="projects/snapplant.html">SnapPlant</a></h3>
           <p class="work-card-meta">Coursework &nbsp;·&nbsp; UX Design</p>
         </article>
 
-        <article class="work-card">
+        <article class="work-card" data-cursor="→ View Case Study">
           <a href="projects/arc-redesign.html">
-            <!-- ⚠️ TODO: Replace with <img src="..." alt="ARC app redesign mockup"> -->
-            <div class="work-card-image"><span>Project image</span></div>
+            <img src="images/home/arc-redesign.jpg" alt="ARC app redesign mockup" class="work-card-image" loading="lazy">
           </a>
           <h3 class="work-card-title"><a href="projects/arc-redesign.html">ARC Redesign</a></h3>
           <p class="work-card-meta">Design Challenge &nbsp;·&nbsp; 5-Day Sprint</p>
         </article>
 
-        <article class="work-card">
+        <article class="work-card" data-cursor="→ View Case Study">
           <a href="projects/sonidos.html">
-            <!-- ⚠️ TODO: Replace with <img src="..." alt="Sonidos del Alma Danzante brand identity"> -->
-            <div class="work-card-image"><span>Project image</span></div>
+            <img src="images/home/sonidos.jpg" alt="Sonidos del Alma Danzante brand identity" class="work-card-image" loading="lazy">
           </a>
           <h3 class="work-card-title"><a href="projects/sonidos.html">Sonidos del Alma Danzante</a></h3>
           <p class="work-card-meta">Branding &nbsp;·&nbsp; Brand Identity</p>
@@ -409,7 +436,7 @@
          ─────────────────────────────────────────────────────────────────── -->
     <footer class="site-footer">
       <span>&copy; 2026 Dereck Villagrana. All rights reserved.</span>
-      <span>Designed + Vibe Coded by Dereck</span>
+      <span>Designed &amp; built by Dereck</span>
     </footer>
 
   </main><!-- /.content -->
@@ -420,7 +447,7 @@
        and download a fresh copy instead of serving a cached (stale) version.
        Update the number (?v=3, ?v=4...) any time you change main.js.
        ─────────────────────────────────────────────────────────────────────── -->
-  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"><span class="cursor-label"></span></div>
   <script src="js/main.js?v=3"></script>
 </body>
 </html>

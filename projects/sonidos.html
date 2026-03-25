@@ -23,6 +23,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <!-- ../css/style.css: one level up from projects/ to reach the root css/ folder -->
   <link rel="stylesheet" href="../css/style.css">
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -46,13 +47,16 @@
   <aside class="sidebar">
     <div class="sidebar-header">
         <div class="sidebar-top">
-      <a href="../index.html#about" class="logo-badge" aria-label="Home">DV</a>
+      <a href="../index.html#about" class="logo-badge" aria-label="Home">
+        <svg class="logo-img" viewBox="0 0 52 52" aria-hidden="true" focusable="false">
+          <text font-family="'Playfair Display', Georgia, serif" font-weight="700" font-style="italic" font-size="20" text-anchor="middle" dominant-baseline="central" x="26" y="26"><tspan class="logo-d">D</tspan><tspan class="logo-v">V</tspan></text>
+        </svg>
+      </a>
       <button class="theme-toggle" aria-label="Switch to dark mode"></button>
     </div>
 
         <nav aria-label="Site navigation" class="sidebar-nav">
       <a href="../about.html" class="nav-link">About</a>
-      <a href="../index.html#cv" class="nav-link">CV</a>
       <a href="../contact.html" class="nav-link">Contact</a>
       <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
     </nav>
@@ -102,54 +106,40 @@
          .cs-back: small text link back to the portfolio homepage. -->
     <a href="../index.html" class="cs-back">← Portfolio</a>
 
-    <!-- ─── Case Study Header ──────────────────────────────────────────────
-         .cs-header: project category label, main title, and subtitle.
-         No .cs-award — this was academic coursework with no competition award.
-         .reveal: fades in on scroll (IntersectionObserver in main.js). -->
-    <div class="cs-header reveal">
-      <!-- .project-meta: small muted label — category and origin context -->
-      <span class="project-meta">After Hours · Branding</span>
-      <!-- .project-title: large display-font headline -->
-      <h1 class="project-title">Sonidos del Alma Danzante</h1>
-      <!-- .cs-subtitle: one-to-two sentence context statement below the title.
-           Includes the English translation of the project name for clarity. -->
+    <div class="cs-header cs-header--1 reveal">
+      <span class="cs-eyebrow">After Hours &nbsp;&middot;&nbsp; Branding</span>
+      <h1 class="cs-title--1">Sonidos del Alma Danzante</h1>
       <p class="cs-subtitle">Sounds of the Dancing Souls: a full brand identity for a conceptual Cumbia music festival rooted in East Los Angeles, from naming and research through logo, brand system, and a Jarritos co-brand.</p>
     </div>
 
-    <!-- ─── Project Metadata Grid ──────────────────────────────────────────
-         .cs-meta-grid: flex-wrap row of .cs-meta-item cells showing timeline,
-         academic context (two courses), role, tools, and disciplines.
-         This project spanned two courses, hence two entries in Context. -->
-    <div class="cs-meta-grid reveal">
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Timeline</span>
-        <span class="cs-meta-value">Feb. – June 2023</span>
+    <div class="cs-meta-strip reveal">
+      <div class="cs-meta-strip-item">
+        <span class="cs-meta-strip-label">Timeline</span>
+        <span class="cs-meta-strip-value">Feb.&ndash;June 2023</span>
       </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Context</span>
-        <!-- <br> creates line breaks within the value cell -->
-        <span class="cs-meta-value">DES 116: Brand Identity<br>DES 144: Co-Branding<br>UC Davis</span>
+      <div class="cs-meta-strip-item">
+        <span class="cs-meta-strip-label">Context</span>
+        <span class="cs-meta-strip-value">DES 116 + DES 144, UC Davis</span>
       </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Role</span>
-        <span class="cs-meta-value">Solo Designer<br>Festival Director</span>
+      <div class="cs-meta-strip-item">
+        <span class="cs-meta-strip-label">Role</span>
+        <span class="cs-meta-strip-value">Solo Designer &middot; Festival Director</span>
       </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Tools</span>
-        <span class="cs-meta-value">Figma, InDesign<br>Adobe Illustrator<br>Adobe Photoshop</span>
-      </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Disciplines</span>
-        <span class="cs-meta-value">Branding<br>Graphic Design<br>Marketing<br>Event Planning</span>
+      <div class="cs-meta-strip-item">
+        <span class="cs-meta-strip-label">Tools</span>
+        <span class="cs-meta-strip-value">Figma, InDesign, Illustrator</span>
       </div>
     </div>
+
+    <!-- ⚠️ TODO: Replace with <img src="../images/sonidos-cover.jpg" alt="Sonidos del Alma Danzante hero" class="cs-cover"> -->
+    <div class="cs-cover-placeholder" aria-hidden="true"><span>Cover image</span></div>
 
     <!-- ─── Overview Paragraph ────────────────────────────────────────────
          .cs-overview: opening paragraph styled larger than body copy.
          Explains what Sonidos is, where it's set, its academic origin,
          and the personal connection to the project. -->
     <p class="cs-overview reveal">
-      Sonidos del Alma Danzante, "Sounds of the Dancing Souls," is a conceptual Cumbia music festival set in East Los Angeles. Built across two UC Davis courses, this project was a full brand identity from the ground up: naming, research, creative brief, logo, brand guidelines, marketing materials, merchandise, and a Jarritos co-brand. East Los Angeles is one of the most predominantly Latino communities in the country. Cumbia, born on Colombia's Caribbean coast and now deeply woven into Mexican and Latin American identity, felt like the right fit for the place and the people. This project was personal. I'm Mexican. I wanted to do it right.
+      Sonidos del Alma Danzante, "Sounds of the Dancing Souls," is a conceptual Cumbia music festival set in East Los Angeles. Built across two UC Davis courses, this project was a full brand identity from the ground up: naming, research, creative brief, logo, brand guidelines, marketing materials, merchandise, and a Jarritos co-brand. East Los Angeles is one of the most predominantly Latino communities in the country. Cumbia, born on Colombia's Caribbean coast and now deeply woven into Mexican and Latin American identity, felt like the right fit for the place and the people.
     </p>
 
     <!-- ─── Section Divider ────────────────────────────────────────────────
@@ -163,6 +153,7 @@
     <section class="cs-section reveal">
       <span class="cs-section-label">Finding the Cultural Foundation</span>
       <h2 class="cs-heading">Before sketching anything, I spent time understanding what Cumbia actually is.</h2>
+      <p class="cs-body cs-body--personal-note">This project was personal. I'm Mexican. I wanted to do it right.</p>
       <p class="cs-body">Not just surface-level. The real history. Cumbia originated on Colombia's Caribbean coast as an African courtship dance, blending African, Indigenous, and European influences over centuries. By the 1940s it had arrived in Mexico, evolving into distinct regional subgenres: cumbia sonidera, chicha, cumbia norteña, cumbia andina.</p>
       <p class="cs-body">I also looked at the demographic reality of the location. East Los Angeles is 96.7% Latino. Maywood is 96.4%. Boyle Heights is 94.0%. This wasn't a festival being parachuted into a neighborhood. It was meant to belong to it.</p>
       <p class="cs-body">Visual research included imagery from Mexican pottery, Aztec tiles, traditional dresses, musicians, dancers, and the visual language of East LA itself.</p>
@@ -269,7 +260,7 @@
        See index.html for full footer documentation. -->
   <footer class="site-footer">
     <span>&copy; 2026 Dereck Villagrana. All rights reserved.</span>
-    <span>Designed + Vibe Coded by Dereck</span>
+    <span>Designed &amp; built by Dereck</span>
   </footer>
 
   </main>
@@ -277,7 +268,7 @@
   <!-- ../js/main.js?v=2: the shared portfolio JS, one level up from projects/.
        ?v=2 is a cache buster — forces the browser to re-download the file
        when it's been updated, rather than serving a stale cached version. -->
-  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"><span class="cursor-label"></span></div>
   <script src="../js/main.js?v=3"></script>
 </body>
 </html>

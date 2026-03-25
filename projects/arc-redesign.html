@@ -21,6 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <!-- ../css/style.css: one level up from projects/ to reach the root css/ folder -->
   <link rel="stylesheet" href="../css/style.css">
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -44,13 +45,16 @@
   <aside class="sidebar">
     <div class="sidebar-header">
         <div class="sidebar-top">
-      <a href="../index.html#about" class="logo-badge" aria-label="Home">DV</a>
+      <a href="../index.html#about" class="logo-badge" aria-label="Home">
+        <svg class="logo-img" viewBox="0 0 52 52" aria-hidden="true" focusable="false">
+          <text font-family="'Playfair Display', Georgia, serif" font-weight="700" font-style="italic" font-size="20" text-anchor="middle" dominant-baseline="central" x="26" y="26"><tspan class="logo-d">D</tspan><tspan class="logo-v">V</tspan></text>
+        </svg>
+      </a>
       <button class="theme-toggle" aria-label="Switch to dark mode"></button>
     </div>
 
         <nav aria-label="Site navigation" class="sidebar-nav">
       <a href="../about.html" class="nav-link">About</a>
-      <a href="../index.html#cv" class="nav-link">CV</a>
       <a href="../contact.html" class="nav-link">Contact</a>
       <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
     </nav>
@@ -100,42 +104,33 @@
          .cs-back: small text link back to the portfolio homepage. -->
     <a href="../index.html" class="cs-back">← Portfolio</a>
 
-    <!-- ─── Case Study Header ──────────────────────────────────────────────
-         .cs-header: project category label, main title, and subtitle.
-         No .cs-award on this page — the "award" here is getting into the cohort,
-         which is explained in the Outcome section instead.
-         .reveal: fades in on scroll (IntersectionObserver in main.js). -->
-    <div class="cs-header reveal">
-      <!-- .project-meta: small muted label — category and context -->
-      <span class="project-meta">After Hours · Design Challenge</span>
-      <!-- .project-title: large display-font headline -->
-      <h1 class="project-title">UC Davis ARC Redesign</h1>
-      <!-- .cs-subtitle: one-to-two sentence context statement below the title -->
+    <div class="cs-header cs-header--1 reveal">
+      <span class="cs-eyebrow">After Hours &nbsp;&middot;&nbsp; Design Challenge</span>
+      <h1 class="cs-title--1">UC Davis ARC Redesign</h1>
       <p class="cs-subtitle">A 5-day design challenge to redesign the UC Davis Activities and Recreation Center app, improving accessibility, usability, and functionality. The sprint that got me into Design Interactive.</p>
     </div>
 
-    <!-- ─── Project Metadata Grid ──────────────────────────────────────────
-         .cs-meta-grid: flex-wrap row of .cs-meta-item cells showing
-         timeline, context (Design Interactive application), role, and tools. -->
-    <div class="cs-meta-grid reveal">
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Timeline</span>
-        <span class="cs-meta-value">5 days, April 2023</span>
+    <div class="cs-meta-strip reveal">
+      <div class="cs-meta-strip-item">
+        <span class="cs-meta-strip-label">Timeline</span>
+        <span class="cs-meta-strip-value">5 days, April 2023</span>
       </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Context</span>
-        <!-- <br> creates line breaks within the value cell -->
-        <span class="cs-meta-value">Design Interactive<br>Cohort Application</span>
+      <div class="cs-meta-strip-item">
+        <span class="cs-meta-strip-label">Context</span>
+        <span class="cs-meta-strip-value">Design Interactive Application</span>
       </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Role</span>
-        <span class="cs-meta-value">Solo Designer</span>
+      <div class="cs-meta-strip-item">
+        <span class="cs-meta-strip-label">Role</span>
+        <span class="cs-meta-strip-value">Solo Designer</span>
       </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Tools</span>
-        <span class="cs-meta-value">Figma<br>Adobe Illustrator</span>
+      <div class="cs-meta-strip-item">
+        <span class="cs-meta-strip-label">Tools</span>
+        <span class="cs-meta-strip-value">Figma, Adobe Illustrator</span>
       </div>
     </div>
+
+    <!-- ⚠️ TODO: Replace with <img src="../images/arc-cover.jpg" alt="ARC Redesign hero" class="cs-cover"> -->
+    <div class="cs-cover-placeholder" aria-hidden="true"><span>Cover image</span></div>
 
     <!-- ─── Overview Paragraph ────────────────────────────────────────────
          .cs-overview: opening paragraph styled larger than body copy.
@@ -241,7 +236,7 @@
        See index.html for full footer documentation. -->
   <footer class="site-footer">
     <span>&copy; 2026 Dereck Villagrana. All rights reserved.</span>
-    <span>Designed + Vibe Coded by Dereck</span>
+    <span>Designed &amp; built by Dereck</span>
   </footer>
 
   </main>
@@ -249,7 +244,7 @@
   <!-- ../js/main.js?v=2: the shared portfolio JS, one level up from projects/.
        ?v=2 is a cache buster — forces the browser to re-download the file
        when it's been updated, rather than serving a stale cached version. -->
-  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"><span class="cursor-label"></span></div>
   <script src="../js/main.js?v=3"></script>
 </body>
 </html>

@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -24,13 +25,12 @@
     <div class="sidebar-header">
       <div class="sidebar-top">
         <a href="index.html" class="logo-badge" aria-label="Home">DV</a>
-        <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+        <button class="theme-toggle" aria-label="Switch to dark mode" data-cursor="◑ Toggle Theme"></button>
       </div>
 
       <nav aria-label="Site navigation" class="sidebar-nav">
-        <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+        <button class="theme-toggle" aria-label="Switch to dark mode" data-cursor="◑ Toggle Theme"></button>
         <a href="about.html" class="nav-link">About</a>
-        <a href="index.html#cv" class="nav-link">CV</a>
         <a href="contact.html" class="nav-link active" aria-current="page">Contact</a>
         <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
       </nav>
@@ -70,11 +70,11 @@
     <a href="index.html" class="cs-back">← Portfolio</a>
 
     <div class="cs-header cs-header--no-border reveal">
-      <span class="project-meta">00 | Contact</span>
+      <span class="project-meta">Contact</span>
       <h1 class="project-title">Let's talk.</h1>
     </div>
 
-    <div class="section-divider"><span>Reach out</span></div>
+    <div class="section-divider"><h2>Reach out</h2></div>
 
     <section class="cs-section reveal">
       <div class="contact-body">
@@ -86,35 +86,35 @@
 
         <div class="contact-channels">
 
-        <a href="mailto:dereck.villagrana58@gmail.com" class="contact-channel-item">
-          <span class="contact-channel-platform">Email</span>
-          <span class="contact-channel-desc">Best way to reach me directly</span>
-          <span class="contact-channel-arrow">→</span>
+        <a href="mailto:dereck.villagrana58@gmail.com" class="contact-row">
+          <span class="contact-row-platform">Email</span>
+          <span class="contact-row-desc">Best way to reach me directly</span>
+          <span class="contact-row-arrow">→</span>
         </a>
 
-        <a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer" class="contact-channel-item">
-          <span class="contact-channel-platform">LinkedIn</span>
-          <span class="contact-channel-desc">Professional profile and work history</span>
-          <span class="contact-channel-arrow">↗</span>
+        <a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer" class="contact-row" data-cursor="↗ Go to LinkedIn">
+          <span class="contact-row-platform">LinkedIn</span>
+          <span class="contact-row-desc">Professional profile and work history</span>
+          <span class="contact-row-arrow">↗</span>
         </a>
 
-        <a href="https://github.com/Derec58" target="_blank" rel="noopener noreferrer" class="contact-channel-item">
-          <span class="contact-channel-platform">GitHub</span>
-          <span class="contact-channel-desc">Code, side projects, and this portfolio</span>
-          <span class="contact-channel-arrow">↗</span>
+        <a href="https://github.com/Derec58" target="_blank" rel="noopener noreferrer" class="contact-row" data-cursor="↗ Go to GitHub">
+          <span class="contact-row-platform">GitHub</span>
+          <span class="contact-row-desc">Code, side projects, and this portfolio</span>
+          <span class="contact-row-arrow">↗</span>
         </a>
 
-        <a href="https://devpost.com/dereck-villagrana" target="_blank" rel="noopener noreferrer" class="contact-channel-item">
-          <span class="contact-channel-platform">Devpost</span>
-          <span class="contact-channel-desc">Hackathon projects and builds</span>
-          <span class="contact-channel-arrow">↗</span>
+        <a href="https://devpost.com/dereck-villagrana" target="_blank" rel="noopener noreferrer" class="contact-row" data-cursor="↗ Go to Devpost">
+          <span class="contact-row-platform">Devpost</span>
+          <span class="contact-row-desc">Hackathon projects and builds</span>
+          <span class="contact-row-arrow">↗</span>
         </a>
 
-        <a href="#" class="contact-channel-item">
-          <span class="contact-channel-platform">Resume</span>
-          <span class="contact-channel-desc">Download my resume</span>
-          <span class="contact-channel-arrow">↓</span>
-        </a>
+        <span class="contact-row contact-row--disabled" data-cursor="Coming soon" aria-label="Resume — coming soon">
+          <span class="contact-row-platform">Resume</span>
+          <span class="contact-row-desc">Coming soon</span>
+          <span class="contact-row-arrow">↓</span>
+        </span>
 
         </div>
 
@@ -123,12 +123,12 @@
 
     <footer class="site-footer">
       <span>&copy; 2026 Dereck Villagrana. All rights reserved.</span>
-      <span>Designed + Vibe Coded by Dereck</span>
+      <span>Designed &amp; built by Dereck</span>
     </footer>
 
   </main>
 
-  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"><span class="cursor-label"></span></div>
   <script src="js/main.js?v=3"></script>
 </body>
 </html>
