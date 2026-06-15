@@ -1,6 +1,6 @@
 # Dereck Villagrana — Portfolio
 
-**Live site:** [portfolio2026-puce.vercel.app](https://portfolio2026-puce.vercel.app) &nbsp;·&nbsp; **Repo:** [github.com/Derec58/portfolio2026](https://github.com/Derec58/portfolio2026)
+**Live site:** [dereckvilla.design](https://dereckvilla.design) &nbsp;·&nbsp; **Repo:** [github.com/Derec58/portfolio2026](https://github.com/Derec58/portfolio2026)
 
 For a while, Webflow and Framer felt like the answer. Everyone was using them, the templates were right there, and they did make designing easier. But those sites never felt like mine. Between the size limits, image limits, and design constraints baked into every template, I kept building nothing but a shell of what I actually wanted. I learned HTML and CSS back in high school, kept at it through university at UC Davis, and over the years I've been around enough talented people — designers, engineers, people with sites and projects that genuinely inspired me — that I knew what I wanted this to feel like. So I coded it. If I can design something, I should be able to build it. That's the point.
 
@@ -9,7 +9,8 @@ For a while, Webflow and Framer felt like the answer. Everyone was using them, t
 ## Stack
 
 - HTML / CSS / JavaScript — no frameworks, no build tools
-- No Webflow, no Framer, no npm
+- No Webflow, no Framer, no frontend framework
+- [`@vercel/analytics`](https://vercel.com/docs/analytics) — the only npm dependency (page-view tracking, injected by Vercel)
 - Hosted on [Vercel](https://vercel.com) (static), source on GitHub
 
 ---
@@ -32,13 +33,14 @@ Open [http://127.0.0.1:3002](http://127.0.0.1:3002) in your browser.
 
 ```
 portfolio2026/
-├── index.html              # Homepage — about, CV, selected work
+├── index.html              # Homepage — bio, CV, selected work, lab
 ├── about.html              # Extended about page
+├── contact.html            # Contact page
 ├── css/
-│   └── style.css           # All styles — layout, themes, components, breakpoints
+│   └── style.css           # All styles — layout, tokens, components, breakpoints
 ├── js/
 │   └── main.js             # Scroll reveals, hover previews, dark mode, back-to-top
-├── projects/
+├── projects/               # Case study pages (7 total)
 │   ├── bereal-redesign.html
 │   ├── verum-ai.html
 │   ├── bsa-homepage.html
@@ -46,8 +48,17 @@ portfolio2026/
 │   ├── snapplant.html
 │   ├── arc-redesign.html
 │   └── sonidos.html
-└── images/
-    └── previews/           # Thumbnail images for sidebar hover previews
+├── images/
+│   ├── home/               # Project card and After Hours images
+│   ├── previews/           # Thumbnail images for sidebar hover previews
+│   ├── about/              # Portrait photo
+│   ├── logos/site/         # DV monogram SVGs + OG share images
+│   └── projects/           # Case study images (one subfolder per project)
+└── docs/
+    ├── ARCHITECTURE.md     # Layout system, JS features, responsive strategy
+    ├── COMPONENTS.md       # UI component reference with HTML/CSS patterns
+    ├── GLOSSARY.md         # HTML/CSS/JS term definitions
+    └── case-study-content/ # Source markdown for case study copy
 ```
 
 ---

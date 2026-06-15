@@ -29,8 +29,10 @@
      24. Prefers Reduced Motion
      25. Case Study Pages
      26. About Page
-     27. Copyright Footer
-     28. Back to Top Button
+     27. Contact Page
+     28. Copyright Footer
+     29. Back to Top Button
+     30. Custom Dot Cursor
    ═══════════════════════════════════════════════════════════════ */
 
 
@@ -99,7 +101,7 @@ a {
   --color-accent: #7B5EA7;      /* Purple — used for links, active states, focus rings, borders */
   --color-divider: #e5e5e5;     /* Borders, section lines, horizontal rules */
   --color-status: #4ade80;      /* Green — the "Available for work" dot */
-  --color-grid-line: rgba(0, 0, 0, 0.04); /* Graph paper grid lines — light mode */
+  --color-grid-line: rgba(0, 0, 0, 0.03); /* Graph paper grid lines — light mode */
 
   /* ── Terminal card colors ── */
   --color-terminal-red:    #FF5F56;
@@ -2806,7 +2808,7 @@ img.work-card-image {
 
 
 /* ═══════════════════════════════════════════════════════════════
-   29. CUSTOM DOT CURSOR
+   30. CUSTOM DOT CURSOR
    A small purple dot that follows the mouse pointer sitewide.
    Created in HTML (<div class="cursor-dot">) and animated via JS.
    Hidden on touch devices (pointer: coarse).
