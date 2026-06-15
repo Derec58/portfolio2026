@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 20" height="20">
+  <text
+    font-family="Inter, -apple-system, 'Segoe UI', sans-serif"
+    font-weight="500"
+    font-size="17"
+    letter-spacing="-0.5"
+    y="15"
+  >
+    <tspan fill="#32404F">D</tspan><tspan fill="#7B5EA7">V</tspan>
+  </text>
+</svg>

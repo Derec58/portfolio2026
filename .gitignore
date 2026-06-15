@@ -16,3 +16,8 @@ node_modules/
 .env.*
 .env.local
 .env.*.local
+
+# Internal project documentation (dev notes, not public assets)
+HANDOFF.md
+docs/
+images/IMAGES.md
