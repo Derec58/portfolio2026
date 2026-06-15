@@ -67,7 +67,7 @@ body {
   color: var(--color-text);
   line-height: 1.6;
   display: flex; /* sidebar + main content sit side by side */
-  min-height: 100vh; /* page fills the full viewport height minimum */
+  min-height: 100dvh; /* dvh = dynamic viewport height — accounts for mobile browser chrome */
 }
 
 /* Remove default link styling — links inherit their context's color and have no underline.
@@ -96,12 +96,12 @@ a {
   --color-bg: #FAFCFD;          /* Sidebar and page background */
   --color-surface: #f1f4f6;    /* Cards and component backgrounds */
   --color-text: #32404F;        /* Primary text color */
-  --color-muted: #6B6B6B;       /* Secondary/caption text — 4.83:1 on surface (#f1f4f6), 5.18:1 on bg (#FAFCFD).
-                                   Darkened from #767676 which failed AA on surface at 4.11:1. ⚠️ Do not lighten. */
+  --color-muted: #5f5f5f;       /* Secondary/caption text — 5.79:1 on surface (#f1f4f6), 6.22:1 on bg (#FAFCFD).
+                                   Darkened from #767676 → #6B6B6B → #5f5f5f for comfortable AA margin. ⚠️ Do not lighten. */
   --color-accent: #7B5EA7;      /* Purple — used for links, active states, focus rings, borders */
   --color-divider: #e5e5e5;     /* Borders, section lines, horizontal rules */
   --color-status: #4ade80;      /* Green — the "Available for work" dot */
-  --color-grid-line: rgba(0, 0, 0, 0.03); /* Graph paper grid lines — light mode */
+  --color-grid-line: rgba(0, 0, 0, 0.0225); /* Graph paper grid lines — light mode */
 
   /* ── Terminal card colors ── */
   --color-terminal-red:    #FF5F56;
@@ -122,8 +122,8 @@ a {
   --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
 
   /* ── Easing ── */
-  /* Spring easing: slightly overshoots before settling — gives interactive elements life */
-  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  /* Snap easing: fast out, no overshoot — snappy hover feel without elastic bounce */
+  --ease-spring: cubic-bezier(.22, 1, .36, 1);
 
   /* ── Category Tag Colors ── */
   --tag-design-bg:     rgba(123, 94, 167, 0.08);
@@ -161,7 +161,7 @@ a {
   --color-placeholder: #212121;
   --color-placeholder-text: #3d3d3d;
   --color-placeholder-hover: #2d2d2d;
-  --color-grid-line: rgba(255, 255, 255, 0.03); /* Graph paper grid lines — dark mode */
+  --color-grid-line: rgba(255, 255, 255, 0.0225); /* Graph paper grid lines — dark mode */
   --color-terminal-header-bg: #1f1f1f;
   --color-terminal-border: #2a2a2a;
   /* Note: --color-status and --font-display are intentionally not overridden */
@@ -207,7 +207,7 @@ a {
   top: 0;
   left: 0;
   width: var(--sidebar-width); /* 220px */
-  height: 100vh;               /* full viewport height */
+  height: 100dvh;              /* dvh = dynamic viewport height */
   overflow-y: auto;            /* scroll if nav items exceed viewport height */
   padding: var(--sidebar-padding); /* 28px on all sides */
   display: flex;
@@ -503,7 +503,7 @@ img {
   position: relative;
   isolation: isolate;
   background: var(--color-bg); /* white page — cards use --color-surface for contrast */
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .content::before {
@@ -563,6 +563,7 @@ img {
   letter-spacing: -0.02em;
   color: var(--color-text);
   margin-bottom: 24px;
+  text-wrap: balance;
 }
 
 /* Italic + accent color on the emphasis word — no background box */
@@ -624,17 +625,6 @@ img {
   text-align: right;
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   13. CV / EXPERIENCE SECTION
-   Hidden — experience is now in the hero grid (section 12).
-   Keeping these classes in case they're needed for the about page
-   or future use.
-   ═══════════════════════════════════════════════════════════════ */
-
-.section-cv {
-  display: none; /* replaced by the experience table in the hero-grid */
-}
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -925,11 +915,11 @@ img.work-card-image {
   gap: 48px;
   align-items: center;
   padding: 48px 0;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-divider);
 }
 
 .work-editorial-item:first-child {
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-divider);
 }
 
 .work-editorial-item--featured {
@@ -1287,13 +1277,19 @@ img.work-card-image {
    JavaScript (IntersectionObserver) adds the "revealed" class.
    ═══════════════════════════════════════════════════════════════ */
 
-/* Starting state: invisible and shifted 24px below final position */
+/* Reveal transition — always present so the animation is smooth when it runs */
 .reveal {
-  opacity: 0;
-  transform: translateY(24px); /* translateY moves element down without affecting layout */
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
-/* Revealed state: fully visible at normal position */
+/* Starting state: invisible and shifted down. Only applied when JS/scripting is
+   available — ensures content is visible in headless renderers and no-JS contexts. */
+@media (scripting: enabled) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+/* Revealed state: JS adds this class via IntersectionObserver */
 .reveal.revealed {
   opacity: 1;
   transform: translateY(0);
@@ -1822,8 +1818,10 @@ img.work-card-image {
   font-size: 3.25rem;
   font-weight: 700;
   line-height: 1.1;
+  letter-spacing: -0.02em;
   color: var(--color-text);
   margin-bottom: 14px;
+  text-wrap: balance;
 }
 .cs-meta-strip {
   display: flex;
@@ -1880,12 +1878,13 @@ img.work-card-image {
 /* Opening paragraph — wider type, full text color for prominence */
 .cs-overview {
   font-size: 1rem;
-  line-height: 1.85; /* generous line height for long-form reading */
-  color: var(--color-text); /* full text color, not muted */
+  line-height: 1.85;
+  color: var(--color-text);
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 64px;
+  text-wrap: pretty;
 }
 
 /* Full-width horizontal rule between major sections */
@@ -1926,17 +1925,19 @@ img.work-card-image {
   margin-right: auto;
   color: var(--color-text);
   max-width: 800px; /* constrained for readability */
+  text-wrap: balance;
 }
 
 /* Body copy — the workhorse paragraph style for case studies */
 .cs-body {
   font-size: 1rem;
-  line-height: 1.85; /* generous — long paragraphs need breathing room */
-  color: var(--color-muted); /* muted, not primary — headings carry the hierarchy */
+  line-height: 1.85;
+  color: var(--color-muted);
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
+  text-wrap: pretty;
 }
 /* Second paragraph in a two-paragraph block needs top spacing (about page) */
 .cs-body--spaced {
@@ -1961,7 +1962,7 @@ img.work-card-image {
 .cs-image {
   width: 100%;
   aspect-ratio: 16 / 9; /* default: widescreen */
-  background: #f4f4f4;  /* hardcoded rather than var() — intentionally static placeholder */
+  background: var(--color-placeholder);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1978,8 +1979,8 @@ img.work-card-image {
 }
 /* Dark mode: swap to a darker placeholder */
 [data-theme="dark"] .cs-image {
-  background: #212121;
-  color: #3d3d3d;
+  background: var(--color-placeholder);
+  color: var(--color-placeholder-text);
 }
 
 /* Caption text below images */
@@ -2095,12 +2096,12 @@ img.work-card-image {
   gap: 4px;
 }
 .cs-stat {
-  font-family: var(--font-display); /* display font for the large number */
-  /* clamp: min 1.6rem, scales, max 2.2rem */
+  font-family: var(--font-display);
   font-size: clamp(1.6rem, 3vw, 2.2rem);
-  color: var(--color-accent); /* accent color makes stats visually prominent */
-  font-weight: 700; /* bold for the stat number specifically */
+  color: var(--color-accent);
+  font-weight: 700;
   line-height: 1.1;
+  font-variant-numeric: tabular-nums;
 }
 .cs-stat-label {
   font-size: 0.8rem;
@@ -2581,9 +2582,6 @@ img.work-card-image {
 
 /* Sidelines mobile: collapse to single column, remove center divider */
 @media (max-width: 768px) {
-  .about-education-grid {
-    grid-template-columns: 1fr;
-  }
   .about-now-grid {
     grid-template-columns: 1fr; /* one card per row */
     gap: 12px;
