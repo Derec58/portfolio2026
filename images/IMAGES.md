@@ -1,4 +1,4 @@
-# Images Reference Guide
+6# Images Reference Guide
 Portfolio site — Dereck Villagrana
 
 Drop your images into the folders below using the exact filenames listed.
@@ -9,16 +9,16 @@ when the HTML is updated to reference it.
 
 ## Recommended Formats & Dimensions
 
-| Slot type | Format | Recommended size |
-|-----------|--------|-----------------|
-| Project cards (homepage) | JPG | 1200×675px (16:9) |
-| After Hours grid | JPG | 900×600px (3:2) |
-| Preview thumbnails (hover card) | JPG | 600×338px (16:9) |
-| Portrait (about page) | JPG | 800×1067px (3:4) |
-| Case study full-width images | JPG | 1600×900px (16:9) |
-| Case study tall images | JPG | 1200×1600px (3:4) |
-| Logos | PNG (transparent) | 400×400px min |
-| Favicon | ICO / PNG | 32×32px + 180×180px |
+| Slot type | Format | Aspect ratio | Recommended size |
+|-----------|--------|-------------|-----------------|
+| Homepage editorial images | JPG | 16:9 | 1200×675px |
+| After Hours grid | JPG | 16:9 | 900×506px |
+| Preview thumbnails (sidebar hover) | JPG | 16:9 | 320×180px |
+| Portrait (about page) | JPG | 3:4 desktop / 4:3 mobile | 800×1067px |
+| Case study full-width images | JPG | 16:9 | 1200×675px |
+| Case study tall images | JPG | 4:3 | 920×690px |
+| Logos | PNG (transparent) | square | 400×400px min |
+| Favicon | ICO / PNG | square | 32×32px + 180×180px |
 
 ---
 
@@ -51,7 +51,7 @@ Used in the **sidebar hover preview** — appears when hovering project nav link
 Keep these small (600×338px, ~100KB) for fast loading.
 
 ```
-bereal-redesign.jpg     ← BeReal Redesign preview thumbnail
+bereal-redesign.jpg    ← BeReal Redesign preview thumbnail
 verum-ai.jpg            ← Verum AI preview thumbnail
 bsa-homepage.jpg        ← Body Sculpture Aesthetics preview thumbnail
 packpal.jpg             ← PackPal preview thumbnail

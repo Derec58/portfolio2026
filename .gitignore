@@ -10,3 +10,9 @@
 
 # Node
 node_modules/
+
+# Environment variables
+.env
+.env.*
+.env.local
+.env.*.local
