@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="About Dereck Villagrana: designer, builder, and tech enthusiast. UC Davis B.S. in Design. Available for product design roles.">
+  <meta name="description" content="About Dereck Villagrana: a product designer who ships what he designs. UC Davis B.S. in Design. Open to UX/UI design and IT support roles in the Central Valley and Bay Area.">
   <meta property="og:title" content="About | Dereck Villagrana">
-  <meta property="og:description" content="Designer, builder, and tech enthusiast. UC Davis B.S. in Design. Currently open to full-time product design roles.">
+  <meta property="og:description" content="A product designer who ships what he designs. UC Davis B.S. in Design. Open to UX/UI design and IT support roles in the Central Valley and Bay Area.">
   <meta property="og:url" content="https://dereckvilla.design/about.html">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary">
@@ -87,20 +87,25 @@
   <!-- Main content: the scrollable right panel (sidebar offset handled by CSS) -->
   <main class="content" id="main-content">
 
-    <!-- ─── Hero: Bio + Portrait ─────────────────────────────────────────
-         .about-hero: two-column flex layout — text (left 55%) + photo (right).
+    <!-- ─── Hero: Position + Bio + Photo/Facts ───────────────────────────
+         .about-hero: two-column flex layout — text (left 55%) + side column
+         (right 45%): framed portrait stacked above a compact "Currently"
+         facts card. .hero-photo-frame / .hero-photo-placeholder are reused
+         as-is from the homepage hero (same accent-offset border, same
+         16:9 landscape placeholder) — no new photo-frame CSS needed.
          .reveal: fades in when scrolled into view (IntersectionObserver in main.js).
-         On mobile: stacks vertically, photo switches to 4:3 landscape ratio.
+         On mobile: stacks vertically; side column goes full-width below text.
          ─────────────────────────────────────────────────────────────────── -->
     <a href="index.html" class="cs-back">← Portfolio</a>
 
     <div class="about-hero reveal">
-      <!-- Left column: name label + extended bio paragraphs -->
+      <!-- Left column: name label + positioning headline + extended bio -->
       <div class="about-hero-text">
         <!-- .about-name: small muted "Name — Title" label above the bio -->
         <p class="about-name">Dereck Villagrana, Product Designer</p>
-        <!-- .about-positioning: one-line value proposition between label and display bio -->
-        <h1 class="about-positioning">About me.</h1>
+        <!-- .about-positioning: the value-proposition headline — the most
+             important sentence on the page, not a greeting. -->
+        <h1 class="about-positioning">Product designer who ships what he designs, with research, prototyping, and just enough code to follow through.</h1>
         <!-- .about-bio: display font (Playfair), fluid size, multiple paragraphs -->
         <div class="about-bio">
           <p>I’m a product designer who builds what I design. I started in computer engineering, moved through graphic design, and ended up at the intersection of both — design thinking with enough code to follow through on it.</p>
@@ -108,48 +113,116 @@
           <p>For a while I thought I had to pick one. Turns out I didn’t. The path I landed on lets me use all of it, and I’m still finding new ways to pull them together.</p>
         </div>
       </div>
-      <!-- Right column: portrait photo placeholder.
-           aria-hidden="true": the photo is decorative context — screen readers
-           don't need to announce a portrait to understand the about page.
-           ⚠️ TODO: Replace with <img src="..." alt="Dereck Villagrana, product designer"> -->
-      <div class="about-photo" aria-hidden="true">
-        <span>Portrait</span>
+      <!-- Right column: framed portrait placeholder + compact facts card -->
+      <div class="about-hero-side">
+        <!-- aria-hidden="true": the photo is decorative context — screen readers
+             don't need to announce a portrait to understand the about page.
+             ⚠️ TODO: Replace with <img src="..." alt="Dereck Villagrana, product designer"> -->
+        <div class="hero-photo-frame">
+          <div class="hero-photo-placeholder" aria-hidden="true">
+            <span>Portrait</span>
+          </div>
+        </div>
+        <!-- Compact "Currently" card — replaces the old 3-card .about-now-grid,
+             same label/value text styles, tighter row layout to fit beside the photo. -->
+        <div class="about-hero-facts">
+          <p class="about-tool-category">Currently</p>
+          <div class="about-hero-fact">
+            <p class="about-now-label">Seeking</p>
+            <p class="about-now-value">Entry-level UX/UI Designer, IT Help Desk, or office/admin tech roles. On-site, hybrid, or remote, in the Central Valley or Bay Area.</p>
+          </div>
+          <div class="about-hero-fact">
+            <p class="about-now-label">Building</p>
+            <p class="about-now-value">This portfolio. Hand-coded HTML, CSS, and JS. No Webflow, no Framer.</p>
+          </div>
+          <div class="about-hero-fact">
+            <p class="about-now-label">Open to</p>
+            <p class="about-now-value">Introductions, coffee chats, and honest conversations about design work.</p>
+          </div>
+        </div>
       </div>
     </div><!-- /.about-hero -->
 
-    <!-- ─── Now Section ───────────────────────────────────────────────────
-         What Dereck is currently seeking / building / open to.
-         .about-now-grid: 3-column card grid (collapses to 1 on mobile).
+    <!-- ─── Anchor: Quick Stats ────────────────────────────────────────────
+         Deliberately has no section-divider/heading — a single bold,
+         full-width moment right after the hero, breaking up the otherwise
+         uniform section rhythm below. Reuses .cs-stats-row verbatim from
+         the case-study component family — no new CSS.
          ─────────────────────────────────────────────────────────────────── -->
-
-    <div class="section-divider"><h2>Currently</h2></div>
-
-    <!-- .cs-section is shared with case study pages — it just provides margin-bottom -->
     <section class="cs-section reveal">
-      <div class="about-now-grid">
-        <div class="about-now-card">
-          <p class="about-now-label">Seeking</p>
-          <p class="about-now-value">Full-time product design or related roles. Large team, hard problems, fast enough to matter.</p>
+      <div class="cs-stats-row">
+        <div class="cs-stat-item">
+          <span class="cs-stat">3</span>
+          <span class="cs-stat-label">Years designing</span>
         </div>
-        <div class="about-now-card">
-          <p class="about-now-label">Building</p>
-          <p class="about-now-value">This portfolio. Hand-coded HTML, CSS, and JS. No Webflow, no Framer.</p>
+        <div class="cs-stat-item">
+          <span class="cs-stat">3</span>
+          <span class="cs-stat-label">Case studies shipped</span>
         </div>
-        <div class="about-now-card">
-          <p class="about-now-label">Open to</p>
-          <p class="about-now-value">Introductions, coffee chats, and honest conversations about design work.</p>
+        <div class="cs-stat-item">
+          <span class="cs-stat">6</span>
+          <span class="cs-stat-label">Years writing code</span>
+        </div>
+        <div class="cs-stat-item">
+          <span class="cs-stat">1</span>
+          <span class="cs-stat-label">Client product shipped</span>
         </div>
       </div>
     </section>
 
-    <!-- ─── Background Section ────────────────────────────────────────────
-         Path into design and influences.
+    <!-- ─── Tools Section ─────────────────────────────────────────────────
+         Moved up right after the stats anchor — skills/proof before
+         personal narrative, so recruiters scanning don't have to scroll
+         past Background to find this.
+         .about-tools: 2-column grid organized by tool category.
          ─────────────────────────────────────────────────────────────────── -->
-    <div class="section-divider"><h2>Background</h2></div>
+    <div class="section-divider"><h2>Tools</h2></div>
+
     <section class="cs-section reveal">
-      <p class="cs-body">UI/UX wasn't where I started. I came in through computer engineering, taking HTML, CSS, Python, and C++ in high school, at De Anza College, and eventually at UC Davis. Somewhere in those courses I figured out that I enjoyed building things but didn't want to make engineering a career. It was a hobby, and I was honest with myself about that. In between CS coursework I was taking design classes to fill credits, and it clicked in a way the other stuff didn't. I already had Adobe experience from photography classes in high school, which put me ahead in graphic design. Logos, posters, layouts: I loved all of it and wanted to keep going.</p>
-      <p class="cs-body cs-body--spaced">So I changed my major, landed in graphic design, transferred to UC Davis, and then discovered UI/UX almost by accident. I needed credits. Davis had a course. I took it. And that was it. UI/UX was the intersection I'd been circling: design, systematic thinking, and just enough code to matter. Somewhere in there I realized that good design and good engineering ask the same first question: what actually needs to be true here?</p>
-      <p class="cs-body cs-body--spaced">Photography and coding taught me timing, patience, and precision. How something unfolds matters as much as where it ends up. Design taught me that constraints aren't blockers; they're the problem. Both still show up in how I work.</p>
+      <div class="about-tools">
+        <!-- Each <div> is one tool category column -->
+        <div>
+          <p class="about-tool-category">Design</p>
+          <div class="about-tool-list">
+            <span class="about-tool-pill about-tool-pill--design">Figma</span>
+            <span class="about-tool-pill about-tool-pill--design">ProtoPie</span>
+            <span class="about-tool-pill about-tool-pill--design">Adobe Creative Suite</span>
+            <span class="about-tool-pill about-tool-pill--design">Framer</span>
+            <span class="about-tool-pill about-tool-pill--design">Webflow</span>
+          </div>
+        </div>
+        <div>
+          <p class="about-tool-category">Development</p>
+          <div class="about-tool-list">
+            <span class="about-tool-pill about-tool-pill--code">HTML / CSS / JS</span>
+            <span class="about-tool-pill about-tool-pill--code">Python</span>
+            <span class="about-tool-pill about-tool-pill--code">C++</span>
+            <span class="about-tool-pill about-tool-pill--code">Visual Studio Code</span>
+          </div>
+        </div>
+        <div>
+          <p class="about-tool-category">AI Tools</p>
+          <div class="about-tool-list">
+            <span class="about-tool-pill about-tool-pill--ai">ChatGPT</span>
+            <span class="about-tool-pill about-tool-pill--ai">Claude</span>
+            <span class="about-tool-pill about-tool-pill--ai">Perplexity</span>
+          </div>
+        </div>
+        <div>
+          <p class="about-tool-category">Research</p>
+          <div class="about-tool-list">
+            <span class="about-tool-pill about-tool-pill--research">Usability Testing</span>
+            <span class="about-tool-pill about-tool-pill--research">User Interviews</span>
+          </div>
+        </div>
+        <div>
+          <p class="about-tool-category">Productivity</p>
+          <div class="about-tool-list">
+            <span class="about-tool-pill about-tool-pill--other">Notion</span>
+            <span class="about-tool-pill about-tool-pill--other">Google Suite</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ─── Experience Section ────────────────────────────────────────────
@@ -188,7 +261,9 @@
     </section>
 
     <!-- ─── Education Section ────────────────────────────────────────────
-         Numbered rows matching the work-item 01/02 pattern.
+         Numbered rows matching the work-item 01/02 pattern, plus a
+         certifications block reusing the Tools section's category-label
+         + pill components (no new CSS beyond a margin-top wrapper).
          ─────────────────────────────────────────────────────────────────── -->
     <div class="section-divider"><h2>Education</h2></div>
 
@@ -211,6 +286,26 @@
           <span class="edu-year">2019–21</span>
         </div>
       </div>
+      <div class="about-certs">
+        <p class="about-tool-category">Certifications</p>
+        <div class="about-tool-list">
+          <span class="about-tool-pill about-tool-pill--design">Google UX Design Specialization &nbsp;&middot;&nbsp; Sep. 2024</span>
+          <span class="about-tool-pill about-tool-pill--code">CompTIA A+ &nbsp;&middot;&nbsp; In Progress</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Background Section ────────────────────────────────────────────
+         Path into design and influences. Moved later in the order — by the
+         time a visitor reaches this, Tools/Experience/Education have
+         already established credibility, so the personal story builds on
+         trust instead of being asked to create it from a standing start.
+         ─────────────────────────────────────────────────────────────────── -->
+    <div class="section-divider"><h2>Background</h2></div>
+    <section class="cs-section reveal">
+      <p class="cs-body">UI/UX wasn't where I started. I came in through computer engineering, taking HTML, CSS, Python, and C++ in high school, at De Anza College, and eventually at UC Davis. Somewhere in those courses I figured out that I enjoyed building things but didn't want to make engineering a career. It was a hobby, and I was honest with myself about that. In between CS coursework I was taking design classes to fill credits, and it clicked in a way the other stuff didn't. I already had Adobe experience from photography classes in high school, which put me ahead in graphic design. Logos, posters, layouts: I loved all of it and wanted to keep going.</p>
+      <p class="cs-body cs-body--spaced">So I changed my major, landed in graphic design, transferred to UC Davis, and then discovered UI/UX almost by accident. I needed credits. Davis had a course. I took it. And that was it. UI/UX was the intersection I'd been circling: design, systematic thinking, and just enough code to matter. Somewhere in there I realized that good design and good engineering ask the same first question: what actually needs to be true here?</p>
+      <p class="cs-body cs-body--spaced">Photography and coding taught me timing, patience, and precision. How something unfolds matters as much as where it ends up. Design taught me that constraints aren't blockers; they're the problem. Both still show up in how I work.</p>
     </section>
 
     <!-- ─── Philosophy Section ────────────────────────────────────────────
@@ -223,62 +318,11 @@
       <p class="about-pull-quote">"The best designs go unnoticed. The best feedback I've ever received was someone saying the fix was so obvious they hadn't even noticed it."</p>
       <!-- .about-principles: unstyled list; CSS adds em-dash via li::before -->
       <ul class="about-principles">
-        <li>People, not users. Design requires empathy for real emotions, behaviors, and tasks, not just abstract requirements.</li>
-        <li>Constraints are assets. A tight brief forces a sharper idea.</li>
-        <li>It's all in the details. Spacing, typography, microcopy: every element should be thoughtfully crafted.</li>
-        <li>Hidden gems. Subtle interactions, playful animations, and clever copy can make the difference between a good experience and a memorable one.</li>
+        <li>People, not users. Behind every flow is someone with a real task and a bad day: design for that, not a persona doc.</li>
+        <li>Constraints are the brief. A tight deadline or a messy dataset isn't a blocker. It's the actual design problem.</li>
+        <li>Details carry the weight. Spacing, copy, and timing are where craft either shows or doesn't.</li>
+        <li>Small moments matter. A transition timed right, or a sentence that doesn't sound corporate, is what people remember.</li>
       </ul>
-    </section>
-
-    <!-- ─── Tools Section ─────────────────────────────────────────────────
-         .about-tools: 2-column grid organized by tool category.
-         ─────────────────────────────────────────────────────────────────── -->
-    <div class="section-divider"><h2>Tools</h2></div>
-
-    <section class="cs-section reveal">
-      <div class="about-tools">
-        <!-- Each <div> is one tool category column -->
-        <div>
-          <p class="about-tool-category">Design</p>
-          <div class="about-tool-list">
-            <span class="about-tool-pill about-tool-pill--design">Figma</span>
-            <span class="about-tool-pill about-tool-pill--design">ProtoPie</span>
-            <span class="about-tool-pill about-tool-pill--design">Adobe Creative Suite</span>
-            <span class="about-tool-pill about-tool-pill--design">Framer</span>
-            <span class="about-tool-pill about-tool-pill--design">Webflow</span>
-          </div>
-        </div>
-        <div>
-          <p class="about-tool-category">Development</p>
-          <div class="about-tool-list">
-            <span class="about-tool-pill about-tool-pill--code">HTML / CSS / JS</span>
-            <span class="about-tool-pill about-tool-pill--code">Python</span>
-            <span class="about-tool-pill about-tool-pill--code">Visual Studio Code</span>
-          </div>
-        </div>
-        <div>
-          <p class="about-tool-category">AI Tools</p>
-          <div class="about-tool-list">
-            <span class="about-tool-pill about-tool-pill--ai">ChatGPT</span>
-            <span class="about-tool-pill about-tool-pill--ai">Claude</span>
-            <span class="about-tool-pill about-tool-pill--ai">Perplexity</span>
-          </div>
-        </div>
-        <div>
-          <p class="about-tool-category">Research</p>
-          <div class="about-tool-list">
-            <span class="about-tool-pill about-tool-pill--research">Usability Testing</span>
-            <span class="about-tool-pill about-tool-pill--research">User Interviews</span>
-          </div>
-        </div>
-        <div>
-          <p class="about-tool-category">Productivity</p>
-          <div class="about-tool-list">
-            <span class="about-tool-pill about-tool-pill--other">Notion</span>
-            <span class="about-tool-pill about-tool-pill--other">Google Suite</span>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- ─── The Sidelines Section ─────────────────────────────────────────
