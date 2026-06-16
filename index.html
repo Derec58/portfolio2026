@@ -146,9 +146,9 @@
       <!-- Project nav links with hover preview thumbnails.
            data-preview="...": JavaScript reads this image path to show a thumbnail
            card when the user hovers over the link. See main.js Section 5. -->
-      <a href="projects/bereal-redesign.html" class="nav-link" data-preview="images/previews/bereal-redesign.jpg">BeReal Redesign</a>
+      <a href="projects/bereal-redesign.html" class="nav-link" data-preview="images/home/bereal-redesign.webp">BeReal Redesign</a>
       <a href="projects/verum-ai.html" class="nav-link" data-preview="images/previews/verum-ai.jpg">Verum AI</a>
-      <a href="projects/bsa-homepage.html" class="nav-link" data-preview="images/previews/bsa-homepage.jpg">Body Sculpture Aesthetics</a>
+      <a href="projects/bsa-homepage.html" class="nav-link" data-preview="images/home/bsa-homepage.webp">Body Sculpture Aesthetics</a>
     </div>
 
     <!-- ─── Lab nav group ─────────────────────────────────────────────────
@@ -166,10 +166,10 @@
     <!-- ─── After Hours nav group ─────────────────────────────────────── -->
     <div class="nav-group" role="navigation" aria-label="After Hours">
       <span class="nav-label">After Hours</span>
-      <a href="projects/packpal.html" class="nav-link" data-preview="images/previews/packpal.jpg">PackPal</a>
-      <a href="projects/snapplant.html" class="nav-link" data-preview="images/previews/snapplant.jpg">SnapPlant</a>
-      <a href="projects/arc-redesign.html" class="nav-link" data-preview="images/previews/arc-redesign.jpg">ARC Redesign</a>
-      <a href="projects/sonidos.html" class="nav-link" data-preview="images/previews/sonidos.jpg">Sonidos del Alma Danzante</a>
+      <a href="projects/packpal.html" class="nav-link" data-preview="images/home/packpal.webp">PackPal</a>
+      <a href="projects/snapplant.html" class="nav-link" data-preview="images/home/snapplant.webp">SnapPlant</a>
+      <a href="projects/arc-redesign.html" class="nav-link" data-preview="images/home/arc-redesign.webp">ARC Redesign</a>
+      <a href="projects/sonidos.html" class="nav-link" data-preview="images/home/sonidos.webp">Sonidos del Alma Danzante</a>
     </div>
 
 
@@ -213,37 +213,42 @@
           <p class="hero-tagline">Currently open to full-time product design roles. Based in the Central Valley and Bay Area — I design with intention and build what I design.</p>
         </div>
 
-        <!-- Right: NOW / PREVIOUSLY experience table -->
+        <!-- Right: placeholder photo frame (offset accent-border treatment) -->
         <div class="hero-right">
-          <div class="experience-table">
-
-            <div class="experience-group-label">Now</div>
-            <div class="experience-row">
-              <span class="experience-company">Open to roles</span>
-              <span class="experience-role">Product Designer</span>
-            </div>
-            <div class="experience-row">
-              <span class="experience-company">Best Buy</span>
-              <span class="experience-role">Sales Advsior</span>
-            </div>
-
-            <div class="experience-group-label">Previously</div>
-            <div class="experience-row">
-              <span class="experience-company">MYJ, Inc.</span>
-              <span class="experience-role">UI/UX Design Intern</span>
-            </div>
-
-            <div class="experience-row">
-              <span class="experience-company">Body Sculpture Aesthetics</span>
-              <span class="experience-role">Freelance Designer</span>
-            </div>
-
-            <div class="experience-row">
-              <span class="experience-company">UC Davis + Design Interactive</span>
-              <span class="experience-role">B.S. Design</span>
-            </div>
-
+          <div class="hero-photo-frame">
+            <div class="hero-photo-placeholder"><span>Photo</span></div>
           </div>
+        </div>
+
+      </div>
+
+      <!-- NOW / PREVIOUSLY experience table — demoted below the hero grid -->
+      <div class="experience-table">
+
+        <div class="experience-group-label">Now</div>
+        <div class="experience-row">
+          <span class="experience-company">Open to roles</span>
+          <span class="experience-role">Product Designer</span>
+        </div>
+        <div class="experience-row">
+          <span class="experience-company">Best Buy</span>
+          <span class="experience-role">Sales Advsior</span>
+        </div>
+
+        <div class="experience-group-label">Previously</div>
+        <div class="experience-row">
+          <span class="experience-company">MYJ, Inc.</span>
+          <span class="experience-role">UI/UX Design Intern</span>
+        </div>
+
+        <div class="experience-row">
+          <span class="experience-company">Body Sculpture Aesthetics</span>
+          <span class="experience-role">Freelance Designer</span>
+        </div>
+
+        <div class="experience-row">
+          <span class="experience-company">UC Davis + Design Interactive</span>
+          <span class="experience-role">B.S. Design</span>
         </div>
 
       </div>
@@ -260,7 +265,10 @@
 
       <article class="work-editorial-item work-editorial-item--featured work-item" data-project="bereal" data-cursor="→ View Case Study">
         <a href="projects/bereal-redesign.html" class="work-editorial-image-wrap">
-          <img src="images/home/bereal-redesign.jpg" alt="BeReal Redesign — project preview" class="work-editorial-img" loading="lazy" width="2048" height="962">
+          <picture>
+            <source type="image/webp" srcset="images/home/bereal-redesign.webp">
+            <img src="images/home/bereal-redesign.jpg" alt="BeReal Redesign — project preview" class="work-editorial-img" loading="lazy" width="2048" height="962">
+          </picture>
         </a>
         <div class="work-editorial-info">
           <span class="work-item-num">01</span>
@@ -286,7 +294,10 @@
 
       <article class="work-editorial-item work-item" data-project="bsa" data-cursor="→ View Case Study">
         <a href="projects/bsa-homepage.html" class="work-editorial-image-wrap">
-          <img src="images/home/bsa-homepage.jpg" alt="Body Sculpture Aesthetics homepage design" class="work-editorial-img" loading="lazy" width="2048" height="962">
+          <picture>
+            <source type="image/webp" srcset="images/home/bsa-homepage.webp">
+            <img src="images/home/bsa-homepage.jpg" alt="Body Sculpture Aesthetics homepage design" class="work-editorial-img" loading="lazy" width="2048" height="962">
+          </picture>
         </a>
         <div class="work-editorial-info">
           <span class="work-item-num">03</span>
@@ -408,7 +419,10 @@
 
         <article class="work-card" data-cursor="→ View Case Study">
           <a href="projects/packpal.html">
-            <img src="images/home/packpal.jpg" alt="PackPal app mockup" class="work-card-image" loading="lazy" width="2048" height="962">
+            <picture>
+              <source type="image/webp" srcset="images/home/packpal.webp">
+              <img src="images/home/packpal.jpg" alt="PackPal app mockup" class="work-card-image" loading="lazy" width="2048" height="962">
+            </picture>
           </a>
           <h3 class="work-card-title"><a href="projects/packpal.html">PackPal</a></h3>
           <p class="work-card-meta">Design Club &nbsp;·&nbsp; Most Customer-Centric</p>
@@ -416,7 +430,10 @@
 
         <article class="work-card" data-cursor="→ View Case Study">
           <a href="projects/snapplant.html">
-            <img src="images/home/snapplant.jpg" alt="SnapPlant app mockup" class="work-card-image" loading="lazy" width="2048" height="962">
+            <picture>
+              <source type="image/webp" srcset="images/home/snapplant.webp">
+              <img src="images/home/snapplant.jpg" alt="SnapPlant app mockup" class="work-card-image" loading="lazy" width="2048" height="962">
+            </picture>
           </a>
           <h3 class="work-card-title"><a href="projects/snapplant.html">SnapPlant</a></h3>
           <p class="work-card-meta">Coursework &nbsp;·&nbsp; UX Design</p>
@@ -424,7 +441,10 @@
 
         <article class="work-card" data-cursor="→ View Case Study">
           <a href="projects/arc-redesign.html">
-            <img src="images/home/arc-redesign.jpg" alt="ARC app redesign mockup" class="work-card-image" loading="lazy" width="2048" height="962">
+            <picture>
+              <source type="image/webp" srcset="images/home/arc-redesign.webp">
+              <img src="images/home/arc-redesign.jpg" alt="ARC app redesign mockup" class="work-card-image" loading="lazy" width="2048" height="962">
+            </picture>
           </a>
           <h3 class="work-card-title"><a href="projects/arc-redesign.html">ARC Redesign</a></h3>
           <p class="work-card-meta">Design Challenge &nbsp;·&nbsp; 5-Day Sprint</p>
@@ -432,7 +452,10 @@
 
         <article class="work-card" data-cursor="→ View Case Study">
           <a href="projects/sonidos.html">
-            <img src="images/home/sonidos.jpg" alt="Sonidos del Alma Danzante brand identity" class="work-card-image" loading="lazy" width="2048" height="962">
+            <picture>
+              <source type="image/webp" srcset="images/home/sonidos.webp">
+              <img src="images/home/sonidos.jpg" alt="Sonidos del Alma Danzante brand identity" class="work-card-image" loading="lazy" width="2048" height="962">
+            </picture>
           </a>
           <h3 class="work-card-title"><a href="projects/sonidos.html">Sonidos del Alma Danzante</a></h3>
           <p class="work-card-meta">Branding &nbsp;·&nbsp; Brand Identity</p>

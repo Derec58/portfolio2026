@@ -545,14 +545,53 @@ img {
   color: var(--color-accent);
 }
 
-/* Hero grid: headline on top, experience table demoted below it */
+/* Two-column hero grid: headline left, placeholder photo right */
 .hero-grid {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px;
   align-items: start;
+}
+
+/* Offset accent-border frame for the hero photo — same recipe as
+   .cs-image-wrapper, kept as its own class since that one is reserved
+   for real case-study images, not placeholders. */
+.hero-photo-frame {
+  position: relative;
+  width: 100%;
+}
+.hero-photo-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--color-accent);
+  border-radius: 5px;
+  opacity: 0.35;
+  transform: translate(8px, 8px);
+  z-index: 0;
+}
+[data-theme="dark"] .hero-photo-frame::before {
+  opacity: 0.22;
+}
+.hero-photo-frame > .hero-photo-placeholder {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  border-radius: 3px;
+}
+
+.hero-photo-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--color-placeholder);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-placeholder-text);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
 }
 
 .bio {
@@ -583,12 +622,12 @@ img {
   margin-top: 4px;
 }
 
-/* NOW / PREVIOUSLY experience table — demoted below the bio, kept compact */
+/* NOW / PREVIOUSLY experience table — demoted below the hero grid, kept compact */
 .experience-table {
   display: flex;
   flex-direction: column;
   max-width: 480px;
-  margin-top: 8px;
+  margin-top: 48px;
 }
 
 .experience-group-label {
