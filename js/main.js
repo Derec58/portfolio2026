@@ -35,7 +35,12 @@ const root = document.documentElement;
 
 // On page load: restore the user's saved preference from localStorage.
 // localStorage.getItem() returns null if the key has never been set.
-if (localStorage.getItem('theme') === 'dark') {
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+  root.setAttribute('data-theme', 'dark');
+} else if (savedTheme === null && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  // No manual preference saved yet — follow the OS setting without writing
+  // to localStorage, so it keeps tracking the OS until the user overrides it.
   root.setAttribute('data-theme', 'dark');
 }
 
@@ -43,7 +48,7 @@ if (localStorage.getItem('theme') === 'dark') {
 // aria-label is what screen readers announce when the button is focused.
 // "Switch to dark mode" when light; "Switch to light mode" when dark.
 toggles.forEach(t => t.setAttribute('aria-label',
-  localStorage.getItem('theme') === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+  root.getAttribute('data-theme') === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
 ));
 
 // Attach a click handler to every toggle button
