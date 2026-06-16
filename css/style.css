@@ -545,13 +545,13 @@ img {
   color: var(--color-accent);
 }
 
-/* Two-column hero grid: headline left, experience table right */
+/* Hero grid: headline on top, experience table demoted below it */
 .hero-grid {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 72px;
+  grid-template-columns: 1fr;
+  gap: 40px;
   align-items: start;
 }
 
@@ -583,10 +583,12 @@ img {
   margin-top: 4px;
 }
 
-/* NOW / PREVIOUSLY experience table */
+/* NOW / PREVIOUSLY experience table — demoted below the bio, kept compact */
 .experience-table {
   display: flex;
   flex-direction: column;
+  max-width: 480px;
+  margin-top: 8px;
 }
 
 .experience-group-label {
@@ -614,13 +616,13 @@ img {
 }
 
 .experience-company {
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--color-text);
 }
 
 .experience-role {
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   color: var(--color-muted);
   text-align: right;
 }
@@ -1306,8 +1308,6 @@ img.work-card-image {
     --sidebar-width: 200px;
     --content-padding-x: 48px;
   }
-
-  /* hero-grid intentionally removed — two-column stays on tablet (iPad landscape) */
 
   .work-grid {
     gap: 40px 32px; /* symmetric horizontal gap */
