@@ -147,7 +147,7 @@
            data-preview="...": JavaScript reads this image path to show a thumbnail
            card when the user hovers over the link. See main.js Section 5. -->
       <a href="projects/bereal-redesign.html" class="nav-link" data-preview="images/home/bereal-redesign.webp">BeReal Redesign</a>
-      <a href="projects/verum-ai.html" class="nav-link" data-preview="images/previews/verum-ai.jpg">Verum AI</a>
+      <a href="projects/verum-ai.html" class="nav-link" data-preview="images/home/verum-ai.webp">Verum AI</a>
       <a href="projects/bsa-homepage.html" class="nav-link" data-preview="images/home/bsa-homepage.webp">Body Sculpture Aesthetics</a>
     </div>
 
@@ -206,7 +206,7 @@
 
         <!-- Left: greeting label + large Playfair Display headline + tagline -->
         <div class="hero-left">
-          <p class="greeting">Hola &nbsp;&middot;&nbsp; <span class="greeting-sub">Hello</span></p>
+          <p class="greeting">Hello World! &nbsp;&middot;&nbsp; <span class="greeting-sub">/ ¡hola! /</span></p>
           <h1 class="bio">
             I'm <span data-cursor="✦ Hey that's me!">Dereck</span> & I design things, then build them myself — with<em> design + code</em>.
           </h1>
@@ -216,10 +216,12 @@
         <!-- Right: placeholder photo frame (offset accent-border treatment) -->
         <div class="hero-right">
           <div class="hero-photo-frame">
-            <div class="hero-photo-placeholder"><span>Photo</span></div>
+            <picture>
+              <source type="image/webp" srcset="images/about/portrait.webp">
+              <img src="images/about/portrait.jpg" alt="Dereck Villagrana at Config, San Francisco" class="hero-photo-placeholder" width="4032" height="3024" fetchpriority="high">
+            </picture>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -236,7 +238,7 @@
         <a href="projects/bereal-redesign.html" class="work-editorial-image-wrap">
           <picture>
             <source type="image/webp" srcset="images/home/bereal-redesign.webp">
-            <img src="images/home/bereal-redesign.jpg" alt="BeReal Redesign — project preview" class="work-editorial-img" loading="lazy" width="2048" height="962">
+            <img src="images/home/bereal-redesign.jpg" alt="BeReal Redesign — project preview" class="work-editorial-img" loading="lazy" width="1600" height="900">
           </picture>
         </a>
         <div class="work-editorial-info">
@@ -250,7 +252,10 @@
 
       <article class="work-editorial-item work-item" data-project="verum" data-cursor="→ View Case Study">
         <a href="projects/verum-ai.html" class="work-editorial-image-wrap">
-          <div class="work-card-image work-editorial-placeholder"><span>Verum AI</span></div>
+          <picture>
+            <source type="image/webp" srcset="images/home/verum-ai.webp">
+            <img src="images/home/verum-ai.jpg" alt="Verum AI — GPT-powered political bias detection tool" class="work-editorial-img" loading="lazy" width="1600" height="900">
+          </picture>
         </a>
         <div class="work-editorial-info">
           <span class="work-item-num">02</span>
@@ -265,7 +270,7 @@
         <a href="projects/bsa-homepage.html" class="work-editorial-image-wrap">
           <picture>
             <source type="image/webp" srcset="images/home/bsa-homepage.webp">
-            <img src="images/home/bsa-homepage.jpg" alt="Body Sculpture Aesthetics homepage design" class="work-editorial-img" loading="lazy" width="2048" height="962">
+            <img src="images/home/bsa-homepage.jpg" alt="Body Sculpture Aesthetics homepage design" class="work-editorial-img" loading="lazy" width="1600" height="900">
           </picture>
         </a>
         <div class="work-editorial-info">
@@ -390,7 +395,7 @@
           <a href="projects/packpal.html">
             <picture>
               <source type="image/webp" srcset="images/home/packpal.webp">
-              <img src="images/home/packpal.jpg" alt="PackPal app mockup" class="work-card-image" loading="lazy" width="2048" height="962">
+              <img src="images/home/packpal.jpg" alt="PackPal app mockup" class="work-card-image" loading="lazy" width="1600" height="900">
             </picture>
           </a>
           <h3 class="work-card-title"><a href="projects/packpal.html">PackPal</a></h3>
@@ -401,7 +406,7 @@
           <a href="projects/snapplant.html">
             <picture>
               <source type="image/webp" srcset="images/home/snapplant.webp">
-              <img src="images/home/snapplant.jpg" alt="SnapPlant app mockup" class="work-card-image" loading="lazy" width="2048" height="962">
+              <img src="images/home/snapplant.jpg" alt="SnapPlant app mockup" class="work-card-image" loading="lazy" width="1600" height="900">
             </picture>
           </a>
           <h3 class="work-card-title"><a href="projects/snapplant.html">SnapPlant</a></h3>
@@ -412,7 +417,7 @@
           <a href="projects/arc-redesign.html">
             <picture>
               <source type="image/webp" srcset="images/home/arc-redesign.webp">
-              <img src="images/home/arc-redesign.jpg" alt="ARC app redesign mockup" class="work-card-image" loading="lazy" width="2048" height="962">
+              <img src="images/home/arc-redesign.jpg" alt="ARC app redesign mockup" class="work-card-image" loading="lazy" width="1600" height="900">
             </picture>
           </a>
           <h3 class="work-card-title"><a href="projects/arc-redesign.html">ARC Redesign</a></h3>
@@ -423,7 +428,7 @@
           <a href="projects/sonidos.html">
             <picture>
               <source type="image/webp" srcset="images/home/sonidos.webp">
-              <img src="images/home/sonidos.jpg" alt="Sonidos del Alma Danzante brand identity" class="work-card-image" loading="lazy" width="2048" height="962">
+              <img src="images/home/sonidos.jpg" alt="Sonidos del Alma Danzante brand identity" class="work-card-image" loading="lazy" width="1600" height="900">
             </picture>
           </a>
           <h3 class="work-card-title"><a href="projects/sonidos.html">Sonidos del Alma Danzante</a></h3>

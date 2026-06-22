@@ -117,11 +117,11 @@
       <div class="about-hero-side">
         <!-- aria-hidden="true": the photo is decorative context — screen readers
              don't need to announce a portrait to understand the about page.
-             ⚠️ TODO: Replace with <img src="..." alt="Dereck Villagrana, product designer"> -->
         <div class="hero-photo-frame">
-          <div class="hero-photo-placeholder" aria-hidden="true">
-            <span>Portrait</span>
-          </div>
+          <picture>
+            <source type="image/webp" srcset="images/about/portrait.webp">
+            <img src="images/about/portrait.jpg" alt="Dereck Villagrana at Config, San Francisco" class="hero-photo-placeholder" width="4032" height="3024" fetchpriority="high">
+          </picture>
         </div>
         <!-- Compact "Currently" card — replaces the old 3-card .about-now-grid,
              same label/value text styles, tighter row layout to fit beside the photo. -->

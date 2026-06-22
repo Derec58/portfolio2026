@@ -243,16 +243,16 @@ document.querySelectorAll('.nav-link[data-preview]').forEach((link) => {
     // If data-preview="" is empty (e.g., current page link), bail out.
     if (!src) return;
 
-    // Preload the image before showing the card — prevents blank preview cards
-    // when the image file doesn't exist yet (e.g., during development).
+    // Show the preview card immediately (placeholder background while image loads)
+    previewInner.style.backgroundImage = '';
+    previewCard.classList.add('visible');
+    positionPreview(e.clientX, e.clientY);
+
+    // Load image in background; swap in when/if it loads
     const img = new Image();
     img.onload = () => {
       previewInner.style.backgroundImage = `url(${src})`;
-      previewInner.textContent = '';
-      previewCard.classList.add('visible');
-      positionPreview(e.clientX, e.clientY);
     };
-    // img.onerror: image missing — preview stays hidden, no blank card shown
     img.src = src;
   });
 
@@ -328,17 +328,76 @@ backToTop.addEventListener('click', () => {
 
 
 // ─── 7. Custom Dot Cursor ──────────────────────────────────────────────────────
-// A small purple dot that follows the mouse. No tooltip, no label — plain dot only.
-// Only active on pointer:fine devices (mouse/trackpad); hidden on touch via CSS.
+// Follows the mouse as a small purple dot. Morphs into a pill with label text
+// when hovering [data-cursor] elements. Only active on pointer:fine devices.
 // ──────────────────────────────────────────────────────────────────────────────
 
-const cursorDot = document.querySelector('.cursor-dot');
+const cursorDot   = document.querySelector('.cursor-dot');
+const cursorLabel = cursorDot?.querySelector('.cursor-label');
+
 if (cursorDot && window.matchMedia('(pointer: fine)').matches) {
+  // Track cursor position
   document.addEventListener('mousemove', e => {
-    cursorDot.style.left = e.clientX + 'px';
-    cursorDot.style.top  = e.clientY + 'px';
+    cursorDot.style.left    = e.clientX + 'px';
+    cursorDot.style.top     = e.clientY + 'px';
     cursorDot.style.opacity = '1';
   });
   document.addEventListener('mouseleave', () => { cursorDot.style.opacity = '0'; });
   document.addEventListener('mouseenter', () => { cursorDot.style.opacity = '1'; });
+
+  // Cursor morph: elements with data-cursor="Label Text"
+  document.querySelectorAll('[data-cursor]').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      if (cursorLabel) cursorLabel.textContent = el.dataset.cursor;
+      cursorDot.classList.add('cursor-expanded');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursorDot.classList.remove('cursor-expanded');
+      if (cursorLabel) cursorLabel.textContent = '';
+    });
+  });
+
+  // Auto-morph for mailto: links → "Copy Email" + click-to-copy
+  document.querySelectorAll('a[href^="mailto:"]').forEach(el => {
+    const email = el.href.replace('mailto:', '');
+    el.addEventListener('mouseenter', () => {
+      if (cursorLabel) cursorLabel.textContent = '✉ Copy Email';
+      cursorDot.classList.add('cursor-expanded');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursorDot.classList.remove('cursor-expanded');
+      if (cursorLabel) cursorLabel.textContent = '';
+    });
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      navigator.clipboard?.writeText(email).catch(() => {});
+    });
+  });
 }
+
+
+// ─── 8. Selected Work — Hover Slide Switch ────────────────────────────────────
+// Hovering a work-item crossfades the right-panel image to match.
+// Click anywhere on the card navigates to the case study.
+// ──────────────────────────────────────────────────────────────────────────────
+(function () {
+  const items  = document.querySelectorAll('.work-item');
+  const slides = document.querySelectorAll('.work-sticky-slide');
+  if (!items.length || !slides.length) return;
+
+  function setActive(key) {
+    slides.forEach(el => el.classList.toggle('is-active', el.dataset.for === key));
+  }
+
+  items.forEach(item => {
+    item.addEventListener('mouseenter', () => setActive(item.dataset.project));
+    item.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      const link = item.querySelector('a');
+      if (link) window.location.href = link.href;
+    });
+  });
+
+  // Initialize first slide as active
+  if (items[0]) setActive(items[0].dataset.project);
+})();

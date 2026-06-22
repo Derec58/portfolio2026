@@ -593,6 +593,11 @@ img {
   font-size: 0.75rem;
   letter-spacing: 0.06em;
 }
+img.hero-photo-placeholder {
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
 
 .bio {
   font-family: var(--font-display);
@@ -1867,6 +1872,14 @@ img.work-card-image {
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
+/* Real cover image — same geometry as the placeholder */
+.cs-cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 48px;
+}
 
 /* Opening paragraph — wider type, full text color for prominence */
 .cs-overview {
@@ -2163,6 +2176,7 @@ img.work-card-image {
   .cs-meta-strip { flex-direction: column; gap: 8px; }
   .cs-meta-strip-item { border-right: none; padding-right: 0; margin-right: 0; }
   .cs-cover-placeholder { border-radius: 8px; }
+  .cs-cover { border-radius: 8px; }
 
 }
 
