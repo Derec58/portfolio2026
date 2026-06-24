@@ -21,3 +21,7 @@ node_modules/
 HANDOFF.md
 docs/
 images/IMAGES.md
+
+# Image staging / raw source files
+images/images-new/
+images/images.zip
