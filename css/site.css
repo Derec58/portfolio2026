@@ -186,7 +186,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 @container main (min-width:904px){
   .spread .sp{grid-template-columns:72px minmax(0,1.35fr) minmax(0,1fr);grid-template-rows:1fr auto auto auto auto 1fr auto;grid-template-areas:"num media ." ". media label" ". media title" ". media blurb" ". media link" ". media ." ". credits credits";column-gap:24px;row-gap:0;border-top:1px solid var(--divider)}
   .sp-num{font-size:64px;padding:16px 0 0;border:0;align-self:start}
-  .sp-media{margin-top:16px}
+  .sp-media{margin-top:16px;align-self:start}
   .sp-label,.sp-title,.sp-blurb,.sp-link{margin-left:clamp(4px,1.6vw,20px);max-width:46ch}
   .sp-label{align-self:auto;text-align:left;padding:0;border:0;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
   .sp-title{margin-top:12px;font-size:clamp(28px,2.9vw,40px)}
@@ -320,7 +320,8 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 @media (max-width:768px){.itop .logo{display:inline}}
 
 /* ── Case study ── */
-.cs-wrap{max-width:1180px;margin:0 auto;padding-inline:var(--pad)}
+.cs-wrap{max-width:1280px;margin:0 auto;padding-inline:var(--pad)}
+.cs-page .itop-in,.cs-page .foot--compact .foot-in{max-width:1280px}
 @media (min-width:1025px){.cs-wrap{--pad:56px}}
 @media (max-width:1024px) and (min-width:769px){.cs-wrap{--pad:40px}}
 @media (max-width:768px){.cs-wrap{--pad:20px}}
