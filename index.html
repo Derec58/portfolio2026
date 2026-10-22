@@ -1,463 +1,288 @@
 <!DOCTYPE html>
-<!-- DOCTYPE: tells the browser this is modern HTML5. Must be the first line.
-     Without it, browsers enter "quirks mode" and render inconsistently. -->
-
-<!-- lang="en": declares the page language. Used by screen readers for correct pronunciation
-     and by search engines for indexing. -->
 <html lang="en">
 <head>
-  <!-- charset: UTF-8 supports virtually all characters (accents, symbols, emoji).
-       Must appear early in <head> so the browser reads it before parsing content. -->
   <meta charset="UTF-8">
-
-  <!-- viewport meta tag: critical for mobile browsers.
-       width=device-width: use the device's actual screen width (not a virtual desktop width).
-       initial-scale=1.0: don't zoom in or out on load.
-       Without this, mobile browsers would render a tiny zoomed-out desktop version. -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Dereck Villagrana, product designer and builder. UC Davis B.S. Design, UX internship at MYJ Inc. Open to full-time roles.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dereck Villagrana | Product Designer</title>
+  <meta name="description" content="Dereck Villagrana, product designer and front-end developer. Case studies in product design, UX research and shipped front-end work. Open to full-time roles.">
+  <link rel="canonical" href="https://dereckvilla.design/">
   <meta property="og:title" content="Dereck Villagrana | Product Designer">
-  <meta property="og:description" content="Product designer who builds. UC Davis grad, UX internship at MYJ Inc., hackathon placer. Open to full-time roles.">
+  <meta property="og:description" content="Dereck Villagrana, product designer and front-end developer. Case studies in product design, UX research and shipped front-end work. Open to full-time roles.">
   <meta property="og:url" content="https://dereckvilla.design/">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
-  <meta property="og:image" content="https://dereckvilla.design/images/logos/site/og-image-white.png">
-  <meta name="twitter:image" content="https://dereckvilla.design/images/logos/site/og-image-white.png">
-  <link rel="canonical" href="https://dereckvilla.design/">
-
-  <!-- Page title: shown in the browser tab, bookmarks, and search engine results. -->
-  <title>Dereck Villagrana | Product Designer</title>
-
-  <!-- preconnect: tells the browser to open a network connection to Google Fonts
-       before it needs the font files. Reduces font load time.
-       Two entries are needed: one for the API, one for the actual font files (gstatic). -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <!-- crossorigin: required for the gstatic connection because fonts are loaded
-       from a different domain (cross-origin). -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- Google Fonts: loads Inter (body text) + Playfair Display (display/headings).
-       display=swap: use a fallback font while the custom font loads, then swap.
-       Prevents invisible text during font loading. -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- Main stylesheet. href is relative to index.html's location. -->
-  <link rel="stylesheet" href="css/style.css">
+  <meta property="og:image" content="https://dereckvilla.design/images/og-card-v3.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Dereck Villagrana, product designer and front-end developer">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://dereckvilla.design/images/og-card-v3.png">
+  <meta name="theme-color" content="#FAFCFD" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15171a" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/svg+xml" href="images/logos/site/logo-dark.svg">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="fonts/playfair-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" imagesrcset="images/about/portrait-640.webp 640w, images/about/portrait-960.webp 960w, images/about/portrait-1440.webp 1440w" imagesizes="(max-width: 768px) 320px, 340px" fetchpriority="high">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Dereck Villagrana","url":"https://dereckvilla.design/","jobTitle":"Product Designer","alumniOf":{"@type":"CollegeOrUniversity","name":"University of California, Davis"},"sameAs":["https://www.linkedin.com/in/dereck-villagrana/","https://github.com/Derec58"]}</script>
+  <link rel="stylesheet" href="css/site.min.css?v=7">
+  <script>try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
+  <script defer src="js/site.min.js?v=7"></script>
   <script defer src="/_vercel/insights/script.js"></script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Dereck Villagrana",
-    "url": "https://dereckvilla.design/",
-    "jobTitle": "Product Designer",
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "University of California, Davis"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/in/dereck-villagrana/",
-      "https://github.com/Derec58"
-    ]
-  }
-  </script>
 </head>
 <body>
-
-  <!-- ─── Skip Navigation ──────────────────────────────────────────────────
-       An accessibility link for keyboard and screen reader users.
-       Visually hidden above the viewport (top: -48px via CSS) until focused.
-       When a keyboard user presses Tab, this is the FIRST thing they reach.
-       Activating it jumps directly to #main-content, skipping the sidebar nav.
-       This is required for WCAG 2.4.1 (Bypass Blocks).
-       ─────────────────────────────────────────────────────────────────────── -->
-  <a href="#main-content" class="skip-nav">Skip to main content</a>
-
-  <!-- ─── Sidebar ──────────────────────────────────────────────────────────
-       <aside>: semantic HTML element meaning "secondary content related to the main."
-       Used for navigation — correct semantically (a sidebar nav is an "aside").
-       position: fixed (via CSS) — stays in place as the page scrolls.
-       On mobile (≤768px): transforms into a fixed top navigation bar.
-       See docs/ARCHITECTURE.md for the full layout breakdown.
-       ─────────────────────────────────────────────────────────────────────── -->
-  <aside class="sidebar">
-
-    <!-- .sidebar-header: wraps .sidebar-top and .sidebar-nav together.
-         Desktop: display:contents makes this wrapper invisible to layout — its children
-         flow directly into .sidebar's flex column as if it wasn't there.
-         Mobile: overridden to display:flex — becomes the visible top navbar row.
-         See docs/GLOSSARY.md entry "display: contents" for explanation. -->
-    <div class="sidebar-header">
-
-      <!-- .sidebar-top: contains the DV logo badge + desktop-only theme toggle.
-           On mobile: this entire row is hidden in favor of .sidebar-nav items. -->
-      <div class="sidebar-top">
-        <!-- Logo badge: links to the #about section (top of page).
-             aria-label="Home": because the link text is just "DV", screen readers
-             need this label to understand what the link does. -->
-        <a href="#about" class="logo-badge" aria-label="Home">
-          <svg class="logo-img" viewBox="0 0 52 52" aria-hidden="true" focusable="false">
-            <text font-family="'Playfair Display', Georgia, serif" font-weight="700" font-style="italic" font-size="20" text-anchor="middle" dominant-baseline="central" x="26" y="26"><tspan class="logo-d">D</tspan><tspan class="logo-v">V</tspan></text>
-          </svg>
-        </a>
-
-        <!-- Theme toggle button: the half-circle dark/light mode button.
-             aria-label: describes the button action to screen readers (since the button
-             has no text — just visual styling).
-             JavaScript updates this label dynamically when the theme changes.
-             This button is HIDDEN on mobile — the copy in .sidebar-nav is shown instead. -->
-        <button class="theme-toggle" aria-label="Switch to dark mode" data-cursor="◑ Toggle Theme"></button>
-      </div>
-
-      <!-- .sidebar-nav: the top navigation row containing About, CV links + mobile controls.
-           aria-label="Site navigation": names this <nav> for screen readers.
-           Multiple <nav> elements on a page must be uniquely labeled with aria-label. -->
-      <nav aria-label="Site navigation" class="sidebar-nav">
-
-        <!-- Mobile-only theme toggle: hidden on desktop, shown on mobile.
-             JavaScript keeps both .theme-toggle buttons in sync. -->
-        <button class="theme-toggle" aria-label="Switch to dark mode" data-cursor="◑ Toggle Theme"></button>
-
-        <!-- About link: goes to the full about page -->
-        <a href="about.html" class="nav-link">About</a>
-
-        <a href="contact.html" class="nav-link">Contact</a>
-
-        <!-- Hamburger button: only shown on mobile (display:none on desktop via CSS).
-             aria-expanded="false": screen readers know the menu is currently closed.
-             aria-label: describes the action.
-             &#9776; = the HTML entity for the ☰ hamburger icon character.
-             JavaScript updates aria-expanded and aria-label when clicked. -->
-        <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
+  <a class="skip" href="#main-content">Skip to main content</a>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Work index">
+      <div class="sidebar-top"><a class="logo" href="#main-content" aria-label="Home">D<span>V</span></a></div>
+      <nav class="snav snav--work" aria-label="Selected work">
+        <div class="snav-head"><a href="#work" data-navgroup="work">Selected Work</a><span aria-hidden="true">03</span></div>
+        <div class="snav-list" data-track><span class="snav-marker" aria-hidden="true"></span>
+          <a class="snav-link" href="#s01" data-nav="s01" data-preview="images/home/bereal-redesign-800.webp"><span class="snav-num">01</span><span>BeReal Redesign</span></a>
+          <a class="snav-link" href="#s02" data-nav="s02" data-preview="images/home/verum-ai-800.webp"><span class="snav-num">02</span><span>Verum AI</span></a>
+          <a class="snav-link" href="#s03" data-nav="s03" data-preview="images/home/bsa-homepage-800.webp"><span class="snav-num">03</span><span>Body Sculpting Aesthetic</span></a>
+        </div>
       </nav>
-    </div><!-- /.sidebar-header -->
-
-    <!-- ─── Selected Work nav group ───────────────────────────────────────
-         role="navigation": explicit ARIA role (belt-and-suspenders with <div>).
-         aria-label="Selected Work": names this navigation group distinctly.
-         Hidden on mobile; shown inside the full-screen overlay when hamburger is open.
-         ─────────────────────────────────────────────────────────────────── -->
-    <div class="nav-group" role="navigation" aria-label="Selected Work">
-      <!-- .nav-label: the small uppercase category header above the links -->
-      <span class="nav-label">Selected Work</span>
-
-      <!-- Project nav links with hover preview thumbnails.
-           data-preview="...": JavaScript reads this image path to show a thumbnail
-           card when the user hovers over the link. See main.js Section 5. -->
-      <a href="projects/bereal-redesign.html" class="nav-link" data-preview="images/home/bereal-redesign.webp">BeReal Redesign</a>
-      <a href="projects/verum-ai.html" class="nav-link" data-preview="images/home/verum-ai.webp">Verum AI</a>
-      <a href="projects/bsa-homepage.html" class="nav-link" data-preview="images/home/bsa-homepage.webp">Body Sculpture Aesthetics</a>
-    </div>
-
-    <!-- ─── Lab nav group ─────────────────────────────────────────────────
-         External link to GitHub.
-         target="_blank": opens in a new tab.
-         rel="noopener noreferrer": security — prevents the new tab from accessing
-         this page via window.opener, and hides the referrer URL.
-         ─────────────────────────────────────────────────────────────────── -->
-    <div class="nav-group" role="navigation" aria-label="Lab">
-      <span class="nav-label">Lab</span>
-      <a href="https://github.com/Derec58/raspberry-pi-media-stack" target="_blank" rel="noopener noreferrer" class="nav-link">Raspberry Pi Media Stack ↗</a>
-      <a href="https://github.com/Derec58/portfolio2026" target="_blank" rel="noopener noreferrer" class="nav-link">Portfolio Site ↗</a>
-    </div>
-
-    <!-- ─── After Hours nav group ─────────────────────────────────────── -->
-    <div class="nav-group" role="navigation" aria-label="Independent Work">
-      <span class="nav-label">Independent Work</span>
-      <a href="projects/packpal.html" class="nav-link" data-preview="images/home/packpal.webp">PackPal</a>
-      <a href="projects/snapplant.html" class="nav-link" data-preview="images/home/snapplant.webp">SnapPlant</a>
-      <a href="projects/arc-redesign.html" class="nav-link" data-preview="images/home/arc-redesign.webp">ARC Redesign</a>
-      <a href="projects/sonidos.html" class="nav-link" data-preview="images/home/sonidos.webp">Sonidos del Alma Danzante</a>
-    </div>
-
-
-    <!-- ─── Availability Status Pill ─────────────────────────────────────
-         Pushed to the bottom of the sidebar via margin-top: auto (CSS).
-         Hidden on mobile (display:none) — no room in the top navbar.
-         ─────────────────────────────────────────────────────────────────── -->
-    <div class="sidebar-status">
-      <span class="status-pill">
-        <!-- aria-hidden="true": the dot is purely decorative — a screen reader
-             would announce "bullet" or the animation character, which is noise.
-             The text "Available for work" provides the full meaning. -->
-        <span class="status-dot" aria-hidden="true"></span>
-        <span>Available for work</span>
-      </span>
-    </div>
-
-  </aside><!-- /.sidebar -->
-
-  <!-- ─── Main Content ─────────────────────────────────────────────────────
-       <main>: semantic element for the primary page content. One per page.
-       id="main-content": target for the skip-nav link above.
-       .content (CSS): offset by sidebar width (margin-left: 220px), scrollable.
-       ─────────────────────────────────────────────────────────────────────── -->
-  <main class="content" id="main-content">
-
-    <!-- ─── About / Bio Section ─────────────────────────────────────────
-         id="about": used by the logo badge (href="#about") to scroll here,
-         and by JavaScript's IntersectionObserver for active nav tracking.
-         .section-about: padding and margin separating it from the work section below.
-         ─────────────────────────────────────────────────────────────────── -->
-    <section id="about" class="section-about">
-      <div class="hero-grid">
-
-        <!-- Left: greeting label + large Playfair Display headline + tagline -->
-        <div class="hero-left">
-          <p class="greeting">Hello World! &nbsp;&middot;&nbsp; <span class="greeting-sub">/ ¡hola! /</span></p>
-          <h1 class="bio">
-            I'm <span data-cursor="✦ Hey that's me!">Dereck</span> & I design things, then build them myself — with<em> design + code</em>.
-          </h1>
-          <p class="hero-tagline">Currently open to full-time product design roles. Based in the Central Valley and Bay Area — I design with intention and build what I design.</p>
+      <nav class="snav " aria-label="Independent work">
+        <div class="snav-head"><a href="#more-work" data-navgroup="more-work">Independent Work</a><span aria-hidden="true">04</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="projects/packpal.html" data-preview="images/home/packpal-800.webp"><span class="snav-num">04</span><span>PackPal</span></a>
+          <a class="snav-link" href="projects/snapplant.html" data-preview="images/home/snapplant-800.webp"><span class="snav-num">05</span><span>SnapPlant</span></a>
+          <a class="snav-link" href="projects/arc-redesign.html" data-preview="images/home/arc-redesign-800.webp"><span class="snav-num">06</span><span>ARC Redesign</span></a>
+          <a class="snav-link" href="projects/sonidos.html" data-preview="images/home/sonidos-800.webp"><span class="snav-num">07</span><span>Sonidos del Alma Danzante</span></a>
         </div>
+      </nav>
+      <nav class="snav  snav--last" aria-label="Lab">
+        <div class="snav-head"><a href="#lab" data-navgroup="lab">Lab</a><span aria-hidden="true">02</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="https://github.com/Derec58/raspberry-pi-media-stack" target="_blank" rel="noopener noreferrer"><span class="snav-num">L01</span><span>Raspberry Pi Media Stack <span aria-hidden="true">↗</span></span></a>
+          <a class="snav-link" href="https://github.com/Derec58/portfolio2026" target="_blank" rel="noopener noreferrer"><span class="snav-num">L02</span><span>Portfolio Site <span aria-hidden="true">↗</span></span></a>
+        </div>
+      </nav>
+      <div class="sidebar-foot"><a class="pill-status" href="contact.html"><span class="dot" aria-hidden="true"></span>Available for work<span class="arr" aria-hidden="true">→</span></a></div>
+    </aside>
 
-        <!-- Right: placeholder photo frame (offset accent-border treatment) -->
-        <div class="hero-right">
-          <div class="hero-photo-frame">
-            <picture>
-              <source type="image/webp" srcset="images/about/portrait.webp">
-              <img src="images/about/portrait.jpg" alt="Dereck Villagrana at Config, San Francisco" class="hero-photo-placeholder" width="4032" height="3024" fetchpriority="high">
-            </picture>
+    <header class="mhead">
+      <a class="logo" href="#main-content" aria-label="Home">D<span>V</span></a>
+      <button type="button" class="menu-btn" data-menu-btn aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span data-menu-label>Menu</span><span class="menu-bars" aria-hidden="true"><i></i><i></i></span></button>
+    </header>
+    <div id="menu" class="menu" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
+      <nav class="menu-site" aria-label="Site"><a href="about.html">About</a><a href="services.html">Services</a><a href="contact.html">Contact</a><a href="resume.pdf" target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span></a></nav>
+      <nav class="snav snav--work" aria-label="Selected work">
+        <div class="snav-head"><span>Selected Work</span><span aria-hidden="true">03</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="#s01" data-nav="s01"><span class="snav-num">01</span><span>BeReal Redesign</span></a>
+          <a class="snav-link" href="#s02" data-nav="s02"><span class="snav-num">02</span><span>Verum AI</span></a>
+          <a class="snav-link" href="#s03" data-nav="s03"><span class="snav-num">03</span><span>Body Sculpting Aesthetic</span></a>
+        </div>
+      </nav>
+      <nav class="snav " aria-label="Independent work">
+        <div class="snav-head"><span>Independent Work</span><span aria-hidden="true">04</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="projects/packpal.html"><span class="snav-num">04</span><span>PackPal</span></a>
+          <a class="snav-link" href="projects/snapplant.html"><span class="snav-num">05</span><span>SnapPlant</span></a>
+          <a class="snav-link" href="projects/arc-redesign.html"><span class="snav-num">06</span><span>ARC Redesign</span></a>
+          <a class="snav-link" href="projects/sonidos.html"><span class="snav-num">07</span><span>Sonidos del Alma Danzante</span></a>
+        </div>
+      </nav>
+      <nav class="snav  snav--last" aria-label="Lab">
+        <div class="snav-head"><span>Lab</span><span aria-hidden="true">02</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="https://github.com/Derec58/raspberry-pi-media-stack" target="_blank" rel="noopener noreferrer"><span class="snav-num">L01</span><span>Raspberry Pi Media Stack <span aria-hidden="true">↗</span></span></a>
+          <a class="snav-link" href="https://github.com/Derec58/portfolio2026" target="_blank" rel="noopener noreferrer"><span class="snav-num">L02</span><span>Portfolio Site <span aria-hidden="true">↗</span></span></a>
+        </div>
+      </nav>
+      <div class="menu-foot"><button type="button" class="theme-btn" data-theme-toggle aria-label="Switch to dark mode"><span aria-hidden="true">◐</span><span data-theme-label>Dark</span></button><a class="pill-status" href="contact.html"><span class="dot" aria-hidden="true"></span>Available for work<span class="arr" aria-hidden="true">→</span></a></div>
+    </div>
+
+    <main id="main-content" class="main">
+      <header class="topbar">
+        <div class="topbar-in"><span class="readout" aria-hidden="true"></span><div class="topbar-right"><nav aria-label="Site"><a href="about.html">About</a><a href="services.html">Services</a><a href="contact.html">Contact</a><a href="resume.pdf" target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span></a></nav><button type="button" class="theme-btn" data-theme-toggle aria-label="Switch to dark mode"><span aria-hidden="true">◐</span><span data-theme-label>Dark</span></button></div></div>
+      </header>
+
+      <section id="cover" class="hero wrap" aria-label="Introduction">
+        <div class="hero-grid">
+          <div class="hero-txt">
+            <div class="eyebrow hero-kicker">Product design, from research to release</div>
+            <h1>I design products, <em>then I build them.</em></h1>
+            <p class="hero-bio">I'm Dereck, a product designer and front-end developer from California's Central Valley. I work end to end, from the research and the interface to the code that ships it. The goal is work that looks considered <em>and</em> runs in production, with no gap between the two.</p>
+            <div class="hero-ctas"><a class="cta" href="#work"><u>See the work</u><span aria-hidden="true">↓</span></a><a class="cta" href="contact.html"><u>Get in touch</u><span aria-hidden="true">→</span></a></div>
+          </div>
+          <figure class="hero-fig">
+            <div class="framed"><img src="images/about/portrait-960.webp" srcset="images/about/portrait-640.webp 640w, images/about/portrait-960.webp 960w, images/about/portrait-1440.webp 1440w" sizes="(max-width: 768px) 320px, 340px" alt="Dereck giving a thumbs up under the Config conference banner" width="800" height="1000" fetchpriority="high" decoding="async"></div>
+            <figcaption><span>↳</span> At Config</figcaption>
+          </figure>
+        </div>
+        <dl class="facts">
+          <div><dt class="dt">Role</dt><dd>Product Designer &amp; Front-End Developer</dd></div>
+          <div><dt class="dt">Based</dt><dd>Central Valley + Bay Area</dd></div>
+          <div><dt class="dt">Education</dt><dd>UC Davis, B.A. in Design, 2023</dd></div>
+          <div><dt class="dt">Builds with</dt><dd>Vanilla HTML / CSS / JS, self-taught</dd></div>
+        </dl>
+      </section>
+
+      <section id="work" aria-labelledby="work-h">
+        <div class="wrap work-head"><div class="sec-head"><h2 id="work-h">Selected Work</h2><span>3 case studies</span></div></div>
+      <article id="s01" class="spread" data-sec="s01" aria-labelledby="s01-t">
+        <div class="wrap"><div class="sp">
+          <span class="sp-num"><span class="sr-only">Project </span>01</span>
+          <span class="sp-label">Product Design · 2023</span>
+          <h3 class="sp-title" id="s01-t"><a href="projects/bereal-redesign.html" tabindex="-1">BeReal Redesign</a></h3>
+          <div class="sp-media"><span class="sp-frame" aria-hidden="true"></span><a href="projects/bereal-redesign.html" tabindex="-1" aria-hidden="true"><img src="images/home/bereal-redesign-1200.webp" srcset="images/home/bereal-redesign-800.webp 800w, images/home/bereal-redesign-1200.webp 1200w, images/home/bereal-redesign.webp 2048w" sizes="(min-width: 1440px) 520px, (min-width: 1025px) 42vw, (min-width: 769px) calc(100vw - 316px), calc(100vw - 48px)" alt="" width="1200" height="800" loading="lazy" decoding="async"></a></div>
+          <p class="sp-blurb">A ground-up rethink of how a social app can stay honest without burning people out, reframing the daily prompt around intention rather than pressure.</p>
+          <a class="link-u sp-link" href="projects/bereal-redesign.html" aria-label="Read the BeReal Redesign case study">Read the case study <span aria-hidden="true">→</span></a>
+          <dl class="sp-credits">
+            <div class="is-rec"><dt class="dt">Recognition</dt><dd>Most Innovative UX, UC Davis Design Interactive</dd></div>
+            <div><dt class="dt">Role</dt><dd>UX Designer · Prototyping Lead</dd></div>
+            <div><dt class="dt">Stack</dt><dd>Figma</dd></div>
+          </dl>
+        </div></div>
+      </article>
+      <article id="s02" class="spread" data-sec="s02" aria-labelledby="s02-t">
+        <div class="wrap"><div class="sp">
+          <span class="sp-num"><span class="sr-only">Project </span>02</span>
+          <span class="sp-label">Product Design · Hackathon · 2023</span>
+          <h3 class="sp-title" id="s02-t"><a href="projects/verum-ai.html" tabindex="-1">Verum AI</a></h3>
+          <div class="sp-media"><span class="sp-frame" aria-hidden="true"></span><a href="projects/verum-ai.html" tabindex="-1" aria-hidden="true"><img src="images/home/verum-ai-1200.webp" srcset="images/home/verum-ai-800.webp 800w, images/home/verum-ai-1200.webp 1200w, images/home/verum-ai.webp 2048w" sizes="(min-width: 1440px) 520px, (min-width: 1025px) 42vw, (min-width: 769px) calc(100vw - 316px), calc(100vw - 48px)" alt="" width="1200" height="800" loading="lazy" decoding="async"></a></div>
+          <p class="sp-blurb">An AI tool that lets anyone analyze a political speech for bias and misinformation in plain language, not just journalists. I led the UX and built the front-end against a live model.</p>
+          <a class="link-u sp-link" href="projects/verum-ai.html" aria-label="Read the Verum AI case study">Read the case study <span aria-hidden="true">→</span></a>
+          <dl class="sp-credits">
+            <div class="is-rec"><dt class="dt">Recognition</dt><dd>2nd Place, All-Inclusive Hacks (663 participants)</dd></div>
+            <div><dt class="dt">Role</dt><dd>UX Designer · Front-end Design</dd></div>
+            <div><dt class="dt">Stack</dt><dd>Figma, React, Python</dd></div>
+          </dl>
+        </div></div>
+      </article>
+      <article id="s03" class="spread" data-sec="s03" aria-labelledby="s03-t">
+        <div class="wrap"><div class="sp">
+          <span class="sp-num"><span class="sr-only">Project </span>03</span>
+          <span class="sp-label">Freelance · Web Design · 2024</span>
+          <h3 class="sp-title" id="s03-t"><a href="projects/bsa-homepage.html" tabindex="-1">Body Sculpting Aesthetic</a></h3>
+          <div class="sp-media"><span class="sp-frame" aria-hidden="true"></span><a href="projects/bsa-homepage.html" tabindex="-1" aria-hidden="true"><img src="images/home/bsa-homepage-1200.webp" srcset="images/home/bsa-homepage-800.webp 800w, images/home/bsa-homepage-1200.webp 1200w, images/home/bsa-homepage.webp 2048w" sizes="(min-width: 1440px) 520px, (min-width: 1025px) 42vw, (min-width: 769px) calc(100vw - 316px), calc(100vw - 48px)" alt="" width="1200" height="800" loading="lazy" decoding="async"></a></div>
+          <p class="sp-blurb">A clinic homepage designed from almost no brief, on a four-week deadline. I set the visual direction and designed every screen, then worked alongside the developer through the build to resolve design questions as they came up.</p>
+          <a class="link-u sp-link" href="projects/bsa-homepage.html" aria-label="Read the Body Sculpting Aesthetic case study">Read the case study <span aria-hidden="true">→</span></a>
+          <dl class="sp-credits">
+            <div class="is-rec"><dt class="dt">Recognition</dt><dd>Client commission, delivered on deadline</dd></div>
+            <div><dt class="dt">Role</dt><dd>Lead Designer · Dev Collaboration</dd></div>
+            <div><dt class="dt">Stack</dt><dd>Figma, Webflow</dd></div>
+          </dl>
+        </div></div>
+      </article>
+      </section>
+
+      <section id="services" class="svc-band" data-sec="services" aria-labelledby="svc-h">
+        <div class="wrap">
+          <div class="sec-head"><h2 id="svc-h">For businesses</h2><span>Freelance web design</span></div>
+          <div class="svc-grid">
+            <div><p class="svc-big">Need a website? <em>I design and build them.</em></p><p class="svc-sub">Custom sites for small businesses, from a one-page launch to a full redesign. Fixed prices, clear timelines, and one person from first call to launch.</p></div>
+            <div><ul class="channels svc-rows"><li><a href="services.html#packages"><span class="num">01</span><b>Starter site</b><i>From $250</i></a></li><li><a href="services.html#packages"><span class="num">02</span><b>Business site</b><i>From $800</i></a></li><li><a href="services.html#packages"><span class="num">03</span><b>Redesign</b><i>From $500</i></a></li></ul><a class="cta" href="services.html"><u>See services and pricing</u><span aria-hidden="true">→</span></a></div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <div class="section-divider work-divider"><span>Selected Work</span></div>
-
-    <!-- ─── Selected Work ────────────────────────────────────────────────────
-         Editorial layout: each project row shows image + text side by side.
-         Images visible on load — no hover required. Featured (BeReal) gets
-         a wider image column. Stacks to single column on mobile.
-         ─────────────────────────────────────────────────────────────────────── -->
-    <section id="selected-work" class="work-editorial reveal">
-
-      <article class="work-editorial-item work-editorial-item--featured work-item" data-project="bereal" data-cursor="→ View Case Study">
-        <a href="projects/bereal-redesign.html" class="work-editorial-image-wrap">
-          <picture>
-            <source type="image/webp" srcset="images/home/bereal-redesign.webp">
-            <img src="images/home/bereal-redesign.jpg" alt="BeReal Redesign — project preview" class="work-editorial-img" loading="lazy" width="1600" height="900">
-          </picture>
-        </a>
-        <div class="work-editorial-info">
-          <span class="work-item-num">01</span>
-          <p class="work-card-meta">Product Design &nbsp;·&nbsp; UC Davis Design Interactive &nbsp;·&nbsp; <span class="work-item-award">★ Best Prototype</span></p>
-          <h2 class="work-card-title"><a href="projects/bereal-redesign.html">BeReal Redesign</a></h2>
-          <p class="project-card-desc">Redesigning BeReal's core experience to reduce social pressure and encourage more genuine, in-the-moment sharing, without losing what makes it unique.</p>
-          <a href="projects/bereal-redesign.html" class="project-card-link">View case study →</a>
-        </div>
-      </article>
-
-      <article class="work-editorial-item work-item" data-project="verum" data-cursor="→ View Case Study">
-        <a href="projects/verum-ai.html" class="work-editorial-image-wrap">
-          <picture>
-            <source type="image/webp" srcset="images/home/verum-ai.webp">
-            <img src="images/home/verum-ai.jpg" alt="Verum AI — GPT-powered political bias detection tool" class="work-editorial-img" loading="lazy" width="1600" height="900">
-          </picture>
-        </a>
-        <div class="work-editorial-info">
-          <span class="work-item-num">02</span>
-          <p class="work-card-meta">Product Design &nbsp;·&nbsp; Hackathon &nbsp;·&nbsp; 2nd Place</p>
-          <h2 class="work-card-title"><a href="projects/verum-ai.html">Verum AI</a></h2>
-          <p class="project-card-desc">An AI-powered misinformation detection tool designed and built in 24 hours at a hackathon. Helps users verify claims in real time before sharing them online. Placed 2nd overall.</p>
-          <a href="projects/verum-ai.html" class="project-card-link">View case study →</a>
-        </div>
-      </article>
-
-      <article class="work-editorial-item work-item" data-project="bsa" data-cursor="→ View Case Study">
-        <a href="projects/bsa-homepage.html" class="work-editorial-image-wrap">
-          <picture>
-            <source type="image/webp" srcset="images/home/bsa-homepage.webp">
-            <img src="images/home/bsa-homepage.jpg" alt="Body Sculpture Aesthetics homepage design" class="work-editorial-img" loading="lazy" width="1600" height="900">
-          </picture>
-        </a>
-        <div class="work-editorial-info">
-          <span class="work-item-num">03</span>
-          <p class="work-card-meta">Freelance &nbsp;·&nbsp; Web Design &nbsp;·&nbsp; 2024</p>
-          <h2 class="work-card-title"><a href="projects/bsa-homepage.html">Body Sculpture Aesthetics</a></h2>
-          <p class="project-card-desc">Freelance homepage redesign for a local aesthetics clinic. Building trust and driving bookings through a cleaner visual hierarchy and a more confident brand presence.</p>
-          <a href="projects/bsa-homepage.html" class="project-card-link">View case study →</a>
-        </div>
-      </article>
-
-    </section>
-
-    <!-- Section divider between Selected Work and Lab -->
-    <div class="section-divider work-divider"><span>Lab</span></div>
-
-    <!-- ─── Lab Section ───────────────────────────────────────────────────
-         id="lab": section anchor.
-         .section-lab: bottom margin.
-         .reveal: fade-in on scroll.
-         ─────────────────────────────────────────────────────────────────── -->
-    <section id="lab" class="section-lab reveal">
-      <!-- .lab-grid: flex column of lab cards -->
-      <div class="lab-grid">
-
-        <!-- Terminal-style card for the Raspberry Pi project -->
-        <article class="lab-card lab-card--terminal" data-cursor="↗ Open GitHub">
-          <div class="terminal-header">
-            <div class="terminal-dots" aria-hidden="true">
-              <span class="terminal-dot terminal-dot--red"></span>
-              <span class="terminal-dot terminal-dot--yellow"></span>
-              <span class="terminal-dot terminal-dot--green"></span>
+      <section id="more-work" class="indie" data-sec="more-work" aria-labelledby="indie-h">
+        <div class="wrap">
+          <div class="sec-head"><h2 id="indie-h">Independent Work</h2><span>4 projects</span></div>
+          <div class="ledger">
+          <article class="lrow" aria-labelledby="indie-packpal">
+            <div class="lrow-img" aria-hidden="true"><img src="images/home/packpal-800.webp" alt="" width="800" height="533" loading="lazy" decoding="async"></div>
+            <div class="lrow-txt">
+              <span class="lrow-num">04 <span>· 2023</span></span>
+              <h3 id="indie-packpal"><a href="projects/packpal.html">PackPal</a></h3>
+              <p>A packing-list app that builds personalized, editable lists for your specific trip.</p>
+              <span class="lrow-inline"><b>Recognition:</b> Most Customer-Centric, Design Club UC Davis</span>
             </div>
-            <span class="terminal-title">raspberry-pi-media-stack</span>
-            <a href="https://github.com/Derec58/raspberry-pi-media-stack"
-               target="_blank" rel="noopener noreferrer"
-               class="lab-card-link terminal-github-link" data-cursor="↗ Open GitHub" aria-label="View on GitHub">
-              ↗ GitHub
-            </a>
+            <dl class="lrow-meta"><div class="out"><dt class="dt">Recognition</dt><dd>Most Customer-Centric, Design Club UC Davis</dd></div><div class="role"><dt class="dt">Role · Tools</dt><dd>Team of 4 · Figma, Illustrator</dd></div></dl>
+            <span class="lrow-arr" aria-hidden="true">→</span>
+          </article>
+          <article class="lrow" aria-labelledby="indie-snapplant">
+            <div class="lrow-img" aria-hidden="true"><img src="images/home/snapplant-800.webp" alt="" width="800" height="533" loading="lazy" decoding="async"></div>
+            <div class="lrow-txt">
+              <span class="lrow-num">05 <span>· 2023</span></span>
+              <h3 id="indie-snapplant"><a href="projects/snapplant.html">SnapPlant</a></h3>
+              <p>A plant-ID app with an awareness angle on deforestation and invasive species.</p>
+              <span class="lrow-inline"><b>Context:</b> DES 112, UC Davis. First end-to-end UX process</span>
+            </div>
+            <dl class="lrow-meta"><div class="out"><dt class="dt">Context</dt><dd>DES 112, UC Davis. First end-to-end UX process</dd></div><div class="role"><dt class="dt">Role · Tools</dt><dd>Solo Designer · Adobe XD, Illustrator</dd></div></dl>
+            <span class="lrow-arr" aria-hidden="true">→</span>
+          </article>
+          <article class="lrow" aria-labelledby="indie-arc-redesign">
+            <div class="lrow-img" aria-hidden="true"><img src="images/home/arc-redesign-800.webp" alt="" width="800" height="533" loading="lazy" decoding="async"></div>
+            <div class="lrow-txt">
+              <span class="lrow-num">06 <span>· 2023</span></span>
+              <h3 id="indie-arc-redesign"><a href="projects/arc-redesign.html">ARC Redesign</a></h3>
+              <p>A 5-day redesign of the UC Davis rec center app, focused on accessibility and usability.</p>
+              <span class="lrow-inline"><b>Result:</b> The sprint that got me into Design Interactive</span>
+            </div>
+            <dl class="lrow-meta"><div class="out"><dt class="dt">Result</dt><dd>The sprint that got me into Design Interactive</dd></div><div class="role"><dt class="dt">Role · Tools</dt><dd>Solo Designer · Figma, Illustrator</dd></div></dl>
+            <span class="lrow-arr" aria-hidden="true">→</span>
+          </article>
+          <article class="lrow" aria-labelledby="indie-sonidos">
+            <div class="lrow-img" aria-hidden="true"><img src="images/home/sonidos-800.webp" alt="" width="800" height="533" loading="lazy" decoding="async"></div>
+            <div class="lrow-txt">
+              <span class="lrow-num">07 <span>· 2023</span></span>
+              <h3 id="indie-sonidos"><a href="projects/sonidos.html">Sonidos del Alma Danzante</a></h3>
+              <p>A full brand identity for a conceptual Cumbia festival rooted in East Los Angeles.</p>
+              <span class="lrow-inline"><b>Context:</b> DES 116 + DES 144, UC Davis</span>
+            </div>
+            <dl class="lrow-meta"><div class="out"><dt class="dt">Context</dt><dd>DES 116 + DES 144, UC Davis</dd></div><div class="role"><dt class="dt">Role · Tools</dt><dd>Solo Designer · Figma, InDesign, Illustrator</dd></div></dl>
+            <span class="lrow-arr" aria-hidden="true">→</span>
+          </article>
           </div>
-          <div class="lab-card-split">
-            <div class="lab-card-info">
-              <h3 class="lab-card-title">
-                <a href="https://github.com/Derec58/raspberry-pi-media-stack"
-                   target="_blank" rel="noopener noreferrer">
-                  Raspberry Pi Media Stack
-                </a>
-              </h3>
-              <p class="lab-card-desc">
-                A self-hosted media automation system built on a Raspberry Pi 5. Containerised services handle discovery, downloading, and streaming, routed through a VPN with a fail-closed design and public HTTPS access via a Caddy reverse proxy.
-              </p>
-            </div>
-            <div class="lab-card-terminal-body">
-              <span class="lab-card-meta">Raspberry Pi 5 &middot; Docker &middot; Caddy &middot; VPN</span>
-              <div class="terminal-body">
-                <p class="terminal-line">
-                  <span class="terminal-prompt" aria-hidden="true">$</span>
-                  <span class="terminal-cmd">docker compose up -d</span>
-                </p>
-                <p class="terminal-output">Starting services: sonarr, radarr, jellyfin, gluetun...</p>
-                <p class="terminal-line--success">&#x2713; All 6 containers healthy</p>
+        </div>
+      </section>
+
+      <section id="lab" class="lab" data-sec="lab" aria-labelledby="lab-h">
+        <div class="wrap">
+          <div class="sec-head"><h2 id="lab-h">Lab</h2><span>Side projects, built and running</span></div>
+          <div class="lab-list">
+          <article class="lab-card" aria-labelledby="lab-1">
+            <div class="lab-bar"><span class="lab-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="lab-url">github.com/Derec58/<b>raspberry-pi-media-stack</b></span><a class="lab-gh" href="https://github.com/Derec58/raspberry-pi-media-stack" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">GitHub ↗</a></div>
+            <div class="lab-body">
+              <div class="lab-txt">
+                <div class="lab-meta"><span class="num">L01</span><span class="muted">Self-hosted homelab</span></div>
+                <h3 id="lab-1"><a href="https://github.com/Derec58/raspberry-pi-media-stack" target="_blank" rel="noopener noreferrer">Raspberry Pi Media Stack</a></h3>
+                <p>A self-hosted media automation system on a Raspberry Pi 5. Containerized services handle discovery, downloading, and streaming, routed through a fail-closed VPN with public HTTPS via a Caddy reverse proxy.</p>
+              </div>
+              <div class="lab-side">
+                <ul class="lab-stack" aria-label="Stack"><li>Raspberry Pi 5</li><li>Docker</li><li>Caddy</li><li>VPN</li></ul>
+                <div class="term" role="img" aria-label="Terminal: docker compose up -d, All 6 containers healthy"><div><span class="p">$</span> docker compose up -d</div><div class="o">Starting services: sonarr, radarr, jellyfin, gluetun...</div><div class="k">✓ All 6 containers healthy</div></div>
               </div>
             </div>
-          </div>
-        </article>
-
-        <!-- Terminal-style card for the Portfolio Site project -->
-        <article class="lab-card lab-card--terminal" data-cursor="↗ Open GitHub">
-          <div class="terminal-header">
-            <div class="terminal-dots" aria-hidden="true">
-              <span class="terminal-dot terminal-dot--red"></span>
-              <span class="terminal-dot terminal-dot--yellow"></span>
-              <span class="terminal-dot terminal-dot--green"></span>
-            </div>
-            <span class="terminal-title">portfolio2026</span>
-            <a href="https://github.com/Derec58/portfolio2026"
-               target="_blank" rel="noopener noreferrer"
-               class="lab-card-link terminal-github-link" data-cursor="↗ Open GitHub" aria-label="View on GitHub">
-              ↗ GitHub
-            </a>
-          </div>
-          <div class="lab-card-split">
-            <div class="lab-card-info">
-              <h3 class="lab-card-title">
-                <a href="https://github.com/Derec58/portfolio2026"
-                   target="_blank" rel="noopener noreferrer">
-                  Portfolio Site
-                </a>
-              </h3>
-              <p class="lab-card-desc">
-                This portfolio is hand-written HTML, CSS, and JavaScript with no frameworks or build tools. Responsive two-panel layout, dark mode via CSS custom properties, vanilla JS scroll reveals and hover previews. Hosted on Vercel.
-              </p>
-            </div>
-            <div class="lab-card-terminal-body">
-              <span class="lab-card-meta">HTML &middot; CSS &middot; JS &middot; Vercel</span>
-              <div class="terminal-body">
-                <p class="terminal-line">
-                  <span class="terminal-prompt" aria-hidden="true">$</span>
-                  <span class="terminal-cmd">vercel --prod</span>
-                </p>
-                <p class="terminal-output">Deploying portfolio2026 to production...</p>
-                <p class="terminal-line--success">&#x2713; Deployed to dereckvilla.design</p>
+          </article>
+          <article class="lab-card" aria-labelledby="lab-2">
+            <div class="lab-bar"><span class="lab-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="lab-url">github.com/Derec58/<b>portfolio2026</b></span><a class="lab-gh" href="https://github.com/Derec58/portfolio2026" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">GitHub ↗</a></div>
+            <div class="lab-body">
+              <div class="lab-txt">
+                <div class="lab-meta"><span class="num">L02</span><span class="muted">This site, deployed</span></div>
+                <h3 id="lab-2"><a href="https://github.com/Derec58/portfolio2026" target="_blank" rel="noopener noreferrer">Portfolio Site</a></h3>
+                <p>Hand-written HTML, CSS, and JavaScript with no frameworks or build tools. Responsive layout, dark mode via custom properties, and vanilla JS scroll-spy and hover previews. Hosted on Vercel.</p>
+              </div>
+              <div class="lab-side">
+                <ul class="lab-stack" aria-label="Stack"><li>HTML</li><li>CSS</li><li>JS</li><li>Vercel</li></ul>
+                <div class="term" role="img" aria-label="Terminal: vercel --prod, Deployed to dereckvilla.design"><div><span class="p">$</span> vercel --prod</div><div class="o">Deploying portfolio2026 to production...</div><div class="k">✓ Deployed to dereckvilla.design</div></div>
               </div>
             </div>
+          </article>
           </div>
-        </article>
+        </div>
+      </section>
 
-      </div><!-- /.lab-grid -->
-    </section><!-- /#lab -->
-
-    <!-- Section divider between Lab and After Hours -->
-    <div class="section-divider work-divider"><span>Independent Work</span></div>
-
-    <!-- ─── After Hours Section ───────────────────────────────────────────
-         id="after-hours": section anchor.
-         2×2 grid of side project cards (collapses to 1 column at 480px).
-         ─────────────────────────────────────────────────────────────────── -->
-    <section id="after-hours" class="section-after-hours reveal">
-      <div class="work-grid">
-
-        <article class="work-card" data-cursor="→ View Case Study">
-          <a href="projects/packpal.html">
-            <picture>
-              <source type="image/webp" srcset="images/home/packpal.webp">
-              <img src="images/home/packpal.jpg" alt="PackPal app mockup" class="work-card-image" loading="lazy" width="1600" height="900">
-            </picture>
-          </a>
-          <h3 class="work-card-title"><a href="projects/packpal.html">PackPal</a></h3>
-          <p class="work-card-meta">Design Club &nbsp;·&nbsp; Most Customer-Centric</p>
-        </article>
-
-        <article class="work-card" data-cursor="→ View Case Study">
-          <a href="projects/snapplant.html">
-            <picture>
-              <source type="image/webp" srcset="images/home/snapplant.webp">
-              <img src="images/home/snapplant.jpg" alt="SnapPlant app mockup" class="work-card-image" loading="lazy" width="1600" height="900">
-            </picture>
-          </a>
-          <h3 class="work-card-title"><a href="projects/snapplant.html">SnapPlant</a></h3>
-          <p class="work-card-meta">Coursework &nbsp;·&nbsp; UX Design</p>
-        </article>
-
-        <article class="work-card" data-cursor="→ View Case Study">
-          <a href="projects/arc-redesign.html">
-            <picture>
-              <source type="image/webp" srcset="images/home/arc-redesign.webp">
-              <img src="images/home/arc-redesign.jpg" alt="ARC app redesign mockup" class="work-card-image" loading="lazy" width="1600" height="900">
-            </picture>
-          </a>
-          <h3 class="work-card-title"><a href="projects/arc-redesign.html">ARC Redesign</a></h3>
-          <p class="work-card-meta">Design Challenge &nbsp;·&nbsp; 5-Day Sprint</p>
-        </article>
-
-        <article class="work-card" data-cursor="→ View Case Study">
-          <a href="projects/sonidos.html">
-            <picture>
-              <source type="image/webp" srcset="images/home/sonidos.webp">
-              <img src="images/home/sonidos.jpg" alt="Sonidos del Alma Danzante brand identity" class="work-card-image" loading="lazy" width="1600" height="900">
-            </picture>
-          </a>
-          <h3 class="work-card-title"><a href="projects/sonidos.html">Sonidos del Alma Danzante</a></h3>
-          <p class="work-card-meta">Branding &nbsp;·&nbsp; Brand Identity</p>
-        </article>
-
+      <footer id="colophon" class="foot" data-sec="colophon">
+      <div class="foot-in">
+        <h2 class="eyebrow">Contact</h2>
+        <div class="foot-row">
+          <p class="foot-big">Let's build <em>something.</em></p>
+          <span class="foot-mail"><a href="mailto:hello@dereckvilla.design">hello@dereckvilla.design <span aria-hidden="true">→</span></a><button type="button" class="btn-pill" data-copy="hello@dereckvilla.design">Copy</button><span class="sr-only" role="status" aria-live="polite"></span></span>
+        </div>
+        <div class="foot-base">
+          <div class="foot-links"><a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/Derec58" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="resume.pdf" target="_blank" rel="noopener">Résumé ↗</a></div>
+          <small>© 2026 · Designed &amp; built in vanilla HTML, CSS &amp; JS</small>
+        </div>
       </div>
-    </section>
-
-    <!-- ─── Site Footer ───────────────────────────────────────────────────
-         Lives inside <main> (inside .content) so it shares the content background.
-         CSS uses negative margins to break out of .content's padding and span
-         the full width of the content area. See style.css Section 27.
-         ⚠️ TODO: Update year from 2025 to current year if needed.
-         ─────────────────────────────────────────────────────────────────── -->
-    <footer class="site-footer">
-      <span>&copy; 2026 Dereck Villagrana. All rights reserved.</span>
-      <span>Designed &amp; built by Dereck</span>
     </footer>
-
-  </main><!-- /.content -->
-
-  <!-- ─── JavaScript ────────────────────────────────────────────────────────
-       Loaded at the end of <body> so it doesn't block page rendering.
-       ?v=2 is a cache buster — tells the browser to treat this as a new file
-       and download a fresh copy instead of serving a cached (stale) version.
-       Update the number (?v=3, ?v=4...) any time you change main.js.
-       ─────────────────────────────────────────────────────────────────────── -->
-  <div class="cursor-dot" aria-hidden="true"><span class="cursor-label"></span></div>
-  <script src="js/main.js?v=3"></script>
+    </main>
+  </div>
+  <button type="button" class="totop" aria-label="Back to top">Top <span aria-hidden="true">↑</span></button>
+  <div class="preview" aria-hidden="true"><div class="preview-in"><img alt=""></div></div>
 </body>
 </html>

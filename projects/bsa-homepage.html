@@ -1,249 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- UTF-8 charset: supports all Unicode characters (emoji, accented letters, etc.) -->
   <meta charset="UTF-8">
-  <!-- viewport: prevents mobile browsers from zooming out to a desktop-width view.
-       width=device-width matches the physical screen width; initial-scale=1.0 = no zoom. -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Body Sculpture Aesthetics: freelance homepage redesign driving bookings through cleaner visual hierarchy and confident branding. By Dereck Villagrana.">
-  <meta property="og:title" content="Body Sculpture Aesthetics | Dereck Villagrana">
-  <meta property="og:description" content="Freelance homepage redesign for a local aesthetics clinic, building trust and driving bookings through cleaner visual hierarchy.">
-  <meta property="og:url" content="https://dereckvilla.design/projects/bsa-homepage.html">
-  <meta property="og:type" content="article">
-  <meta name="twitter:card" content="summary">
-  <meta property="og:image" content="https://dereckvilla.design/images/logos/site/og-image-white.png">
-  <meta name="twitter:image" content="https://dereckvilla.design/images/logos/site/og-image-white.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Body Sculpting Aesthetic | Dereck Villagrana</title>
+  <meta name="description" content="I designed a homepage for a body sculpting clinic with almost no brief, a reference that didn't…">
   <link rel="canonical" href="https://dereckvilla.design/projects/bsa-homepage.html">
-  <title>Body Sculpture Aesthetics | Dereck Villagrana</title>
-  <!-- Preconnect hints: open early connections to Google Fonts servers before
-       the browser discovers the font request — saves ~100–300ms. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <!-- ../css/style.css: one level up from projects/ to reach the root css/ folder -->
-  <link rel="stylesheet" href="../css/style.css">
+  <meta property="og:title" content="Body Sculpting Aesthetic | Dereck Villagrana">
+  <meta property="og:description" content="I designed a homepage for a body sculpting clinic with almost no brief, a reference that didn't…">
+  <meta property="og:url" content="https://dereckvilla.design/projects/bsa-homepage.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://dereckvilla.design/images/og-card-v3.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Dereck Villagrana, product designer and front-end developer">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://dereckvilla.design/images/og-card-v3.png">
+  <meta name="theme-color" content="#FAFCFD" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15171a" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/svg+xml" href="../images/logos/site/logo-dark.svg">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="../fonts/playfair-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" imagesrcset="../images/projects/bsa-homepage/00-cover-800.webp 800w, ../images/projects/bsa-homepage/00-cover.webp 1600w" imagesizes="(max-width: 1180px) 92vw, 1060px" fetchpriority="high">
+  <link rel="stylesheet" href="../css/site.min.css?v=7">
+  <script>try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
+  <script defer src="../js/site.min.js?v=7"></script>
   <script defer src="/_vercel/insights/script.js"></script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dereckvilla.design/" },
-      { "@type": "ListItem", "position": 2, "name": "Body Sculpture Aesthetics", "item": "https://dereckvilla.design/projects/bsa-homepage.html" }
-    ]
-  }
-  </script>
 </head>
 <body>
-
-  <!-- ─── Skip Navigation ─────────────────────────────────────────────────────
-       Lets keyboard and screen reader users jump directly to main content,
-       bypassing the sidebar nav. Visually hidden until focused.
-       See index.html for full documentation. -->
-  <a href="#main-content" class="skip-nav">Skip to main content</a>
-
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       SIDEBAR — Fully documented in index.html.
-       See index.html for comments on every sidebar element, class, and
-       aria attribute. Key differences on this page:
-         - Logo href: "../index.html#about" (up one folder to the root index)
-         - No "Lab" nav group (not on project pages)
-         - This page's nav link: class="active" + data-preview="" + aria-current="page"
-           data-preview="" is intentionally empty — JS skips hover preview for
-           the current page so you don't see a card for the page you're on
-         - All image paths in data-preview: "../images/previews/..." (one level up)
-       ═══════════════════════════════════════════════════════════════════════ -->
-  <aside class="sidebar">
-    <div class="sidebar-header">
-        <div class="sidebar-top">
-      <a href="../index.html#about" class="logo-badge" aria-label="Home">
-        <svg class="logo-img" viewBox="0 0 52 52" aria-hidden="true" focusable="false">
-          <text font-family="'Playfair Display', Georgia, serif" font-weight="700" font-style="italic" font-size="20" text-anchor="middle" dominant-baseline="central" x="26" y="26"><tspan class="logo-d">D</tspan><tspan class="logo-v">V</tspan></text>
-        </svg>
-      </a>
-      <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+  <a class="skip" href="#main-content">Skip to main content</a>
+  <div class="rail">
+    <div class="rail-strip">
+      <a class="logo" href="../index.html" aria-label="Home">D<span>V</span></a>
+      <button type="button" class="rail-btn" aria-expanded="false" aria-controls="rail-panel" aria-label="Site index, currently on 03"><span class="rail-cur" aria-hidden="true">03</span><span class="rail-line" aria-hidden="true"></span><span class="rail-idx" aria-hidden="true">Index</span></button>
+      <span class="rail-dot" aria-hidden="true"></span>
     </div>
-
-        <nav aria-label="Site navigation" class="sidebar-nav">
-      <a href="../about.html" class="nav-link">About</a>
-      <a href="../contact.html" class="nav-link">Contact</a>
-      <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
-    </nav>
+    <nav id="rail-panel" class="rail-panel" aria-label="Site index">
+      <div class="rail-top">
+        <div class="rail-top-row"><a class="logo" href="../index.html" aria-label="Home">D<span>V</span></a><button type="button" class="rail-close"><span aria-hidden="true">←</span> Close</button></div>
+        <div class="rail-site"><a href="../about.html">About</a><a href="../services.html">Services</a><a href="../contact.html">Contact</a><a href="../resume.pdf" target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="snav snav--work" role="group" aria-label="Selected work">
+        <div class="snav-head"><a href="../index.html#work" data-navgroup="work">Selected Work</a><span aria-hidden="true">03</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="../projects/bereal-redesign.html"><span class="snav-num">01</span><span>BeReal Redesign</span></a>
+          <a class="snav-link" href="../projects/verum-ai.html"><span class="snav-num">02</span><span>Verum AI</span></a>
+          <a class="snav-link" href="../projects/bsa-homepage.html" aria-current="page"><span class="snav-num">03</span><span>Body Sculpting Aesthetic</span></a>
         </div>
-
-    <div class="nav-group" role="navigation" aria-label="Selected Work">
-      <span class="nav-label">Selected Work</span>
-      <a href="bereal-redesign.html" class="nav-link" data-preview="../images/home/bereal-redesign.webp">BeReal Redesign</a>
-      <a href="verum-ai.html" class="nav-link" data-preview="../images/home/verum-ai.webp">Verum AI</a>
-      <!-- active + data-preview="" + aria-current: marks this as the current page.
-           Empty data-preview prevents JS from showing a hover card for this link. -->
-      <a href="bsa-homepage.html" class="nav-link active" data-preview="" aria-current="page">Body Sculpture Aesthetics</a>
+      </div>
+      <div class="snav " role="group" aria-label="Independent work">
+        <div class="snav-head"><a href="../index.html#more-work" data-navgroup="more-work">Independent Work</a><span aria-hidden="true">04</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="../projects/packpal.html"><span class="snav-num">04</span><span>PackPal</span></a>
+          <a class="snav-link" href="../projects/snapplant.html"><span class="snav-num">05</span><span>SnapPlant</span></a>
+          <a class="snav-link" href="../projects/arc-redesign.html"><span class="snav-num">06</span><span>ARC Redesign</span></a>
+          <a class="snav-link" href="../projects/sonidos.html"><span class="snav-num">07</span><span>Sonidos del Alma Danzante</span></a>
+        </div>
+      </div>
+      <div class="snav  snav--last" role="group" aria-label="Lab">
+        <div class="snav-head"><a href="../index.html#lab" data-navgroup="lab">Lab</a><span aria-hidden="true">02</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="https://github.com/Derec58/raspberry-pi-media-stack" target="_blank" rel="noopener noreferrer"><span class="snav-num">L01</span><span>Raspberry Pi Media Stack <span aria-hidden="true">↗</span></span></a>
+          <a class="snav-link" href="https://github.com/Derec58/portfolio2026" target="_blank" rel="noopener noreferrer"><span class="snav-num">L02</span><span>Portfolio Site <span aria-hidden="true">↗</span></span></a>
+        </div>
+      </div>
+      <div class="sidebar-foot"><a class="pill-status" href="../contact.html"><span class="dot" aria-hidden="true"></span>Available for work<span class="arr" aria-hidden="true">→</span></a></div>
+    </nav>
+  </div>
+  <div class="page">
+    <header class="topbar itop">
+      <div class="topbar-in itop-in">
+        <div class="itop-left"><a class="logo" href="../index.html" aria-label="Home">D<span>V</span></a><a class="itop-back" href="../index.html#work"><span aria-hidden="true">←</span> Portfolio</a></div>
+        <div class="topbar-right"><span class="itop-count">03 / 07</span><button type="button" class="theme-btn" data-theme-toggle aria-label="Switch to dark mode"><span aria-hidden="true">◐</span><span data-theme-label>Dark</span></button></div>
+      </div>
+    </header>
+    <nav class="chapbar" aria-label="Chapters">
+      <button type="button" class="chapbar-btn" aria-expanded="false" aria-controls="chap-list"><span class="eyebrow" data-chap-count>Ch. 01 / 04</span><b data-chap-title>The Challenge</b><span data-caret aria-hidden="true">▾</span></button>
+      <div class="chapbar-track" aria-hidden="true"><i></i></div>
+      <ol id="chap-list" hidden><li><a href="#ch-1" data-chnav="ch-1"><span>01</span>The Challenge</a></li><li><a href="#ch-2" data-chnav="ch-2"><span>02</span>Building a Direction from One Asset</a></li><li><a href="#ch-3" data-chnav="ch-3"><span>03</span>Final Designs</a></li><li><a href="#ch-4" data-chnav="ch-4"><span>04</span>Reflection</a></li></ol>
+    </nav>
+    <main id="main-content">
+      <section class="cs-wrap cs-mast" aria-label="Overview">
+        <div class="cs-rule"><span class="num">03</span><span class="muted">Freelance · 2024</span></div>
+        <h1>Body Sculpting Aesthetic</h1>
+        <p class="cs-sub">I designed a homepage for a body sculpting clinic with almost no brief, a reference that didn't resolve, and a four-week deadline.</p>
+        <dl class="facts cs-facts"><div><dt class="dt">Timeline</dt><dd>Jun.–Jul. 2024</dd></div><div><dt class="dt">Client</dt><dd>Body Sculpting Aesthetic</dd></div><div><dt class="dt">Type</dt><dd>Freelance Commission</dd></div><div><dt class="dt">Tools</dt><dd>Figma, Webflow</dd></div></dl>
+        <img class="cs-cover" src="../images/projects/bsa-homepage/00-cover.webp" srcset="../images/projects/bsa-homepage/00-cover-800.webp 800w, ../images/projects/bsa-homepage/00-cover.webp 1600w" sizes="(max-width: 1180px) 92vw, 1060px" alt="Body Sculpting Aesthetic: homepage redesign" width="1600" height="900" fetchpriority="high" decoding="async">
+      </section>
+      <div class="cs-wrap cs-body">
+        <article aria-label="Case study" style="min-width:0">
+          <p class="cs-over">Body Sculpting Aesthetic is a non-invasive body sculpting clinic built around luxury, professionalism, and results. They needed a homepage that could attract new clients, showcase their services, and position them as a trusted name in aesthetics. The client provided two things: a black and white logo and a single reference link to a site in the same industry, which no longer resolved. With almost nothing to work from and a hard deadline, I had to define the visual identity, establish the design direction, and deliver a finished Figma design within four weeks. A separate developer led the Webflow build; I stayed on through development to review the implementation and work through design questions with them.</p>
+        <section id="ch-1" class="cs-ch" data-ch data-label="The Challenge" aria-labelledby="ch-1-h">
+          <div class="cs-ch-rule"><span class="num">01</span><span class="eyebrow muted">The Challenge</span></div>
+          <h2 id="ch-1-h">What does a premium aesthetics clinic look like online when you have to figure that out yourself?</h2>
+          <div class="cs-blocks">
+            <p class="cs-p">The brief was nearly nonexistent. The client communicated through emails spaced so far apart that building any real momentum was difficult. What they gave me was a black and white logo and one reference link. The link no longer worked by the time I tried to access it.</p>
+            <p class="cs-p">That left me with almost every design decision to make independently. Getting the direction wrong meant burning time I didn't have. The core question I had to answer on my own: what does a premium, non-invasive aesthetics clinic look like online, and how do you communicate trust and results to someone who's never heard of this business?</p>
+          </div>
+        </section>
+        <section id="ch-2" class="cs-ch" data-ch data-label="Building a Direction from One Asset" aria-labelledby="ch-2-h">
+          <div class="cs-ch-rule"><span class="num">02</span><span class="eyebrow muted">Building a Direction from One Asset</span></div>
+          <h2 id="ch-2-h">Starting from one asset and building everything outward.</h2>
+          <div class="cs-blocks">
+            <h3 class="cs-h3"><span aria-hidden="true">01</span>Starting from the logo</h3>
+<p class="cs-p">The only concrete asset I had was a black and white logo. Rather than treat that as a limitation, I used it as a starting point. A monochrome base suggested either a minimal light palette or a dark, editorial direction. Given the industry, dark felt more premium. I decided to build the color system around that logo, pairing black with gold accents to push it into luxury territory without losing the clean, clinical feel aesthetics clients expect.</p>
+            <h3 class="cs-h3"><span aria-hidden="true">02</span>Competitor research and visual reference</h3>
+<p class="cs-p">With no working reference from the client, I did my own. I looked at competitors and reference sites across the aesthetics and beauty clinic space to understand what visual patterns high-end clinics use and where most sites fall short.</p>
+<p class="cs-p">A few patterns stood out: luxury aesthetics brands tend to use dark backgrounds with gold or champagne accents to signal premium positioning. The strongest sites led with the outcome (how you'll feel and look) rather than a list of services. Real photography of treatments builds more trust than abstract imagery or generic stock.</p>
+            <figure class="cs-fig"><button type="button" data-lb data-full="../images/projects/bsa-homepage/visual-research.webp" data-alt="Visual research: competitor sites and luxury aesthetics brand references" data-cap="Visual research: competitor sites and luxury aesthetics brand references" data-fig="Fig. 01" aria-label="Open figure 1 larger"><img src="../images/projects/bsa-homepage/visual-research-800.webp" srcset="../images/projects/bsa-homepage/visual-research-800.webp 800w, ../images/projects/bsa-homepage/visual-research.webp 1440w" sizes="(max-width: 900px) 92vw, 760px" alt="Visual research: competitor sites and luxury aesthetics brand references" width="1440" height="810" loading="lazy" decoding="async"></button><figcaption><b>Fig. 01</b><span>Visual research: competitor sites and luxury aesthetics brand references</span></figcaption></figure>
+            <h3 class="cs-h3"><span aria-hidden="true">03</span>Design decisions in Figma</h3>
+<p class="cs-p">I moved into Figma once I had a visual direction locked. Key decisions:</p>
+<p class="cs-p"><strong>Color.</strong> Black base with gold accents and marble texture to communicate luxury without feeling cold.</p>
+<p class="cs-p"><strong>Typography.</strong> The client's script wordmark carried a high-end, personal feel. I paired it with bold sans-serif headlines to stay legible and confident across the page.</p>
+<p class="cs-p"><strong>Hero.</strong> Led with a real treatment photograph and the line "Guiding You To Your Best Self" to immediately communicate the outcome, not the service list.</p>
+<p class="cs-p"><strong>CTAs.</strong> Dual call-to-action structure with a primary "Book Now" (filled gold) and secondary "View Our Services" (outlined) to serve both high-intent and exploratory visitors.</p>
+          </div>
+        </section>
+        <section id="ch-3" class="cs-ch" data-ch data-label="Final Designs" aria-labelledby="ch-3-h">
+          <div class="cs-ch-rule"><span class="num">03</span><span class="eyebrow muted">Final Designs</span></div>
+          <h2 id="ch-3-h">Desktop and mobile, designed in parallel.</h2>
+          <div class="cs-blocks">
+            <p class="cs-p">The client requested both a desktop and a mobile screen, so I designed both in parallel to make sure the layout held across breakpoints.</p>
+            <figure class="cs-fig"><button type="button" data-lb data-full="../images/projects/bsa-homepage/desktop-design.webp" data-alt="Desktop homepage: hero, services, and CTAs" data-cap="Desktop homepage: hero, services, and CTAs" data-fig="Fig. 02" aria-label="Open figure 2 larger"><img src="../images/projects/bsa-homepage/desktop-design-800.webp" srcset="../images/projects/bsa-homepage/desktop-design-800.webp 800w, ../images/projects/bsa-homepage/desktop-design.webp 1440w" sizes="(max-width: 900px) 92vw, 760px" alt="Desktop homepage: hero, services, and CTAs" width="1440" height="810" loading="lazy" decoding="async"></button><figcaption><b>Fig. 02</b><span>Desktop homepage: hero, services, and CTAs</span></figcaption></figure>
+            <figure class="cs-fig"><button type="button" data-lb data-full="../images/projects/bsa-homepage/mobile-design.webp" data-alt="Mobile homepage: adapted layout for smaller screens" data-cap="Mobile homepage: adapted layout for smaller screens" data-fig="Fig. 03" aria-label="Open figure 3 larger"><img src="../images/projects/bsa-homepage/mobile-design-800.webp" srcset="../images/projects/bsa-homepage/mobile-design-800.webp 800w, ../images/projects/bsa-homepage/mobile-design.webp 1440w" sizes="(max-width: 900px) 92vw, 760px" alt="Mobile homepage: adapted layout for smaller screens" width="1440" height="810" loading="lazy" decoding="async"></button><figcaption><b>Fig. 03</b><span>Mobile homepage: adapted layout for smaller screens</span></figcaption></figure>
+            <p class="cs-p"><strong>Into development.</strong> A separate developer built the site in Webflow. I stayed involved through the build: reviewing it against the Figma file, answering layout and spacing questions, and working through the spots where a design decision didn’t translate cleanly to the platform.</p>
+          </div>
+        </section>
+        <section id="ch-4" class="cs-ch" data-ch data-label="Reflection" aria-labelledby="ch-4-h">
+          <div class="cs-ch-rule"><span class="num">04</span><span class="eyebrow muted">Reflection</span></div>
+          <h2 id="ch-4-h">Working without a brief teaches you to write your own.</h2>
+          <div class="cs-blocks">
+            <p class="cs-p">The logo was the only brand anchor I had. Using it as a starting point rather than a constraint meant I could build a full visual direction from a single asset. That's a skill I didn't know I had until I needed it.</p>
+            <p class="cs-p">Communication gaps are a design constraint too. Sparse client feedback meant I had to be more deliberate about what I presented and when. Every touchpoint needed to carry more weight because there weren't many of them.</p>
+            <p class="cs-p">Scope clarity matters as much as design quality. A four-week freelance timeline with limited back-and-forth taught me to separate decisions that genuinely needed client sign-off from ones I could own independently. That distinction kept the project on track and on time.</p>
+          </div>
+        </section>
+        </article>
+        <nav class="chap snav" aria-label="Chapters">
+          <div class="snav-head"><span class="eyebrow muted">Chapters</span><span aria-hidden="true">04</span></div>
+          <div class="snav-list"><span class="snav-marker" aria-hidden="true"></span>
+              <a class="snav-link" href="#ch-1" data-chnav="ch-1"><span class="snav-num">01</span><span>The Challenge</span></a>
+              <a class="snav-link" href="#ch-2" data-chnav="ch-2"><span class="snav-num">02</span><span>Building a Direction from One Asset</span></a>
+              <a class="snav-link" href="#ch-3" data-chnav="ch-3"><span class="snav-num">03</span><span>Final Designs</span></a>
+              <a class="snav-link" href="#ch-4" data-chnav="ch-4"><span class="snav-num">04</span><span>Reflection</span></a>
+          </div>
+        </nav>
+      </div>
+      <section class="cs-wrap next" aria-label="Next case study">
+        <a href="packpal.html" aria-label="Next case study: PackPal">
+          <div class="next-txt"><div class="cs-rule" style="border:0;padding:0;justify-content:flex-start"><span class="eyebrow muted">Next</span><span class="num">04</span></div><div class="next-title">PackPal <span aria-hidden="true">→</span></div><span class="muted" style="font-size:13px">Independent Work · Design Club · 2023</span></div>
+          <div class="next-media"><img src="../images/home/packpal-800.webp" alt="" width="800" height="533" loading="lazy" decoding="async"></div>
+        </a>
+      </section>
+    </main>
+    <dialog class="lb" aria-label="Image viewer">
+      <div class="lb-in">
+        <div class="lb-head"><span class="eyebrow"><span data-lb-fig></span> <i data-lb-count></i></span><div class="lb-btns"><button type="button" data-lb-prev aria-label="Previous image">←</button><button type="button" data-lb-next aria-label="Next image">→</button><button type="button" data-lb-close aria-label="Close image viewer">✕</button></div></div>
+        <img alt="">
+        <p></p>
+      </div>
+    </dialog>
+  <footer class="foot foot--compact">
+    <div class="foot-in">
+      <div class="foot-links"><a href="mailto:hello@dereckvilla.design">hello@dereckvilla.design</a><a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/Derec58" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="../resume.pdf" target="_blank" rel="noopener">Résumé ↗</a></div>
+      <small>© 2026 · Designed &amp; built in vanilla HTML, CSS &amp; JS</small>
     </div>
-
-    <div class="nav-group" role="navigation" aria-label="Lab">
-      <span class="nav-label">Lab</span>
-      <a href="https://github.com/Derec58/raspberry-pi-media-stack" target="_blank" rel="noopener noreferrer" class="nav-link">Raspberry Pi Media Stack ↗</a>
-      <a href="https://github.com/Derec58/portfolio2026" target="_blank" rel="noopener noreferrer" class="nav-link">Portfolio Site ↗</a>
-    </div>
-
-    <div class="nav-group" role="navigation" aria-label="Independent Work">
-      <span class="nav-label">Independent Work</span>
-      <a href="packpal.html" class="nav-link" data-preview="../images/home/packpal.webp">PackPal</a>
-      <a href="snapplant.html" class="nav-link" data-preview="../images/home/snapplant.webp">SnapPlant</a>
-      <a href="arc-redesign.html" class="nav-link" data-preview="../images/home/arc-redesign.webp">ARC Redesign</a>
-      <a href="sonidos.html" class="nav-link" data-preview="../images/home/sonidos.webp">Sonidos del Alma Danzante</a>
-    </div>
-
-    <!-- Status pill: animated green dot + "Available for work" text.
-         Documented fully in index.html. -->
-    <div class="sidebar-status">
-      <span class="status-pill">
-        <span class="status-dot" aria-hidden="true"></span>
-        <span>Available for work</span>
-      </span>
-    </div>
-  </aside>
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       END SIDEBAR
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <!-- Main content: scrollable right panel. id="main-content" is the target
-       for the skip-nav link above. -->
-  <main class="content" id="main-content">
-
-    <!-- ─── Back Link ──────────────────────────────────────────────────────
-         .cs-back: small text link back to the portfolio homepage.
-         Positioned above the case study header so users can easily exit. -->
-    <a href="../index.html" class="cs-back">← Portfolio</a>
-
-    <div class="cs-header cs-header--1 reveal">
-      <span class="cs-eyebrow">03 &nbsp;&middot;&nbsp; Freelance</span>
-      <h1 class="cs-title--1">Body Sculpture Aesthetics</h1>
-      <p class="cs-subtitle">Sculpting Beauty: Artistry Meets Advanced Aesthetics. I designed a homepage for a body sculpting clinic with almost no brief, a reference that didn't resolve, and a four-week deadline.</p>
-    </div>
-
-    <div class="cs-meta-strip reveal">
-      <div class="cs-meta-strip-item">
-        <span class="cs-meta-strip-label">Timeline</span>
-        <span class="cs-meta-strip-value">Jan.&ndash;Feb. 2024</span>
-      </div>
-      <div class="cs-meta-strip-item">
-        <span class="cs-meta-strip-label">Client</span>
-        <span class="cs-meta-strip-value">Body Sculpture Aesthetics</span>
-      </div>
-      <div class="cs-meta-strip-item">
-        <span class="cs-meta-strip-label">Type</span>
-        <span class="cs-meta-strip-value">Freelance Commission</span>
-      </div>
-      <div class="cs-meta-strip-item">
-        <span class="cs-meta-strip-label">Tools</span>
-        <span class="cs-meta-strip-value">Figma, Webflow</span>
-      </div>
-    </div>
-
-    <img src="../images/projects/bsa-homepage/00-cover.jpg" alt="Body Sculpture Aesthetics — homepage redesign" class="cs-cover" width="1600" height="900" fetchpriority="high">
-
-    <!-- ─── Overview Paragraph ────────────────────────────────────────────
-         .cs-overview: opening paragraph styled larger than body copy.
-         Sets context before the detailed sections begin. -->
-    <p class="cs-overview reveal">
-      Body Sculpture Aesthetics is a non-invasive body sculpting clinic built around luxury, professionalism, and results. They needed a homepage that could attract new clients, showcase their services, and position them as a trusted name in aesthetics. The client provided two things: a black and white logo and a single reference link to a site in the same industry, which no longer resolved. With almost nothing to work from and a hard deadline, I had to define the visual identity, establish the design direction, and deliver a finished Figma handoff and Webflow build within four weeks.
-    </p>
-
-    <!-- ─── Section Divider ────────────────────────────────────────────────
-         .cs-divider: thin horizontal rule separating the overview from
-         the detailed case study sections. Pure CSS — no content. -->
-    <div class="cs-divider"></div>
-
-    <!-- ─── The Challenge Section ─────────────────────────────────────────
-         Standard section pattern: .cs-section-label + .cs-heading + .cs-body.
-         Describes the constraints that defined this project. -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">The Challenge</span>
-      <h2 class="cs-heading">What does a premium aesthetics clinic look like online when you have to figure that out yourself?</h2>
-      <p class="cs-body">The brief was nearly nonexistent. The client communicated through emails spaced so far apart that building any real momentum was difficult. What they gave me was a black and white logo and one reference link. The link no longer worked by the time I tried to access it.</p>
-      <p class="cs-body">That left me with almost every design decision to make independently. Getting the direction wrong meant burning time I didn't have. The core question I had to answer on my own: what does a premium, non-invasive aesthetics clinic look like online, and how do you communicate trust and results to someone who's never heard of this business?</p>
-    </section>
-
-    <!-- ─── Process Section ───────────────────────────────────────────────
-         Three .cs-feature-blocks describe the three main phases of the process:
-         starting from the logo, competitive research, and Figma decisions.
-         .cs-feature-title is a bold label above the detail paragraph(s). -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">Building a Direction from One Asset</span>
-      <h2 class="cs-heading">Starting from one asset and building everything outward.</h2>
-
-      <!-- .cs-feature-block: titled text block for a specific process step
-           or design decision. Used throughout case study pages. -->
-      <div class="cs-feature-block">
-        <p class="cs-feature-title">Starting from the logo</p>
-        <p class="cs-body">The only concrete asset I had was a black and white logo. Rather than treat that as a limitation, I used it as a starting point. A monochrome base suggested either a minimal light palette or a dark, editorial direction. Given the industry, dark felt more premium. I decided to build the color system around that logo, pairing black with gold accents to push it into luxury territory without losing the clean, clinical feel aesthetics clients expect.</p>
-      </div>
-
-      <div class="cs-feature-block">
-        <p class="cs-feature-title">Competitor research and visual reference</p>
-        <p class="cs-body">With no working reference from the client, I did my own. I looked at competitors and reference sites across the aesthetics and beauty clinic space to understand what visual patterns high-end clinics use and where most sites fall short.</p>
-        <p class="cs-body">A few patterns stood out: luxury aesthetics brands tend to use dark backgrounds with gold or champagne accents to signal premium positioning. The strongest sites led with the outcome (how you'll feel and look) rather than a list of services. Real photography of treatments builds more trust than abstract imagery or generic stock.</p>
-      </div>
-
-      <img src="../images/projects/bsa-homepage/visual-research.jpg" alt="Visual research: competitor sites and luxury aesthetics brand references" class="cs-image" width="1440" height="810" loading="lazy">
-      <p class="cs-image-caption">Visual research: competitor sites and luxury aesthetics brand references</p>
-
-      <div class="cs-feature-block">
-        <p class="cs-feature-title">Design decisions in Figma</p>
-        <p class="cs-body">I moved into Figma once I had a visual direction locked. Key decisions:</p>
-        <!-- <strong> renders text in bold — used here to label each decision inline -->
-        <p class="cs-body"><strong>Color.</strong> Black base with gold accents and marble texture to communicate luxury without feeling cold.</p>
-        <p class="cs-body"><strong>Typography.</strong> The client's script wordmark carried a high-end, personal feel. I paired it with bold sans-serif headlines to stay legible and confident across the page.</p>
-        <p class="cs-body"><strong>Hero.</strong> Led with a real treatment photograph and the line "Guiding You To Your Best Self" to immediately communicate the outcome, not the service list.</p>
-        <p class="cs-body"><strong>CTAs.</strong> Dual call-to-action structure with a primary "Book Now" (filled gold) and secondary "View Our Services" (outlined) to serve both high-intent and exploratory visitors.</p>
-      </div>
-    </section>
-
-    <!-- ─── Final Designs Section ─────────────────────────────────────────
-         Three .cs-image placeholders for the desktop design, mobile design,
-         and the live Webflow build. .tall class on mobile image applies extra
-         height to the placeholder to better represent a tall mobile screen. -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">Final Designs</span>
-      <h2 class="cs-heading">Desktop and mobile, designed in parallel.</h2>
-      <p class="cs-body">The client requested both a desktop and a mobile screen, so I designed both in parallel to make sure the layout held across breakpoints.</p>
-
-      <img src="../images/projects/bsa-homepage/desktop-design.jpg" alt="Desktop homepage: hero, services, and CTAs" class="cs-image" width="1440" height="810" loading="lazy">
-      <p class="cs-image-caption">Desktop homepage: hero, services, and CTAs</p>
-
-      <img src="../images/projects/bsa-homepage/mobile-design.jpg" alt="Mobile homepage: adapted layout for smaller screens" class="cs-image" width="1440" height="810" loading="lazy">
-      <p class="cs-image-caption">Mobile homepage: adapted layout for smaller screens</p>
-    </section>
-
-    <!-- ─── Reflection Section ────────────────────────────────────────────
-         Closes the case study with personal takeaways about working without
-         a brief, client communication gaps, and scope management. -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">Reflection</span>
-      <h2 class="cs-heading">Working without a brief teaches you to write your own.</h2>
-      <p class="cs-body">The logo was the only brand anchor I had. Using it as a starting point rather than a constraint meant I could build a full visual direction from a single asset. That's a skill I didn't know I had until I needed it.</p>
-      <p class="cs-body">Communication gaps are a design constraint too. Sparse client feedback meant I had to be more deliberate about what I presented and when. Every touchpoint needed to carry more weight because there weren't many of them.</p>
-      <p class="cs-body">Scope clarity matters as much as design quality. A four-week freelance timeline with limited back-and-forth taught me to separate decisions that genuinely needed client sign-off from ones I could own independently. That distinction kept the project on track and on time.</p>
-    </section>
-
-
-  <!-- Footer: &copy; renders the © copyright symbol (HTML entity).
-       See index.html for full footer documentation. -->
-  <footer class="site-footer">
-    <span>&copy; 2026 Dereck Villagrana. All rights reserved.</span>
-    <span>Designed &amp; built by Dereck</span>
   </footer>
-
-  </main>
-
-  <!-- ../js/main.js?v=2: the shared portfolio JS, one level up from projects/.
-       ?v=2 is a cache buster — forces the browser to re-download the file
-       when it's been updated, rather than serving a stale cached version. -->
-  <div class="cursor-dot" aria-hidden="true"><span class="cursor-label"></span></div>
-  <script src="../js/main.js?v=3"></script>
+  </div>
+  <button type="button" class="totop" aria-label="Back to top">Top <span aria-hidden="true">↑</span></button>
 </body>
 </html>

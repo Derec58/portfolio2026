@@ -1,254 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- UTF-8 charset: supports all Unicode characters (emoji, accented letters, etc.) -->
   <meta charset="UTF-8">
-  <!-- viewport: prevents mobile browsers from zooming out to a desktop-width view.
-       width=device-width matches the physical screen width; initial-scale=1.0 = no zoom. -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SnapPlant: plant identification and care app. UX coursework project at UC Davis. By Dereck Villagrana.">
-  <meta property="og:title" content="SnapPlant | Dereck Villagrana">
-  <meta property="og:description" content="A plant identification and care app: snap a photo, get a name, learn how to keep it alive. UX coursework project.">
-  <meta property="og:url" content="https://dereckvilla.design/projects/snapplant.html">
-  <meta property="og:type" content="article">
-  <meta name="twitter:card" content="summary">
-  <meta property="og:image" content="https://dereckvilla.design/images/logos/site/og-image-white.png">
-  <meta name="twitter:image" content="https://dereckvilla.design/images/logos/site/og-image-white.png">
-  <link rel="canonical" href="https://dereckvilla.design/projects/snapplant.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SnapPlant | Dereck Villagrana</title>
-  <!-- Preconnect hints: open early connections to Google Fonts servers before
-       the browser discovers the font request — saves ~100–300ms. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <!-- ../css/style.css: one level up from projects/ to reach the root css/ folder -->
-  <link rel="stylesheet" href="../css/style.css">
+  <meta name="description" content="A plant identification app with an awareness angle around deforestation and invasive species. It was the first time I owned the full UX process…">
+  <link rel="canonical" href="https://dereckvilla.design/projects/snapplant.html">
+  <meta property="og:title" content="SnapPlant | Dereck Villagrana">
+  <meta property="og:description" content="A plant identification app with an awareness angle around deforestation and invasive species. It was the first time I owned the full UX process…">
+  <meta property="og:url" content="https://dereckvilla.design/projects/snapplant.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://dereckvilla.design/images/og-card-v3.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Dereck Villagrana, product designer and front-end developer">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://dereckvilla.design/images/og-card-v3.png">
+  <meta name="theme-color" content="#FAFCFD" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15171a" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/svg+xml" href="../images/logos/site/logo-dark.svg">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="../fonts/playfair-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" imagesrcset="../images/projects/snapplant/00-cover-800.webp 800w, ../images/projects/snapplant/00-cover.webp 1600w" imagesizes="(max-width: 1180px) 92vw, 1060px" fetchpriority="high">
+  <link rel="stylesheet" href="../css/site.min.css?v=7">
+  <script>try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
+  <script defer src="../js/site.min.js?v=7"></script>
   <script defer src="/_vercel/insights/script.js"></script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dereckvilla.design/" },
-      { "@type": "ListItem", "position": 2, "name": "SnapPlant", "item": "https://dereckvilla.design/projects/snapplant.html" }
-    ]
-  }
-  </script>
 </head>
 <body>
-
-  <!-- ─── Skip Navigation ─────────────────────────────────────────────────────
-       Lets keyboard and screen reader users jump directly to main content,
-       bypassing the sidebar nav. Visually hidden until focused.
-       See index.html for full documentation. -->
-  <a href="#main-content" class="skip-nav">Skip to main content</a>
-
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       SIDEBAR — Fully documented in index.html.
-       See index.html for comments on every sidebar element, class, and
-       aria attribute. Key differences on this page:
-         - Logo href: "../index.html#about" (up one folder to the root index)
-         - No "Lab" nav group (not on project pages)
-         - This page's nav link: class="active" + data-preview="" + aria-current="page"
-           data-preview="" is intentionally empty — JS skips hover preview for
-           the current page so you don't see a blank card
-         - All image paths in data-preview: "../images/previews/..." (one level up)
-       ═══════════════════════════════════════════════════════════════════════ -->
-  <aside class="sidebar">
-    <div class="sidebar-header">
-        <div class="sidebar-top">
-      <a href="../index.html#about" class="logo-badge" aria-label="Home">
-        <svg class="logo-img" viewBox="0 0 52 52" aria-hidden="true" focusable="false">
-          <text font-family="'Playfair Display', Georgia, serif" font-weight="700" font-style="italic" font-size="20" text-anchor="middle" dominant-baseline="central" x="26" y="26"><tspan class="logo-d">D</tspan><tspan class="logo-v">V</tspan></text>
-        </svg>
-      </a>
-      <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+  <a class="skip" href="#main-content">Skip to main content</a>
+  <div class="rail">
+    <div class="rail-strip">
+      <a class="logo" href="../index.html" aria-label="Home">D<span>V</span></a>
+      <button type="button" class="rail-btn" aria-expanded="false" aria-controls="rail-panel" aria-label="Site index, currently on 05"><span class="rail-cur" aria-hidden="true">05</span><span class="rail-line" aria-hidden="true"></span><span class="rail-idx" aria-hidden="true">Index</span></button>
+      <span class="rail-dot" aria-hidden="true"></span>
     </div>
-
-        <nav aria-label="Site navigation" class="sidebar-nav">
-      <a href="../about.html" class="nav-link">About</a>
-      <a href="../contact.html" class="nav-link">Contact</a>
-      <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
+    <nav id="rail-panel" class="rail-panel" aria-label="Site index">
+      <div class="rail-top">
+        <div class="rail-top-row"><a class="logo" href="../index.html" aria-label="Home">D<span>V</span></a><button type="button" class="rail-close"><span aria-hidden="true">←</span> Close</button></div>
+        <div class="rail-site"><a href="../about.html">About</a><a href="../services.html">Services</a><a href="../contact.html">Contact</a><a href="../resume.pdf" target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="snav snav--work" role="group" aria-label="Selected work">
+        <div class="snav-head"><a href="../index.html#work" data-navgroup="work">Selected Work</a><span aria-hidden="true">03</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="../projects/bereal-redesign.html"><span class="snav-num">01</span><span>BeReal Redesign</span></a>
+          <a class="snav-link" href="../projects/verum-ai.html"><span class="snav-num">02</span><span>Verum AI</span></a>
+          <a class="snav-link" href="../projects/bsa-homepage.html"><span class="snav-num">03</span><span>Body Sculpting Aesthetic</span></a>
+        </div>
+      </div>
+      <div class="snav " role="group" aria-label="Independent work">
+        <div class="snav-head"><a href="../index.html#more-work" data-navgroup="more-work">Independent Work</a><span aria-hidden="true">04</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="../projects/packpal.html"><span class="snav-num">04</span><span>PackPal</span></a>
+          <a class="snav-link" href="../projects/snapplant.html" aria-current="page"><span class="snav-num">05</span><span>SnapPlant</span></a>
+          <a class="snav-link" href="../projects/arc-redesign.html"><span class="snav-num">06</span><span>ARC Redesign</span></a>
+          <a class="snav-link" href="../projects/sonidos.html"><span class="snav-num">07</span><span>Sonidos del Alma Danzante</span></a>
+        </div>
+      </div>
+      <div class="snav  snav--last" role="group" aria-label="Lab">
+        <div class="snav-head"><a href="../index.html#lab" data-navgroup="lab">Lab</a><span aria-hidden="true">02</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="https://github.com/Derec58/raspberry-pi-media-stack" target="_blank" rel="noopener noreferrer"><span class="snav-num">L01</span><span>Raspberry Pi Media Stack <span aria-hidden="true">↗</span></span></a>
+          <a class="snav-link" href="https://github.com/Derec58/portfolio2026" target="_blank" rel="noopener noreferrer"><span class="snav-num">L02</span><span>Portfolio Site <span aria-hidden="true">↗</span></span></a>
+        </div>
+      </div>
+      <div class="sidebar-foot"><a class="pill-status" href="../contact.html"><span class="dot" aria-hidden="true"></span>Available for work<span class="arr" aria-hidden="true">→</span></a></div>
     </nav>
-        </div>
-
-    <div class="nav-group" role="navigation" aria-label="Selected Work">
-      <span class="nav-label">Selected Work</span>
-      <a href="bereal-redesign.html" class="nav-link" data-preview="../images/home/bereal-redesign.webp">BeReal Redesign</a>
-      <a href="verum-ai.html" class="nav-link" data-preview="../images/home/verum-ai.webp">Verum AI</a>
-      <a href="bsa-homepage.html" class="nav-link" data-preview="../images/home/bsa-homepage.webp">Body Sculpture Aesthetics</a>
+  </div>
+  <div class="page">
+    <header class="topbar itop">
+      <div class="topbar-in itop-in">
+        <div class="itop-left"><a class="logo" href="../index.html" aria-label="Home">D<span>V</span></a><a class="itop-back" href="../index.html#work"><span aria-hidden="true">←</span> Portfolio</a></div>
+        <div class="topbar-right"><span class="itop-count">05 / 07</span><button type="button" class="theme-btn" data-theme-toggle aria-label="Switch to dark mode"><span aria-hidden="true">◐</span><span data-theme-label>Dark</span></button></div>
+      </div>
+    </header>
+    <nav class="chapbar" aria-label="Chapters">
+      <button type="button" class="chapbar-btn" aria-expanded="false" aria-controls="chap-list"><span class="eyebrow" data-chap-count>Ch. 01 / 05</span><b data-chap-title>The Angle</b><span data-caret aria-hidden="true">▾</span></button>
+      <div class="chapbar-track" aria-hidden="true"><i></i></div>
+      <ol id="chap-list" hidden><li><a href="#ch-1" data-chnav="ch-1"><span>01</span>The Angle</a></li><li><a href="#ch-2" data-chnav="ch-2"><span>02</span>What the Research Found</a></li><li><a href="#ch-3" data-chnav="ch-3"><span>03</span>Three Weeks, Solo, End-to-End</a></li><li><a href="#ch-4" data-chnav="ch-4"><span>04</span>Key Design Decisions</a></li><li><a href="#ch-5" data-chnav="ch-5"><span>05</span>Reflection</a></li></ol>
+    </nav>
+    <main id="main-content">
+      <section class="cs-wrap cs-mast" aria-label="Overview">
+        <div class="cs-rule"><span class="num">05</span><span class="muted">Independent Work · Coursework · 2023</span></div>
+        <h1>SnapPlant</h1>
+        <p class="cs-sub">A plant identification app with an awareness angle around deforestation and invasive species. It was the first time I owned the full UX process end-to-end with a real deadline.</p>
+        <dl class="facts cs-facts"><div><dt class="dt">Timeline</dt><dd>April 2023</dd></div><div><dt class="dt">Context</dt><dd>DES 112, UC Davis</dd></div><div><dt class="dt">Role</dt><dd>Solo Designer</dd></div><div><dt class="dt">Tools</dt><dd>Adobe XD, Illustrator</dd></div></dl>
+        <img class="cs-cover" src="../images/projects/snapplant/00-cover.webp" srcset="../images/projects/snapplant/00-cover-800.webp 800w, ../images/projects/snapplant/00-cover.webp 1600w" sizes="(max-width: 1180px) 92vw, 1060px" alt="SnapPlant: plant identification and environmental awareness app" width="1600" height="900" fetchpriority="high" decoding="async">
+      </section>
+      <div class="cs-wrap cs-body">
+        <article aria-label="Case study" style="min-width:0">
+          <p class="cs-over">A three-week final project for my UI/UX design course. The app helps users identify plants around them, with the broader goal of raising awareness around deforestation and invasive species. I ran surveys, conducted usability testing, and built the full design pipeline solo: research, ideation sketches, wireframes, and high-fidelity screens. This was one of the first times I owned the full UX process end-to-end with a real deadline.</p>
+        <section id="ch-1" class="cs-ch" data-ch data-label="The Angle" aria-labelledby="ch-1-h">
+          <div class="cs-ch-rule"><span class="num">01</span><span class="eyebrow muted">The Angle</span></div>
+          <h2 id="ch-1-h">Plant identification as a vehicle for environmental awareness.</h2>
+          <div class="cs-blocks">
+            <p class="cs-p">Most plant ID apps stop at identification. SnapPlant's intention was to go further, connecting users to information about deforestation rates in their region and whether the plant they just identified is native or invasive. Knowing the plant is one thing. Knowing what it means for the ecosystem around you is another.</p>
+          </div>
+        </section>
+        <section id="ch-2" class="cs-ch" data-ch data-label="What the Research Found" aria-labelledby="ch-2-h">
+          <div class="cs-ch-rule"><span class="num">02</span><span class="eyebrow muted">What the Research Found</span></div>
+          <h2 id="ch-2-h">People are curious about plants. They're not curious about deforestation, until you make it local.</h2>
+          <div class="cs-blocks">
+            <div class="cs-ins"><div><div class="eyebrow"><span>01</span>Surface-level awareness</div><p>Most survey respondents could name plants by their common name but had no idea whether they were native, invasive, or at risk. Environmental knowledge stopped at recognition.</p></div><div><div class="eyebrow"><span>02</span>The gap existing apps leave</div><p>Apps like PictureThis and iNaturalist excelled at identification but stopped there. Once users had a name, there was no obvious next step: no context, no consequence, no reason to care.</p></div><div><div class="eyebrow"><span>03</span>Abstraction kills engagement</div><p>Deforestation felt distant and global in surveys. When reframed locally (&quot;this species is displacing native plants within 10 miles of you&quot;), engagement in concept testing jumped significantly.</p></div><div><div class="eyebrow"><span>04</span>The design opportunity</div><p>The moment of curiosity, pointing your phone at something and wanting to know what it is, was the right place to introduce context. That window of attention is real and brief. Design for it.</p></div></div>
+          </div>
+        </section>
+        <section id="ch-3" class="cs-ch" data-ch data-label="Three Weeks, Solo, End-to-End" aria-labelledby="ch-3-h">
+          <div class="cs-ch-rule"><span class="num">03</span><span class="eyebrow muted">Three Weeks, Solo, End-to-End</span></div>
+          <h2 id="ch-3-h">Research, sketch, wireframe, prototype: solo, three weeks.</h2>
+          <div class="cs-blocks">
+            <p class="cs-p">I started with user surveys to understand how people currently interact with the plants around them and what barriers exist to environmental awareness. Usability testing informed iterations before the final high-fidelity screens were produced.</p>
+            <figure class="cs-fig"><button type="button" data-lb data-full="../images/projects/snapplant/01-hifi-screens.webp" data-alt="Final high-fidelity screens: plant ID, results, and environmental context" data-cap="Final high-fidelity screens: plant ID, results, and environmental context" data-fig="Fig. 01" aria-label="Open figure 1 larger"><img src="../images/projects/snapplant/01-hifi-screens-800.webp" srcset="../images/projects/snapplant/01-hifi-screens-800.webp 800w, ../images/projects/snapplant/01-hifi-screens.webp 1440w" sizes="(max-width: 900px) 92vw, 760px" alt="Final high-fidelity screens: plant ID, results, and environmental context" width="1440" height="810" loading="lazy" decoding="async"></button><figcaption><b>Fig. 01</b><span>Final high-fidelity screens: plant ID, results, and environmental context</span></figcaption></figure>
+          </div>
+        </section>
+        <section id="ch-4" class="cs-ch" data-ch data-label="Key Design Decisions" aria-labelledby="ch-4-h">
+          <div class="cs-ch-rule"><span class="num">04</span><span class="eyebrow muted">Key Design Decisions</span></div>
+          <h2 id="ch-4-h">Make identification feel instant. Make awareness feel optional, but worth it.</h2>
+          <div class="cs-blocks">
+            <h3 class="cs-h3"><span aria-hidden="true">01</span>Speed as a design principle</h3>
+<p class="cs-p">The identification flow was designed to feel instant, camera to match in under 3 seconds, so users didn't lose the moment of curiosity before anything useful appeared. If the result took too long, the window closed.</p>
+            <h3 class="cs-h3"><span aria-hidden="true">02</span>Awareness as opt-in, not interruption</h3>
+<p class="cs-p">The environmental context (deforestation data, invasive species information) appeared as a secondary card after the identification result, not in place of it. Identification always worked cleanly first. The awareness layer rewarded users who wanted to go further without alienating users who just wanted a name.</p>
+            <h3 class="cs-h3"><span aria-hidden="true">03</span>Visual tone: calm, not alarming</h3>
+<p class="cs-p">The subject matter (invasive species, deforestation rates) could easily read as preachy or anxiety-inducing. The visual design leaned into greens, off-whites, and generous whitespace deliberately. The goal was to inform without overwhelming. A calm interface made the information feel approachable rather than urgent.</p>
+          </div>
+        </section>
+        <section id="ch-5" class="cs-ch" data-ch data-label="Reflection" aria-labelledby="ch-5-h">
+          <div class="cs-ch-rule"><span class="num">05</span><span class="eyebrow muted">Reflection</span></div>
+          <h2 id="ch-5-h">Solo end-to-end work teaches you what you actually believe about design.</h2>
+          <div class="cs-blocks">
+            <p class="cs-p">Running the full process alone, with no team to defer to and no one else's research to lean on, compressed my decision-making in a way that's hard to replicate in group projects. Every call was mine. That pressure clarified what I actually believed about the design versus what I was just guessing at.</p>
+            <p class="cs-p">The biggest thing I learned: restraint is a choice, not a default. It would have been easy to layer in more features: social sharing, gamification, streak counters. Each one would have made the app more complex and less itself. The version that shipped was simple because I actively decided to keep it that way, not because I ran out of time.</p>
+          </div>
+        </section>
+        </article>
+        <nav class="chap snav" aria-label="Chapters">
+          <div class="snav-head"><span class="eyebrow muted">Chapters</span><span aria-hidden="true">05</span></div>
+          <div class="snav-list"><span class="snav-marker" aria-hidden="true"></span>
+              <a class="snav-link" href="#ch-1" data-chnav="ch-1"><span class="snav-num">01</span><span>The Angle</span></a>
+              <a class="snav-link" href="#ch-2" data-chnav="ch-2"><span class="snav-num">02</span><span>What the Research Found</span></a>
+              <a class="snav-link" href="#ch-3" data-chnav="ch-3"><span class="snav-num">03</span><span>Three Weeks, Solo, End-to-End</span></a>
+              <a class="snav-link" href="#ch-4" data-chnav="ch-4"><span class="snav-num">04</span><span>Key Design Decisions</span></a>
+              <a class="snav-link" href="#ch-5" data-chnav="ch-5"><span class="snav-num">05</span><span>Reflection</span></a>
+          </div>
+        </nav>
+      </div>
+      <section class="cs-wrap next" aria-label="Next case study">
+        <a href="arc-redesign.html" aria-label="Next case study: UC Davis ARC Redesign">
+          <div class="next-txt"><div class="cs-rule" style="border:0;padding:0;justify-content:flex-start"><span class="eyebrow muted">Next</span><span class="num">06</span></div><div class="next-title">UC Davis ARC Redesign <span aria-hidden="true">→</span></div><span class="muted" style="font-size:13px">Independent Work · Design Challenge · 2023</span></div>
+          <div class="next-media"><img src="../images/home/arc-redesign-800.webp" alt="" width="800" height="533" loading="lazy" decoding="async"></div>
+        </a>
+      </section>
+    </main>
+    <dialog class="lb" aria-label="Image viewer">
+      <div class="lb-in">
+        <div class="lb-head"><span class="eyebrow"><span data-lb-fig></span> <i data-lb-count></i></span><div class="lb-btns"><button type="button" data-lb-prev aria-label="Previous image">←</button><button type="button" data-lb-next aria-label="Next image">→</button><button type="button" data-lb-close aria-label="Close image viewer">✕</button></div></div>
+        <img alt="">
+        <p></p>
+      </div>
+    </dialog>
+  <footer class="foot foot--compact">
+    <div class="foot-in">
+      <div class="foot-links"><a href="mailto:hello@dereckvilla.design">hello@dereckvilla.design</a><a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/Derec58" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="../resume.pdf" target="_blank" rel="noopener">Résumé ↗</a></div>
+      <small>© 2026 · Designed &amp; built in vanilla HTML, CSS &amp; JS</small>
     </div>
-
-    <div class="nav-group" role="navigation" aria-label="Lab">
-      <span class="nav-label">Lab</span>
-      <a href="https://github.com/Derec58/raspberry-pi-media-stack" target="_blank" rel="noopener noreferrer" class="nav-link">Raspberry Pi Media Stack ↗</a>
-      <a href="https://github.com/Derec58/portfolio2026" target="_blank" rel="noopener noreferrer" class="nav-link">Portfolio Site ↗</a>
-    </div>
-
-    <div class="nav-group" role="navigation" aria-label="Independent Work">
-      <span class="nav-label">Independent Work</span>
-      <a href="packpal.html" class="nav-link" data-preview="../images/home/packpal.webp">PackPal</a>
-      <!-- active + data-preview="" + aria-current: marks this as the current page.
-           Empty data-preview prevents JS from showing a hover card for this link. -->
-      <a href="snapplant.html" class="nav-link active" data-preview="" aria-current="page">SnapPlant</a>
-      <a href="arc-redesign.html" class="nav-link" data-preview="../images/home/arc-redesign.webp">ARC Redesign</a>
-      <a href="sonidos.html" class="nav-link" data-preview="../images/home/sonidos.webp">Sonidos del Alma Danzante</a>
-    </div>
-
-    <!-- Status pill: animated green dot + "Available for work" text.
-         Documented fully in index.html. -->
-    <div class="sidebar-status">
-      <span class="status-pill">
-        <span class="status-dot" aria-hidden="true"></span>
-        <span>Available for work</span>
-      </span>
-    </div>
-  </aside>
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       END SIDEBAR
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <!-- Main content: scrollable right panel. id="main-content" is the target
-       for the skip-nav link above. -->
-  <main class="content" id="main-content">
-
-    <!-- ─── Back Link ──────────────────────────────────────────────────────
-         .cs-back: small text link back to the portfolio homepage. -->
-    <a href="../index.html" class="cs-back">← Portfolio</a>
-
-    <div class="cs-header cs-header--1 reveal">
-      <span class="cs-eyebrow">Independent Work &nbsp;&middot;&nbsp; Coursework</span>
-      <h1 class="cs-title--1">SnapPlant</h1>
-      <p class="cs-subtitle">A plant identification app with an awareness angle around deforestation and invasive species. It was the first time I owned the full UX process end-to-end with a real deadline.</p>
-    </div>
-
-    <div class="cs-meta-strip reveal">
-      <div class="cs-meta-strip-item">
-        <span class="cs-meta-strip-label">Timeline</span>
-        <span class="cs-meta-strip-value">April 2023</span>
-      </div>
-      <div class="cs-meta-strip-item">
-        <span class="cs-meta-strip-label">Context</span>
-        <span class="cs-meta-strip-value">DES 112, UC Davis</span>
-      </div>
-      <div class="cs-meta-strip-item">
-        <span class="cs-meta-strip-label">Role</span>
-        <span class="cs-meta-strip-value">Solo Designer</span>
-      </div>
-      <div class="cs-meta-strip-item">
-        <span class="cs-meta-strip-label">Tools</span>
-        <span class="cs-meta-strip-value">Adobe XD, Illustrator</span>
-      </div>
-    </div>
-
-    <img src="../images/projects/snapplant/00-cover.jpg" alt="SnapPlant — plant identification and environmental awareness app" class="cs-cover" width="1600" height="900" fetchpriority="high">
-
-    <!-- ─── Overview Paragraph ────────────────────────────────────────────
-         .cs-overview: opening paragraph styled larger than body copy.
-         Sets context: three-week final project, solo, full UX pipeline. -->
-    <p class="cs-overview reveal">
-      A three-week final project for my UI/UX design course. The app helps users identify plants around them, with the broader goal of raising awareness around deforestation and invasive species. I ran surveys, conducted usability testing, and built the full design pipeline solo: research, ideation sketches, wireframes, and high-fidelity screens. This was one of the first times I owned the full UX process end-to-end with a real deadline.
-    </p>
-
-    <!-- ─── Section Divider ────────────────────────────────────────────────
-         .cs-divider: thin horizontal rule. Pure CSS — no content. -->
-    <div class="cs-divider"></div>
-
-    <!-- ─── The Angle Section ────────────────────────────────────────────
-         Short framing section explaining the conceptual angle: plant ID
-         as a vehicle for environmental awareness, not just identification. -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">The Angle</span>
-      <h2 class="cs-heading">Plant identification as a vehicle for environmental awareness.</h2>
-      <p class="cs-body">Most plant ID apps stop at identification. SnapPlant's intention was to go further, connecting users to information about deforestation rates in their region and whether the plant they just identified is native or invasive. Knowing the plant is one thing. Knowing what it means for the ecosystem around you is another.</p>
-    </section>
-
-    <!-- ─── Research Section ──────────────────────────────────────────────
-         What surveys and concept testing revealed about the problem space
-         and what SnapPlant needed to do differently. -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">What the Research Found</span>
-      <h2 class="cs-heading">People are curious about plants. They're not curious about deforestation, until you make it local.</h2>
-      <div class="cs-insight-grid">
-        <div class="cs-insight-card">
-          <span class="cs-section-label">Surface-level awareness</span>
-          <p>Most survey respondents could name plants by their common name but had no idea whether they were native, invasive, or at risk. Environmental knowledge stopped at recognition.</p>
-        </div>
-        <div class="cs-insight-card">
-          <span class="cs-section-label">The gap existing apps leave</span>
-          <p>Apps like PictureThis and iNaturalist excelled at identification but stopped there. Once users had a name, there was no obvious next step: no context, no consequence, no reason to care.</p>
-        </div>
-        <div class="cs-insight-card">
-          <span class="cs-section-label">Abstraction kills engagement</span>
-          <p>Deforestation felt distant and global in surveys. When reframed locally ("this species is displacing native plants within 10 miles of you"), engagement in concept testing jumped significantly.</p>
-        </div>
-        <div class="cs-insight-card">
-          <span class="cs-section-label">The design opportunity</span>
-          <p>The moment of curiosity, pointing your phone at something and wanting to know what it is, was the right place to introduce context. That window of attention is real and brief. Design for it.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── Process Section ───────────────────────────────────────────────
-         Describes the solo, three-week design pipeline: surveys → usability
-         testing → sketches → wireframes → high-fidelity prototype.
-         Three .cs-image placeholders for each design phase. -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">Three Weeks, Solo, End-to-End</span>
-      <h2 class="cs-heading">Research, sketch, wireframe, prototype: solo, three weeks.</h2>
-      <p class="cs-body">I started with user surveys to understand how people currently interact with the plants around them and what barriers exist to environmental awareness. Usability testing informed iterations before the final high-fidelity screens were produced.</p>
-
-      <img src="../images/projects/snapplant/01-hifi-screens.jpg" alt="Final high-fidelity screens: plant ID, results, and environmental context" class="cs-image" width="1440" height="810" loading="lazy">
-      <p class="cs-image-caption">Final high-fidelity screens: plant ID, results, and environmental context</p>
-    </section>
-
-    <!-- ─── Design Decisions Section ─────────────────────────────────────
-         Three specific choices that defined the app's approach. -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">Key Design Decisions</span>
-      <h2 class="cs-heading">Make identification feel instant. Make awareness feel optional, but worth it.</h2>
-
-      <div class="cs-feature-block">
-        <p class="cs-feature-title">Speed as a design principle</p>
-        <p class="cs-body">The identification flow was designed to feel instant, camera to match in under 3 seconds, so users didn't lose the moment of curiosity before anything useful appeared. If the result took too long, the window closed.</p>
-      </div>
-
-      <div class="cs-feature-block">
-        <p class="cs-feature-title">Awareness as opt-in, not interruption</p>
-        <p class="cs-body">The environmental context (deforestation data, invasive species information) appeared as a secondary card after the identification result, not in place of it. Identification always worked cleanly first. The awareness layer rewarded users who wanted to go further without alienating users who just wanted a name.</p>
-      </div>
-
-      <div class="cs-feature-block">
-        <p class="cs-feature-title">Visual tone: calm, not alarming</p>
-        <p class="cs-body">The subject matter (invasive species, deforestation rates) could easily read as preachy or anxiety-inducing. The visual design leaned into greens, off-whites, and generous whitespace deliberately. The goal was to inform without overwhelming. A calm interface made the information feel approachable rather than urgent.</p>
-      </div>
-    </section>
-
-    <!-- ─── Takeaway Section ──────────────────────────────────────────────
-         Closing reflection — expanded to show genuine process learning. -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">Reflection</span>
-      <h2 class="cs-heading">Solo end-to-end work teaches you what you actually believe about design.</h2>
-      <p class="cs-body">Running the full process alone, with no team to defer to and no one else's research to lean on, compressed my decision-making in a way that's hard to replicate in group projects. Every call was mine. That pressure clarified what I actually believed about the design versus what I was just guessing at.</p>
-      <p class="cs-body">The biggest thing I learned: restraint is a choice, not a default. It would have been easy to layer in more features: social sharing, gamification, streak counters. Each one would have made the app more complex and less itself. The version that shipped was simple because I actively decided to keep it that way, not because I ran out of time.</p>
-    </section>
-
-
-  <!-- Footer: &copy; renders the © copyright symbol (HTML entity).
-       See index.html for full footer documentation. -->
-  <footer class="site-footer">
-    <span>&copy; 2026 Dereck Villagrana. All rights reserved.</span>
-    <span>Designed &amp; built by Dereck</span>
   </footer>
-
-  </main>
-
-  <!-- ../js/main.js?v=2: the shared portfolio JS, one level up from projects/.
-       ?v=2 is a cache buster — forces the browser to re-download the file
-       when it's been updated, rather than serving a stale cached version. -->
-  <div class="cursor-dot" aria-hidden="true"><span class="cursor-label"></span></div>
-  <script src="../js/main.js?v=3"></script>
+  </div>
+  <button type="button" class="totop" aria-label="Back to top">Top <span aria-hidden="true">↑</span></button>
 </body>
 </html>

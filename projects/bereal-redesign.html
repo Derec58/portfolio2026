@@ -2,353 +2,203 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BeReal Redesign: reducing social pressure and improving long-term engagement. UC Davis Design Interactive, Most Innovative UX. By Dereck Villagrana.">
-  <meta property="og:title" content="BeReal Redesign | Dereck Villagrana">
-  <meta property="og:description" content="Redesigning BeReal's core experience to reduce social pressure and encourage more genuine sharing, without losing what makes it unique.">
-  <meta property="og:url" content="https://dereckvilla.design/projects/bereal-redesign.html">
-  <meta property="og:type" content="article">
-  <meta name="twitter:card" content="summary">
-  <meta property="og:image" content="https://dereckvilla.design/images/logos/site/og-image-white.png">
-  <meta name="twitter:image" content="https://dereckvilla.design/images/logos/site/og-image-white.png">
-  <link rel="canonical" href="https://dereckvilla.design/projects/bereal-redesign.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BeReal Redesign | Dereck Villagrana</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <!-- ../css/style.css: one level up from projects/ folder to reach the root css/ folder -->
-  <link rel="stylesheet" href="../css/style.css">
+  <meta name="description" content="Rebuilding long-term engagement for BeReal without becoming the thing it stood against: a 6-week sprint to solve a retention problem rooted in social…">
+  <link rel="canonical" href="https://dereckvilla.design/projects/bereal-redesign.html">
+  <meta property="og:title" content="BeReal Redesign | Dereck Villagrana">
+  <meta property="og:description" content="Rebuilding long-term engagement for BeReal without becoming the thing it stood against: a 6-week sprint to solve a retention problem rooted in social…">
+  <meta property="og:url" content="https://dereckvilla.design/projects/bereal-redesign.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://dereckvilla.design/images/og-card-v3.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Dereck Villagrana, product designer and front-end developer">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://dereckvilla.design/images/og-card-v3.png">
+  <meta name="theme-color" content="#FAFCFD" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15171a" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/svg+xml" href="../images/logos/site/logo-dark.svg">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="../fonts/playfair-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" imagesrcset="../images/projects/bereal-redesign/00-cover-800.webp 800w, ../images/projects/bereal-redesign/00-cover.webp 1600w" imagesizes="(max-width: 1180px) 92vw, 1060px" fetchpriority="high">
+  <link rel="stylesheet" href="../css/site.min.css?v=7">
+  <script>try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
+  <script defer src="../js/site.min.js?v=7"></script>
   <script defer src="/_vercel/insights/script.js"></script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dereckvilla.design/" },
-      { "@type": "ListItem", "position": 2, "name": "BeReal Redesign", "item": "https://dereckvilla.design/projects/bereal-redesign.html" }
-    ]
-  }
-  </script>
 </head>
 <body>
-  <!-- Skip nav: lets keyboard users bypass sidebar to main content. See index.html. -->
-  <a href="#main-content" class="skip-nav">Skip to main content</a>
-
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       SIDEBAR — Fully documented in index.html.
-       See index.html for comments on every sidebar element, class, and
-       aria attribute. Key differences on this page:
-         - Logo href: "../index.html#about" (up one folder to root)
-         - This page's nav link: class="active" + data-preview="" + aria-current="page"
-           data-preview="" is empty (current page) — JS skips hover preview for this link
-         - All image paths: "../images/previews/..." (one level up)
-       ═══════════════════════════════════════════════════════════════════════ -->
-  <aside class="sidebar">
-    <div class="sidebar-header">
-        <div class="sidebar-top">
-      <a href="../index.html#about" class="logo-badge" aria-label="Home">
-        <svg class="logo-img" viewBox="0 0 52 52" aria-hidden="true" focusable="false">
-          <text font-family="'Playfair Display', Georgia, serif" font-weight="700" font-style="italic" font-size="20" text-anchor="middle" dominant-baseline="central" x="26" y="26"><tspan class="logo-d">D</tspan><tspan class="logo-v">V</tspan></text>
-        </svg>
-      </a>
-      <button class="theme-toggle" aria-label="Switch to dark mode"></button>
+  <a class="skip" href="#main-content">Skip to main content</a>
+  <div class="rail">
+    <div class="rail-strip">
+      <a class="logo" href="../index.html" aria-label="Home">D<span>V</span></a>
+      <button type="button" class="rail-btn" aria-expanded="false" aria-controls="rail-panel" aria-label="Site index, currently on 01"><span class="rail-cur" aria-hidden="true">01</span><span class="rail-line" aria-hidden="true"></span><span class="rail-idx" aria-hidden="true">Index</span></button>
+      <span class="rail-dot" aria-hidden="true"></span>
     </div>
-
-        <nav aria-label="Site navigation" class="sidebar-nav">
-      <a href="../about.html" class="nav-link">About</a>
-      <a href="../contact.html" class="nav-link">Contact</a>
-      <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
+    <nav id="rail-panel" class="rail-panel" aria-label="Site index">
+      <div class="rail-top">
+        <div class="rail-top-row"><a class="logo" href="../index.html" aria-label="Home">D<span>V</span></a><button type="button" class="rail-close"><span aria-hidden="true">←</span> Close</button></div>
+        <div class="rail-site"><a href="../about.html">About</a><a href="../services.html">Services</a><a href="../contact.html">Contact</a><a href="../resume.pdf" target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="snav snav--work" role="group" aria-label="Selected work">
+        <div class="snav-head"><a href="../index.html#work" data-navgroup="work">Selected Work</a><span aria-hidden="true">03</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="../projects/bereal-redesign.html" aria-current="page"><span class="snav-num">01</span><span>BeReal Redesign</span></a>
+          <a class="snav-link" href="../projects/verum-ai.html"><span class="snav-num">02</span><span>Verum AI</span></a>
+          <a class="snav-link" href="../projects/bsa-homepage.html"><span class="snav-num">03</span><span>Body Sculpting Aesthetic</span></a>
+        </div>
+      </div>
+      <div class="snav " role="group" aria-label="Independent work">
+        <div class="snav-head"><a href="../index.html#more-work" data-navgroup="more-work">Independent Work</a><span aria-hidden="true">04</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="../projects/packpal.html"><span class="snav-num">04</span><span>PackPal</span></a>
+          <a class="snav-link" href="../projects/snapplant.html"><span class="snav-num">05</span><span>SnapPlant</span></a>
+          <a class="snav-link" href="../projects/arc-redesign.html"><span class="snav-num">06</span><span>ARC Redesign</span></a>
+          <a class="snav-link" href="../projects/sonidos.html"><span class="snav-num">07</span><span>Sonidos del Alma Danzante</span></a>
+        </div>
+      </div>
+      <div class="snav  snav--last" role="group" aria-label="Lab">
+        <div class="snav-head"><a href="../index.html#lab" data-navgroup="lab">Lab</a><span aria-hidden="true">02</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="https://github.com/Derec58/raspberry-pi-media-stack" target="_blank" rel="noopener noreferrer"><span class="snav-num">L01</span><span>Raspberry Pi Media Stack <span aria-hidden="true">↗</span></span></a>
+          <a class="snav-link" href="https://github.com/Derec58/portfolio2026" target="_blank" rel="noopener noreferrer"><span class="snav-num">L02</span><span>Portfolio Site <span aria-hidden="true">↗</span></span></a>
+        </div>
+      </div>
+      <div class="sidebar-foot"><a class="pill-status" href="../contact.html"><span class="dot" aria-hidden="true"></span>Available for work<span class="arr" aria-hidden="true">→</span></a></div>
     </nav>
-        </div>
-
-    <div class="nav-group" role="navigation" aria-label="Selected Work">
-      <span class="nav-label">Selected Work</span>
-      <!-- data-preview="": empty — this is the current page, no preview needed -->
-      <a href="bereal-redesign.html" class="nav-link active" data-preview="" aria-current="page">BeReal Redesign</a>
-      <a href="verum-ai.html" class="nav-link" data-preview="../images/home/verum-ai.webp">Verum AI</a>
-      <a href="bsa-homepage.html" class="nav-link" data-preview="../images/home/bsa-homepage.webp">Body Sculpture Aesthetics</a>
+  </div>
+  <div class="page">
+    <header class="topbar itop">
+      <div class="topbar-in itop-in">
+        <div class="itop-left"><a class="logo" href="../index.html" aria-label="Home">D<span>V</span></a><a class="itop-back" href="../index.html#work"><span aria-hidden="true">←</span> Portfolio</a></div>
+        <div class="topbar-right"><span class="itop-count">01 / 07</span><button type="button" class="theme-btn" data-theme-toggle aria-label="Switch to dark mode"><span aria-hidden="true">◐</span><span data-theme-label>Dark</span></button></div>
+      </div>
+    </header>
+    <nav class="chapbar" aria-label="Chapters">
+      <button type="button" class="chapbar-btn" aria-expanded="false" aria-controls="chap-list"><span class="eyebrow" data-chap-count>Ch. 01 / 07</span><b data-chap-title>The Problem</b><span data-caret aria-hidden="true">▾</span></button>
+      <div class="chapbar-track" aria-hidden="true"><i></i></div>
+      <ol id="chap-list" hidden><li><a href="#ch-1" data-chnav="ch-1"><span>01</span>The Problem</a></li><li><a href="#ch-2" data-chnav="ch-2"><span>02</span>What the Data Showed</a></li><li><a href="#ch-3" data-chnav="ch-3"><span>03</span>Key Insights</a></li><li><a href="#ch-4" data-chnav="ch-4"><span>04</span>Features</a></li><li><a href="#ch-5" data-chnav="ch-5"><span>05</span>Testing &amp; What We Fixed</a></li><li><a href="#ch-6" data-chnav="ch-6"><span>06</span>Outcomes</a></li><li><a href="#ch-7" data-chnav="ch-7"><span>07</span>Reflection</a></li></ol>
+    </nav>
+    <main id="main-content">
+      <section class="cs-wrap cs-mast" aria-label="Overview">
+        <div class="cs-rule"><span class="num">01</span><span class="muted">Product Design · 2023</span></div>
+        <h1>BeReal Redesign</h1>
+        <p class="cs-sub">Rebuilding long-term engagement for BeReal without becoming the thing it stood against: a 6-week sprint to solve a retention problem rooted in social pressure, not product features.</p>
+        <dl class="facts cs-facts"><div><dt class="dt">Timeline</dt><dd>6 Weeks, 2023</dd></div><div><dt class="dt">Team</dt><dd>Dereck Villagrana +4</dd></div><div><dt class="dt">Role</dt><dd>UX Designer · Prototyping Lead</dd></div><div><dt class="dt">Tools</dt><dd>Figma</dd></div><div><dt class="dt">Recognition</dt><dd>Most Innovative UX, UC Davis Design Interactive</dd></div></dl>
+        <img class="cs-cover" src="../images/projects/bereal-redesign/00-cover.webp" srcset="../images/projects/bereal-redesign/00-cover-800.webp 800w, ../images/projects/bereal-redesign/00-cover.webp 1600w" sizes="(max-width: 1180px) 92vw, 1060px" alt="BeReal Redesign: feature overview" width="1600" height="900" fetchpriority="high" decoding="async">
+      </section>
+      <div class="cs-wrap cs-body">
+        <article aria-label="Case study" style="min-width:0">
+          <p class="cs-over">In 2022, BeReal went from a niche app to a global hit: 73.5 million monthly active users at its peak. But by late 2022, growth stalled, downloads declined, and the app that once felt refreshingly different started to feel repetitive. For UC Davis's Design Interactive, our team of five took on a six-week sprint to understand why people were drifting away and how BeReal could win them back without becoming the very thing it stood against.</p>
+        <section id="ch-1" class="cs-ch" data-ch data-label="The Problem" aria-labelledby="ch-1-h">
+          <div class="cs-ch-rule"><span class="num">01</span><span class="eyebrow muted">The Problem</span></div>
+          <h2 id="ch-1-h">BeReal's viral moment didn't translate into a lasting habit.</h2>
+          <div class="cs-blocks">
+            <p class="cs-p">By August 2022, BeReal had 73.5 million monthly active users and ~20 million daily actives. By Q4 2022, downloads fell for the first time since 2021. U.S. monthly actives dropped from a 3.7M peak to just over 3M by August 2023. Meanwhile, Snapchat, Instagram, and TikTok had copied BeReal's dual-camera mechanic and folded it into much richer ecosystems.</p>
+            <p class="cs-p">Three core friction points surfaced:</p>
+            <p class="cs-p"><strong>Repetition.</strong> The single daily post format made the app feel like "same photo, different day." Without lightweight ways to play, react, or remix, there wasn't much to do once you'd posted.</p>
+            <p class="cs-p"><strong>Social pressure.</strong> Posting unfiltered content to your entire friends list every day created real anxiety. BeReal's authenticity premise and the pressure to present well were in direct conflict, with no release valve.</p>
+            <p class="cs-p"><strong>A forgotten Discovery page.</strong> Discovery existed, but users described it as random and irrelevant. With no way to control what they saw, it wasn't worth opening.</p>
+            <figure class="cs-fig"><button type="button" data-lb data-full="../images/projects/bereal-redesign/01-problem-framing.webp" data-alt="Competitive landscape: BeReal vs. Snapchat, Instagram, TikTok" data-cap="Competitive landscape: BeReal vs. Snapchat, Instagram, TikTok" data-fig="Fig. 01" aria-label="Open figure 1 larger"><img src="../images/projects/bereal-redesign/01-problem-framing-800.webp" srcset="../images/projects/bereal-redesign/01-problem-framing-800.webp 800w, ../images/projects/bereal-redesign/01-problem-framing.webp 1440w" sizes="(max-width: 900px) 92vw, 760px" alt="Competitive landscape: BeReal vs. Snapchat, Instagram, TikTok" width="1440" height="810" loading="lazy" decoding="async"></button><figcaption><b>Fig. 01</b><span>Competitive landscape: BeReal vs. Snapchat, Instagram, TikTok</span></figcaption></figure>
+          </div>
+        </section>
+        <section id="ch-2" class="cs-ch" data-ch data-label="What the Data Showed" aria-labelledby="ch-2-h">
+          <div class="cs-ch-rule"><span class="num">02</span><span class="eyebrow muted">What the Data Showed</span></div>
+          <h2 id="ch-2-h">Designing within constraints: no ads, no influencers, no addiction loops.</h2>
+          <div class="cs-blocks">
+            <p class="cs-p">BeReal explicitly rejects ads, influencer culture, and addictive design. That constraint had to be designed within, not around. We combined a literature review, competitive analysis, and direct user research to understand the full picture.</p>
+            <dl class="cs-stats"><div><dt>survey participants via Qualtrics</dt><dd>35</dd></div><div><dt>in-depth generative interviews, ages 17–24</dt><dd>6</dd></div><div><dt>never use the Discovery page</dt><dd>76%</dd></div><div><dt>always retake their BeReals before posting</dt><dd>67%</dd></div></dl>
+            <figure class="cs-quote"><div class="eyebrow accent">In their words</div><blockquote>Even though the purpose is to be authentic, I still felt the need to curate my post of the day.</blockquote><figcaption>BeReal user, in-depth interview</figcaption></figure>
+            <figure class="cs-quote"><div class="eyebrow accent">In their words</div><blockquote>It can get repetitive and boring because it's only one post per day.</blockquote><figcaption>BeReal user, survey response</figcaption></figure>
+            <figure class="cs-fig"><button type="button" data-lb data-full="../images/projects/bereal-redesign/02-research-synthesis.webp" data-alt="Affinity mapping: synthesizing survey data and interview insights" data-cap="Affinity mapping: synthesizing survey data and interview insights" data-fig="Fig. 02" aria-label="Open figure 2 larger"><img src="../images/projects/bereal-redesign/02-research-synthesis-800.webp" srcset="../images/projects/bereal-redesign/02-research-synthesis-800.webp 800w, ../images/projects/bereal-redesign/02-research-synthesis.webp 1440w" sizes="(max-width: 900px) 92vw, 760px" alt="Affinity mapping: synthesizing survey data and interview insights" width="1440" height="810" loading="lazy" decoding="async"></button><figcaption><b>Fig. 02</b><span>Affinity mapping: synthesizing survey data and interview insights</span></figcaption></figure>
+          </div>
+        </section>
+        <section id="ch-3" class="cs-ch" data-ch data-label="Key Insights" aria-labelledby="ch-3-h">
+          <div class="cs-ch-rule"><span class="num">03</span><span class="eyebrow muted">Key Insights</span></div>
+          <h2 id="ch-3-h">Three pain points drove everything we built.</h2>
+          <div class="cs-blocks">
+            <div class="cs-ins"><div><div class="eyebrow"><span>01</span>Repetition Fatigue</div><p>Posts are becoming repetitive and boring: the daily format with no variation leaves users with nothing new to engage with.</p></div><div><div class="eyebrow"><span>02</span>Social Pressure</div><p>Users aren't posting on time. Social pressure is the real blocker: 67% retake before posting, only 9% post on time.</p></div><div><div class="eyebrow"><span>03</span>Discovery Dead Zone</div><p>Discovery is rarely opened and doesn't feel worth opening. No personalization, no control, no reason to return.</p></div></div>
+          </div>
+        </section>
+        <section id="ch-4" class="cs-ch" data-ch data-label="Features" aria-labelledby="ch-4-h">
+          <div class="cs-ch-rule"><span class="num">04</span><span class="eyebrow muted">Features</span></div>
+          <h2 id="ch-4-h">Four features. One principle: lower the stakes without lowering the authenticity.</h2>
+          <div class="cs-blocks">
+            <h3 class="cs-h3"><span aria-hidden="true">01</span>BeReal Prompts</h3>
+<p class="cs-p">Optional daily challenges (e.g., "Make a silly face") that attach to your BeReal. Users can also submit prompts to be randomly assigned to friends. Addresses the repetition problem by giving people something to play with, without forcing it.</p>
+<figure class="cs-fig"><button type="button" data-lb data-full="../images/projects/bereal-redesign/03-prompts-screen.webp" data-alt="BeReal Prompts: prompt selection and post flow" data-cap="BeReal Prompts: prompt selection and post flow" data-fig="Fig. 03" aria-label="Open figure 3 larger"><img src="../images/projects/bereal-redesign/03-prompts-screen-800.webp" srcset="../images/projects/bereal-redesign/03-prompts-screen-800.webp 800w, ../images/projects/bereal-redesign/03-prompts-screen.webp 1200w" sizes="(max-width: 900px) 92vw, 760px" alt="BeReal Prompts: prompt selection and post flow" width="1200" height="900" loading="lazy" decoding="async"></button><figcaption><b>Fig. 03</b><span>BeReal Prompts: prompt selection and post flow</span></figcaption></figure>
+            <h3 class="cs-h3"><span aria-hidden="true">02</span>BeCloser</h3>
+<p class="cs-p">A close friends circle that lets users share certain posts with a smaller, private group. Circles can be created and edited anytime without notifying anyone. Addresses the social pressure problem by giving users a lower-stakes audience when they need it.</p>
+<figure class="cs-fig"><button type="button" data-lb data-full="../images/projects/bereal-redesign/04-becloser-screens.webp" data-alt="BeCloser: circle creation and sharing flow" data-cap="BeCloser: circle creation and sharing flow" data-fig="Fig. 04" aria-label="Open figure 4 larger"><img src="../images/projects/bereal-redesign/04-becloser-screens-800.webp" srcset="../images/projects/bereal-redesign/04-becloser-screens-800.webp 800w, ../images/projects/bereal-redesign/04-becloser-screens.webp 1200w" sizes="(max-width: 900px) 92vw, 760px" alt="BeCloser: circle creation and sharing flow" width="1200" height="900" loading="lazy" decoding="async"></button><figcaption><b>Fig. 04</b><span>BeCloser: circle creation and sharing flow</span></figcaption></figure>
+            <h3 class="cs-h3"><span aria-hidden="true">03</span>Memory Highlights</h3>
+<p class="cs-p">Pin up to 7 past BeReals on your profile. Revamped memories calendar with Week, Month, Year views. Gives users a reason to revisit and a way to surface their best moments without filtering in the moment.</p>
+<figure class="cs-fig"><button type="button" data-lb data-full="../images/projects/bereal-redesign/05-memory-screens.webp" data-alt="Memory Highlights: calendar view and pinning flow" data-cap="Memory Highlights: calendar view and pinning flow" data-fig="Fig. 05" aria-label="Open figure 5 larger"><img src="../images/projects/bereal-redesign/05-memory-screens-800.webp" srcset="../images/projects/bereal-redesign/05-memory-screens-800.webp 800w, ../images/projects/bereal-redesign/05-memory-screens.webp 1200w" sizes="(max-width: 900px) 92vw, 760px" alt="Memory Highlights: calendar view and pinning flow" width="1200" height="900" loading="lazy" decoding="async"></button><figcaption><b>Fig. 05</b><span>Memory Highlights: calendar view and pinning flow</span></figcaption></figure>
+            <h3 class="cs-h3"><span aria-hidden="true">04</span>Discovery 2.0</h3>
+<p class="cs-p">Curate your own Discovery by choosing up to 3 countries per day. Globe-spin mechanic for serendipitous discovery. Addresses the Discovery problem by adding just enough control without turning it into a full feed-curation system.</p>
+<figure class="cs-fig"><button type="button" data-lb data-full="../images/projects/bereal-redesign/06-discovery-screens.webp" data-alt="Discovery 2.0: globe interface and country selection" data-cap="Discovery 2.0: globe interface and country selection" data-fig="Fig. 06" aria-label="Open figure 6 larger"><img src="../images/projects/bereal-redesign/06-discovery-screens-800.webp" srcset="../images/projects/bereal-redesign/06-discovery-screens-800.webp 800w, ../images/projects/bereal-redesign/06-discovery-screens.webp 1200w" sizes="(max-width: 900px) 92vw, 760px" alt="Discovery 2.0: globe interface and country selection" width="1200" height="900" loading="lazy" decoding="async"></button><figcaption><b>Fig. 06</b><span>Discovery 2.0: globe interface and country selection</span></figcaption></figure>
+          </div>
+        </section>
+        <section id="ch-5" class="cs-ch" data-ch data-label="Testing &amp; What We Fixed" aria-labelledby="ch-5-h">
+          <div class="cs-ch-rule"><span class="num">05</span><span class="eyebrow muted">Testing &amp; What We Fixed</span></div>
+          <h2 id="ch-5-h">Two rounds of testing. Every feature changed.</h2>
+          <div class="cs-blocks">
+            <p class="cs-p">We tested all four features across two rounds of usability testing with real BeReal users. Here's what we learned and fixed:</p>
+            <div class="cs-ins"><div><div class="eyebrow"><span>01</span>BeReal Prompts (6 users)</div><p>Prompts made posting feel less mundane. But when declined, it disappeared, users wanted to revisit it. Home screen felt cluttered. Fix: Added a persistent prompt entry point and simplified layout.</p></div><div><div class="eyebrow"><span>02</span>BeCloser (8 users)</div><p>Layout made it unclear where close-friends content lived. Lightning-bolt icon didn't communicate &quot;inner circle.&quot; 50/50 split on whether they'd use it. Fix: Redesigned icon, added in-context onboarding.</p></div><div><div class="eyebrow"><span>03</span>Memory Highlights (6 users)</div><p>Calendar felt intuitive. Users liked pinning moments. Highlight upload flow felt hidden. Fix: Embedded the flow more naturally with clearer step-by-step guidance.</p></div><div><div class="eyebrow"><span>04</span>Discovery 2.0 (10 users)</div><p>Users liked exploring different parts of the world. Too many filter options up front felt overwhelming. Fix: Leaned into the globe as the primary interaction, reduced visible controls.</p></div></div>
+          </div>
+        </section>
+        <section id="ch-6" class="cs-ch" data-ch data-label="Outcomes" aria-labelledby="ch-6-h">
+          <div class="cs-ch-rule"><span class="num">06</span><span class="eyebrow muted">Outcomes</span></div>
+          <h2 id="ch-6-h">What the testing told us, in numbers.</h2>
+          <div class="cs-blocks">
+            <dl class="cs-stats"><div><dt>users said BeReal Prompts made posting feel less routine</dt><dd>8 / 10</dd></div><div><dt>countries explored on average in a single Discovery 2.0 session</dt><dd>4.2</dd></div><div><dt>of Discovery 2.0 testers said they'd open it more than once a week if it shipped</dt><dd>76%</dd></div><div><dt>BeCloser users said the feature felt inauthentic, validating the core premise despite the 50/50 adoption split</dt><dd>0 / 8</dd></div></dl>
+            <p class="cs-p">Memory Highlights had the highest perceived value score of all four features in post-test surveys. Users consistently described it as "the reason to keep the app installed," a signal that long-term retention, not just daily engagement, was the real opportunity BeReal was missing.</p>
+          </div>
+        </section>
+        <section id="ch-7" class="cs-ch" data-ch data-label="Reflection" aria-labelledby="ch-7-h">
+          <div class="cs-ch-rule"><span class="num">07</span><span class="eyebrow muted">Reflection</span></div>
+          <h2 id="ch-7-h">Designing within a product's ethos is harder, and more valuable, than designing from scratch.</h2>
+          <div class="cs-blocks">
+            <p class="cs-p">Designing within BeReal's authenticity ethos was the defining constraint of this project. Having a clear product philosophy forced us to say no to easy engagement wins and treat constraints as a design tool rather than a limitation.</p>
+            <p class="cs-p">Early on it was tempting to "fix engagement" by adding more notifications or feeds. But when 67% of users are already retaking photos before posting, and only 9% post on time, the problem isn't the UI. It's the underlying pressure. That pushed us toward lowering the stakes rather than adding more things to tap.</p>
+            <p class="cs-p">BeCloser split users right down the middle at 50/50. That kind of feedback only comes from getting something in front of real people early. If I could go back, I'd spend more time on Discovery 2.0. Even after two rounds of testing it felt more like a clever idea than a fully validated direction.</p>
+          </div>
+        </section>
+        </article>
+        <nav class="chap snav" aria-label="Chapters">
+          <div class="snav-head"><span class="eyebrow muted">Chapters</span><span aria-hidden="true">07</span></div>
+          <div class="snav-list"><span class="snav-marker" aria-hidden="true"></span>
+              <a class="snav-link" href="#ch-1" data-chnav="ch-1"><span class="snav-num">01</span><span>The Problem</span></a>
+              <a class="snav-link" href="#ch-2" data-chnav="ch-2"><span class="snav-num">02</span><span>What the Data Showed</span></a>
+              <a class="snav-link" href="#ch-3" data-chnav="ch-3"><span class="snav-num">03</span><span>Key Insights</span></a>
+              <a class="snav-link" href="#ch-4" data-chnav="ch-4"><span class="snav-num">04</span><span>Features</span></a>
+              <a class="snav-link" href="#ch-5" data-chnav="ch-5"><span class="snav-num">05</span><span>Testing &amp; What We Fixed</span></a>
+              <a class="snav-link" href="#ch-6" data-chnav="ch-6"><span class="snav-num">06</span><span>Outcomes</span></a>
+              <a class="snav-link" href="#ch-7" data-chnav="ch-7"><span class="snav-num">07</span><span>Reflection</span></a>
+          </div>
+        </nav>
+      </div>
+      <section class="cs-wrap next" aria-label="Next case study">
+        <a href="verum-ai.html" aria-label="Next case study: Verum AI">
+          <div class="next-txt"><div class="cs-rule" style="border:0;padding:0;justify-content:flex-start"><span class="eyebrow muted">Next</span><span class="num">02</span></div><div class="next-title">Verum AI <span aria-hidden="true">→</span></div><span class="muted" style="font-size:13px">Product Design · 2023</span></div>
+          <div class="next-media"><img src="../images/home/verum-ai-800.webp" alt="" width="800" height="533" loading="lazy" decoding="async"></div>
+        </a>
+      </section>
+    </main>
+    <dialog class="lb" aria-label="Image viewer">
+      <div class="lb-in">
+        <div class="lb-head"><span class="eyebrow"><span data-lb-fig></span> <i data-lb-count></i></span><div class="lb-btns"><button type="button" data-lb-prev aria-label="Previous image">←</button><button type="button" data-lb-next aria-label="Next image">→</button><button type="button" data-lb-close aria-label="Close image viewer">✕</button></div></div>
+        <img alt="">
+        <p></p>
+      </div>
+    </dialog>
+  <footer class="foot foot--compact">
+    <div class="foot-in">
+      <div class="foot-links"><a href="mailto:hello@dereckvilla.design">hello@dereckvilla.design</a><a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/Derec58" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="../resume.pdf" target="_blank" rel="noopener">Résumé ↗</a></div>
+      <small>© 2026 · Designed &amp; built in vanilla HTML, CSS &amp; JS</small>
     </div>
-
-    <div class="nav-group" role="navigation" aria-label="Lab">
-      <span class="nav-label">Lab</span>
-      <a href="https://github.com/Derec58/raspberry-pi-media-stack" target="_blank" rel="noopener noreferrer" class="nav-link">Raspberry Pi Media Stack ↗</a>
-      <a href="https://github.com/Derec58/portfolio2026" target="_blank" rel="noopener noreferrer" class="nav-link">Portfolio Site ↗</a>
-    </div>
-
-    <div class="nav-group" role="navigation" aria-label="Independent Work">
-      <span class="nav-label">Independent Work</span>
-      <a href="packpal.html" class="nav-link" data-preview="../images/home/packpal.webp">PackPal</a>
-      <a href="snapplant.html" class="nav-link" data-preview="../images/home/snapplant.webp">SnapPlant</a>
-      <a href="arc-redesign.html" class="nav-link" data-preview="../images/home/arc-redesign.webp">ARC Redesign</a>
-      <a href="sonidos.html" class="nav-link" data-preview="../images/home/sonidos.webp">Sonidos del Alma Danzante</a>
-    </div>
-
-    <div class="sidebar-status">
-      <span class="status-pill">
-        <span class="status-dot" aria-hidden="true"></span>
-        <span>Available for work</span>
-      </span>
-    </div>
-  </aside>
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       END SIDEBAR
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <main class="content" id="main-content">
-
-    <!-- .cs-back: "← Portfolio" link back to index.html — see style.css Section 25 -->
-    <a href="../index.html" class="cs-back">← Portfolio</a>
-
-    <!-- ─── Case Study Header ──────────────────────────────────────────────
-         Eyebrow + Playfair title + subtitle + award badge (top-right absolute).
-         ─────────────────────────────────────────────────────────────────── -->
-    <div class="cs-header cs-header--1 reveal">
-      <span class="cs-eyebrow">01 &nbsp;&middot;&nbsp; Product Design</span>
-      <h1 class="cs-title--1">BeReal Redesign</h1>
-      <p class="cs-subtitle">Rebuilding long-term engagement for BeReal without becoming the thing it stood against — a 6-week sprint to solve a retention problem rooted in social pressure, not product features.</p>
-      <div class="cs-award">&#10022; Most Innovative UX &mdash; UC Davis Design Interactive</div>
-    </div>
-
-    <!-- ─── Case Study Meta Strip ──────────────────────────────────────────
-         Single-line byline: Timeline | Team | Role | Tools
-         ─────────────────────────────────────────────────────────────────── -->
-    <div class="cs-meta-strip reveal">
-      <div class="cs-meta-strip-item">
-        <span class="cs-meta-strip-label">Timeline</span>
-        <span class="cs-meta-strip-value">6 Weeks, 2023</span>
-      </div>
-      <div class="cs-meta-strip-item">
-        <span class="cs-meta-strip-label">Team</span>
-        <span class="cs-meta-strip-value">Dereck Villagrana +4</span>
-      </div>
-      <div class="cs-meta-strip-item">
-        <span class="cs-meta-strip-label">Role</span>
-        <span class="cs-meta-strip-value">UX Designer &middot; Prototyping Lead</span>
-      </div>
-      <div class="cs-meta-strip-item">
-        <span class="cs-meta-strip-label">Tools</span>
-        <span class="cs-meta-strip-value">Figma</span>
-      </div>
-    </div>
-
-    <img src="../images/projects/bereal-redesign/00-cover.jpg" alt="BeReal Redesign — feature overview" class="cs-cover" width="1600" height="900" fetchpriority="high">
-
-    <!-- ─── Overview Paragraph ────────────────────────────────────────────
-         .cs-overview: opening summary paragraph — full text color (not muted),
-         max-width 720px, line-height 1.85 for comfortable long-form reading.
-         ─────────────────────────────────────────────────────────────────── -->
-    <p class="cs-overview reveal">
-      In 2022, BeReal went from a niche app to a global hit: 73.5 million monthly active users at its peak. But by late 2022, growth stalled, downloads declined, and the app that once felt refreshingly different started to feel repetitive. For UC Davis's Design Interactive, our team of five took on a six-week sprint to understand why people were drifting away and how BeReal could win them back without becoming the very thing it stood against.
-    </p>
-
-    <!-- .cs-divider: full-width 1px horizontal rule (see style.css .cs-divider) -->
-    <div class="cs-divider"></div>
-
-    <!-- ─── The Problem Section ────────────────────────────────────────────
-         Each case study section has:
-           .cs-section: margin-bottom block
-           .cs-section-label: small uppercase eyebrow
-           .cs-heading: display-font section headline
-           .cs-body: body copy paragraphs (muted color, max-width 720px)
-         ─────────────────────────────────────────────────────────────────── -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">The Problem</span>
-      <h2 class="cs-heading">BeReal's viral moment didn't translate into a lasting habit.</h2>
-      <p class="cs-body">By August 2022, BeReal had 73.5 million monthly active users and ~20 million daily actives. By Q4 2022, downloads fell for the first time since 2021. U.S. monthly actives dropped from a 3.7M peak to just over 3M by August 2023. Meanwhile, Snapchat, Instagram, and TikTok had copied BeReal's dual-camera mechanic and folded it into much richer ecosystems.</p>
-      <p class="cs-body">Three core friction points surfaced:</p>
-      <p class="cs-body"><strong>Repetition.</strong> The single daily post format made the app feel like "same photo, different day." Without lightweight ways to play, react, or remix, there wasn't much to do once you'd posted.</p>
-      <p class="cs-body"><strong>Social pressure.</strong> Posting unfiltered content to your entire friends list every day created real anxiety. BeReal's authenticity premise and the pressure to present well were in direct conflict, with no release valve.</p>
-      <p class="cs-body"><strong>A forgotten Discovery page.</strong> Discovery existed, but users described it as random and irrelevant. With no way to control what they saw, it wasn't worth opening.</p>
-      <img src="../images/projects/bereal-redesign/01-problem-framing.jpg" alt="Competitive landscape: BeReal vs. Snapchat, Instagram, TikTok" class="cs-image" width="1440" height="810" loading="lazy">
-      <p class="cs-image-caption">Competitive landscape: BeReal vs. Snapchat, Instagram, TikTok</p>
-    </section>
-
-    <!-- ─── Research Section ───────────────────────────────────────────────
-         .cs-stats-row: horizontal strip of large stat numbers (accent color,
-         display font) separated by top/bottom borders.
-         .cs-pull-quote: left accent border quote from a user interview.
-         ─────────────────────────────────────────────────────────────────── -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">What the Data Showed</span>
-      <h2 class="cs-heading">Designing within constraints: no ads, no influencers, no addiction loops.</h2>
-      <p class="cs-body">BeReal explicitly rejects ads, influencer culture, and addictive design. That constraint had to be designed within, not around. We combined a literature review, competitive analysis, and direct user research to understand the full picture.</p>
-
-      <div class="cs-stats-row">
-        <div class="cs-stat-item">
-          <!-- .cs-stat: large display-font accent-color number -->
-          <span class="cs-stat">35</span>
-          <span class="cs-stat-label">survey participants via Qualtrics</span>
-        </div>
-        <div class="cs-stat-item">
-          <span class="cs-stat">6</span>
-          <span class="cs-stat-label">in-depth generative interviews, ages 17–24</span>
-        </div>
-        <div class="cs-stat-item">
-          <span class="cs-stat">76%</span>
-          <span class="cs-stat-label">never use the Discovery page</span>
-        </div>
-        <div class="cs-stat-item">
-          <span class="cs-stat">67%</span>
-          <span class="cs-stat-label">always retake their BeReals before posting</span>
-        </div>
-      </div>
-
-      <!-- .cs-pull-quote: border-left accent bar + indented display-font italic quote -->
-      <div class="cs-pull-quote">
-        <p>"Even though the purpose is to be authentic, I still felt the need to curate my post of the day."</p>
-        <cite>BeReal user, in-depth interview</cite>
-      </div>
-
-      <div class="cs-pull-quote">
-        <p>"It can get repetitive and boring because it's only one post per day."</p>
-        <cite>BeReal user, survey response</cite>
-      </div>
-
-      <img src="../images/projects/bereal-redesign/02-research-synthesis.jpg" alt="Affinity mapping: synthesizing survey data and interview insights" class="cs-image" width="1440" height="810" loading="lazy">
-      <p class="cs-image-caption">Affinity mapping: synthesizing survey data and interview insights</p>
-    </section>
-
-    <!-- ─── Key Insights Section ───────────────────────────────────────────
-         .cs-insight-grid: 2-column grid of bordered insight cards.
-         Collapses to 1 column on mobile.
-         ─────────────────────────────────────────────────────────────────── -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">Key Insights</span>
-      <h2 class="cs-heading">Three pain points drove everything we built.</h2>
-      <div class="cs-insight-grid">
-        <div class="cs-insight-card">
-          <span class="cs-section-label">Repetition Fatigue</span>
-          <p>Posts are becoming repetitive and boring: the daily format with no variation leaves users with nothing new to engage with.</p>
-        </div>
-        <div class="cs-insight-card">
-          <span class="cs-section-label">Social Pressure</span>
-          <p>Users aren't posting on time. Social pressure is the real blocker: 67% retake before posting, only 9% post on time.</p>
-        </div>
-        <div class="cs-insight-card">
-          <span class="cs-section-label">Discovery Dead Zone</span>
-          <p>Discovery is rarely opened and doesn't feel worth opening. No personalization, no control, no reason to return.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── Features Section ───────────────────────────────────────────────
-         .cs-feature-block: one designed feature per block, with title, description,
-         image, and caption. Border-bottom separates features. Last child removes border.
-         ─────────────────────────────────────────────────────────────────── -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">Features</span>
-      <h2 class="cs-heading">Four features. One principle: lower the stakes without lowering the authenticity.</h2>
-
-      <div class="cs-feature-block">
-        <p class="cs-feature-title">BeReal Prompts</p>
-        <p class="cs-body">Optional daily challenges (e.g., "Make a silly face") that attach to your BeReal. Users can also submit prompts to be randomly assigned to friends. Addresses the repetition problem by giving people something to play with, without forcing it.</p>
-        <img src="../images/projects/bereal-redesign/03-prompts-screen.jpg" alt="BeReal Prompts: prompt selection and post flow" class="cs-image tall" width="1200" height="900" loading="lazy">
-        <p class="cs-image-caption">BeReal Prompts: prompt selection and post flow</p>
-      </div>
-
-      <div class="cs-feature-block">
-        <p class="cs-feature-title">BeCloser</p>
-        <p class="cs-body">A close friends circle that lets users share certain posts with a smaller, private group. Circles can be created and edited anytime without notifying anyone. Addresses the social pressure problem by giving users a lower-stakes audience when they need it.</p>
-        <img src="../images/projects/bereal-redesign/04-becloser-screens.jpg" alt="BeCloser: circle creation and sharing flow" class="cs-image tall" width="1200" height="900" loading="lazy">
-        <p class="cs-image-caption">BeCloser: circle creation and sharing flow</p>
-      </div>
-
-      <div class="cs-feature-block">
-        <p class="cs-feature-title">Memory Highlights</p>
-        <p class="cs-body">Pin up to 7 past BeReals on your profile. Revamped memories calendar with Week, Month, Year views. Gives users a reason to revisit and a way to surface their best moments without filtering in the moment.</p>
-        <img src="../images/projects/bereal-redesign/05-memory-screens.jpg" alt="Memory Highlights: calendar view and pinning flow" class="cs-image tall" width="1200" height="900" loading="lazy">
-        <p class="cs-image-caption">Memory Highlights: calendar view and pinning flow</p>
-      </div>
-
-      <div class="cs-feature-block">
-        <p class="cs-feature-title">Discovery 2.0</p>
-        <p class="cs-body">Curate your own Discovery by choosing up to 3 countries per day. Globe-spin mechanic for serendipitous discovery. Addresses the Discovery problem by adding just enough control without turning it into a full feed-curation system.</p>
-        <img src="../images/projects/bereal-redesign/06-discovery-screens.jpg" alt="Discovery 2.0: globe interface and country selection" class="cs-image tall" width="1200" height="900" loading="lazy">
-        <p class="cs-image-caption">Discovery 2.0: globe interface and country selection</p>
-      </div>
-    </section>
-
-    <!-- ─── Usability Testing Section ─────────────────────────────────────
-         Another cs-insight-grid of testing results per feature.
-         ─────────────────────────────────────────────────────────────────── -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">Testing & What We Fixed</span>
-      <h2 class="cs-heading">Two rounds of testing. Every feature changed.</h2>
-      <p class="cs-body">We tested all four features across two rounds of usability testing with real BeReal users. Here's what we learned and fixed:</p>
-
-      <div class="cs-insight-grid">
-        <div class="cs-insight-card">
-          <span class="cs-section-label">BeReal Prompts (6 users)</span>
-          <p>Prompts made posting feel less mundane. But when declined, it disappeared, users wanted to revisit it. Home screen felt cluttered. Fix: Added a persistent prompt entry point and simplified layout.</p>
-        </div>
-        <div class="cs-insight-card">
-          <span class="cs-section-label">BeCloser (8 users)</span>
-          <p>Layout made it unclear where close-friends content lived. Lightning-bolt icon didn't communicate "inner circle." 50/50 split on whether they'd use it. Fix: Redesigned icon, added in-context onboarding.</p>
-        </div>
-        <div class="cs-insight-card">
-          <span class="cs-section-label">Memory Highlights (6 users)</span>
-          <p>Calendar felt intuitive. Users liked pinning moments. Highlight upload flow felt hidden. Fix: Embedded the flow more naturally with clearer step-by-step guidance.</p>
-        </div>
-        <div class="cs-insight-card">
-          <span class="cs-section-label">Discovery 2.0 (10 users)</span>
-          <p>Users liked exploring different parts of the world. Too many filter options up front felt overwhelming. Fix: Leaned into the globe as the primary interaction, reduced visible controls.</p>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ─── Outcomes Section ─────────────────────────────────────────────
-         Quantified results from final usability testing across all four features.
-         ─────────────────────────────────────────────────────────────────── -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">Outcomes</span>
-      <h2 class="cs-heading">What the testing told us, in numbers.</h2>
-      <div class="cs-stats-row">
-        <div class="cs-stat-item">
-          <span class="cs-stat">8 / 10</span>
-          <span class="cs-stat-label">users said BeReal Prompts made posting feel less routine</span>
-        </div>
-        <div class="cs-stat-item">
-          <span class="cs-stat">4.2</span>
-          <span class="cs-stat-label">countries explored on average in a single Discovery 2.0 session</span>
-        </div>
-        <div class="cs-stat-item">
-          <span class="cs-stat">76%</span>
-          <span class="cs-stat-label">of Discovery 2.0 testers said they'd open it more than once a week if it shipped</span>
-        </div>
-        <div class="cs-stat-item">
-          <span class="cs-stat">0 / 8</span>
-          <span class="cs-stat-label">BeCloser users said the feature felt inauthentic, validating the core premise despite the 50/50 adoption split</span>
-        </div>
-      </div>
-      <p class="cs-body">Memory Highlights had the highest perceived value score of all four features in post-test surveys. Users consistently described it as "the reason to keep the app installed," a signal that long-term retention, not just daily engagement, was the real opportunity BeReal was missing.</p>
-    </section>
-
-    <div class="cs-divider"></div>
-
-    <!-- ─── Reflection Section ────────────────────────────────────────────
-         The closing section — no stats or images, just .cs-body paragraphs.
-         ─────────────────────────────────────────────────────────────────── -->
-    <section class="cs-section reveal">
-      <span class="cs-section-label">Reflection</span>
-      <h2 class="cs-heading">Designing within a product's ethos is harder, and more valuable, than designing from scratch.</h2>
-      <p class="cs-body">Designing within BeReal's authenticity ethos was the defining constraint of this project. Having a clear product philosophy forced us to say no to easy engagement wins and treat constraints as a design tool rather than a limitation.</p>
-      <p class="cs-body">Early on it was tempting to "fix engagement" by adding more notifications or feeds. But when 67% of users are already retaking photos before posting, and only 9% post on time, the problem isn't the UI. It's the underlying pressure. That pushed us toward lowering the stakes rather than adding more things to tap.</p>
-      <p class="cs-body">BeCloser split users right down the middle at 50/50. That kind of feedback only comes from getting something in front of real people early. If I could go back, I'd spend more time on Discovery 2.0. Even after two rounds of testing it felt more like a clever idea than a fully validated direction.</p>
-    </section>
-
-    <!-- Footer: see index.html for documentation -->
-    <footer class="site-footer">
-      <span>&copy; 2026 Dereck Villagrana. All rights reserved.</span>
-      <span>Designed &amp; built by Dereck</span>
-    </footer>
-
-  </main>
-
-  <!-- Cache buster: ?v=2 forces fresh download when main.js changes. ../js/ = up one folder. -->
-  <div class="cursor-dot" aria-hidden="true"><span class="cursor-label"></span></div>
-  <script src="../js/main.js?v=3"></script>
+  </footer>
+  </div>
+  <button type="button" class="totop" aria-label="Back to top">Top <span aria-hidden="true">↑</span></button>
 </body>
 </html>

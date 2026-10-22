@@ -2,374 +2,111 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="About Dereck Villagrana: a product designer who ships what he designs. UC Davis B.S. in Design. Open to UX/UI design and IT support roles in the Central Valley and Bay Area.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About | Dereck Villagrana</title>
+  <meta name="description" content="About Dereck Villagrana: a product designer who builds what he designs. Background, experience, tools and how he works.">
+  <link rel="canonical" href="https://dereckvilla.design/about.html">
   <meta property="og:title" content="About | Dereck Villagrana">
-  <meta property="og:description" content="A product designer who ships what he designs. UC Davis B.S. in Design. Open to UX/UI design and IT support roles in the Central Valley and Bay Area.">
+  <meta property="og:description" content="About Dereck Villagrana: a product designer who builds what he designs. Background, experience, tools and how he works.">
   <meta property="og:url" content="https://dereckvilla.design/about.html">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
-  <meta property="og:image" content="https://dereckvilla.design/images/logos/site/og-image-white.png">
-  <meta name="twitter:image" content="https://dereckvilla.design/images/logos/site/og-image-white.png">
-  <link rel="canonical" href="https://dereckvilla.design/about.html">
-  <title>About | Dereck Villagrana</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <meta property="og:image" content="https://dereckvilla.design/images/og-card-v3.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Dereck Villagrana, product designer and front-end developer">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://dereckvilla.design/images/og-card-v3.png">
+  <meta name="theme-color" content="#FAFCFD" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15171a" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/svg+xml" href="images/logos/site/logo-dark.svg">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="fonts/playfair-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" imagesrcset="images/about/portrait-640.webp 640w, images/about/portrait-960.webp 960w" imagesizes="340px" fetchpriority="high">
+  <link rel="stylesheet" href="css/site.min.css?v=7">
+  <script>try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
+  <script defer src="js/site.min.js?v=7"></script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-
-  <!-- Skip navigation link: lets keyboard/screen reader users jump past the sidebar.
-       See index.html for full documentation on this pattern. -->
-  <a href="#main-content" class="skip-nav">Skip to main content</a>
-
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       SIDEBAR — Documented fully in index.html.
-       This sidebar is structurally identical to index.html. Key differences:
-         - .logo-badge href points to "index.html" (not "#about")
-         - About link has class="active" + aria-current="page" (current page)
-         - CV link points to "index.html#cv" (cross-page anchor)
-       See index.html for comments on every sidebar element.
-       ═══════════════════════════════════════════════════════════════════════ -->
-  <aside class="sidebar">
-    <div class="sidebar-header">
-        <div class="sidebar-top">
-      <!-- On non-home pages, logo links back to index.html -->
-      <a href="index.html" class="logo-badge" aria-label="Home">DV</a>
-      <button class="theme-toggle" aria-label="Switch to dark mode" data-cursor="◑ Toggle Theme"></button>
+  <a class="skip" href="#main-content">Skip to main content</a>
+  <div class="rail">
+    <div class="rail-strip">
+      <a class="logo" href="index.html" aria-label="Home">D<span>V</span></a>
+      <button type="button" class="rail-btn" aria-expanded="false" aria-controls="rail-panel" aria-label="Site index, currently on AB"><span class="rail-cur" aria-hidden="true">AB</span><span class="rail-line" aria-hidden="true"></span><span class="rail-idx" aria-hidden="true">Index</span></button>
+      <span class="rail-dot" aria-hidden="true"></span>
     </div>
-
-        <nav aria-label="Site navigation" class="sidebar-nav">
-      <button class="theme-toggle" aria-label="Switch to dark mode" data-cursor="◑ Toggle Theme"></button>
-      <!-- aria-current="page": marks this link as the current page for screen readers -->
-      <a href="about.html" class="nav-link active" aria-current="page">About</a>
-      <a href="contact.html" class="nav-link">Contact</a>
-      <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation">&#9776;</button>
+    <nav id="rail-panel" class="rail-panel" aria-label="Site index">
+      <div class="rail-top">
+        <div class="rail-top-row"><a class="logo" href="index.html" aria-label="Home">D<span>V</span></a><button type="button" class="rail-close"><span aria-hidden="true">←</span> Close</button></div>
+        <div class="rail-site"><a href="about.html" aria-current="page">About</a><a href="services.html">Services</a><a href="contact.html">Contact</a><a href="resume.pdf" target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="snav snav--work" role="group" aria-label="Selected work">
+        <div class="snav-head"><a href="index.html#work" data-navgroup="work">Selected Work</a><span aria-hidden="true">03</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="projects/bereal-redesign.html"><span class="snav-num">01</span><span>BeReal Redesign</span></a>
+          <a class="snav-link" href="projects/verum-ai.html"><span class="snav-num">02</span><span>Verum AI</span></a>
+          <a class="snav-link" href="projects/bsa-homepage.html"><span class="snav-num">03</span><span>Body Sculpting Aesthetic</span></a>
+        </div>
+      </div>
+      <div class="snav " role="group" aria-label="Independent work">
+        <div class="snav-head"><a href="index.html#more-work" data-navgroup="more-work">Independent Work</a><span aria-hidden="true">04</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="projects/packpal.html"><span class="snav-num">04</span><span>PackPal</span></a>
+          <a class="snav-link" href="projects/snapplant.html"><span class="snav-num">05</span><span>SnapPlant</span></a>
+          <a class="snav-link" href="projects/arc-redesign.html"><span class="snav-num">06</span><span>ARC Redesign</span></a>
+          <a class="snav-link" href="projects/sonidos.html"><span class="snav-num">07</span><span>Sonidos del Alma Danzante</span></a>
+        </div>
+      </div>
+      <div class="snav  snav--last" role="group" aria-label="Lab">
+        <div class="snav-head"><a href="index.html#lab" data-navgroup="lab">Lab</a><span aria-hidden="true">02</span></div>
+        <div class="snav-list">
+          <a class="snav-link" href="https://github.com/Derec58/raspberry-pi-media-stack" target="_blank" rel="noopener noreferrer"><span class="snav-num">L01</span><span>Raspberry Pi Media Stack <span aria-hidden="true">↗</span></span></a>
+          <a class="snav-link" href="https://github.com/Derec58/portfolio2026" target="_blank" rel="noopener noreferrer"><span class="snav-num">L02</span><span>Portfolio Site <span aria-hidden="true">↗</span></span></a>
+        </div>
+      </div>
+      <div class="sidebar-foot"><a class="pill-status" href="contact.html"><span class="dot" aria-hidden="true"></span>Available for work<span class="arr" aria-hidden="true">→</span></a></div>
     </nav>
+  </div>
+  <div class="page">
+    <header class="topbar itop">
+      <div class="topbar-in itop-in">
+        <div class="itop-left"><a class="logo" href="index.html" aria-label="Home">D<span>V</span></a><a class="itop-back" href="index.html#work"><span aria-hidden="true">←</span> Portfolio</a></div>
+        <div class="topbar-right"><nav aria-label="Site"><a href="about.html" aria-current="page">About</a><a href="services.html">Services</a><a href="contact.html">Contact</a><a href="resume.pdf" target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span></a></nav><button type="button" class="theme-btn" data-theme-toggle aria-label="Switch to dark mode"><span aria-hidden="true">◐</span><span data-theme-label>Dark</span></button></div>
+      </div>
+    </header>
+    <main id="main-content" class="wrap">
+      <section class="pg-mast" aria-labelledby="ab-h">
+        <div class="cs-rule"><span class="eyebrow accent">About</span><span class="muted">Dereck Villagrana</span></div>
+        <h1 id="ab-h">Product designer who ships what he designs, with just enough code to <em>follow through.</em></h1>
+        <div class="ab-intro">
+          <div class="prose"><p>I’m a product designer who builds what I design. I started in computer engineering, moved through graphic design, and ended up at the intersection of both: design thinking with enough code to follow through on it.</p><p>I’ve always been drawn to the question of why something works the way it does. Design, comp sci, systematic thinking: each one is a different way of asking the same thing. Figuring out that they connect was the thing that made everything click.</p><p>For a while I thought I had to pick one. Turns out I didn’t. The path I landed on lets me use all of it, and I’m still finding new ways to pull them together.</p></div>
+          <figure><div class="framed"><img src="images/about/portrait-960.webp" srcset="images/about/portrait-640.webp 640w, images/about/portrait-960.webp 960w" sizes="340px" alt="Dereck giving a thumbs up under the Config conference banner" width="800" height="1000" fetchpriority="high" decoding="async"></div><figcaption class="muted" style="margin-top:22px;font-size:12px"><span class="accent">↳</span> At Config</figcaption></figure>
         </div>
-
-    <div class="nav-group" role="navigation" aria-label="Selected Work">
-      <span class="nav-label">Selected Work</span>
-      <a href="projects/bereal-redesign.html" class="nav-link" data-preview="images/home/bereal-redesign.webp">BeReal Redesign</a>
-      <a href="projects/verum-ai.html" class="nav-link" data-preview="images/previews/verum-ai.jpg">Verum AI</a>
-      <a href="projects/bsa-homepage.html" class="nav-link" data-preview="images/home/bsa-homepage.webp">Body Sculpture Aesthetics</a>
+      </section>
+      <section class="pg-sec" aria-labelledby="now-h"><div class="sec-head"><h2 id="now-h">Currently</h2><span>2026</span></div>
+        <dl class="kv"><div><dt class="dt">Seeking</dt><dd>Product and UX design roles, plus freelance web design for small businesses. On-site, hybrid, or remote, in the Central Valley or Bay Area.</dd></div><div><dt class="dt">Building</dt><dd>This portfolio. Hand-coded HTML, CSS, and JS. No Webflow, no Framer.</dd></div><div><dt class="dt">Open to</dt><dd>Introductions, coffee chats, and honest conversations about design work.</dd></div></dl></section>
+      <section class="pg-sec" aria-labelledby="bg-h"><div class="sec-head"><h2 id="bg-h">Background</h2><span>How I got here</span></div>
+        <div class="prose"><p>UI/UX wasn't where I started. I came in through computer engineering, taking HTML, CSS, Python, and C++ in high school, at De Anza College, and eventually at UC Davis. Somewhere in those courses I figured out that I enjoyed building things but didn't want to make engineering a career. It was a hobby, and I was honest with myself about that. In between CS coursework I was taking design classes to fill credits, and it clicked in a way the other stuff didn't. I already had Adobe experience from photography classes in high school, which put me ahead in graphic design. Logos, posters, layouts: I loved all of it and wanted to keep going.</p><p>So I changed my major, landed in graphic design, transferred to UC Davis, and then discovered UI/UX almost by accident. I needed credits. Davis had a course. I took it. And that was it. UI/UX was the intersection I'd been circling: design, systematic thinking, and just enough code to matter. Somewhere in there I realized that good design and good engineering ask the same first question: what actually needs to be true here?</p><p>Photography and coding taught me timing, patience, and precision. How something unfolds matters as much as where it ends up. Design taught me that constraints aren't blockers; they're the problem. Both still show up in how I work.</p></div></section>
+      <section class="pg-sec" aria-labelledby="exp-h"><div class="sec-head"><h2 id="exp-h">Experience</h2><span>03</span></div><ul class="rows" style="list-style:none;margin:0;padding:0"><li><b>Best Buy</b><span class="when">Sep.–Present</span><span class="what">Technology Sales Advisor · Part-time</span></li><li><b>MYJ, Inc.</b><span class="when">Aug.–Oct. 2024</span><span class="what">UI/UX Designer Intern · Internship</span></li><li><b>Body Sculpting Aesthetic</b><span class="when">Jun.–Jul. 2024</span><span class="what">Product Designer · Freelance</span></li></ul></section>
+      <section class="pg-sec" aria-labelledby="edu-h"><div class="sec-head"><h2 id="edu-h">Education</h2><span>02</span></div><ul class="rows" style="list-style:none;margin:0;padding:0"><li><b>UC Davis</b><span class="when">2023</span><span class="what">B.A. Design · Davis, CA</span></li><li><b>De Anza College</b><span class="when">2019–21</span><span class="what">A.A. Graphic Design · Cupertino, CA</span></li></ul>
+        <h3 class="dt" style="margin-top:28px">Certifications</h3><ul class="rows" style="list-style:none;margin:8px 0 0;padding:0"><li><b>Google UX Design Specialization</b><span class="when">Sep. 2024</span></li><li><b>CompTIA A+</b><span class="when">In Progress</span></li></ul></section>
+      <section class="pg-sec" aria-labelledby="tools-h"><div class="sec-head"><h2 id="tools-h">Tools</h2><span>What I reach for</span></div>
+        <div class="tools"><div><h3 class="dt">Design</h3><ul><li>Figma</li><li>ProtoPie</li><li>Adobe Creative Suite</li><li>Framer</li><li>Webflow</li></ul></div><div><h3 class="dt">Development</h3><ul><li>HTML / CSS / JS</li><li>Python</li><li>C++</li><li>Visual Studio Code</li></ul></div><div><h3 class="dt">AI Tools</h3><ul><li>ChatGPT</li><li>Claude</li><li>Perplexity</li></ul></div><div><h3 class="dt">Research</h3><ul><li>Usability Testing</li><li>User Interviews</li></ul></div><div><h3 class="dt">Productivity</h3><ul><li>Notion</li><li>Google Suite</li></ul></div></div></section>
+      <section class="pg-sec" aria-labelledby="how-h"><div class="sec-head"><h2 id="how-h">How I work</h2><span>Four principles</span></div>
+        <p class="quote-big">The best designs go unnoticed. The best feedback I've ever received was someone saying the fix was so obvious they hadn't even noticed it.</p>
+        <div class="principles"><div><span class="num">01</span><h3>People, not users.</h3><p>Behind every flow is someone with a real task and a bad day: design for that, not a persona doc.</p></div><div><span class="num">02</span><h3>Constraints are the brief.</h3><p>A tight deadline or a messy dataset isn't a blocker. It's the actual design problem.</p></div><div><span class="num">03</span><h3>Details carry the weight.</h3><p>Spacing, copy, and timing are where craft either shows or doesn't.</p></div><div><span class="num">04</span><h3>Small moments matter.</h3><p>A transition timed right, or a sentence that doesn't sound corporate, is what people remember.</p></div></div></section>
+      <section class="pg-sec" aria-labelledby="side-h"><div class="sec-head"><h2 id="side-h">The sidelines</h2><span>Off the clock</span></div>
+        <dl class="kv"><div><dt class="dt">Football &amp; Soccer</dt><dd>I watch one and play the other. Sports have a way of making everything feel more urgent and more possible at the same time.</dd></div><div><dt class="dt">Photography</dt><dd>Framing is the same problem whether you're in Figma or behind a lens. Still figuring out which one I'm better at.</dd></div><div><dt class="dt">Coding for Fun</dt><dd>This site is hand-written HTML. When something breaks, I find it more satisfying than frustrating, which probably says something.</dd></div><div><dt class="dt">Family &amp; Gaming</dt><dd>A Saturday with family beats almost anything. Casual gamer who knows when to put the controller down.</dd></div></dl></section>
+      <section class="end-cta" aria-label="Contact"><a href="contact.html">Get in touch. <span aria-hidden="true">→</span></a></section>
+    </main>
+  <footer class="foot foot--compact">
+    <div class="foot-in">
+      <div class="foot-links"><a href="mailto:hello@dereckvilla.design">hello@dereckvilla.design</a><a href="https://www.linkedin.com/in/dereck-villagrana/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/Derec58" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="resume.pdf" target="_blank" rel="noopener">Résumé ↗</a></div>
+      <small>© 2026 · Designed &amp; built in vanilla HTML, CSS &amp; JS</small>
     </div>
-
-    <div class="nav-group" role="navigation" aria-label="Lab">
-      <span class="nav-label">Lab</span>
-      <a href="https://github.com/Derec58/raspberry-pi-media-stack" target="_blank" rel="noopener noreferrer" class="nav-link">Raspberry Pi Media Stack ↗</a>
-      <a href="https://github.com/Derec58/portfolio2026" target="_blank" rel="noopener noreferrer" class="nav-link">Portfolio Site ↗</a>
-    </div>
-
-    <div class="nav-group" role="navigation" aria-label="Independent Work">
-      <span class="nav-label">Independent Work</span>
-      <a href="projects/packpal.html" class="nav-link" data-preview="images/home/packpal.webp">PackPal</a>
-      <a href="projects/snapplant.html" class="nav-link" data-preview="images/home/snapplant.webp">SnapPlant</a>
-      <a href="projects/arc-redesign.html" class="nav-link" data-preview="images/home/arc-redesign.webp">ARC Redesign</a>
-      <a href="projects/sonidos.html" class="nav-link" data-preview="images/home/sonidos.webp">Sonidos del Alma Danzante</a>
-    </div>
-
-    <div class="sidebar-status">
-      <span class="status-pill">
-        <span class="status-dot" aria-hidden="true"></span>
-        <span>Available for work</span>
-      </span>
-    </div>
-  </aside>
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       END SIDEBAR
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <!-- Main content: the scrollable right panel (sidebar offset handled by CSS) -->
-  <main class="content" id="main-content">
-
-    <!-- ─── Hero: Position + Bio + Photo/Facts ───────────────────────────
-         .about-hero: two-column flex layout — text (left 55%) + side column
-         (right 45%): framed portrait stacked above a compact "Currently"
-         facts card. .hero-photo-frame / .hero-photo-placeholder are reused
-         as-is from the homepage hero (same accent-offset border, same
-         16:9 landscape placeholder) — no new photo-frame CSS needed.
-         .reveal: fades in when scrolled into view (IntersectionObserver in main.js).
-         On mobile: stacks vertically; side column goes full-width below text.
-         ─────────────────────────────────────────────────────────────────── -->
-    <a href="index.html" class="cs-back">← Portfolio</a>
-
-    <div class="about-hero reveal">
-      <!-- Left column: name label + positioning headline + extended bio -->
-      <div class="about-hero-text">
-        <!-- .about-name: small muted "Name — Title" label above the bio -->
-        <p class="about-name">Dereck Villagrana, Product Designer</p>
-        <!-- .about-positioning: the value-proposition headline — the most
-             important sentence on the page, not a greeting. -->
-        <h1 class="about-positioning">Product designer who ships what he designs, with research, prototyping, and just enough code to follow through.</h1>
-        <!-- .about-bio: display font (Playfair), fluid size, multiple paragraphs -->
-        <div class="about-bio">
-          <p>I’m a product designer who builds what I design. I started in computer engineering, moved through graphic design, and ended up at the intersection of both — design thinking with enough code to follow through on it.</p>
-          <p>I’ve always been drawn to the question of why something works the way it does. Design, comp sci, systematic thinking — each one is a different way of asking the same thing. Figuring out that they connect was the thing that made everything click.</p>
-          <p>For a while I thought I had to pick one. Turns out I didn’t. The path I landed on lets me use all of it, and I’m still finding new ways to pull them together.</p>
-        </div>
-      </div>
-      <!-- Right column: framed portrait placeholder + compact facts card -->
-      <div class="about-hero-side">
-        <!-- aria-hidden="true": the photo is decorative context — screen readers
-             don't need to announce a portrait to understand the about page.
-        <div class="hero-photo-frame">
-          <picture>
-            <source type="image/webp" srcset="images/about/portrait.webp">
-            <img src="images/about/portrait.jpg" alt="Dereck Villagrana at Config, San Francisco" class="hero-photo-placeholder" width="4032" height="3024" fetchpriority="high">
-          </picture>
-        </div>
-        <!-- Compact "Currently" card — replaces the old 3-card .about-now-grid,
-             same label/value text styles, tighter row layout to fit beside the photo. -->
-        <div class="about-hero-facts">
-          <p class="about-tool-category">Currently</p>
-          <div class="about-hero-fact">
-            <p class="about-now-label">Seeking</p>
-            <p class="about-now-value">Entry-level UX/UI Designer, IT Help Desk, or office/admin tech roles. On-site, hybrid, or remote, in the Central Valley or Bay Area.</p>
-          </div>
-          <div class="about-hero-fact">
-            <p class="about-now-label">Building</p>
-            <p class="about-now-value">This portfolio. Hand-coded HTML, CSS, and JS. No Webflow, no Framer.</p>
-          </div>
-          <div class="about-hero-fact">
-            <p class="about-now-label">Open to</p>
-            <p class="about-now-value">Introductions, coffee chats, and honest conversations about design work.</p>
-          </div>
-        </div>
-      </div>
-    </div><!-- /.about-hero -->
-
-    <!-- ─── Anchor: Quick Stats ────────────────────────────────────────────
-         Deliberately has no section-divider/heading — a single bold,
-         full-width moment right after the hero, breaking up the otherwise
-         uniform section rhythm below. Reuses .cs-stats-row verbatim from
-         the case-study component family — no new CSS.
-         ─────────────────────────────────────────────────────────────────── -->
-    <section class="cs-section reveal">
-      <div class="cs-stats-row">
-        <div class="cs-stat-item">
-          <span class="cs-stat">3</span>
-          <span class="cs-stat-label">Years designing</span>
-        </div>
-        <div class="cs-stat-item">
-          <span class="cs-stat">3</span>
-          <span class="cs-stat-label">Case studies shipped</span>
-        </div>
-        <div class="cs-stat-item">
-          <span class="cs-stat">6</span>
-          <span class="cs-stat-label">Years writing code</span>
-        </div>
-        <div class="cs-stat-item">
-          <span class="cs-stat">1</span>
-          <span class="cs-stat-label">Client product shipped</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── Tools Section ─────────────────────────────────────────────────
-         Moved up right after the stats anchor — skills/proof before
-         personal narrative, so recruiters scanning don't have to scroll
-         past Background to find this.
-         .about-tools: 2-column grid organized by tool category.
-         ─────────────────────────────────────────────────────────────────── -->
-    <div class="section-divider"><h2>Tools</h2></div>
-
-    <section class="cs-section reveal">
-      <div class="about-tools">
-        <!-- Each <div> is one tool category column -->
-        <div>
-          <p class="about-tool-category">Design</p>
-          <div class="about-tool-list">
-            <span class="about-tool-pill about-tool-pill--design">Figma</span>
-            <span class="about-tool-pill about-tool-pill--design">ProtoPie</span>
-            <span class="about-tool-pill about-tool-pill--design">Adobe Creative Suite</span>
-            <span class="about-tool-pill about-tool-pill--design">Framer</span>
-            <span class="about-tool-pill about-tool-pill--design">Webflow</span>
-          </div>
-        </div>
-        <div>
-          <p class="about-tool-category">Development</p>
-          <div class="about-tool-list">
-            <span class="about-tool-pill about-tool-pill--code">HTML / CSS / JS</span>
-            <span class="about-tool-pill about-tool-pill--code">Python</span>
-            <span class="about-tool-pill about-tool-pill--code">C++</span>
-            <span class="about-tool-pill about-tool-pill--code">Visual Studio Code</span>
-          </div>
-        </div>
-        <div>
-          <p class="about-tool-category">AI Tools</p>
-          <div class="about-tool-list">
-            <span class="about-tool-pill about-tool-pill--ai">ChatGPT</span>
-            <span class="about-tool-pill about-tool-pill--ai">Claude</span>
-            <span class="about-tool-pill about-tool-pill--ai">Perplexity</span>
-          </div>
-        </div>
-        <div>
-          <p class="about-tool-category">Research</p>
-          <div class="about-tool-list">
-            <span class="about-tool-pill about-tool-pill--research">Usability Testing</span>
-            <span class="about-tool-pill about-tool-pill--research">User Interviews</span>
-          </div>
-        </div>
-        <div>
-          <p class="about-tool-category">Productivity</p>
-          <div class="about-tool-list">
-            <span class="about-tool-pill about-tool-pill--other">Notion</span>
-            <span class="about-tool-pill about-tool-pill--other">Google Suite</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── Experience Section ────────────────────────────────────────────
-         Reuses the Education section's .edu-list pattern — same numbered
-         row shape (name, subtitle, year), different content.
-         ─────────────────────────────────────────────────────────────────── -->
-    <div class="section-divider"><h2>Experience</h2></div>
-
-    <section class="cs-section reveal">
-      <div class="edu-list">
-        <div class="edu-item">
-          <span class="edu-num">01</span>
-          <div class="edu-main">
-            <p class="edu-name">Best Buy</p>
-            <p class="edu-degree">Technology Sales Advisor &nbsp;&middot;&nbsp; Part-time</p>
-          </div>
-          <span class="edu-year">Sep.&ndash;Present</span>
-        </div>
-        <div class="edu-item">
-          <span class="edu-num">02</span>
-          <div class="edu-main">
-            <p class="edu-name">MYJ, Inc.</p>
-            <p class="edu-degree">UI/UX Designer Intern &nbsp;&middot;&nbsp; Internship</p>
-          </div>
-          <span class="edu-year">Aug.&ndash;Oct. 2024</span>
-        </div>
-        <div class="edu-item">
-          <span class="edu-num">03</span>
-          <div class="edu-main">
-            <p class="edu-name">Body Sculpture Aesthetics</p>
-            <p class="edu-degree">Product Designer &nbsp;&middot;&nbsp; Freelance</p>
-          </div>
-          <span class="edu-year">Jun.&ndash;Jul. 2024</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── Education Section ────────────────────────────────────────────
-         Numbered rows matching the work-item 01/02 pattern, plus a
-         certifications block reusing the Tools section's category-label
-         + pill components (no new CSS beyond a margin-top wrapper).
-         ─────────────────────────────────────────────────────────────────── -->
-    <div class="section-divider"><h2>Education</h2></div>
-
-    <section class="cs-section reveal">
-      <div class="edu-list">
-        <div class="edu-item">
-          <span class="edu-num">01</span>
-          <div class="edu-main">
-            <p class="edu-name">UC Davis</p>
-            <p class="edu-degree">B.S. Design &nbsp;·&nbsp; Davis, CA</p>
-          </div>
-          <span class="edu-year">2023</span>
-        </div>
-        <div class="edu-item">
-          <span class="edu-num">02</span>
-          <div class="edu-main">
-            <p class="edu-name">De Anza College</p>
-            <p class="edu-degree">A.A. Graphic Design &nbsp;·&nbsp; Cupertino, CA</p>
-          </div>
-          <span class="edu-year">2019–21</span>
-        </div>
-      </div>
-      <div class="about-certs">
-        <p class="about-tool-category">Certifications</p>
-        <div class="about-tool-list">
-          <span class="about-tool-pill about-tool-pill--design">Google UX Design Specialization &nbsp;&middot;&nbsp; Sep. 2024</span>
-          <span class="about-tool-pill about-tool-pill--code">CompTIA A+ &nbsp;&middot;&nbsp; In Progress</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── Background Section ────────────────────────────────────────────
-         Path into design and influences. Moved later in the order — by the
-         time a visitor reaches this, Tools/Experience/Education have
-         already established credibility, so the personal story builds on
-         trust instead of being asked to create it from a standing start.
-         ─────────────────────────────────────────────────────────────────── -->
-    <div class="section-divider"><h2>Background</h2></div>
-    <section class="cs-section reveal">
-      <p class="cs-body">UI/UX wasn't where I started. I came in through computer engineering, taking HTML, CSS, Python, and C++ in high school, at De Anza College, and eventually at UC Davis. Somewhere in those courses I figured out that I enjoyed building things but didn't want to make engineering a career. It was a hobby, and I was honest with myself about that. In between CS coursework I was taking design classes to fill credits, and it clicked in a way the other stuff didn't. I already had Adobe experience from photography classes in high school, which put me ahead in graphic design. Logos, posters, layouts: I loved all of it and wanted to keep going.</p>
-      <p class="cs-body cs-body--spaced">So I changed my major, landed in graphic design, transferred to UC Davis, and then discovered UI/UX almost by accident. I needed credits. Davis had a course. I took it. And that was it. UI/UX was the intersection I'd been circling: design, systematic thinking, and just enough code to matter. Somewhere in there I realized that good design and good engineering ask the same first question: what actually needs to be true here?</p>
-      <p class="cs-body cs-body--spaced">Photography and coding taught me timing, patience, and precision. How something unfolds matters as much as where it ends up. Design taught me that constraints aren't blockers; they're the problem. Both still show up in how I work.</p>
-    </section>
-
-    <!-- ─── Philosophy Section ────────────────────────────────────────────
-         A display-font pull quote followed by a principles list.
-         The list uses CSS-generated em-dashes (—) instead of bullet points.
-         ─────────────────────────────────────────────────────────────────── -->
-    <div class="section-divider"><h2>Philosophy</h2></div>
-    <section class="cs-section reveal">
-      <!-- .about-pull-quote: large serif, centered, max-width constrained -->
-      <p class="about-pull-quote">"The best designs go unnoticed. The best feedback I've ever received was someone saying the fix was so obvious they hadn't even noticed it."</p>
-      <!-- .about-principles: unstyled list; CSS adds em-dash via li::before -->
-      <ul class="about-principles">
-        <li>People, not users. Behind every flow is someone with a real task and a bad day: design for that, not a persona doc.</li>
-        <li>Constraints are the brief. A tight deadline or a messy dataset isn't a blocker. It's the actual design problem.</li>
-        <li>Details carry the weight. Spacing, copy, and timing are where craft either shows or doesn't.</li>
-        <li>Small moments matter. A transition timed right, or a sentence that doesn't sound corporate, is what people remember.</li>
-      </ul>
-    </section>
-
-    <!-- ─── The Sidelines Section ─────────────────────────────────────────
-         Personal interests in a 2×2 table-like grid.
-         CSS borders create horizontal and vertical grid lines.
-         On mobile: collapses to a single column, center divider removed.
-         ─────────────────────────────────────────────────────────────────── -->
-    <div class="section-divider"><h2>The Sidelines</h2></div>
-
-    <section class="cs-section reveal">
-      <!-- .about-sidelines: 2-column grid. border-left on even items = vertical divider. -->
-      <div class="about-sidelines">
-        <div class="about-sideline-item">
-          <p class="about-sideline-label">Football &amp; Soccer</p>
-          <!-- &amp; = HTML entity for the & ampersand character. Must be encoded in HTML. -->
-          <p class="about-sideline-text">I watch one and play the other. Sports have a way of making everything feel more urgent and more possible at the same time.</p>
-        </div>
-        <div class="about-sideline-item">
-          <p class="about-sideline-label">Photography</p>
-          <p class="about-sideline-text">Framing is the same problem whether you're in Figma or behind a lens. Still figuring out which one I'm better at.</p>
-        </div>
-        <div class="about-sideline-item">
-          <p class="about-sideline-label">Coding for Fun</p>
-          <p class="about-sideline-text">This site is hand-written HTML. When something breaks, I find it more satisfying than frustrating, which probably says something.</p>
-        </div>
-        <div class="about-sideline-item">
-          <p class="about-sideline-label">Family &amp; Gaming</p>
-          <p class="about-sideline-text">A Saturday with family beats almost anything. Casual gamer who knows when to put the controller down.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── Contact CTA ──────────────────────────────────────────────────
-         Single CTA pointing to the dedicated contact page.
-         ─────────────────────────────────────────────────────────────────── -->
-    <section class="cs-section reveal">
-      <a href="contact.html" class="about-contact-cta">Get in touch →</a>
-    </section>
-
-    <footer class="site-footer">
-      <span>&copy; 2026 Dereck Villagrana. All rights reserved.</span>
-      <span>Designed &amp; built by Dereck</span>
-    </footer>
-
-  </main><!-- /.content -->
-
-  <div class="cursor-dot" aria-hidden="true"><span class="cursor-label"></span></div>
-  <script src="js/main.js?v=3"></script>
+  </footer>
+  </div>
+  <button type="button" class="totop" aria-label="Back to top">Top <span aria-hidden="true">↑</span></button>
 </body>
 </html>
